@@ -1,0 +1,16 @@
+@charset "UTF-8";
+@import '../utils/_utils.scss';
+
+// * ==========================================================================
+// * 動畫
+// * ==========================================================================
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

@@ -4,4 +4,6 @@
   </div>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+  @import '~/assets/scss/utils/_utils.scss';
+</style>

@@ -1,0 +1,61 @@
+@charset "UTF-8";
+@import './_variables.scss';
+
+// * RWD Max Breakpoints
+@mixin max-width($breakpoints) {
+  @media screen and (max-width: $breakpoints) {
+    @content;
+  }
+}
+
+// * RWD Min Breakpoints
+@mixin min-width($breakpoints) {
+  @media screen and (min-width: $breakpoints) {
+    @content;
+  }
+}
+
+// * RWD Max Height Breakpoints
+@mixin max-height($breakpoints) {
+  @media screen and (max-height: $breakpoints) {
+    @content;
+  }
+}
+
+// * RWD Min Height Breakpoints
+@mixin min-height($breakpoints) {
+  @media screen and (min-height: $breakpoints) {
+    @content;
+  }
+}
+
+// * 處理 IE10 和 IE11 的 CSS Hack
+@mixin hack-ie {
+  @media screen and (-ms-high-contrast: active),
+    (-ms-high-contrast: none) {
+    @content;
+  }
+}
+
+// * 列印
+@mixin print {
+  @content;
+}
+
+// * 隱藏文字
+@mixin hidetext {
+  overflow: hidden;
+  font-size: 0;
+  text-indent: -9999px;
+}
+
+// * Font Awesome
+@mixin fontawesome($type: 'solid') {
+  font-weight: 900;
+
+  @if $type == 'brands' {
+    font-family: 'Font Awesome 5 brands', sans-serif;
+  } @else {
+    font-family: 'Font Awesome 5 solid', sans-serif;
+  }
+}

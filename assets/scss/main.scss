@@ -1,0 +1,24 @@
+@charset "UTF-8";
+@import './utils/_utils.scss';
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500&display=fallback');
+
+@font-face {
+  font-family: 'Font Awesome 5 solid';
+  font-style: normal;
+  font-weight: 900;
+  font-display: fallback;
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/webfonts/fa-solid-900.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 brands';
+  font-style: normal;
+  font-weight: 900;
+  font-display: fallback;
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/webfonts/fa-brands-400.ttf') format('truetype');
+}
+
+@import './basic/_reset.scss';
+@import './basic/_basic.scss';
+@import './basic/_animate.scss';
