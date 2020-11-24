@@ -1,6 +1,19 @@
 @charset "UTF-8";
 @import '../utils/_utils.scss';
 
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: map-get($font-size, base);
+  font-family: $font-family;
+  color: $color-black;
+  background-color: $color-green;
+  line-height: 1.6em;
+  letter-spacing: 1px;
+  -webkit-overflow-scrolling: touch;
+  -o-overflow-scrolling: touch;
+}
+
 // * ==========================================================================
 // * 基本的標籤樣式
 // * ==========================================================================
@@ -75,5 +88,19 @@ button {
 
   &:focus {
     outline: none;
+  }
+}
+
+// * ==========================================================================
+// * 頁面外圍控制整體布局寬度
+// * ==========================================================================
+
+.wrap {
+  width: 100%;
+  max-width: calc(100% - 20px);
+  margin: auto;
+
+  @include min-width(map-get($tablet, sm) + 20px) {
+    max-width: 768px;
   }
 }

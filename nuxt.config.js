@@ -38,8 +38,14 @@ export default {
   buildModules: [],
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/dayjs'
   ],
   axios: {},
+  dayjs: {
+    locales: ['en', 'ja'],
+    defaultLocale: 'en',
+    plugins: ['utc']
+  },
   build: {
     extend(config, { isDev, isClient }) {
       if (!isDev) {
