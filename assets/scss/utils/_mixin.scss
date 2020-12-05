@@ -55,6 +55,8 @@
 
   @if $type == 'brands' {
     font-family: 'Font Awesome 5 brands', sans-serif;
+  } @else if $type == 'regular' {
+    font-family: 'Font Awesome 5 regular', sans-serif;
   } @else {
     font-family: 'Font Awesome 5 solid', sans-serif;
   }

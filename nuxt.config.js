@@ -18,7 +18,7 @@ export default {
     htmlAttrs: {
       lang: 'zh-Hant-TW'
     },
-    title: 'MoneyTracker',
+    title: 'Money Tracker',
     meta: [
       { charset: 'utf-8' },
       { 'http-equiv': 'Content-Type', charset: 'text/html; charset=utf-8' },

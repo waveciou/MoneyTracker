@@ -5,10 +5,12 @@
         href="javascript:;"
         class="arrow-btn btn-prevmonth"
         @click.prevent="changeMonth(false)"
-      >Prev</a>
+      >
+        <span>Prev</span>
+      </a>
       <div
         class="calendar__title"
-        @click.prevent="backToToday()"
+        @click.prevent="directToToday()"
       >
         <span class="caption-year">{{ current.year }} 年</span>
         <span class="caption-month">{{ current.month }} 月</span>
@@ -17,16 +19,18 @@
         href="javascript:;"
         class="arrow-btn btn-nextmonth"
         @click.prevent="changeMonth(true)"
-      >Next</a>
+      >
+        <span>Next</span>
+      </a>
     </div>
     <div class="calendar__body">
       <ul class="calendar__heading">
         <li
-          v-for="item in heading"
-          :key="item"
+          v-for="weekdate in weekdates"
+          :key="weekdate"
         >
           <div class="calendar__item">
-            {{ item }}
+            {{ weekdate }}
           </div>
         </li>
       </ul>
@@ -64,14 +68,15 @@ export default {
         month: 0,
         date: 0
       },
-      heading: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+      weekdates: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
     };
   },
   mounted() {
     this.getTodayData();
-    this.backToToday();
+    this.directToToday();
   },
   methods: {
+    // 切換月份
     changeMonth(isNext) {
       let _month = this.current.month;
       let month = isNext === true ? _month + 1 : _month - 1;
@@ -89,24 +94,27 @@ export default {
       this.current.month = month;
       this.current.date = 1;
     },
+    // 取得日期資料
     getDateData(data) {
       if (data.none === true) {
         return false;
       } else {
-        if (data.years === this.current.year && data.month === this.current.month && data.date === this.current.date) {
+        if (data.year === this.current.year && data.month === this.current.month && data.date === this.current.date) {
           return false;
         } else {
-          this.current.year = data.years;
+          this.current.year = data.year;
           this.current.month = data.month;
           this.current.date = data.date;
         }
       }
     },
-    backToToday() {
+    // 移動至今天
+    directToToday() {
       this.current.year = this.today.year;
       this.current.month = this.today.month;
       this.current.date = this.today.date;
     },
+    // 取得今天資料
     getTodayData() {
       this.today.year = this.$dayjs().year();
       this.today.month = this.$dayjs().month() + 1;
@@ -114,6 +122,7 @@ export default {
     }
   },
   computed: {
+    // 產生月曆
     buildCalendar() {
       let myYears = this.current.year;
       let myMonth = this.current.month;
@@ -121,38 +130,38 @@ export default {
 
       let monthText = myMonth < 10 ? `0${myMonth}` : myMonth.toString();
 
-      let dateArray = [];
-
       let totalDate = this.$dayjs(`${myYears}-${monthText}`).daysInMonth();
       let week = this.$dayjs(`${myYears}-${monthText}`).format('d');
 
+      let resultList = [];
+
       for (let i = 0; i < totalDate; i++) {
-        let dateNum = i + 1;
+        let dateNumber = i + 1;
         let isToday = false;
         let isCurrent = false;
         let dateText = '';
 
-        if (myYears === this.today.year && myMonth === this.today.month && dateNum === this.today.date) {
+        if (myYears === this.today.year && myMonth === this.today.month && dateNumber === this.today.date) {
           isToday = true;
         }
 
-        if (dateNum === myDate) {
+        if (dateNumber === myDate) {
           isCurrent = true;
         }
 
-        dateNum < 10 ? dateText = `0${dateNum}` : dateText = dateNum.toString();
+        dateNumber < 10 ? dateText = `0${dateNumber}` : dateText = dateNumber.toString();
 
         let result = {
-          id: `${myYears}-${myMonth}-${dateNum}`,
-          years: myYears,
+          id: `${myYears}-${myMonth}-${dateNumber}`,
+          year: myYears,
           month: myMonth,
-          date: dateNum,
+          date: dateNumber,
           number: dateText,
           today: isToday,
           current: isCurrent
         };
 
-        dateArray.push(result);
+        resultList.push(result);
       }
 
       // 補上前面的日期
@@ -161,21 +170,21 @@ export default {
           number: '',
           none: true
         };
-        dateArray.splice(i, 0, obj);
+        resultList.splice(i, 0, obj);
       }
 
       // 補上後面的日期
-      let patchNum = (dateArray.length % 7 === 0) ? 0 : 7 - (dateArray.length % 7);
+      let patchNum = (resultList.length % 7 === 0) ? 0 : 7 - (resultList.length % 7);
 
       for (let i = 0; i < patchNum; i++) {
         let obj = {
           number: '',
           none: true
         };
-        dateArray.splice(dateArray.length, 0, obj);
+        resultList.splice(resultList.length, 0, obj);
       }
 
-      return dateArray;
+      return resultList;
     }
   }
 };
@@ -184,15 +193,10 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/utils/_utils.scss';
 
-$color-gray: #f2f2f2;
-$color-gray-default: #e5e5e5;
-$color-gray-dark: #929292;
-
 .calendar {
-  margin-top: 1rem;
   margin-bottom: 1rem;
   overflow: hidden;
-  border-radius: 7px;
+  background-color: $color-black;
 }
 
 .calendar__heading,
@@ -203,6 +207,8 @@ $color-gray-dark: #929292;
 
   > li {
     width: 14.2857142%;
+    padding-right: 5px;
+    padding-left: 5px;
   }
 }
 
@@ -215,17 +221,17 @@ $color-gray-dark: #929292;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: $color-black;
+  color: $color-white;
   border-radius: 3px;
   transition: all 0.3s;
 
-  &.current {
-    background-color: $color-gray-default;
+  &.is-today {
+    color: $color-yellow;
   }
 
-  &.is-today {
-    color: $color-white;
-    background-color: $color-black;
+  &.current {
+    color: $color-black;
+    background-color: $color-yellow;
   }
 }
 
@@ -234,28 +240,28 @@ $color-gray-dark: #929292;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: $color-gray-default;
 
   .arrow-btn {
     display: flex;
-    font-size: 0;
+
+    > span {
+      display: none;
+    }
 
     &::before {
-      content: '';
-      width: 0;
-      height: 0;
+      @include fontawesome;
+
       display: block;
-      border-style: solid;
+      font-size: map-get($font-size, base);
+      color: $color-white;
     }
 
     &.btn-prevmonth::before {
-      border-width: 10px 13px 10px 0;
-      border-color: transparent $color-black transparent transparent;
+      content: '\f053';
     }
 
     &.btn-nextmonth::before {
-      border-width: 10px 0 10px 13px;
-      border-color: transparent transparent transparent $color-black;
+      content: '\f054';
     }
   }
 }
@@ -264,14 +270,20 @@ $color-gray-dark: #929292;
   font-size: map-get($font-size, sm);
   text-align: center;
   cursor: pointer;
+
+  > span {
+    color: $color-white;
+  }
 }
 
 .calendar__heading {
   padding-right: 5px;
   padding-left: 5px;
-  background-color: $color-gray;
+  background-color: $color-yellow;
+  border-radius: 5px;
 
   .calendar__item {
+    font-weight: 500;
     color: $color-black;
   }
 }
@@ -279,7 +291,6 @@ $color-gray-dark: #929292;
 .calendar__content {
   padding: 5px;
   position: relative;
-  background-color: $color-white;
 
   .calendar__item {
     font-size: map-get($font-size, sm);

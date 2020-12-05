@@ -1,7 +1,5 @@
 <template>
-  <div class="wrap">
-    <calendar-component />
-  </div>
+  <calendar-component />
 </template>
 
 <script>

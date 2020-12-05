@@ -4,6 +4,14 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500&display=fallback');
 
 @font-face {
+  font-family: 'Font Awesome 5 regular';
+  font-style: normal;
+  font-weight: 900;
+  font-display: fallback;
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/webfonts/fa-regular-400.ttf') format('truetype');
+}
+
+@font-face {
   font-family: 'Font Awesome 5 solid';
   font-style: normal;
   font-weight: 900;
