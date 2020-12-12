@@ -30,3 +30,19 @@
 @import './basic/_reset.scss';
 @import './basic/_basic.scss';
 @import './basic/_animate.scss';
+
+// * ==========================================================================
+// * Header
+// * ==========================================================================
+
+.header {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 2px rgba($color-white, 0.6) solid;
+}
+
+.title {
+  font-size: map-get($font-size, md);
+  color: $color-white;
+  line-height: 1.4em;
+}

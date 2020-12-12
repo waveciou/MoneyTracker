@@ -5,13 +5,10 @@
         {{ title.name }}
       </h1>
     </header>
-    <calendar-component />
   </div>
 </template>
 
 <script>
-import calendar from '~/components/calendar.vue';
-
 export default {
   data() {
     return {
@@ -25,9 +22,6 @@ export default {
     return {
       title: this.title.head,
     };
-  },
-  components: {
-    'calendar-component': calendar
   },
   fetch() {
     this.$store.commit('GET_PAGE_TITLE', this.$route.name);

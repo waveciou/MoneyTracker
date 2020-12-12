@@ -116,9 +116,9 @@ export default {
     },
     // 取得今天資料
     getTodayData() {
-      this.today.year = this.$dayjs().year();
-      this.today.month = this.$dayjs().month() + 1;
-      this.today.date = this.$dayjs().date();
+      this.today.year = this.$dayjs().utcOffset(8).year();
+      this.today.month = this.$dayjs().utcOffset(8).month() + 1;
+      this.today.date = this.$dayjs().utcOffset(8).date();
     }
   },
   computed: {
@@ -130,8 +130,8 @@ export default {
 
       let monthText = myMonth < 10 ? `0${myMonth}` : myMonth.toString();
 
-      let totalDate = this.$dayjs(`${myYears}-${monthText}`).daysInMonth();
-      let week = this.$dayjs(`${myYears}-${monthText}`).format('d');
+      let totalDate = this.$dayjs(`${myYears}-${monthText}`).utcOffset(8).daysInMonth();
+      let week = this.$dayjs(`${myYears}-${monthText}`).utcOffset(8).format('d');
 
       let resultList = [];
 

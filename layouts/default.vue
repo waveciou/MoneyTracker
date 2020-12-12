@@ -1,7 +1,12 @@
 <template>
   <main class="main">
     <div class="content">
-      <Nuxt />
+      <transition
+        name="fade"
+        mode="out-in"
+      >
+        <Nuxt />
+      </transition>
     </div>
     <menu-component />
   </main>
