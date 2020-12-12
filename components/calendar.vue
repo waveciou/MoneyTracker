@@ -4,9 +4,10 @@
       <a
         href="javascript:;"
         class="arrow-btn btn-prevmonth"
+        title="Previous"
         @click.prevent="changeMonth(false)"
       >
-        <span>Prev</span>
+        <span>Previous</span>
       </a>
       <div
         class="calendar__title"
@@ -18,6 +19,7 @@
       <a
         href="javascript:;"
         class="arrow-btn btn-nextmonth"
+        title="Next"
         @click.prevent="changeMonth(true)"
       >
         <span>Next</span>
@@ -44,8 +46,10 @@
             class="calendar__item"
             :class="{
               'is-today': item.today === true,
-              'current': item.current === true
+              'current': item.current === true,
+              'disabled': item.none === true
             }"
+            :title="item.id"
             @click.prevent="getDateData(item)"
           >{{ item.number }}</a>
         </li>
@@ -99,13 +103,9 @@ export default {
       if (data.none === true) {
         return false;
       } else {
-        if (data.year === this.current.year && data.month === this.current.month && data.date === this.current.date) {
-          return false;
-        } else {
-          this.current.year = data.year;
-          this.current.month = data.month;
-          this.current.date = data.date;
-        }
+        this.current.year = data.year;
+        this.current.month = data.month;
+        this.current.date = data.date;
       }
     },
     // 移動至今天
@@ -196,12 +196,13 @@ export default {
 .calendar {
   margin-bottom: 1rem;
   overflow: hidden;
-  background-color: $color-black;
 }
 
 .calendar__heading,
 .calendar__content {
   width: 100%;
+  padding-right: 5px;
+  padding-left: 5px;
   display: flex;
   flex-wrap: wrap;
 
@@ -212,11 +213,22 @@ export default {
   }
 }
 
+.calendar__heading {
+  background-color: $color-yellow;
+  border-radius: 5px;
+}
+
+.calendar__content {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: relative;
+}
+
 .calendar__item {
   width: 100%;
   height: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -230,8 +242,24 @@ export default {
   }
 
   &.current {
-    color: $color-black;
+    color: $color-black-light;
     background-color: $color-yellow;
+  }
+
+  &.disabled {
+    cursor: default;
+  }
+
+  @at-root .calendar__heading & {
+    font-size: map-get($font-size, base);
+    font-weight: 500;
+    color: $color-black-light;
+  }
+
+  @at-root .calendar__content & {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: map-get($font-size, xs);
   }
 }
 
@@ -267,34 +295,12 @@ export default {
 }
 
 .calendar__title {
-  font-size: map-get($font-size, sm);
+  font-size: map-get($font-size, xs);
   text-align: center;
   cursor: pointer;
 
   > span {
     color: $color-white;
-  }
-}
-
-.calendar__heading {
-  padding-right: 5px;
-  padding-left: 5px;
-  background-color: $color-yellow;
-  border-radius: 5px;
-
-  .calendar__item {
-    font-weight: 500;
-    color: $color-black;
-  }
-}
-
-.calendar__content {
-  padding: 5px;
-  position: relative;
-
-  .calendar__item {
-    font-size: map-get($font-size, sm);
-    cursor: pointer;
   }
 }
 </style>

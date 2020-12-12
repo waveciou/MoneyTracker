@@ -1,38 +1,20 @@
 <template>
-  <div>
-    <header class="header">
-      <h1 class="title">
-        {{ title.name }}
-      </h1>
-    </header>
-    <calendar-component />
+  <div class="content">
+    <header-component />
+    <div class="wrap">
+      <calendar-component />
+    </div>
   </div>
 </template>
 
 <script>
+import header from '~/components/header.vue';
 import calendar from '~/components/calendar.vue';
 
 export default {
-  data() {
-    return {
-      title: {
-        name: '',
-        head: '',
-      },
-    };
-  },
-  head() {
-    return {
-      title: this.title.head,
-    };
-  },
   components: {
+    'header-component': header,
     'calendar-component': calendar
-  },
-  fetch() {
-    this.$store.commit('GET_PAGE_TITLE', this.$route.name);
-    this.title.name = this.$store.state.pages.name;
-    this.title.head = this.$store.state.pages.head;
   },
 };
 </script>

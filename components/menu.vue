@@ -38,7 +38,7 @@ export default {
   width: 100%;
   height: $menu-height;
   display: flex;
-  background-color: $color-black-light;
+  background-color: $color-black;
 }
 
 .menu-btn {
@@ -57,12 +57,12 @@ export default {
   }
 
   &::before {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     margin: 5px auto;
-    line-height: 40px;
+    line-height: 35px;
     display: block;
-    font-size: map-get($font-size, xl);
+    font-size: map-get($font-size, lg);
     color: $color-white;
     transition: color 0.4s;
   }

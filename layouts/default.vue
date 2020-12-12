@@ -1,13 +1,11 @@
 <template>
   <main class="main">
-    <div class="content">
-      <transition
-        name="fade"
-        mode="out-in"
-      >
-        <Nuxt />
-      </transition>
-    </div>
+    <transition
+      name="fade"
+      mode="out-in"
+    >
+      <Nuxt />
+    </transition>
     <menu-component />
   </main>
 </template>
@@ -54,22 +52,11 @@ export default {
   height: 100%;
   margin: auto;
   position: relative;
-  background-color: $color-black;
+  background-color: $color-black-light;
 
   @include min-width(map-get($phone, md) + 20px) {
     max-width: map-get($phone, md);
   }
 }
 
-.content {
-  width: 100%;
-  height: calc(100% - #{$menu-height});
-  padding-right: 10px;
-  padding-left: 10px;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  -o-overflow-scrolling: touch;
-}
 </style>

@@ -14,7 +14,7 @@ export const state = () => ({
     {
       routeName: 'index',
       markName: 'account',
-      title: '記帳日曆'
+      title: '記帳日誌'
     },
     {
       routeName: 'overview',

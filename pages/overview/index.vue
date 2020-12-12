@@ -1,32 +1,16 @@
 <template>
-  <div>
-    <header class="header">
-      <h1 class="title">
-        {{ title.name }}
-      </h1>
-    </header>
+  <div class="content">
+    <header-component />
+    <div class="wrap" />
   </div>
 </template>
 
 <script>
+import header from '~/components/header.vue';
+
 export default {
-  data() {
-    return {
-      title: {
-        name: '',
-        head: '',
-      },
-    };
-  },
-  head() {
-    return {
-      title: this.title.head,
-    };
-  },
-  fetch() {
-    this.$store.commit('GET_PAGE_TITLE', this.$route.name);
-    this.title.name = this.$store.state.pages.name;
-    this.title.head = this.$store.state.pages.head;
+  components: {
+    'header-component': header
   },
 };
 </script>
