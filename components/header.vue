@@ -21,11 +21,20 @@ export default {
       title: this.title.head,
     };
   },
+  props: {
+    name: String
+  },
   fetch() {
     this.$store.commit('GET_PAGE_TITLE', this.$route.name);
     this.title.name = this.$store.state.pages.name;
     this.title.head = this.$store.state.pages.head;
-  },
+
+    if (process.client) {
+      if (this.name) {
+        this.title.name = this.name;
+      }
+    }
+  }
 };
 </script>
 

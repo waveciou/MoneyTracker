@@ -53,29 +53,34 @@ input[type='number'],
 input[type='email'],
 input[type='file'],
 input[type='date'],
+input[type='datetime-local'],
 select,
 textarea {
   width: 100%;
-  height: 50px;
+  height: 38px;
   padding: 5px 10px;
   margin: 0;
   display: inline-block;
   position: relative;
   font-size: map-get($font-size, base);
-  color: $color-black;
-  border: 1px $color-black solid;
-  border-radius: 0;
+  color: $color-white;
+  background-color: $color-black-light;
+  border: 1px $color-white solid;
+  border-radius: 5px;
+  transition: box-shadow 0.3s;
   transform: translateZ(0);
-  line-height: 40px;
+  line-height: 28px;
+  appearance: none;
 
   &:focus {
+    border-color: $color-yellow;
     outline: none;
     box-shadow: focusborder(false);
   }
 }
 
 textarea {
-  height: 200px;
+  height: 150px;
   display: block;
   resize: none;
 }
@@ -94,6 +99,50 @@ button {
 
   &:focus {
     outline: none;
+  }
+}
+
+// * ==========================================================================
+// * Grid
+// * ==========================================================================
+
+.align {
+  display: flex;
+  flex-wrap: wrap;
+
+  .col {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .col-100 {
+    width: 100%;
+  }
+
+  .col-50 {
+    width: 50%;
+  }
+
+  .col-33 {
+    width: 33.33%;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  &.is-center {
+    justify-content: center;
+  }
+
+  &.is-left {
+    justify-content: flex-start;
+  }
+
+  &.is-right {
+    justify-content: flex-end;
   }
 }
 
@@ -117,10 +166,38 @@ button {
 
 .wrap {
   width: 100%;
-  max-width: calc(100% - 20px);
+  padding-right: 10px;
+  padding-left: 10px;
   margin: auto;
+}
 
-  @include min-width(map-get($phone, md) + 20px) {
-    max-width: map-get($phone, md);
-  }
+// * ==========================================================================
+// * 表單元件
+// * ==========================================================================
+
+.fieldset {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.fieldset-caption {
+  display: block;
+  font-size: map-get($font-size, base);
+  margin-bottom: 5px;
+}
+
+// * ==========================================================================
+// * 按鈕
+// * ==========================================================================
+
+.btn {
+  min-width: 120px;
+  max-width: 100%;
+  padding: 7px 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  display: inline-block;
+  text-align: center;
+  border: 1px $color-white solid;
+  border-radius: 5px;
 }

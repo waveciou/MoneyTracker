@@ -4,7 +4,26 @@
 
 //* State
 export const state = () => ({
-  accounts: [],
+  accounts: [
+    {
+      id: 123456789,
+      isExpense: true,
+      name: '營養三明治',
+      price: 10,
+      store: '安安早餐店',
+      categories: '飲食',
+      subcategories: '早餐',
+      time: {
+        year: 2020,
+        month: 12,
+        date: 15,
+        hour: 22,
+        minute: 30
+      },
+      tags: ['早餐', '三明治'],
+      notes: ''
+    }
+  ],
   siteName: 'Money Tracker',
   pages: {
     name: '',
@@ -47,7 +66,6 @@ export const mutations = {
     const routeName = payload;
 
     const routeData = route.filter(data => data.routeName === routeName);
-
     state.pages.name = routeData.length < 1 ? routeName : routeData[0].title;
     state.pages.head = routeData.length < 1 ? routeName : `${state.siteName} - ${routeData[0].title}`;
   },

@@ -27,16 +27,23 @@ export default {
     // 取得儲存在 localStorage 的資料
     getLocalStorageData() {
       if (process.client && window.localStorage) {
-        // 記帳項目列表
-        let accountList = [];
+        let database = localStorage.getItem('monetkyAccounts');
+        let result = [];
 
-        try {
-          accountList = JSON.parse(localStorage.getItem('monetkyAccounts')) || [];
-        } catch {
-          accountList = [];
+        if (database) {
+          let accountList = [];
+
+          try {
+            accountList = JSON.parse(database) || [];
+          } catch {
+            accountList = [];
+          }
+
+          result = Array.isArray(accountList) ? accountList : [];
+        } else {
+          result = [...this.$store.state.accounts];
         }
 
-        const result = Array.isArray(accountList) ? accountList : [];
         this.$store.commit('SET_ACCOUNTS_DATA', result);
       }
     }

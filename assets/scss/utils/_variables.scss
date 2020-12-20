@@ -10,6 +10,8 @@ $color-black: #161616;
 $color-black-light: #2e363d;
 $color-black-dark: #000;
 
+$color-red: #ff6670;
+$color-green: #77a88d;
 $color-yellow: #ffdf5e;
 
 // * ==========================================================================
@@ -59,11 +61,11 @@ $font-size: (
 // * Focus 時的外框樣式
 // * ==========================================================================
 
-@function focusBorder($inside: false, $opacity: 0.6) {
+@function focusborder($inside: false, $opacity: 0.55) {
   @if $inside == true {
-    @return inset 0 0 0 0.2rem rgba($color-blue, $opacity);
+    @return inset 0 0 0 0.2rem rgba($color-yellow, $opacity);
   } @else {
-    @return 0 0 0 0.13rem rgba($color-blue, $opacity);
+    @return 0 0 0 0.2rem rgba($color-yellow, $opacity);
   }
 }
 

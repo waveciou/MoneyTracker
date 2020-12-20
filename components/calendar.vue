@@ -124,6 +124,7 @@ export default {
   computed: {
     // 產生月曆
     buildCalendar() {
+      let resultList = [];
       let myYears = this.current.year;
       let myMonth = this.current.month;
       let myDate = this.current.date;
@@ -131,40 +132,31 @@ export default {
       let monthText = myMonth < 10 ? `0${myMonth}` : myMonth.toString();
 
       let totalDate = this.$dayjs(`${myYears}-${monthText}`).utcOffset(8).daysInMonth();
-      let week = this.$dayjs(`${myYears}-${monthText}`).utcOffset(8).format('d');
-
-      let resultList = [];
 
       for (let i = 0; i < totalDate; i++) {
         let dateNumber = i + 1;
         let isToday = false;
-        let isCurrent = false;
-        let dateText = '';
 
         if (myYears === this.today.year && myMonth === this.today.month && dateNumber === this.today.date) {
           isToday = true;
         }
 
-        if (dateNumber === myDate) {
-          isCurrent = true;
-        }
-
-        dateNumber < 10 ? dateText = `0${dateNumber}` : dateText = dateNumber.toString();
-
-        let result = {
+        const result = {
           id: `${myYears}-${myMonth}-${dateNumber}`,
           year: myYears,
           month: myMonth,
           date: dateNumber,
-          number: dateText,
+          number: dateNumber < 10 ? `0${dateNumber}` : dateNumber.toString(),
           today: isToday,
-          current: isCurrent
+          current: dateNumber === myDate ? true : false
         };
 
         resultList.push(result);
       }
 
       // 補上前面的日期
+      let week = this.$dayjs(`${myYears}-${monthText}`).utcOffset(8).format('d');
+
       for (let i = 0; i < week; i++) {
         let obj = {
           number: '',
@@ -174,9 +166,9 @@ export default {
       }
 
       // 補上後面的日期
-      let patchNum = (resultList.length % 7 === 0) ? 0 : 7 - (resultList.length % 7);
+      let patchNumber = (resultList.length % 7 === 0) ? 0 : 7 - (resultList.length % 7);
 
-      for (let i = 0; i < patchNum; i++) {
+      for (let i = 0; i < patchNumber; i++) {
         let obj = {
           number: '',
           none: true
@@ -185,6 +177,15 @@ export default {
       }
 
       return resultList;
+    }
+  },
+  watch: {
+    current: {
+      handler: function(value) {
+        this.$emit('get-date', value);
+      },
+      deep: true,
+      immediate: true
     }
   }
 };
@@ -213,14 +214,7 @@ export default {
   }
 }
 
-.calendar__heading {
-  background-color: $color-yellow;
-  border-radius: 5px;
-}
-
 .calendar__content {
-  padding-top: 5px;
-  padding-bottom: 5px;
   position: relative;
 }
 
@@ -253,7 +247,6 @@ export default {
   @at-root .calendar__heading & {
     font-size: map-get($font-size, base);
     font-weight: 500;
-    color: $color-black-light;
   }
 
   @at-root .calendar__content & {
@@ -264,10 +257,12 @@ export default {
 }
 
 .calendar__header {
-  padding: 15px 10px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: $color-yellow;
+  border-radius: 5px;
 
   .arrow-btn {
     display: flex;
@@ -281,7 +276,7 @@ export default {
 
       display: block;
       font-size: map-get($font-size, base);
-      color: $color-white;
+      color: $color-black-light;
     }
 
     &.btn-prevmonth::before {
@@ -300,7 +295,7 @@ export default {
   cursor: pointer;
 
   > span {
-    color: $color-white;
+    color: $color-black-light;
   }
 }
 </style>
