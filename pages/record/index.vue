@@ -6,15 +6,17 @@
         <div class="col col-100">
           <div class="select-radio">
             <button
-              class="select-radio-btn color-red"
+              class="select-radio-btn"
               :class="{'current': resource.isExpense === true}"
+              title="支出"
               @click.stop="resource.isExpense = true"
             >
               <span>支出</span>
             </button>
             <button
-              class="select-radio-btn color-green"
+              class="select-radio-btn"
               :class="{'current': resource.isExpense === false}"
+              title="收入"
               @click.stop="resource.isExpense = false"
             >
               <span>收入</span>
@@ -29,8 +31,10 @@
             >金額</label>
             <input
               id="from__price"
-              v-model.number="resource.price"
+              v-model.number="computePrice"
               type="text"
+              @focus="priceFocusHandler"
+              @blur="priceBlurHandler"
             >
           </div>
         </div>
@@ -271,7 +275,8 @@ export default {
         notes: ''
       },
       categoriesData: {},
-      hashtagInput: ''
+      hashtagInput: '',
+      isError: false
     };
   },
   components: {
@@ -341,6 +346,8 @@ export default {
       }
 
       this.$store.commit('SET_ACCOUNTS_DATA', accounts);
+
+      this.$router.push({ name: 'index' });
     },
     // 取消
     cancelHandler() {
@@ -348,7 +355,7 @@ export default {
     },
     // 新增 hashtag
     createHashtagHandler() {
-      if (this.resource.tags.indexOf(this.hashtagInput) < 0) {
+      if (this.resource.tags.indexOf(this.hashtagInput) < 0 && this.hashtagInput !== '') {
         this.resource.tags.push(this.hashtagInput);
       }
       this.hashtagInput = '';
@@ -356,9 +363,33 @@ export default {
     // 刪除 hashtag
     deleateHashtagHandler(index) {
       this.resource.tags.splice(index, 1);
+    },
+    // Price input focus event
+    priceFocusHandler() {
+      // 金額輸入時如果為0，則轉成空字串
+      if (this.resource.price === 0) {
+        this.resource.price = '';
+      }
+    },
+    // Price input blur event
+    priceBlurHandler() {
+      if (this.resource.price === '') {
+        this.resource.price = 0;
+      }
     }
   },
   computed: {
+    // 金額
+    computePrice: {
+      get() {
+        return this.resource.price;
+      },
+      set(value) {
+        let reg = /^[0-9]*$/;
+        let verification = reg.test(value) ? true : false;
+        this.resource.price = verification === true ? value : 0;
+      }
+    },
     // 主類別列表
     categorieList() {
       return this.categoriesData[this.expenseKeyword].map(item => {
@@ -415,86 +446,85 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '~/assets/scss/utils/_utils.scss';
-  @import '~/assets/scss/_form.scss';
+@import '~/assets/scss/utils/_utils.scss';
+@import '~/assets/scss/_form.scss';
 
-  .select-radio {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 5px;
-    margin-bottom: 1rem;
+.select-radio {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 2px $color-yellow solid;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.select-radio-btn {
+  width: 100%;
+  padding: 7px;
+  display: block;
+  position: relative;
+  color: $color-white;
+  flex-grow: 1;
+
+  span {
+    position: relative;
+
+    &::before {
+      @include fontawesome;
+
+      content: '\f00c';
+      width: 20px;
+      display: inline-block;
+      position: absolute;
+      left: -20px;
+      opacity: 0;
+    }
   }
 
-  .select-radio-btn {
-    width: 100%;
-    padding: 7px;
-    display: block;
-    position: relative;
-    color: $color-white;
-    flex-grow: 1;
+  &.current {
+    background-color: $color-yellow;
 
     span {
-      position: relative;
+      color: $color-black-light;
 
       &::before {
-        @include fontawesome;
-
-        content: '\f00c';
-        width: 20px;
-        display: inline-block;
-        position: absolute;
-        left: -20px;
-        opacity: 0;
-      }
-    }
-
-    &.current {
-      span::before {
         opacity: 1;
       }
     }
+  }
+}
 
-    &.color-red {
-      background-color: $color-red;
-    }
+.hashtag-list {
+  display: flex;
+  flex-wrap: wrap;
 
-    &.color-green {
-      background-color: $color-green;
-    }
+  > li {
+    margin-right: 5px;
+    margin-bottom: 7px;
+  }
+}
+
+.hashtag-item {
+  padding: 5px 7px 5px 10px;
+  display: block;
+  font-size: 0.85rem;
+  background-color: rgba($color-black-dark, 0.6);
+  border-radius: 5px;
+  line-height: 1em;
+
+  &::before {
+    content: '#';
   }
 
-  .hashtag-list {
-    display: flex;
-    flex-wrap: wrap;
+  &::after {
+    @include fontawesome;
 
-    > li {
-      margin-right: 5px;
-      margin-bottom: 7px;
-    }
+    content: '\f057';
+    margin-left: 5px;
   }
+}
 
-  .hashtag-item {
-    padding: 5px 7px 5px 10px;
-    display: block;
-    font-size: 0.85rem;
-    background-color: rgba($color-black-dark, 0.6);
-    border-radius: 5px;
-    line-height: 1em;
-
-    &::before {
-      content: '#';
-    }
-
-    &::after {
-      @include fontawesome;
-
-      content: '\f057';
-      margin-left: 5px;
-    }
-  }
-
-  .btn {
-    width: 100%;
-  }
+.btn {
+  width: 100%;
+}
 </style>

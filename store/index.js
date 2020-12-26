@@ -75,5 +75,5 @@ export const mutations = {
     if (process.client && window.localStorage) {
       localStorage.setItem('monetkyAccounts', JSON.stringify(payload));
     }
-  },
+  }
 };

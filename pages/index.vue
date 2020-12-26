@@ -12,6 +12,7 @@
             href="javascript:;"
             class="accounts-item"
             :title="account.name"
+            @click.stop="openAccountDialog(account)"
           >
             <div class="accounts-icon" />
             <div class="accounts-content">
@@ -38,12 +39,19 @@
         </li>
       </ul>
     </div>
+    <lightbox-component
+      :control="accountDialog"
+      @click-overlay="closeAccountDialog"
+    >
+      123
+    </lightbox-component>
   </div>
 </template>
 
 <script>
 import header from '~/components/header.vue';
 import calendar from '~/components/calendar.vue';
+import lightbox from '~/components/lightbox.vue';
 
 export default {
   data() {
@@ -52,12 +60,15 @@ export default {
         date: 0,
         month: 0,
         year: 0
-      }
+      },
+      accountDialog: false,
+      currentAccount: {}
     };
   },
   components: {
     'header-component': header,
-    'calendar-component': calendar
+    'calendar-component': calendar,
+    'lightbox-component': lightbox
   },
   methods: {
     // 取得選取日期
@@ -65,18 +76,25 @@ export default {
       this.activeDate.year = payload.year;
       this.activeDate.month = payload.month;
       this.activeDate.date = payload.date;
+    },
+    // 打開帳目資訊視窗
+    openAccountDialog(payload) {
+      this.currentAccount = this.DEEP_CLONE(payload);
+      this.accountDialog = true;
+    },
+    // 關閉帳目資訊視窗
+    closeAccountDialog() {
+      this.currentAccount = {};
+      this.accountDialog = false;
     }
   },
   computed: {
+    // 帳目列表
     accountList() {
       let accounts = [...this.$store.state.accounts];
-      let result = accounts.filter(item => {
-        let checkResult = Object.keys(this.activeDate).every(key => {
-          return this.activeDate[key] === item.time[key];
-        });
-        return checkResult;
+      return accounts.filter(item => {
+        return Object.keys(this.activeDate).every(key => this.activeDate[key] === item.time[key]);
       });
-      return result;
     }
   }
 };
