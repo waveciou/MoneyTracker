@@ -21,183 +21,207 @@
             </button>
           </div>
         </div>
-        <div class="col col-100 fieldset">
-          <label
-            class="fieldset-caption"
-            for="from__price"
-          >金額</label>
-          <input
-            id="from__price"
-            v-model.number="resource.price"
-            type="text"
-          >
+        <div class="col col-100">
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__price"
+            >金額</label>
+            <input
+              id="from__price"
+              v-model.number="resource.price"
+              type="text"
+            >
+          </div>
         </div>
-        <div class="col col-100 fieldset">
-          <label
-            class="fieldset-caption"
-            for="from__name"
-          >名稱</label>
-          <input
-            id="from__name"
-            v-model="resource.name"
-            type="text"
-          >
+        <div class="col col-100">
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__name"
+            >名稱</label>
+            <input
+              id="from__name"
+              v-model="resource.name"
+              type="text"
+            >
+          </div>
         </div>
         <div
-          class="col fieldset"
+          class="col"
           :class="{
             'col-50': resource.isExpense === true,
             'col-100': resource.isExpense === false
           }"
         >
-          <label
-            class="fieldset-caption"
-            for="from__categories"
-          >主類別</label>
-          <div class="select">
-            <select
-              id="from__categories"
-              v-model="computeCategories"
-            >
-              <option
-                v-for="categorieItem in categorieList"
-                :key="categorieItem.id"
-                :value="categorieItem.id"
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__categories"
+            >主類別</label>
+            <div class="select">
+              <select
+                id="from__categories"
+                v-model="computeCategories"
               >
-                {{ categorieItem.name }}
-              </option>
-            </select>
+                <option
+                  v-for="categorieItem in categorieList"
+                  :key="categorieItem.id"
+                  :value="categorieItem.id"
+                >
+                  {{ categorieItem.name }}
+                </option>
+              </select>
+            </div>
           </div>
         </div>
         <div
           v-if="resource.isExpense === true"
-          class="col col-50 fieldset"
+          class="col col-50"
         >
-          <label
-            class="fieldset-caption"
-            for="from__subcategories"
-          >次類別</label>
-          <div class="select">
-            <select
-              id="from__subcategories"
-              v-model="computeSubcategories"
-            >
-              <option
-                v-for="subcategorieItem in subcategorieList"
-                :key="subcategorieItem.id"
-                :value="subcategorieItem.id"
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__subcategories"
+            >次類別</label>
+            <div class="select">
+              <select
+                id="from__subcategories"
+                v-model="computeSubcategories"
               >
-                {{ subcategorieItem.name }}
-              </option>
-            </select>
+                <option
+                  v-for="subcategorieItem in subcategorieList"
+                  :key="subcategorieItem.id"
+                  :value="subcategorieItem.id"
+                >
+                  {{ subcategorieItem.name }}
+                </option>
+              </select>
+            </div>
           </div>
         </div>
-        <div class="col col-100 fieldset">
-          <label
-            class="fieldset-caption"
-            for="from__store"
-          >商家</label>
-          <input
-            id="from__store"
-            v-model="resource.store"
-            type="text"
-          >
-        </div>
-        <div class="col col-33 fieldset">
-          <label
-            class="fieldset-caption"
-            for="from__time-year"
-          >年</label>
-          <input
-            id="from__time-year"
-            v-model.number="resource.time.year"
-            type="text"
-          >
-        </div>
-        <div class="col col-33 fieldset">
-          <label
-            class="fieldset-caption"
-            for="from__time-month"
-          >月</label>
-          <input
-            id="from__time-month"
-            v-model.number="resource.time.month"
-            type="text"
-          >
-        </div>
-        <div class="col col-33 fieldset">
-          <label
-            class="fieldset-caption"
-            for="from__time-date"
-          >日</label>
-          <input
-            id="from__time-date"
-            v-model.number="resource.time.date"
-            type="text"
-          >
-        </div>
-        <div class="col col-50 fieldset">
-          <label
-            class="fieldset-caption"
-            for="from__time-hour"
-          >時</label>
-          <input
-            id="from__time-hour"
-            v-model.number="resource.time.hour"
-            type="text"
-          >
-        </div>
-        <div class="col col-50 fieldset">
-          <label
-            class="fieldset-caption"
-            for="from__time-minute"
-          >分</label>
-          <input
-            id="from__time-minute"
-            v-model.number="resource.time.minute"
-            type="text"
-          >
-        </div>
-        <div class="col col-100 fieldset">
-          <label
-            class="fieldset-caption"
-            for="from__notes"
-          >備註</label>
-          <textarea
-            id="from__notes"
-            v-model="resource.notes"
-          />
-        </div>
-        <div class="col col-100 fieldset">
-          <label
-            class="fieldset-caption"
-            for="from__tags"
-          >標籤</label>
-          <ul class="hashtag-list">
-            <li
-              v-for="(hashtag, index) in resource.tags"
-              :key="hashtag"
-            >
-              <button
-                class="hashtag-item"
-                @click.stop="deleateHashtagHandler(index)"
-              >
-                {{ hashtag }}
-              </button>
-            </li>
-          </ul>
-          <div class="fieldset-tags">
+        <div class="col col-100">
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__store"
+            >商家</label>
             <input
-              id="from__tags"
-              v-model.trim="hashtagInput"
-              class="fieldset-tags__input"
+              id="from__store"
+              v-model="resource.store"
               type="text"
             >
-            <button
-              class="fieldset-tags__btn"
-              title="新增"
-              @click.stop="createHashtagHandler"
+          </div>
+        </div>
+        <div class="col col-33">
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__time-year"
+            >年</label>
+            <input
+              id="from__time-year"
+              v-model.number="resource.time.year"
+              type="text"
+            >
+          </div>
+        </div>
+        <div class="col col-33">
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__time-month"
+            >月</label>
+            <input
+              id="from__time-month"
+              v-model.number="resource.time.month"
+              type="text"
+            >
+          </div>
+        </div>
+        <div class="col col-33">
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__time-date"
+            >日</label>
+            <input
+              id="from__time-date"
+              v-model.number="resource.time.date"
+              type="text"
+            >
+          </div>
+        </div>
+        <div class="col col-50">
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__time-hour"
+            >時</label>
+            <input
+              id="from__time-hour"
+              v-model.number="resource.time.hour"
+              type="text"
+            >
+          </div>
+        </div>
+        <div class="col col-50">
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__time-minute"
+            >分</label>
+            <input
+              id="from__time-minute"
+              v-model.number="resource.time.minute"
+              type="text"
+            >
+          </div>
+        </div>
+        <div class="col col-100">
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__notes"
+            >備註</label>
+            <textarea
+              id="from__notes"
+              v-model="resource.notes"
             />
+          </div>
+        </div>
+        <div class="col col-100">
+          <div class="fieldset">
+            <label
+              class="fieldset-caption"
+              for="from__tags"
+            >標籤</label>
+            <ul class="hashtag-list">
+              <li
+                v-for="(hashtag, index) in resource.tags"
+                :key="hashtag"
+              >
+                <button
+                  class="hashtag-item"
+                  @click.stop="deleateHashtagHandler(index)"
+                >
+                  {{ hashtag }}
+                </button>
+              </li>
+            </ul>
+            <div class="fieldset-tags">
+              <input
+                id="from__tags"
+                v-model.trim="hashtagInput"
+                class="fieldset-tags__input"
+                type="text"
+              >
+              <button
+                class="fieldset-tags__btn"
+                title="新增"
+                @click.stop="createHashtagHandler"
+              />
+            </div>
           </div>
         </div>
       </div>
