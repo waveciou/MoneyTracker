@@ -12,7 +12,7 @@
             href="javascript:;"
             class="accounts-item"
             :title="account.name"
-            @click.stop="openAccountDialog(account)"
+            @click.stop="openDetailDialog(account)"
           >
             <div class="accounts-icon" />
             <div class="accounts-content">
@@ -21,10 +21,10 @@
                 <span
                   class="accounts-price"
                   :class="{'is-expense': account.isExpense === true}"
-                >${{ account.price }}</span>
+                >${{ TO_CURRENCY(account.price) }}</span>
               </div>
               <div class="accounts-body">
-                <span class="item-option">{{ account.categories }} - {{ account.subcategories }}</span>
+                <span class="item-option">{{ accountCategoriesName(account.categories, account.subcategories) }}</span>
                 <span class="item-option">{{ account.store }}</span>
               </div>
               <div class="accounts-footer">
@@ -40,10 +40,13 @@
       </ul>
     </div>
     <lightbox-component
-      :control="accountDialog"
-      @click-overlay="closeAccountDialog"
+      :control="detailDialogCtrl"
+      @click-overlay="closeDetailDialog"
     >
-      123
+      <detail-component
+        :detail="detailAccount"
+        @close="closeDetailDialog"
+      />
     </lightbox-component>
   </div>
 </template>
@@ -52,6 +55,7 @@
 import header from '~/components/header.vue';
 import calendar from '~/components/calendar.vue';
 import lightbox from '~/components/lightbox.vue';
+import detailDailog from '~/components/detailDailog.vue';
 
 export default {
   data() {
@@ -61,14 +65,15 @@ export default {
         month: 0,
         year: 0
       },
-      accountDialog: false,
-      currentAccount: {}
+      detailDialogCtrl: false,
+      detailAccount: {}
     };
   },
   components: {
     'header-component': header,
     'calendar-component': calendar,
-    'lightbox-component': lightbox
+    'lightbox-component': lightbox,
+    'detail-component': detailDailog
   },
   methods: {
     // 取得選取日期
@@ -78,14 +83,22 @@ export default {
       this.activeDate.date = payload.date;
     },
     // 打開帳目資訊視窗
-    openAccountDialog(payload) {
-      this.currentAccount = this.DEEP_CLONE(payload);
-      this.accountDialog = true;
+    openDetailDialog(payload) {
+      this.detailAccount = this.DEEP_CLONE(payload);
+      this.detailDialogCtrl = true;
     },
     // 關閉帳目資訊視窗
-    closeAccountDialog() {
-      this.currentAccount = {};
-      this.accountDialog = false;
+    closeDetailDialog() {
+      this.detailAccount = {};
+      this.detailDialogCtrl = false;
+    },
+    // 類別欄位名稱
+    accountCategoriesName(categories, subcategories) {
+      if (subcategories !== '') {
+        return `${this.GET_CATEGORIES_NAME(categories)} - ${this.GET_CATEGORIES_NAME(subcategories)}`;
+      } else {
+        return this.GET_CATEGORIES_NAME(categories);
+      }
     }
   },
   computed: {
@@ -104,7 +117,7 @@ export default {
   @import '~/assets/scss/utils/_utils.scss';
 
   .accounts {
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 1rem;
 
     > li {
@@ -170,6 +183,7 @@ export default {
     line-height: 1.4em;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    color: $color-yellow;
   }
 
   .accounts-price {

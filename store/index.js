@@ -55,7 +55,8 @@ export const state = () => ({
       markName: 'setting',
       title: '設定'
     }
-  ]
+  ],
+  categoriesList: []
 });
 
 // * Mutations
@@ -75,5 +76,9 @@ export const mutations = {
     if (process.client && window.localStorage) {
       localStorage.setItem('monetkyAccounts', JSON.stringify(payload));
     }
+  },
+  // 設定類別項目資料庫
+  SET_CATEGORIES_LIST(state, payload) {
+    state.categoriesList.push(payload);
   }
 };

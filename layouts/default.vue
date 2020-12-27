@@ -22,6 +22,7 @@ export default {
   },
   created() {
     this.getLocalStorageData();
+    this.getCategoriesData();
   },
   methods: {
     // 取得儲存在 localStorage 的資料
@@ -46,6 +47,24 @@ export default {
 
         this.$store.commit('SET_ACCOUNTS_DATA', result);
       }
+    },
+    // 取得類別項目資料庫
+    getCategoriesData() {
+      const collection = require('../assets/categories');
+
+      Object.keys(collection).forEach(typeKey => {
+        collection[typeKey].forEach(categorieItem => {
+          const result = { id: categorieItem.id, name: categorieItem.name };
+          this.$store.commit('SET_CATEGORIES_LIST', result);
+
+          if (categorieItem.subcategories) {
+            categorieItem.subcategories.forEach(subcategorieItem => {
+              this.$store.commit('SET_CATEGORIES_LIST', subcategorieItem);
+            });
+          }
+        });
+      });
+
     }
   }
 };
