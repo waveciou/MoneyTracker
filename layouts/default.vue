@@ -14,17 +14,27 @@
 import menu from '~/components/menu.vue';
 
 export default {
-  data() {
-    return {};
-  },
   components: {
     'menu-component': menu
   },
   created() {
+    // 設定目前選取日期為今天
+    this.getTodayData();
+    // 取得儲存在 localStorage 的資料
     this.getLocalStorageData();
+    // 取得類別項目資料庫
     this.getCategoriesData();
   },
   methods: {
+    // 設定目前選取日期為今天
+    getTodayData() {
+      const result = {
+        year: this.$dayjs().utcOffset(8).year(),
+        month: this.$dayjs().utcOffset(8).month() + 1,
+        date: this.$dayjs().utcOffset(8).date()
+      };
+      this.$store.commit('SET_CURRENT_DATE', result);
+    },
     // 取得儲存在 localStorage 的資料
     getLocalStorageData() {
       if (process.client && window.localStorage) {

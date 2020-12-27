@@ -239,10 +239,10 @@
         </button>
         <button
           class="btn"
-          title="取消"
-          @click.stop="cancelHandler"
+          :title="resetButtonText"
+          @click.stop="resetHandler"
         >
-          取消
+          {{ resetButtonText }}
         </button>
       </div>
     </div>
@@ -258,6 +258,7 @@ export default {
       isRecord: true,
       headerName: '',
       resource: {
+        id: '',
         name: '',
         isExpense: true,
         price: 0,
@@ -285,6 +286,22 @@ export default {
   created() {
     this.categoriesData = require('../../assets/categories');
     this.setRecordType();
+
+    if (this.isRecord === true) {
+      // 填入基本預設類別
+      this.setDefaultCategorie('expense');
+
+      // 取得現在時間
+      this.getNowTimeData();
+
+      // 日期欄位更新成目前選取日期
+      Object.keys(this.$store.state.currentDate).forEach(key => {
+        this.resource.time[key] = this.$store.state.currentDate[key];
+      });
+
+      // 填入id
+      this.setResourceId();
+    }
   },
   methods: {
     // 判斷調整類型為新增還是編輯
@@ -293,16 +310,15 @@ export default {
       if (this.$route.params.defaultData) {
         this.isRecord = false;
         this.headerName = '編輯記帳';
+
+        // 填入編輯資料類別
+        this.setDefaultResource();
       } else {
         this.isRecord = true;
         this.headerName = '';
-        this.getNowTimeData();
-
-        // 填入預設資料
-        this.setDefaultCategorie('expense');
       }
     },
-    // 設定預設類別
+    // 設定基本預設類別
     setDefaultCategorie(type) {
       const defaultCategorie = this.categoriesData[type][0];
       this.resource.categories = defaultCategorie.id;
@@ -312,6 +328,12 @@ export default {
         this.resource.subcategories = '';
       }
     },
+    // 設定編輯資料類別
+    setDefaultResource() {
+      Object.keys(this.resource).forEach(key => {
+        this.resource[key] = this.$route.params.defaultData[key];
+      });
+    },
     // 取得現在時間
     getNowTimeData() {
       this.resource.time.year = this.$dayjs().utcOffset(8).year();
@@ -320,38 +342,71 @@ export default {
       this.resource.time.hour = this.$dayjs().utcOffset(8).hour();
       this.resource.time.minute = this.$dayjs().utcOffset(8).minute();
     },
+    // 設定 ID
+    setResourceId() {
+      const date = new Date();
+      this.resource.id = `${date.getTime()}`;
+    },
     // 資料編輯送出
     submitHandler() {
-      let result = {};
+      let result = this.DEEP_CLONE(this.resource);
       let accounts = [...this.$store.state.accounts];
+
+      Object.keys(result).forEach(key => {
+        result[key] = this.STRING_TRIM(result[key]);
+      });
 
       if (this.isRecord === true) {
         // 新增記帳
-        Object.keys(this.resource).forEach(key => {
-          if (key === 'time') {
-            result.time = {};
-            Object.keys(this.resource.time).forEach(timeKey => {
-              result.time[timeKey] = this.resource.time[timeKey];
-            });
-          } else {
-            result[key] = this.resource[key];
-          }
-        });
-
-        const date = new Date();
-        result.id = date.getTime();
         accounts.push(result);
       } else {
         // 編輯記帳
+        const index = accounts.findIndex(account => account.id === result.id);
+        accounts[index] = this.DEEP_CLONE(result);
       }
 
+      // 更新至 Vuex
       this.$store.commit('SET_ACCOUNTS_DATA', accounts);
 
+      // 更新目前選取日期
+      this.$store.commit('SET_CURRENT_DATE', {
+        year: this.resource.time.year,
+        month: this.resource.time.month,
+        date: this.resource.time.date
+      });
+
+      // 導向首頁
       this.$router.push({ name: 'index' });
     },
-    // 取消
-    cancelHandler() {
+    // 取消／重置
+    resetHandler() {
+      if (this.isRecord === true) {
+        // 新增記帳（重置）
+        Object.keys(this.resource).forEach(key => {
+          let itemValue = this.resource[key];
+          const types = typeof(itemValue);
 
+          if (types === 'string') {
+            itemValue = '';
+          } else if (types === 'number') {
+            itemValue = 0;
+          } else if (Array.isArray(itemValue) === true) {
+            itemValue = [];
+          }
+
+          this.resource[key] = itemValue;
+        });
+
+        // 填入基本預設類別
+        this.setDefaultCategorie(this.expenseKeyword);
+        // 取得現在時間
+        this.getNowTimeData();
+        // 填入id
+        this.setResourceId();
+      } else {
+        // 編輯記帳（取消）
+        this.$router.push({ name: 'index' });
+      }
     },
     // 新增 hashtag
     createHashtagHandler() {
@@ -433,6 +488,10 @@ export default {
     // 收入／支出關鍵字
     expenseKeyword() {
       return this.resource.isExpense === true ? 'expense' : 'income';
+    },
+    // 取消／重置按鈕文字
+    resetButtonText() {
+      return this.isRecord === true ? '重置' : '取消';
     }
   },
   watch: {

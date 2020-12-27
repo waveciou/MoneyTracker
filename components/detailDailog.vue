@@ -80,11 +80,12 @@ export default {
   methods: {
     // 編輯
     editHandler() {
-
+      const result = this.DEEP_CLONE(this.detail); 
+      this.$emit('edit', result);
     },
     // 刪除
     deleteHandler() {
-
+      this.$emit('delete', this.detail.id);
     },
     // 關閉
     closeHandler() {

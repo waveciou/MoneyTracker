@@ -4,26 +4,7 @@
 
 //* State
 export const state = () => ({
-  accounts: [
-    {
-      id: 123456789,
-      isExpense: true,
-      name: '營養三明治',
-      price: 10,
-      store: '安安早餐店',
-      categories: '飲食',
-      subcategories: '早餐',
-      time: {
-        year: 2020,
-        month: 12,
-        date: 15,
-        hour: 22,
-        minute: 30
-      },
-      tags: ['早餐', '三明治'],
-      notes: ''
-    }
-  ],
+  accounts: [],
   siteName: 'Money Tracker',
   pages: {
     name: '',
@@ -56,7 +37,12 @@ export const state = () => ({
       title: '設定'
     }
   ],
-  categoriesList: []
+  categoriesList: [],
+  currentDate: {
+    year: 0,
+    month: 0,
+    date: 0
+  }
 });
 
 // * Mutations
@@ -80,5 +66,11 @@ export const mutations = {
   // 設定類別項目資料庫
   SET_CATEGORIES_LIST(state, payload) {
     state.categoriesList.push(payload);
+  },
+  // 設定目前選取日期
+  SET_CURRENT_DATE(state, payload) {
+    Object.keys(state.currentDate).forEach(key => {
+      state.currentDate[key] = payload[key];
+    });
   }
 };

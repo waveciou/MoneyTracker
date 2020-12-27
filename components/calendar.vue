@@ -75,9 +75,22 @@ export default {
       weekdates: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
     };
   },
+  props: {
+    defaultDate: Object
+  },
   mounted() {
+    // 取得今天日期
     this.getTodayData();
-    this.directToToday();
+
+    if (this.defaultDate) {
+      // 移動至傳入的時間
+      Object.keys(this.current).forEach(key => {
+        this.current[key] = this.defaultDate[key];
+      });
+    } else {
+      // 移動至今天
+      this.directToToday();
+    }
   },
   methods: {
     // 切換月份
@@ -185,7 +198,7 @@ export default {
         this.$emit('get-date', value);
       },
       deep: true,
-      immediate: true
+      immediate: false
     }
   }
 };

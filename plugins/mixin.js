@@ -6,6 +6,10 @@ Vue.mixin({
     DEEP_CLONE(payload) {
       return JSON.parse(JSON.stringify(payload));
     },
+    // 字串 Trim
+    STRING_TRIM(payload) {
+      return typeof(payload) === 'string' ? payload.trim() : payload;
+    },
     // 數值轉換成貨幣格式（千分位）
     TO_CURRENCY(value) {
       let result = value.toString();

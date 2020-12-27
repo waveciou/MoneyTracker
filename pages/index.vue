@@ -2,7 +2,10 @@
   <div class="content">
     <header-component />
     <div class="wrap">
-      <calendar-component @get-date="getDateHandler" />
+      <calendar-component
+        :default-date="defaultCalendarData"
+        @get-date="getDateHandler"
+      />
       <ul class="accounts">
         <li
           v-for="account in accountList"
@@ -17,7 +20,7 @@
             <div class="accounts-icon" />
             <div class="accounts-content">
               <div class="accounts-header">
-                <span class="accounts-name">{{ account.name }}</span>
+                <span class="accounts-name">{{ accountName(account.name, account.categories) }}</span>
                 <span
                   class="accounts-price"
                   :class="{'is-expense': account.isExpense === true}"
@@ -46,6 +49,8 @@
       <detail-component
         :detail="detailAccount"
         @close="closeDetailDialog"
+        @edit="editAccountItem"
+        @delete="deleteAccountItem"
       />
     </lightbox-component>
   </div>
@@ -66,7 +71,8 @@ export default {
         year: 0
       },
       detailDialogCtrl: false,
-      detailAccount: {}
+      detailAccount: {},
+      defaultCalendarData: {}
     };
   },
   components: {
@@ -75,12 +81,19 @@ export default {
     'lightbox-component': lightbox,
     'detail-component': detailDailog
   },
+  created() {
+    // 將日前選取日期傳到日曆模組
+    this.defaultCalendarData = this.DEEP_CLONE(this.$store.state.currentDate);
+  },
   methods: {
     // 取得選取日期
     getDateHandler(payload) {
       this.activeDate.year = payload.year;
       this.activeDate.month = payload.month;
       this.activeDate.date = payload.date;
+
+      // 同步更新至 Vuex
+      this.$store.commit('SET_CURRENT_DATE', payload);
     },
     // 打開帳目資訊視窗
     openDetailDialog(payload) {
@@ -92,7 +105,34 @@ export default {
       this.detailAccount = {};
       this.detailDialogCtrl = false;
     },
-    // 類別欄位名稱
+    // 編輯帳目項目
+    editAccountItem(payload) {
+      this.$router.push({
+        name: 'record',
+        params: {
+          defaultData: payload
+        }
+      });
+    },
+    // 刪除帳目項目
+    deleteAccountItem(id) {
+      let accounts = [...this.$store.state.accounts];
+      const index = accounts.findIndex(account => account.id === id);
+      if (index < 0) {
+        if (process.client) {
+          window.alert('項目刪除失敗');
+        }
+      } else {
+        accounts.splice(index, 1);
+      }
+      this.$store.commit('SET_ACCOUNTS_DATA', accounts);
+      this.closeDetailDialog();
+    },
+    // 名稱欄位
+    accountName(name, categories) {
+      return name === '' ? this.GET_CATEGORIES_NAME(categories) : name;
+    },
+    // 類別欄位
     accountCategoriesName(categories, subcategories) {
       if (subcategories !== '') {
         return `${this.GET_CATEGORIES_NAME(categories)} - ${this.GET_CATEGORIES_NAME(subcategories)}`;
