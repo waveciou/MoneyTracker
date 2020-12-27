@@ -23,6 +23,10 @@ Vue.mixin({
     GET_CATEGORIES_NAME(payload) {
       let result = this.$store.state.categoriesList.filter(item => item.id === payload);
       return result.length < 1 ? payload : result[0].name;
+    },
+    // 時間數值補零
+    TO_TIME_FORMAT(payload) {
+      return payload < 10 ? `0${payload}` : `${payload}`;
     }
   }
 });

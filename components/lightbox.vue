@@ -55,14 +55,15 @@ export default {
 
 .lightbox {
   width: calc(100% - 20px);
+  max-width: 480px;
   max-height: calc(100% - 20px);
   padding: 10px;
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 50%;
   overflow-x: hidden;
   overflow-y: auto;
-  transform: translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
 </style>

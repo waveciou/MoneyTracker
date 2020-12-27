@@ -99,8 +99,8 @@ export default {
     },
     // 時間
     textTime() {
-      const date = `${this.detail.time.year}/${this.detail.time.month}/${this.detail.time.date}`;
-      const time = `${this.detail.time.hour}:${this.detail.time.minute}`;
+      const date = `${this.detail.time.year}/${this.TO_TIME_FORMAT(this.detail.time.month)}/${this.TO_TIME_FORMAT(this.detail.time.date)}`;
+      const time = `${this.TO_TIME_FORMAT(this.detail.time.hour)}:${this.TO_TIME_FORMAT(this.detail.time.minute)}`;
       return `${date} ${time}`;
     },
     // 名稱
@@ -187,7 +187,7 @@ export default {
 
 .detailDailog-body {
   padding: 10px;
-  background-color: $color-black;
+  background-color: $color-black-light;
 }
 
 .detailDailog-title {

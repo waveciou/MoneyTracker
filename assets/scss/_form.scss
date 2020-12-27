@@ -41,3 +41,19 @@
     }
   }
 }
+
+.fieldset-abreast {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.fieldset-abreast-item {
+  width: calc((100% - 20px) / 2);
+}
+
+.time-tips {
+  width: 20px;
+  display: block;
+  text-align: center;
+}

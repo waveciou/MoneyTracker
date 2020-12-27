@@ -117,69 +117,58 @@
             >
           </div>
         </div>
-        <div class="col col-33">
+        <div class="col col-100">
           <div class="fieldset">
             <label
               class="fieldset-caption"
-              for="from__time-year"
-            >年</label>
-            <input
-              id="from__time-year"
-              v-model.number="resource.time.year"
-              type="text"
+              for="from__date"
+            >日期</label>
+            <button
+              class="btn date-btn"
+              @click.stop="calendarDialogCtrl = true"
             >
+              {{ textDate }}
+            </button>
           </div>
         </div>
-        <div class="col col-33">
+
+        <div class="col col-100">
           <div class="fieldset">
             <label
               class="fieldset-caption"
-              for="from__time-month"
-            >月</label>
-            <input
-              id="from__time-month"
-              v-model.number="resource.time.month"
-              type="text"
-            >
-          </div>
-        </div>
-        <div class="col col-33">
-          <div class="fieldset">
-            <label
-              class="fieldset-caption"
-              for="from__time-date"
-            >日</label>
-            <input
-              id="from__time-date"
-              v-model.number="resource.time.date"
-              type="text"
-            >
-          </div>
-        </div>
-        <div class="col col-50">
-          <div class="fieldset">
-            <label
-              class="fieldset-caption"
-              for="from__time-hour"
-            >時</label>
-            <input
-              id="from__time-hour"
-              v-model.number="resource.time.hour"
-              type="text"
-            >
-          </div>
-        </div>
-        <div class="col col-50">
-          <div class="fieldset">
-            <label
-              class="fieldset-caption"
-              for="from__time-minute"
-            >分</label>
-            <input
-              id="from__time-minute"
-              v-model.number="resource.time.minute"
-              type="text"
-            >
+              for="from__time"
+            >時間</label>
+            <div class="fieldset-abreast">
+              <div class="select fieldset-abreast-item">
+                <select
+                  id="from__time"
+                  v-model="resource.time.hour"
+                >
+                  <option
+                    v-for="hour in timeHourList"
+                    :key="hour"
+                    :value="hour"
+                  >
+                    {{ TO_TIME_FORMAT(hour) }}
+                  </option>
+                </select>
+              </div>
+              <span class="time-tips">:</span>
+              <div class="select fieldset-abreast-item">
+                <select
+                  id="from__time-minute"
+                  v-model="resource.time.minute"
+                >
+                  <option
+                    v-for="minute in timeMinuteList"
+                    :key="minute"
+                    :value="minute"
+                  >
+                    {{ TO_TIME_FORMAT(minute) }}
+                  </option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col col-100">
@@ -219,6 +208,7 @@
                 v-model.trim="hashtagInput"
                 class="fieldset-tags__input"
                 type="text"
+                @keyup.enter="createHashtagHandler"
               >
               <button
                 class="fieldset-tags__btn"
@@ -246,11 +236,23 @@
         </button>
       </div>
     </div>
+    <lightbox-component
+      :control="calendarDialogCtrl"
+      @click-overlay="calendarDialogCtrl = false"
+    >
+      <calendarDailog-component
+        :default-time="resource.time"
+        @submit="updateResourceTime"
+        @cancel="calendarDialogCtrl = false"
+      />
+    </lightbox-component>
   </div>
 </template>
 
 <script>
 import header from '~/components/header.vue';
+import lightbox from '~/components/lightbox.vue';
+import calendarDailog from '~/components/calendarDailog.vue';
 
 export default {
   data() {
@@ -277,11 +279,13 @@ export default {
       },
       categoriesData: {},
       hashtagInput: '',
-      isError: false
+      calendarDialogCtrl: false
     };
   },
   components: {
-    'header-component': header
+    'header-component': header,
+    'lightbox-component': lightbox,
+    'calendarDailog-component': calendarDailog
   },
   created() {
     this.categoriesData = require('../../assets/categories');
@@ -431,6 +435,14 @@ export default {
       if (this.resource.price === '') {
         this.resource.price = 0;
       }
+    },
+    // 更新日期資料
+    updateResourceTime(payload) {
+      Object.keys(payload).forEach(key => {
+        this.resource.time[key] = payload[key];
+      });
+
+      this.calendarDialogCtrl = false;
     }
   },
   computed: {
@@ -492,6 +504,26 @@ export default {
     // 取消／重置按鈕文字
     resetButtonText() {
       return this.isRecord === true ? '重置' : '取消';
+    },
+    // 日期文字
+    textDate() {
+      return `${this.resource.time.year}年${this.TO_TIME_FORMAT(this.resource.time.month)}月${this.TO_TIME_FORMAT(this.resource.time.date)}日`;
+    },
+    // 日期列表（時）
+    timeHourList() {
+      let result = [];
+      for (let i = 0; i < 24; i++) {
+        result.push(i);
+      }
+      return result;
+    },
+    // 日期列表（分）
+    timeMinuteList() {
+      let result = [];
+      for (let i = 0; i < 60; i++) {
+        result.push(i);
+      }
+      return result;
     }
   },
   watch: {
@@ -586,4 +618,17 @@ export default {
 .btn {
   width: 100%;
 }
+
+.date-btn {
+  margin-right: 0;
+  margin-left: 0;
+
+  &::before {
+    @include fontawesome;
+
+    content: '\f073';
+    margin-right: 5px;
+  }
+}
+
 </style>

@@ -210,6 +210,7 @@ export default {
 .calendar {
   margin-bottom: 1rem;
   overflow: hidden;
+  background-color: $color-black-light;
 }
 
 .calendar__heading,
@@ -300,6 +301,10 @@ export default {
       content: '\f054';
     }
   }
+}
+
+.calendar__body {
+  padding-bottom: 10px;
 }
 
 .calendar__title {
