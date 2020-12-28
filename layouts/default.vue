@@ -1,11 +1,16 @@
 <template>
   <main class="main">
-    <transition
-      name="fade"
-      mode="out-in"
+    <div
+      class="content"
+      :class="{'is-fixed': scrollValue > 0}"
     >
-      <Nuxt />
-    </transition>
+      <transition
+        name="fade"
+        mode="out-in"
+      >
+        <Nuxt />
+      </transition>
+    </div>
     <menu-component />
   </main>
 </template>
@@ -14,6 +19,12 @@
 import menu from '~/components/menu.vue';
 
 export default {
+  data() {
+    return {
+      contentSelector: null,
+      scrollValue: 0
+    };
+  },
   components: {
     'menu-component': menu
   },
@@ -24,6 +35,13 @@ export default {
     this.getLocalStorageData();
     // 取得類別項目資料庫
     this.getCategoriesData();
+  },
+  mounted() {
+    this.contentSelector = document.querySelector('.content');
+    this.contentSelector.addEventListener('scroll', this.getScrollValue);
+  },
+  beforeDestroy() {
+    this.contentSelector.removeEventListener('scroll', this.getScrollValue);
   },
   methods: {
     // 設定目前選取日期為今天
@@ -75,24 +93,27 @@ export default {
         });
       });
 
+    },
+    // 取得 Scroll Value
+    getScrollValue() {
+      this.scrollValue = this.contentSelector.scrollTop;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/utils/_utils.scss';
+  @import '~/assets/scss/utils/_utils.scss';
 
-.main {
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  position: relative;
-  background-color: $color-black-light;
+  .main {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: relative;
+    background-color: $color-black-light;
 
-  @include min-width(map-get($phone, md) + 20px) {
-    max-width: map-get($phone, md);
+    @include min-width(map-get($phone, md) + 20px) {
+      max-width: map-get($phone, md);
+    }
   }
-}
-
 </style>

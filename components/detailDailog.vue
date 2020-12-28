@@ -27,8 +27,11 @@
           <span>關閉</span>
         </a>
       </div>
-      <div class="detailDailog-caption">
-        {{ textCaption }}
+      <div
+        class="detailDailog-caption has-icon"
+        :class="`icon-${detail.categories}`"
+      >
+        <span>{{ textCaption }}</span>
       </div>
     </div>
     <div class="detailDailog-body">
@@ -129,125 +132,145 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/utils/_utils.scss';
+  @import '~/assets/scss/utils/_utils.scss';
+  @import '~/assets/scss/_icon.scss';
 
-.detailDailog {
-  position: relative;
-  overflow: hidden;
-  border-radius: 7px;
-}
-
-.detailDailog-header {
-  background-color: $color-yellow;
-}
-
-.detailDailog-ctrlbar {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.detailDailog-btn {
-  width: 30px;
-  height: 30px;
-  display: block;
-
-  span {
-    display: none;
+  .detailDailog {
+    position: relative;
+    overflow: hidden;
+    border-radius: 7px;
   }
 
-  &::before {
-    @include fontawesome;
+  .detailDailog-header {
+    background-color: $color-yellow;
+  }
 
+  .detailDailog-ctrlbar {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .detailDailog-btn {
+    width: 30px;
+    height: 30px;
     display: block;
-    line-height: 30px;
+
+    span {
+      display: none;
+    }
+
+    &::before {
+      @include fontawesome;
+
+      display: block;
+      line-height: 30px;
+      text-align: center;
+      color: $color-black-light;
+    }
+
+    &.icon-edit::before {
+      content: '\f044';
+    }
+
+    &.icon-delete::before {
+      content: '\f1f8';
+    }
+
+    &.icon-close::before {
+      content: '\f00d';
+    }
+  }
+
+  .detailDailog-caption {
+    padding: 10px;
+    font-size: map-get($font-size, sm);
+    font-weight: 500;
     text-align: center;
     color: $color-black-light;
+
+    span {
+      color: $color-black-light;
+    }
+
+    &.has-icon::before {
+      width: 100px;
+      height: 100px;
+      margin-right: auto;
+      margin-left: auto;
+      display: block;
+      font-size: 2.8rem;
+      color: $color-yellow;
+      background-color: $color-black-light;
+      border-radius: 100%;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      line-height: 100px;
+    }
   }
 
-  &.icon-edit::before {
-    content: '\f044';
+  .detailDailog-body {
+    padding: 10px;
+    background-color: $color-black-light;
   }
 
-  &.icon-delete::before {
-    content: '\f1f8';
+  .detailDailog-title {
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: map-get($font-size, sm);
+    border-bottom: 1px $color-white solid;
+    margin-bottom: 10px;
   }
 
-  &.icon-close::before {
-    content: '\f00d';
+  .detailDailog-name {
+    max-height: 2.8em;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4em;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    color: $color-yellow;
   }
-}
 
-.detailDailog-caption {
-  padding: 10px;
-  font-size: map-get($font-size, sm);
-  font-weight: 500;
-  text-align: center;
-  color: $color-black-light;
-}
+  .detailDailog-price {
+    padding-right: 5px;
+    padding-left: 5px;
+    color: $color-green;
 
-.detailDailog-body {
-  padding: 10px;
-  background-color: $color-black-light;
-}
-
-.detailDailog-title {
-  padding-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: map-get($font-size, sm);
-  border-bottom: 1px $color-white solid;
-  margin-bottom: 10px;
-}
-
-.detailDailog-name {
-  max-height: 2.8em;
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.4em;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  color: $color-yellow;
-}
-
-.detailDailog-price {
-  padding-right: 5px;
-  padding-left: 5px;
-  color: $color-green;
-
-  &.is-expense {
-    color: $color-red;
+    &.is-expense {
+      color: $color-red;
+    }
   }
-}
 
-.detailDailog-content {
-  p {
-    margin-bottom: 5px;
+  .detailDailog-content {
+    p {
+      margin-bottom: 5px;
+    }
   }
-}
 
-.hashtag-list {
-  display: flex;
-  flex-wrap: wrap;
+  .hashtag-list {
+    display: flex;
+    flex-wrap: wrap;
 
-  > li {
-    margin-right: 5px;
-    margin-bottom: 7px;
+    > li {
+      margin-right: 5px;
+      margin-bottom: 7px;
+    }
   }
-}
 
-.hashtag-item {
-  padding: 5px 7px;
-  display: block;
-  font-size: 0.85rem;
-  color: $color-black-light;
-  background-color: $color-yellow;
-  border-radius: 5px;
-  line-height: 1em;
+  .hashtag-item {
+    padding: 5px 7px;
+    display: block;
+    font-size: 0.85rem;
+    color: $color-black-light;
+    background-color: $color-yellow;
+    border-radius: 5px;
+    line-height: 1em;
 
-  &::before {
-    content: '#';
+    &::before {
+      content: '#';
+    }
   }
-}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div>
     <header-component />
     <div class="wrap">
       <calendar-component
@@ -17,7 +17,10 @@
             :title="account.name"
             @click.stop="openDetailDialog(account)"
           >
-            <div class="accounts-icon" />
+            <div
+              class="accounts-icon has-icon"
+              :class="`icon-${account.categories}`"
+            />
             <div class="accounts-content">
               <div class="accounts-header">
                 <span class="accounts-name">{{ accountName(account.name, account.categories) }}</span>
@@ -155,6 +158,7 @@ export default {
 
 <style lang="scss" scoped>
   @import '~/assets/scss/utils/_utils.scss';
+  @import '~/assets/scss/_icon.scss';
 
   .accounts {
     margin-top: 2rem;
@@ -180,6 +184,11 @@ export default {
     text-align: center;
     line-height: 70px;
     background-color: $color-yellow;
+
+    &.has-icon::before {
+      text-align: center;
+      color: $color-black-light;
+    }
   }
 
   .accounts-content {
@@ -235,5 +244,4 @@ export default {
       color: $color-red;
     }
   }
-
 </style>

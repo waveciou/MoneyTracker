@@ -224,8 +224,8 @@
       "name": "輔助費"
     },
     {
-      "id": "alimony",
-      "name": "生活費"
+      "id": "interest",
+      "name": "利息"
     },
     {
       "id": "investment-profit",

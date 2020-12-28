@@ -32,80 +32,79 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/utils/_utils.scss';
+  @import '~/assets/scss/utils/_utils.scss';
 
-.menu {
-  width: 100%;
-  height: $menu-height;
-  display: flex;
-  background-color: $color-black;
-}
+  .menu {
+    width: 100%;
+    height: $menu-height;
+    display: flex;
+    background-color: $color-black;
+  }
 
-.menu-btn {
-  width: 25%;
-  display: block;
-  text-align: center;
-  flex-grow: 1;
-
-  span {
+  .menu-btn {
+    width: 25%;
     display: block;
-    font-size: map-get($font-size, base-small);
     text-align: center;
-    color: $color-white;
-    transition: color 0.4s;
-    line-height: 1em;
-  }
+    flex-grow: 1;
 
-  &::before {
-    width: 35px;
-    height: 35px;
-    margin: 5px auto;
-    line-height: 35px;
-    display: block;
-    font-size: map-get($font-size, lg);
-    color: $color-white;
-    transition: color 0.4s;
-  }
-
-  &.nuxt-link-exact-active {
     span {
-      color: $color-yellow;
+      display: block;
+      font-size: map-get($font-size, base-small);
+      text-align: center;
+      color: $color-white;
+      transition: color 0.4s;
+      line-height: 1em;
     }
 
     &::before {
-      color: $color-yellow;
+      width: 35px;
+      height: 35px;
+      margin: 5px auto;
+      line-height: 35px;
+      display: block;
+      font-size: map-get($font-size, lg);
+      color: $color-white;
+      transition: color 0.4s;
+    }
+
+    &.nuxt-link-exact-active {
+      span {
+        color: $color-yellow;
+      }
+
+      &::before {
+        color: $color-yellow;
+      }
+    }
+
+    &.icon-account::before {
+      @include fontawesome('regular');
+
+      content: '\f073';
+    }
+
+    &.icon-record::before {
+      @include fontawesome('solid');
+
+      content: '\f067';
+    }
+
+    &.icon-overview::before {
+      @include fontawesome('solid');
+
+      content: '\f007';
+    }
+
+    &.icon-analysis::before {
+      @include fontawesome('regular');
+
+      content: '\f080';
+    }
+
+    &.icon-setting::before {
+      @include fontawesome('solid');
+
+      content: '\f0c9';
     }
   }
-
-  &.icon-account::before {
-    @include fontawesome('regular');
-
-    content: '\f073';
-  }
-
-  &.icon-record::before {
-    @include fontawesome('solid');
-
-    content: '\f067';
-  }
-
-  &.icon-overview::before {
-    @include fontawesome('solid');
-
-    content: '\f007';
-  }
-
-  &.icon-analysis::before {
-    @include fontawesome('regular');
-
-    content: '\f080';
-  }
-
-  &.icon-setting::before {
-    @include fontawesome('solid');
-
-    content: '\f0c9';
-  }
-}
-
 </style>

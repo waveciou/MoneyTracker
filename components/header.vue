@@ -39,17 +39,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/utils/_utils.scss';
+  @import '~/assets/scss/utils/_utils.scss';
 
-.header {
-  padding: 10px;
-  text-align: center;
-}
+  .header {
+    width: 100%;
+    height: $header-height;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background-color: $color-black-light;
+    z-index: 2000;
+    transition: all 1s;
 
-.title {
-  font-size: map-get($font-size, sm);
-  color: $color-white;
-  line-height: 1.4em;
-}
+    @at-root .is-fixed & {
+      background-color: $color-black;
+    }
+  }
 
+  .title {
+    font-size: map-get($font-size, sm);
+    color: $color-white;
+    line-height: 1.4em;
+  }
 </style>

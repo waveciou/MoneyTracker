@@ -205,115 +205,116 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/utils/_utils.scss';
+  @import '~/assets/scss/utils/_utils.scss';
 
-.calendar {
-  margin-bottom: 1rem;
-  overflow: hidden;
-  background-color: $color-black-light;
-}
+  .calendar {
+    margin-bottom: 1rem;
+    overflow: hidden;
+    background-color: $color-black-light;
+  }
 
-.calendar__heading,
-.calendar__content {
-  width: 100%;
-  padding-right: 5px;
-  padding-left: 5px;
-  display: flex;
-  flex-wrap: wrap;
-
-  > li {
-    width: 14.2857142%;
+  .calendar__heading,
+  .calendar__content {
+    width: 100%;
     padding-right: 5px;
     padding-left: 5px;
-  }
-}
-
-.calendar__content {
-  position: relative;
-}
-
-.calendar__item {
-  width: 100%;
-  height: 100%;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: $color-white;
-  border-radius: 3px;
-  transition: all 0.3s;
-
-  &.is-today {
-    color: $color-yellow;
-  }
-
-  &.current {
-    color: $color-black-light;
-    background-color: $color-yellow;
-  }
-
-  &.disabled {
-    cursor: default;
-  }
-
-  @at-root .calendar__heading & {
-    font-size: map-get($font-size, base);
-    font-weight: 500;
-  }
-
-  @at-root .calendar__content & {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: map-get($font-size, xs);
-  }
-}
-
-.calendar__header {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: $color-yellow;
-  border-radius: 5px;
-
-  .arrow-btn {
     display: flex;
+    flex-wrap: wrap;
+
+    > li {
+      width: 14.2857142%;
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+  }
+
+  .calendar__content {
+    position: relative;
+  }
+
+  .calendar__item {
+    width: 100%;
+    height: 100%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: $color-white;
+    border-radius: 3px;
+    transition: all 0.3s;
+
+    &.is-today {
+      color: $color-yellow;
+    }
+
+    &.current {
+      color: $color-black-light;
+      background-color: $color-yellow;
+    }
+
+    &.disabled {
+      cursor: default;
+    }
+
+    @at-root .calendar__heading & {
+      font-size: map-get($font-size, base);
+      font-weight: 500;
+    }
+
+    @at-root .calendar__content & {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      font-size: map-get($font-size, xs);
+    }
+  }
+
+  .calendar__header {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $color-yellow;
+    border-radius: 5px;
+
+    .arrow-btn {
+      display: flex;
+
+      > span {
+        display: none;
+      }
+
+      &::before {
+        @include fontawesome;
+
+        display: block;
+        font-size: map-get($font-size, base);
+        color: $color-black-light;
+      }
+
+      &.btn-prevmonth::before {
+        content: '\f053';
+      }
+
+      &.btn-nextmonth::before {
+        content: '\f054';
+      }
+    }
+  }
+
+  .calendar__body {
+    padding-bottom: 10px;
+  }
+
+  .calendar__title {
+    font-size: map-get($font-size, xs);
+    text-align: center;
+    cursor: pointer;
 
     > span {
-      display: none;
-    }
-
-    &::before {
-      @include fontawesome;
-
-      display: block;
-      font-size: map-get($font-size, base);
+      font-weight: 500;
       color: $color-black-light;
     }
-
-    &.btn-prevmonth::before {
-      content: '\f053';
-    }
-
-    &.btn-nextmonth::before {
-      content: '\f054';
-    }
   }
-}
-
-.calendar__body {
-  padding-bottom: 10px;
-}
-
-.calendar__title {
-  font-size: map-get($font-size, xs);
-  text-align: center;
-  cursor: pointer;
-
-  > span {
-    color: $color-black-light;
-  }
-}
 </style>

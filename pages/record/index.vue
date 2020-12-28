@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div>
     <header-component :name="headerName" />
     <div class="wrap">
       <div class="align">
@@ -522,98 +522,97 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/utils/_utils.scss';
-@import '~/assets/scss/_form.scss';
+  @import '~/assets/scss/utils/_utils.scss';
+  @import '~/assets/scss/_form.scss';
 
-.select-radio {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  border: 2px $color-yellow solid;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-}
+  .select-radio {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border: 2px $color-yellow solid;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
 
-.select-radio-btn {
-  width: 100%;
-  padding: 7px;
-  display: block;
-  position: relative;
-  color: $color-white;
-  flex-grow: 1;
-
-  span {
+  .select-radio-btn {
+    width: 100%;
+    padding: 7px;
+    display: block;
     position: relative;
+    color: $color-white;
+    flex-grow: 1;
+
+    span {
+      position: relative;
+
+      &::before {
+        @include fontawesome;
+
+        content: '\f00c';
+        width: 20px;
+        display: inline-block;
+        position: absolute;
+        left: -20px;
+        opacity: 0;
+      }
+    }
+
+    &.current {
+      background-color: $color-yellow;
+
+      span {
+        color: $color-black-light;
+
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .hashtag-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    > li {
+      margin-right: 5px;
+      margin-bottom: 7px;
+    }
+  }
+
+  .hashtag-item {
+    padding: 5px 7px 5px 10px;
+    display: block;
+    font-size: 0.85rem;
+    background-color: rgba($color-black-dark, 0.6);
+    border-radius: 5px;
+    line-height: 1em;
+
+    &::before {
+      content: '#';
+    }
+
+    &::after {
+      @include fontawesome;
+
+      content: '\f057';
+      margin-left: 5px;
+    }
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .date-btn {
+    margin-right: 0;
+    margin-left: 0;
 
     &::before {
       @include fontawesome;
 
-      content: '\f00c';
-      width: 20px;
-      display: inline-block;
-      position: absolute;
-      left: -20px;
-      opacity: 0;
+      content: '\f073';
+      margin-right: 5px;
     }
   }
-
-  &.current {
-    background-color: $color-yellow;
-
-    span {
-      color: $color-black-light;
-
-      &::before {
-        opacity: 1;
-      }
-    }
-  }
-}
-
-.hashtag-list {
-  display: flex;
-  flex-wrap: wrap;
-
-  > li {
-    margin-right: 5px;
-    margin-bottom: 7px;
-  }
-}
-
-.hashtag-item {
-  padding: 5px 7px 5px 10px;
-  display: block;
-  font-size: 0.85rem;
-  background-color: rgba($color-black-dark, 0.6);
-  border-radius: 5px;
-  line-height: 1em;
-
-  &::before {
-    content: '#';
-  }
-
-  &::after {
-    @include fontawesome;
-
-    content: '\f057';
-    margin-left: 5px;
-  }
-}
-
-.btn {
-  width: 100%;
-}
-
-.date-btn {
-  margin-right: 0;
-  margin-left: 0;
-
-  &::before {
-    @include fontawesome;
-
-    content: '\f073';
-    margin-right: 5px;
-  }
-}
-
 </style>

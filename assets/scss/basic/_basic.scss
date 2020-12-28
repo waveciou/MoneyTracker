@@ -189,6 +189,7 @@ button {
 .content {
   width: 100%;
   height: calc(100% - #{$menu-height});
+  padding-top: $header-height + 10px;
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;

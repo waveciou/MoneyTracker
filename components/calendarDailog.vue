@@ -75,33 +75,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/utils/_utils.scss';
+  @import '~/assets/scss/utils/_utils.scss';
 
-.calendar {
-  margin-bottom: 0;
-}
-
-.calendarDailog {
-  overflow: hidden;
-  background-color: $color-black-light;
-  border-radius: 5px;
-}
-
-.calendarDailog-title {
-  padding-right: 10px;
-  padding-left: 10px;
-
-  span {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: 5px;
-    display: block;
-    font-size: map-get($font-size, md);
-    text-align: center;
-    color: $color-yellow;
-    margin-bottom: 10px;
-    line-height: 1.2em;
+  .calendar {
+    margin-bottom: 0;
   }
-}
 
+  .calendarDailog {
+    overflow: hidden;
+    background-color: $color-black-light;
+    border-radius: 5px;
+  }
+
+  .calendarDailog-title {
+    padding-right: 10px;
+    padding-left: 10px;
+
+    span {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-top: 5px;
+      display: block;
+      font-size: map-get($font-size, md);
+      text-align: center;
+      color: $color-yellow;
+      margin-bottom: 10px;
+      line-height: 1.2em;
+    }
+  }
 </style>

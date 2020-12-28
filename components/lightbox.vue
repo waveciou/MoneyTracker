@@ -33,37 +33,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/scss/utils/_utils.scss';
+  @import '~/assets/scss/utils/_utils.scss';
 
-.overlay {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
+  .overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 3000;
+  }
 
-.overlay-block {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba($color-black-dark, 0.7);
-}
+  .overlay-block {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black-dark, 0.7);
+  }
 
-.lightbox {
-  width: calc(100% - 20px);
-  max-width: 480px;
-  max-height: calc(100% - 20px);
-  padding: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  transform: translateX(-50%) translateY(-50%);
-}
-
+  .lightbox {
+    width: calc(100% - 20px);
+    max-width: 480px;
+    max-height: calc(100% - 20px);
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform: translateX(-50%) translateY(-50%);
+  }
 </style>
