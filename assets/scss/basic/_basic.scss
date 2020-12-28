@@ -107,8 +107,8 @@ button {
 .select {
   width: 100%;
   position: relative;
-  color: $color-black-light;
-  background-color: $color-white;
+  color: $color-white;
+  background-color: $color-black-light;
   border: 1px $color-white solid;
   border-radius: 5px;
 
@@ -122,14 +122,14 @@ button {
     right: 15px;
     border-style: solid;
     border-width: 7.5px 7.5px 0;
-    border-color: $color-black-light transparent transparent;
+    border-color: $color-white transparent transparent;
     pointer-events: none;
   }
 
   select {
     padding-right: 45px;
-    color: $color-black-light;
-    background-color: $color-white;
+    color: $color-white;
+    background-color: $color-black-light;
     border: none;
 
     &::-ms-expand {

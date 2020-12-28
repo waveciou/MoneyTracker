@@ -51,56 +51,45 @@
             >
           </div>
         </div>
-        <div
-          class="col"
-          :class="{
-            'col-50': resource.isExpense === true,
-            'col-100': resource.isExpense === false
-          }"
-        >
+        <div class="col col-100">
           <div class="fieldset">
             <label
               class="fieldset-caption"
               for="from__categories"
-            >主類別</label>
-            <div class="select">
-              <select
-                id="from__categories"
-                v-model="computeCategories"
+            >類別</label>
+            <div class="fieldset-abreast">
+              <div
+                class="select fieldset-abreast-item"
+                :class="{'size-50': resource.isExpense === true}"
               >
-                <option
-                  v-for="categorieItem in categorieList"
-                  :key="categorieItem.id"
-                  :value="categorieItem.id"
+                <select
+                  id="from__categories"
+                  v-model="computeCategories"
                 >
-                  {{ categorieItem.name }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div
-          v-if="resource.isExpense === true"
-          class="col col-50"
-        >
-          <div class="fieldset">
-            <label
-              class="fieldset-caption"
-              for="from__subcategories"
-            >次類別</label>
-            <div class="select">
-              <select
-                id="from__subcategories"
-                v-model="computeSubcategories"
+                  <option
+                    v-for="categorieItem in categorieList"
+                    :key="categorieItem.id"
+                    :value="categorieItem.id"
+                  >
+                    {{ categorieItem.name }}
+                  </option>
+                </select>
+              </div>
+              <div
+                v-if="resource.isExpense === true"
+                class="select fieldset-abreast-item"
+                :class="{'size-50': resource.isExpense === true}"
               >
-                <option
-                  v-for="subcategorieItem in subcategorieList"
-                  :key="subcategorieItem.id"
-                  :value="subcategorieItem.id"
-                >
-                  {{ subcategorieItem.name }}
-                </option>
-              </select>
+                <select v-model="computeSubcategories">
+                  <option
+                    v-for="subcategorieItem in subcategorieList"
+                    :key="subcategorieItem.id"
+                    :value="subcategorieItem.id"
+                  >
+                    {{ subcategorieItem.name }}
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -131,7 +120,6 @@
             </button>
           </div>
         </div>
-
         <div class="col col-100">
           <div class="fieldset">
             <label
@@ -155,10 +143,7 @@
               </div>
               <span class="time-tips">:</span>
               <div class="select fieldset-abreast-item">
-                <select
-                  id="from__time-minute"
-                  v-model="resource.time.minute"
-                >
+                <select v-model="resource.time.minute">
                   <option
                     v-for="minute in timeMinuteList"
                     :key="minute"

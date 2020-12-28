@@ -45,11 +45,19 @@
 .fieldset-abreast {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .fieldset-abreast-item {
-  width: calc((100% - 20px) / 2);
+  width: 100%;
+  flex-grow: 1;
+  flex-basis: 0;
+
+  &.size-50 {
+    width: calc((100% - 10px) / 2);
+    flex-grow: 0;
+    flex-basis: auto;
+  }
 }
 
 .time-tips {
