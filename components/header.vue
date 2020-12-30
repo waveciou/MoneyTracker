@@ -44,14 +44,16 @@ export default {
   .header {
     width: 100%;
     height: $header-height;
+    max-width: 480px;
     padding: 10px;
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
     text-align: center;
     background-color: $color-black-light;
     z-index: 2000;
     transition: all 1s;
+    transform: translateX(-50%);
 
     @at-root .is-fixed & {
       background-color: $color-black;
