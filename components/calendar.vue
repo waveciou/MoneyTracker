@@ -259,8 +259,12 @@ export default {
     }
 
     @at-root .calendar__heading & {
-      font-size: map-get($font-size, base);
+      font-size: map-get($font-size, base-small);
       font-weight: 500;
+
+      @include min-width(map-get($phone, sm)) {
+        font-size: map-get($font-size, base);
+      }
     }
 
     @at-root .calendar__content & {

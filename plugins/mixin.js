@@ -27,6 +27,21 @@ Vue.mixin({
     // 時間數值補零
     TO_TIME_FORMAT(payload) {
       return payload < 10 ? `0${payload}` : `${payload}`;
+    },
+    // 數值轉換成省略縮寫格式（M、K）
+    TO_CUSTOM_NUMBER_FORMAT(payload) {
+      // 判斷是否為浮點數
+      const isFloat = payload % 1 == 0 ? false : true; 
+      let value = payload;
+      let result = 0;
+      if (value >= 1000000) {
+        result = (value / 1000000).toFixed(1) + 'M';
+      } else if (value >= 1000) {
+        result = (value / 1000).toFixed(1) + 'K';
+      } else {
+        result = isFloat === true ? value.toFixed(1) : value;
+      }
+      return result;
     }
   }
 });

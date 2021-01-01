@@ -124,13 +124,13 @@ export default {
   computed: {
     accountSortList() {
       let result = [...this.accountList];
-      result.sort((x, y) => {
-        let xHour = x.time.hour;
-        let yHour = y.time.hour;
-        if (xHour === yHour) {
-          return x.time.minute - y.time.minute;
+      result.sort((a, b) => {
+        let aHour = a.time.hour;
+        let bHour = b.time.hour;
+        if (aHour === bHour) {
+          return a.time.minute - b.time.minute;
         } else {
-          return xHour - yHour;
+          return aHour - bHour;
         }
       });
       return result;
@@ -144,7 +144,7 @@ export default {
   @import '~/assets/scss/_icon.scss';
 
   .accounts {
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
 
     > li {
