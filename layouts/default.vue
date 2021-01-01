@@ -70,7 +70,18 @@ export default {
 
           result = Array.isArray(accountList) ? accountList : [];
         } else {
-          result = [...this.$store.state.accounts];
+          let presetData = require('../assets/presetData');
+          let presetDataList = [...presetData.preset];
+
+          const thisYear = this.$dayjs().utcOffset(8).year();
+          const thisMonth = this.$dayjs().utcOffset(8).month() + 1;
+
+          presetDataList.forEach((item, index) => {
+            item.time.year = thisYear;
+            item.time.month = thisMonth;
+          });
+
+          result = presetDataList;
         }
 
         this.$store.commit('SET_ACCOUNTS_DATA', result);

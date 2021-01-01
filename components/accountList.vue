@@ -2,7 +2,7 @@
   <div>
     <ul class="accounts">
       <li
-        v-for="account in accountList"
+        v-for="account in accountSortList"
         :key="account.id"
       >
         <a
@@ -17,7 +17,7 @@
           />
           <div class="accounts-content">
             <div class="accounts-header">
-              <span class="accounts-name">{{ accountName(account.name, account.categories) }}</span>
+              <span class="accounts-name">{{ accountName(account.isExpense, account.name, account.categories, account.subcategories) }}</span>
               <span
                 class="accounts-price"
                 :class="{'is-expense': account.isExpense === true}"
@@ -105,8 +105,12 @@ export default {
       this.closeDetailDialog();
     },
     // 名稱欄位
-    accountName(name, categories) {
-      return name === '' ? this.GET_CATEGORIES_NAME(categories) : name;
+    accountName(isExpense, name, categories, subcategories) {
+      if (isExpense === true) {
+        return name === '' ? this.GET_CATEGORIES_NAME(subcategories) : name;
+      } else {
+        return name === '' ? this.GET_CATEGORIES_NAME(categories) : name;
+      }
     },
     // 類別欄位
     accountCategoriesName(categories, subcategories) {
@@ -115,6 +119,21 @@ export default {
       } else {
         return this.GET_CATEGORIES_NAME(categories);
       }
+    }
+  },
+  computed: {
+    accountSortList() {
+      let result = [...this.accountList];
+      result.sort((x, y) => {
+        let xHour = x.time.hour;
+        let yHour = y.time.hour;
+        if (xHour === yHour) {
+          return x.time.minute - y.time.minute;
+        } else {
+          return xHour - yHour;
+        }
+      });
+      return result;
     }
   }
 };
