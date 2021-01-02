@@ -50,7 +50,7 @@ export default {
       { rel: 'icon', type:'image/png', sizes: '32x32', href: './_resources/favicon/favicon-32x32.png' },
       { rel: 'icon', type:'image/png', sizes: '96x96', href: './_resources/favicon/favicon-96x96.png' },
       { rel: 'icon', type:'image/png', sizes: '16x16', href: './_resources/favicon/favicon-16x16.png' },
-      { rel: 'manifest', href: 'https://waveciou.github.io/MoneyTracker/_resources/favicon/manifest.json' }
+      { rel: 'manifest', href: 'https://waveciou.github.io/MoneyTracker/manifest.json' }
     ],
     script: [
       {

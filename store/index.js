@@ -29,7 +29,7 @@ export const state = () => ({
     {
       routeName: 'analysis',
       markName: 'analysis',
-      title: '分析'
+      title: '項目分析'
     },
     {
       routeName: 'setting',

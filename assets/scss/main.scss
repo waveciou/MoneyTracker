@@ -30,3 +30,11 @@
 @import './basic/_reset.scss';
 @import './basic/_basic.scss';
 @import './basic/_animate.scss';
+
+.chartItem-none-tip {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-size: map-get($font-size, sm);
+  text-align: center;
+  opacity: 0.6;
+}

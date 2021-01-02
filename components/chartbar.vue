@@ -114,14 +114,6 @@ export default {
     overflow-x: auto;
     overflow-y: hidden;
   }
-
-  .chartItem-none-tip {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-size: map-get($font-size, sm);
-    text-align: center;
-    opacity: 0.6;
-  }
 </style>
 
 <style lang="scss">
