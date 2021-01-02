@@ -44,6 +44,17 @@ export default {
       { rel: 'icon', type:'image/png', sizes: '96x96', href: './_resources/favicon/favicon-96x96.png' },
       { rel: 'icon', type:'image/png', sizes: '16x16', href: './_resources/favicon/favicon-16x16.png' },
       { rel: 'manifest', href: './_resources/favicon/manifest.json' }
+    ],
+    script: [
+      {
+        src: './_resources/js/polyfill.min.js'
+      },
+      {
+        src: './_resources/js/classList.js'
+      },
+      {
+        src: './_resources/js/findIndex.js'
+      },
     ]
   },
   css: [
@@ -51,6 +62,10 @@ export default {
   ],
   plugins: [
     { src: '~/plugins/mixin.js' },
+    {
+      src: '~/plugins/vue-apexcharts.js',
+      ssr: false
+    }
   ],
   components: true,
   buildModules: [],
@@ -60,11 +75,12 @@ export default {
   ],
   axios: {},
   dayjs: {
-    locales: ['en', 'ja'],
-    defaultLocale: 'en',
+    locales: ['en', 'zh-tw'],
+    defaultLocale: 'zh-tw',
     plugins: ['utc']
   },
   build: {
+    vendor: ['vue-apexcharts'],
     extend(config, { isDev, isClient }) {
       if (!isDev) {
         config.output.publicPath = './_nuxt/';

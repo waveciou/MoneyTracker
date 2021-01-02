@@ -1,14 +1,11 @@
 <template>
   <div class="accordion">
-    <div class="accordion-header">
-      <div class="accordion-title">
-        {{ title }}
-      </div>
-      <button
-        class="accordion-btn"
-        :class="{'is-close': control === false }"
-        @click.stop="control = !control"
-      />
+    <div
+      class="accordion-title"
+      :class="{'is-close': control === false }"
+      @click.stop="control = !control"
+    >
+      <span>{{ title }}</span>
     </div>
     <transition
       name="accordion"
@@ -48,34 +45,36 @@ export default {
 <style lang="scss" scoped>
   @import '~/assets/scss/utils/_utils.scss';
 
-  .accordion-header {
+  .accordion-title {
+    width: 100%;
     padding-top: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
 
-  .accordion-title {
-    width: calc(100% - 30px);
-    overflow: hidden;
-    font-size: map-get($font-size, sm);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    line-height: 1.4em;
-    word-break: keep-all;
-  }
+    span {
+      width: calc(100% - 30px);
+      display: block;
+      overflow: hidden;
+      font-size: map-get($font-size, sm);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 1.4em;
+      word-break: keep-all;
+    }
 
-  .accordion-btn {
-    width: 30px;
-    height: 30px;
-
-    &::before {
+    &::after {
       @include fontawesome;
 
       content: '\f068';
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      display: block;
+      text-align: center;
     }
 
-    &.is-close::before {
+    &.is-close::after {
       content: '\f067';
     }
   }

@@ -1,8 +1,10 @@
 <template>
   <main class="main">
     <div
+      ref="content"
       class="content"
       :class="{'is-fixed': scrollValue > 0}"
+      @scroll="getScrollValue"
     >
       <transition
         name="fade"
@@ -21,7 +23,6 @@ import menu from '~/components/menu.vue';
 export default {
   data() {
     return {
-      contentSelector: null,
       scrollValue: 0
     };
   },
@@ -35,13 +36,6 @@ export default {
     this.getLocalStorageData();
     // 取得類別項目資料庫
     this.getCategoriesData();
-  },
-  mounted() {
-    this.contentSelector = document.querySelector('.content');
-    this.contentSelector.addEventListener('scroll', this.getScrollValue);
-  },
-  beforeDestroy() {
-    this.contentSelector.removeEventListener('scroll', this.getScrollValue);
   },
   methods: {
     // 設定目前選取日期為今天
@@ -107,7 +101,12 @@ export default {
     },
     // 取得 Scroll Value
     getScrollValue() {
-      this.scrollValue = this.contentSelector.scrollTop;
+      this.scrollValue = this.$refs.content.scrollTop;
+    }
+  },
+  watch: {
+    $route(value) {
+      this.$refs.content.scrollTop = 0;
     }
   }
 };

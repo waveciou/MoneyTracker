@@ -6,19 +6,45 @@
         <span>總額：</span>
         <div
           class="total-value"
-          :class="{'color-red': totalValue < 0}"
+          :class="{ 'color-red': totalValue < 0 }"
         >
           NTD {{ overviewNumber }}
         </div>
       </div>
 
-      <ul class="allDataList">
+      <div class="overview-according">
+        <div class="radio-button">
+          <input
+            id="according-month"
+            v-model="according"
+            type="radio"
+            :value="'month'"
+          >
+          <label for="according-month">月份</label>
+        </div>
+        <div class="radio-button">
+          <input
+            id="according-date"
+            v-model="according"
+            type="radio"
+            :value="'date'"
+          >
+          <label for="according-date">日期</label>
+        </div>
+      </div>
+
+      <chartbar-component
+        :series-data="chartSeries"
+        :xaxis-list="chartXaxisList"
+      />
+
+      <ul class="accountFormatList">
         <li
-          v-for="dateItem in allDataList"
-          :key="dateItem.id"
+          v-for="accountItem in accountFormatList"
+          :key="accountItem.id"
         >
-          <accordionClass :title="dateItemTitle(dateItem)">
-            <accountList-component :account-list="dateItem.collection" />
+          <accordionClass :title="dataItemTitle(accountItem)">
+            <accountList-component :account-list="accountItem.collection" />
           </accordionClass>
         </li>
       </ul>
@@ -28,19 +54,32 @@
 
 <script>
 import header from '~/components/header.vue';
+import chartbar from '~/components/chartbar.vue';
 import accordionClass from '~/components/accordionClass.vue';
 import accountList from '~/components/accountList.vue';
 
 export default {
+  data() {
+    return {
+      according: 'date' 
+    };
+  },
   components: {
     'header-component': header,
+    'chartbar-component': chartbar,
     'accordionClass': accordionClass,
     'accountList-component': accountList
   },
   methods: {
-    // 日期名稱
-    dateItemTitle(payload) {
-      return `${payload.time.year}年${this.TO_TIME_FORMAT(payload.time.month)}月${this.TO_TIME_FORMAT(payload.time.date)}日`;
+    // 項目名稱
+    dataItemTitle(payload) {
+      let time = payload.time;
+
+      if (this.according === 'month') {
+        return `${time.year}年${this.TO_TIME_FORMAT(time.month)}月`;
+      } else {
+        return `${time.year}年${this.TO_TIME_FORMAT(time.month)}月${this.TO_TIME_FORMAT(time.date)}日`;
+      }
     }
   },
   computed: {
@@ -67,20 +106,21 @@ export default {
       }
     },
     // 所有資料
-    allDataList() {
+    accountFormatList() {
       let resultList = [];
       let accountList = [...this.$store.state.accounts];
 
       accountList.forEach(accountItem => {
-        const dateId = `${accountItem.time.year}-${accountItem.time.month}-${accountItem.time.date}`;
-        const hasInResult = resultList.some(dateItem => dateItem.id === dateId);
+        let time = accountItem.time;
+        const id = this.according === 'month' ? `${time.year}-${time.month}` : `${time.year}-${time.month}-${time.date}`;
+        const hasInResult = resultList.some(dataItem => dataItem.id === id);
 
         if (hasInResult === true) {
-          const index = resultList.findIndex(dateItem => dateItem.id === dateId);
+          const index = resultList.findIndex(dataItem => dataItem.id === id);
           resultList[index].collection.push(this.DEEP_CLONE(accountItem));
         } else {
-          let dateItem = {
-            id: dateId,
+          let dataItem = {
+            id: id,
             time: {
               year: accountItem.time.year,
               month: accountItem.time.month,
@@ -89,17 +129,50 @@ export default {
             collection: [ this.DEEP_CLONE(accountItem) ]
           };
 
-          resultList.push(dateItem);
+          resultList.push(dataItem);
         }
       });
 
       resultList.sort((a, b) => {
-        let aTimestamp = this.$dayjs(`${a.time.year}-${a.time.month}-${a.time.date}`).unix();
-        let bTimestamp = this.$dayjs(`${b.time.year}-${b.time.month}-${b.time.date}`).unix();
+        const aTimestamp = this.$dayjs(`${a.time.year}-${a.time.month}-${a.time.date}`).unix();
+        const bTimestamp = this.$dayjs(`${b.time.year}-${b.time.month}-${b.time.date}`).unix();
         return aTimestamp - bTimestamp;
       });
 
       return resultList;
+    },
+    // 圖表資料
+    chartSeries() {
+      let result = [{
+        name: '支出',
+        data: []
+      }, {
+        name: '收入',
+        data: []
+      }];
+
+      this.accountFormatList.forEach(dataItem => {
+        const expense = dataItem.collection.reduce((accumulator, currentItem) => {
+          let priceValue = currentItem.isExpense === true ? currentItem.price : 0;
+          return accumulator + priceValue;
+        }, 0);
+
+        const income = dataItem.collection.reduce((accumulator, currentItem) => {
+          let priceValue = currentItem.isExpense === false ? currentItem.price : 0;
+          return accumulator + priceValue;
+        }, 0);
+
+        result[0].data.push(expense);
+        result[1].data.push(income);
+      });
+
+      return result;
+    },
+    // 圖表X軸欄位
+    chartXaxisList() {
+      return this.accountFormatList.map(dataItem => {
+        return `${this.TO_TIME_FORMAT(dataItem.time.month)}/${this.TO_TIME_FORMAT(dataItem.time.date)}`;
+      });
     }
   }
 };
@@ -109,23 +182,24 @@ export default {
   @import '~/assets/scss/utils/_utils.scss';
 
   .overview-title {
-    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $color-black;
-    border-radius: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 
     span {
       padding-right: 10px;
       display: block;
-      font-size: map-get($font-size, base);
+      font-size: map-get($font-size, md);
+      font-weight: 500;
     }
   }
 
   .total-value {
     line-height: 1.4em;
     font-size: map-get($font-size, lg);
+    font-weight: 500;
     color: $color-green;
 
     &.color-red {
@@ -133,7 +207,14 @@ export default {
     }
   }
 
-  .allDataList {
+  .overview-according {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+  }
+
+  .accountFormatList {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }

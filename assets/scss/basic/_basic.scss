@@ -142,6 +142,36 @@ button {
   }
 }
 
+.radio-button {
+  position: relative;
+  overflow: hidden;
+
+  label {
+    margin-right: 7px;
+    margin-left: 7px;
+    display: block;
+
+    &::before {
+      @include fontawesome('regular');
+
+      content: '\f111';
+      margin-right: 5px;
+    }
+  }
+
+  input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -9999;
+
+    &:checked + label::before {
+      content: '\f192';
+      color: $color-yellow;
+    }
+  }
+}
+
 // * ==========================================================================
 // * Grid
 // * ==========================================================================

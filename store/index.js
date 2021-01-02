@@ -19,7 +19,7 @@ export const state = () => ({
     {
       routeName: 'overview',
       markName: 'overview',
-      title: '總覽'
+      title: '帳戶總覽'
     },
     {
       routeName: 'record',

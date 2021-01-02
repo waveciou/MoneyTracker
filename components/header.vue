@@ -62,6 +62,7 @@ export default {
 
   .title {
     font-size: map-get($font-size, sm);
+    font-weight: 500;
     color: $color-white;
     line-height: 1.4em;
   }
