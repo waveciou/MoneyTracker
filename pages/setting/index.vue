@@ -2,6 +2,9 @@
   <div>
     <header-component />
     <div class="wrap">
+      <div class="logo">
+        <span>Money Tracker</span>
+      </div>
       <ul class="settingList">
         <li>
           <a
@@ -44,7 +47,12 @@ export default {
   },
   methods: {
     deleteHandler() {
-      this.$store.commit('SET_ACCOUNTS_DATA', []);
+      if (process.client) {
+        let isConfirm = window.confirm('確定要刪除所有資料？');
+        if (isConfirm === true) {
+          this.$store.commit('SET_ACCOUNTS_DATA', []);
+        }
+      }
     }
   }
 };
@@ -52,6 +60,33 @@ export default {
 
 <style lang="scss" scoped>
   @import '~/assets/scss/utils/_utils.scss';
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    &::before {
+      content: '';
+      width: 60px;
+      height: 60px;
+      margin-right: 10px;
+      display: block;
+      background: url('../../assets/img/money-tracker.svg') no-repeat center/contain;
+    }
+
+    span {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 1.4em;
+
+      @include min-width(map-get($phone, sm)) {
+        font-size: 1.8rem;
+      }
+    }
+  }
 
   .settingList {
     > li {

@@ -92,17 +92,23 @@ export default {
     },
     // 刪除帳目項目
     deleteAccountItem(id) {
-      let accounts = [...this.$store.state.accounts];
-      const index = accounts.findIndex(account => account.id === id);
-      if (index < 0) {
-        if (process.client) {
-          window.alert('項目刪除失敗');
+      if (process.client) {
+        let isConfirm = window.confirm('確定要刪除帳目項目？');
+
+        if (isConfirm === true) {
+          let accounts = [...this.$store.state.accounts];
+          const index = accounts.findIndex(account => account.id === id);
+
+          if (index < 0) {
+            window.alert('項目刪除失敗');
+          } else {
+            accounts.splice(index, 1);
+          }
+
+          this.$store.commit('SET_ACCOUNTS_DATA', accounts);
+          this.closeDetailDialog();
         }
-      } else {
-        accounts.splice(index, 1);
       }
-      this.$store.commit('SET_ACCOUNTS_DATA', accounts);
-      this.closeDetailDialog();
     },
     // 名稱欄位
     accountName(isExpense, name, categories, subcategories) {

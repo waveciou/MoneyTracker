@@ -64,18 +64,23 @@ export default {
 
           result = Array.isArray(accountList) ? accountList : [];
         } else {
-          let presetData = require('../assets/presetData');
-          let presetDataList = [...presetData.preset];
+          let isConfirm = window.confirm('是否要載入範例資料？');
 
-          const thisYear = this.$dayjs().utcOffset(8).year();
-          const thisMonth = this.$dayjs().utcOffset(8).month() + 1;
+          if (isConfirm === true) {
+            // 載入範例資料
+            let example = require('../assets/example');
+            let exampleList = [...example.example];
 
-          presetDataList.forEach((item, index) => {
-            item.time.year = thisYear;
-            item.time.month = thisMonth;
-          });
+            const thisYear = this.$dayjs().utcOffset(8).year();
+            const thisMonth = this.$dayjs().utcOffset(8).month() + 1;
 
-          result = presetDataList;
+            exampleList.forEach((item, index) => {
+              item.time.year = thisYear;
+              item.time.month = thisMonth;
+            });
+
+            result = exampleList;
+          }
         }
 
         this.$store.commit('SET_ACCOUNTS_DATA', result);

@@ -370,28 +370,34 @@ export default {
     // 取消／重置
     resetHandler() {
       if (this.isRecord === true) {
-        // 新增記帳（重置）
-        Object.keys(this.resource).forEach(key => {
-          let itemValue = this.resource[key];
-          const types = typeof(itemValue);
+        if (process.client) {
+          let isConfirm = window.confirm('確定要重置所有欄位？');
+          if (isConfirm === true) {
 
-          if (types === 'string') {
-            itemValue = '';
-          } else if (types === 'number') {
-            itemValue = 0;
-          } else if (Array.isArray(itemValue) === true) {
-            itemValue = [];
+            // 新增記帳（重置）
+            Object.keys(this.resource).forEach(key => {
+              let itemValue = this.resource[key];
+              const types = typeof(itemValue);
+
+              if (types === 'string') {
+                itemValue = '';
+              } else if (types === 'number') {
+                itemValue = 0;
+              } else if (Array.isArray(itemValue) === true) {
+                itemValue = [];
+              }
+
+              this.resource[key] = itemValue;
+            });
+
+            // 填入基本預設類別
+            this.setDefaultCategorie(this.expenseKeyword);
+            // 取得現在時間
+            this.getNowTimeData();
+            // 填入id
+            this.setResourceId();
           }
-
-          this.resource[key] = itemValue;
-        });
-
-        // 填入基本預設類別
-        this.setDefaultCategorie(this.expenseKeyword);
-        // 取得現在時間
-        this.getNowTimeData();
-        // 填入id
-        this.setResourceId();
+        }
       } else {
         // 編輯記帳（取消）
         this.$router.push({ name: 'index' });

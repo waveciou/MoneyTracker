@@ -2,6 +2,7 @@
   <client-only>
     <div class="chartItem">
       <Apexchart
+        v-if="xaxisList.length > 0"
         ref="chart"
         type="bar"
         :width="chartWidth"
@@ -9,6 +10,12 @@
         :options="options"
         :series="series"
       />
+      <p
+        v-if="xaxisList.length <= 0"
+        class="chartItem-none-tip"
+      >
+        目前尚無任何資料
+      </p>
     </div>
   </client-only>
 </template>
@@ -106,6 +113,14 @@ export default {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
+  }
+
+  .chartItem-none-tip {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: map-get($font-size, sm);
+    text-align: center;
+    opacity: 0.6;
   }
 </style>
 

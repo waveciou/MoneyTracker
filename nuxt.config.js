@@ -23,11 +23,18 @@ export default {
       { charset: 'utf-8' },
       { 'http-equiv': 'Content-Type', charset: 'text/html; charset=utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' },
-      { 'http-equiv': 'X-UA-Compatible', content: 'ie=edge'},
-      { name: 'format-detection', content: 'telephone=no'},
+      { 'http-equiv': 'X-UA-Compatible', content: 'ie=edge' },
+      { name: 'format-detection', content: 'telephone=no' },
       { name: 'msapplication-TileColor', content: '#ffffff' },
-      { name: 'msapplication-TileImage', content: './_resources/favicon/ms-icon-144x144.png'},
-      { name: 'theme-color', content: '#ffffff'}
+      { name: 'msapplication-TileImage', content: './_resources/favicon/ms-icon-144x144.png' },
+      { name: 'theme-color', content: '#ffffff' },
+      { property: 'og:title', content: 'Money Tracker 我的記帳日誌' },
+      { property: 'og:url', content: 'https://waveciou.github.io/MoneyTracker' },
+      { property: 'og:image', content: 'https://waveciou.github.io/MoneyTracker/_resources/money-tracker.jpg' },
+      { property: 'twitter:image', content: 'https://waveciou.github.io/MoneyTracker/_resources/money-tracker.jpg' },
+      { property: 'og:description', content: '一個自製的記帳軟體 Side Project' },
+      { property: 'twitter:description', content: '一個自製的記帳軟體 Side Project' },
+      { name: 'DC.Description', content: '一個自製的記帳軟體 Side Project' }
     ],
     link: [
       { rel: 'apple-touch-icon', sizes: '57x57', href: './_resources/favicon/apple-icon-57x57.png' },
@@ -43,7 +50,7 @@ export default {
       { rel: 'icon', type:'image/png', sizes: '32x32', href: './_resources/favicon/favicon-32x32.png' },
       { rel: 'icon', type:'image/png', sizes: '96x96', href: './_resources/favicon/favicon-96x96.png' },
       { rel: 'icon', type:'image/png', sizes: '16x16', href: './_resources/favicon/favicon-16x16.png' },
-      { rel: 'manifest', href: './_resources/favicon/manifest.json' }
+      { rel: 'manifest', href: 'https://waveciou.github.io/MoneyTracker/_resources/favicon/manifest.json' }
     ],
     script: [
       {
@@ -54,7 +61,7 @@ export default {
       },
       {
         src: './_resources/js/findIndex.js'
-      },
+      }
     ]
   },
   css: [

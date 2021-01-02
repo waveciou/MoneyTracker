@@ -8,11 +8,14 @@
           class="total-value"
           :class="{ 'color-red': totalValue < 0 }"
         >
-          NTD {{ overviewNumber }}
+          TWD {{ overviewNumber }}
         </div>
       </div>
 
-      <div class="overview-according">
+      <div
+        v-if="chartXaxisList.length > 0"
+        class="overview-according"
+      >
         <div class="radio-button">
           <input
             id="according-month"
@@ -170,9 +173,15 @@ export default {
     },
     // 圖表X軸欄位
     chartXaxisList() {
-      return this.accountFormatList.map(dataItem => {
-        return `${this.TO_TIME_FORMAT(dataItem.time.month)}/${this.TO_TIME_FORMAT(dataItem.time.date)}`;
-      });
+      if (this.according === 'month') {
+        return this.accountFormatList.map(dataItem => {
+          return `${this.TO_TIME_FORMAT(dataItem.time.month)}月`;
+        });
+      } else {
+        return this.accountFormatList.map(dataItem => {
+          return `${this.TO_TIME_FORMAT(dataItem.time.month)}/${this.TO_TIME_FORMAT(dataItem.time.date)}`;
+        });
+      }
     }
   }
 };
