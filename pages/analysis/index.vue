@@ -11,7 +11,7 @@
           <span>Previous</span>
         </button>
         <div class="analysis-title">
-          {{ activeDate.year }}年{{ activeDate.month }}月
+          {{ activeDate.year }}年{{ TO_TIME_FORMAT(activeDate.month) }}月
         </div>
         <button
           class="arrow-btn btn-nextmonth"
@@ -30,7 +30,7 @@
           <button
             class="enumeration-btn"
             :title="typeItem.name"
-            :class="{ 'current': enumeration === typeItem.id }"
+            :class="{'current': enumeration === typeItem.id}"
             @click.stop="enumeration = typeItem.id"
           >
             {{ typeItem.name }}
@@ -43,6 +43,10 @@
           v-if="enumeration === 'categories'"
           :account-list="accountList"
         />
+        <analysisHashtag 
+          v-if="enumeration === 'hashtag'"
+          :account-list="accountList"
+        />
       </client-only>
     </div>
   </div>
@@ -52,6 +56,7 @@
 import NoSSR from 'vue-no-ssr';
 import header from '~/components/header.vue';
 import analysisCategories from '~/components/analysisCategories.vue';
+import analysisHashtag from '~/components/analysisHashtag.vue';
 
 export default {
   data() {
@@ -76,7 +81,8 @@ export default {
   components: {
     'client-only': NoSSR,
     'header-component': header,
-    'analysisCategories': analysisCategories
+    'analysisCategories': analysisCategories,
+    'analysisHashtag': analysisHashtag
   },
   created() {
     // 取得現在的時間
@@ -165,7 +171,7 @@ export default {
   }
 
   .enumeration-btn {
-    padding: 12px 15px;
+    padding: 12px 20px;
     line-height: 1em;
     position: relative;
 

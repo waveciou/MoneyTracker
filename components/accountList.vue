@@ -24,6 +24,10 @@
               >${{ TO_CURRENCY(account.price) }}</span>
             </div>
             <div class="accounts-body">
+              <span
+                v-if="showTime === true"
+                class="item-option"
+              >{{ accountTimeName(account.time) }}</span>
               <span class="item-option">{{ accountCategoriesName(account.categories, account.subcategories) }}</span>
               <span class="item-option">{{ account.store }}</span>
             </div>
@@ -68,7 +72,8 @@ export default {
     'detail-component': detailDailog
   },
   props: {
-    accountList: Array
+    accountList: Array,
+    showTime: Boolean
   },
   methods: {
     // 打開帳目資訊視窗
@@ -125,6 +130,10 @@ export default {
       } else {
         return this.GET_CATEGORIES_NAME(categories);
       }
+    },
+    // 時間欄位
+    accountTimeName(time) {
+      return `${time.year}年${this.TO_TIME_FORMAT(time.month)}月${this.TO_TIME_FORMAT(time.date)}日`;
     }
   },
   computed: {
@@ -162,7 +171,7 @@ export default {
     padding: 10px;
     display: flex;
     align-items: flex-start;
-    background-color: $color-black;
+    background-color: rgba($color-black, 0.6);
     border-radius: 5px;
   }
 

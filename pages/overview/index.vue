@@ -6,7 +6,7 @@
         <span>總額：</span>
         <div
           class="total-value"
-          :class="{ 'color-red': totalValue < 0 }"
+          :class="{'color-red': totalValue < 0}"
         >
           TWD {{ overviewNumber }}
         </div>
@@ -46,7 +46,7 @@
           v-for="accountItem in accountFormatList"
           :key="accountItem.id"
         >
-          <accordionClass :title="dataItemTitle(accountItem)">
+          <accordionClass :title="setDateTitle(accountItem)">
             <accountList-component :account-list="accountItem.collection" />
           </accordionClass>
         </li>
@@ -74,8 +74,8 @@ export default {
     'accountList-component': accountList
   },
   methods: {
-    // 項目名稱
-    dataItemTitle(payload) {
+    // 日期名稱
+    setDateTitle(payload) {
       let time = payload.time;
 
       if (this.according === 'month') {
@@ -116,12 +116,9 @@ export default {
       accountList.forEach(accountItem => {
         let time = accountItem.time;
         const id = this.according === 'month' ? `${time.year}-${time.month}` : `${time.year}-${time.month}-${time.date}`;
-        const hasInResult = resultList.some(dataItem => dataItem.id === id);
+        const index = resultList.findIndex(dataItem => dataItem.id === id);
 
-        if (hasInResult === true) {
-          const index = resultList.findIndex(dataItem => dataItem.id === id);
-          resultList[index].collection.push(this.DEEP_CLONE(accountItem));
-        } else {
+        if (index < 0) {
           let dataItem = {
             id: id,
             time: {
@@ -133,6 +130,8 @@ export default {
           };
 
           resultList.push(dataItem);
+        } else {
+          resultList[index].collection.push(this.DEEP_CLONE(accountItem));
         }
       });
 

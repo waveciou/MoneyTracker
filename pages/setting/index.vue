@@ -9,6 +9,16 @@
         <li>
           <a
             href="javascript:;"
+            class="settingList-btn icon-example"
+            title="載入範例資料"
+            @click.stop="initExampleHandler"
+          >
+            載入範例資料
+          </a>
+        </li>
+        <li>
+          <a
+            href="javascript:;"
             class="settingList-btn icon-delete"
             title="刪除所有資料"
             @click.stop="deleteHandler"
@@ -46,11 +56,26 @@ export default {
     'header-component': header
   },
   methods: {
+    // 刪除所有資料
     deleteHandler() {
       if (process.client) {
         let isConfirm = window.confirm('確定要刪除所有資料？');
         if (isConfirm === true) {
           this.$store.commit('SET_ACCOUNTS_DATA', []);
+        }
+      }
+    },
+    // 載入預設資料
+    initExampleHandler() {
+      if (process.client) {
+        let isConfirm = window.confirm('載入範例資料將會覆蓋現有資料，確定要載入範例資料？');
+        if (isConfirm === true) {
+          this.$store.commit('SET_ACCOUNTS_DATA', []);
+
+          // 載入範例資料
+          let example = require('../../assets/example');
+          let exampleList = [...example.example];
+          this.$store.commit('SET_ACCOUNTS_DATA', exampleList);
         }
       }
     }
@@ -102,6 +127,10 @@ export default {
       @include fontawesome;
 
       margin-right: 10px;
+    }
+
+    &.icon-example::before {
+      content: '\f1c0';
     }
 
     &.icon-delete::before {

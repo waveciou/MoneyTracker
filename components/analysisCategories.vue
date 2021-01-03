@@ -27,7 +27,7 @@
       v-if="seriesData.length > 0"
       class="total-value"
     >
-      <span> TWD {{ TO_CURRENCY(totalValue) }}</span>
+      <span> TWD ${{ TO_CURRENCY(totalValue) }}</span>
     </div>
 
     <ul class="analysisList">
@@ -40,7 +40,7 @@
             {{ GET_CATEGORIES_NAME(dataItem.id) }}
           </div>
           <div class="analysisList-value">
-            {{ getTotalValue(dataItem.collection) }}
+            ${{ getTotalValue(dataItem.collection) }}
           </div>
         </div>
       </li>
@@ -102,17 +102,16 @@ export default {
 
       filterList.forEach(accountItem => {
         const id = this.categories === 'income' ? accountItem.categories : accountItem.subcategories;
-        const hasInResult = resultList.some(dataItem => dataItem.id === id);
+        const index = resultList.findIndex(dataItem => dataItem.id === id);
 
-        if (hasInResult === true) {
-          const index = resultList.findIndex(dataItem => dataItem.id === id);
-          resultList[index].collection.push(this.DEEP_CLONE(accountItem));
-        } else {
+        if (index < 0) {
           let dataItem = {
             id: id,
             collection: [ this.DEEP_CLONE(accountItem) ]
           };
           resultList.push(dataItem);
+        } else {
+          resultList[index].collection.push(this.DEEP_CLONE(accountItem));
         }
       });
 
@@ -162,6 +161,8 @@ export default {
   }
 
   .analysisList {
+    padding-right: 5px;
+    padding-left: 5px;
     margin-bottom: 2rem;
 
     > li {

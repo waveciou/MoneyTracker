@@ -14,7 +14,7 @@
         @click.prevent="directToToday()"
       >
         <span class="caption-year">{{ current.year }} 年</span>
-        <span class="caption-month">{{ current.month }} 月</span>
+        <span class="caption-month">{{ TO_TIME_FORMAT(current.month) }} 月</span>
       </div>
       <a
         href="javascript:;"
@@ -54,6 +54,14 @@
           >{{ item.number }}</a>
         </li>
       </ul>
+    </div>
+    <div class="calendar__footer">
+      <button
+        class="reset-btn"
+        @click.stop="directToToday"
+      >
+        移動至今天
+      </button>
     </div>
   </div>
 </template>
@@ -142,7 +150,7 @@ export default {
       let myMonth = this.current.month;
       let myDate = this.current.date;
 
-      let monthText = myMonth < 10 ? `0${myMonth}` : myMonth.toString();
+      let monthText = this.TO_TIME_FORMAT(myMonth);
 
       let totalDate = this.$dayjs(`${myYears}-${monthText}`).utcOffset(8).daysInMonth();
 
@@ -159,7 +167,7 @@ export default {
           year: myYears,
           month: myMonth,
           date: dateNumber,
-          number: dateNumber < 10 ? `0${dateNumber}` : dateNumber.toString(),
+          number: this.TO_TIME_FORMAT(dateNumber),
           today: isToday,
           current: dateNumber === myDate ? true : false
         };
@@ -308,7 +316,26 @@ export default {
   }
 
   .calendar__body {
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+  }
+
+  .calendar__footer {
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: flex-end;
+
+    .reset-btn {
+      font-size: map-get($font-size, base);
+
+      &::before {
+        @include fontawesome;
+
+        content: '\f015';
+        margin-right: 3px;
+        color: $color-yellow;
+      }
+    }
   }
 
   .calendar__title {

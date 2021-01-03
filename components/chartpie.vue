@@ -12,7 +12,7 @@
       </div>
       <p
         v-if="seriesData.length <= 0"
-        class="chartItem-none-tip"
+        class="none-tips"
       >
         目前尚無任何資料
       </p>
@@ -28,7 +28,7 @@ export default {
     return {
       series: [],
       options: {
-        colors: ['#50aaf8', '#32c8a4', '#f76c83', '#f19e5e', '#94c962', '#ac93e8'],
+        colors: ['#50aaf8', '#32c8a4', '#f76c83', '#ffdf5e', '#94c962', '#ac93e8'],
         labels: [],
         legend: {
           labels: {

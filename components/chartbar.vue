@@ -12,7 +12,7 @@
       />
       <p
         v-if="xaxisList.length <= 0"
-        class="chartItem-none-tip"
+        class="none-tips"
       >
         目前尚無任何資料
       </p>
@@ -37,7 +37,7 @@ export default {
             enabled: false
           }
         },
-        colors: ['#ff6670', '#8bc34a'],
+        colors: ['#f76c83', '#94c962'],
         dataLabels: {
           enabled: false
         },

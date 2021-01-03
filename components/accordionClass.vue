@@ -2,7 +2,7 @@
   <div class="accordion">
     <div
       class="accordion-title"
-      :class="{'is-close': control === false }"
+      :class="{'is-close': control === false}"
       @click.stop="control = !control"
     >
       <span>{{ title }}</span>
