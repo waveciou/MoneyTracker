@@ -39,14 +39,17 @@
       </ul>
 
       <client-only>
-        <analysisCategories
-          v-if="enumeration === 'categories'"
-          :account-list="accountList"
-        />
-        <analysisHashtag 
-          v-if="enumeration === 'hashtag'"
-          :account-list="accountList"
-        />
+        <div
+          v-for="typeItem in enumerationList"
+          :key="`${typeItem.id}-component`"
+        >
+          <component
+            :is="typeItem.componentName"
+            v-if="enumeration === typeItem.id"
+            :class-type="typeItem.id"
+            :account-list="accountList"
+          />
+        </div>
       </client-only>
     </div>
   </div>
@@ -56,7 +59,7 @@
 import NoSSR from 'vue-no-ssr';
 import header from '~/components/header.vue';
 import analysisCategories from '~/components/analysisCategories.vue';
-import analysisHashtag from '~/components/analysisHashtag.vue';
+import analysisClassification from '~/components/analysisClassification.vue';
 
 export default {
   data() {
@@ -69,11 +72,23 @@ export default {
       enumerationList: [
         {
           id: 'categories',
-          name: '類別'
+          name: '類別',
+          componentName: 'analysisCategories'
         },
         {
-          id: 'hashtag',
-          name: '標籤'
+          id: 'name',
+          name: '名稱',
+          componentName: 'analysisClassification'
+        },
+        {
+          id: 'store',
+          name: '商家',
+          componentName: 'analysisClassification'
+        },
+        {
+          id: 'tags',
+          name: '標籤',
+          componentName: 'analysisClassification'
         }
       ]
     };
@@ -82,7 +97,7 @@ export default {
     'client-only': NoSSR,
     'header-component': header,
     'analysisCategories': analysisCategories,
-    'analysisHashtag': analysisHashtag
+    'analysisClassification': analysisClassification
   },
   created() {
     // 取得現在的時間
@@ -162,15 +177,22 @@ export default {
 
   .enumeration-list {
     width: 100%;
-    margin-bottom: 1rem;
     display: flex;
+    justify-content: space-between;
     overflow-x: auto;
     overflow-y: hidden;
-    word-break: break-all;
     white-space: nowrap;
+    margin-bottom: 1rem;
+    word-break: break-all;
+
+    > li {
+      display: block;
+      flex-grow: 1;
+    }
   }
 
   .enumeration-btn {
+    min-width: 100%;
     padding: 12px 20px;
     line-height: 1em;
     position: relative;
