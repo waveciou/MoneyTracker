@@ -38,7 +38,7 @@
         </li>
       </ul>
       <div class="copyright">
-        Version: 1.0.0<br>Created By <a
+        Version: 1.0.1<br>Created By <a
           href="https://github.com/waveciou"
           target="_blank"
           title="GitHub @waveciou"
@@ -59,7 +59,7 @@ export default {
     // 刪除所有資料
     deleteHandler() {
       if (process.client) {
-        let isConfirm = window.confirm('確定要刪除所有資料？');
+        const isConfirm = window.confirm('確定要刪除所有資料？');
         if (isConfirm === true) {
           this.$store.commit('SET_ACCOUNTS_DATA', []);
         }
@@ -68,7 +68,7 @@ export default {
     // 載入預設資料
     initExampleHandler() {
       if (process.client) {
-        let isConfirm = window.confirm('載入範例資料將會覆蓋現有資料，確定要載入範例資料？');
+        const isConfirm = window.confirm('載入範例資料將會覆蓋現有資料，確定要載入範例資料？');
         if (isConfirm === true) {
           this.$store.commit('SET_ACCOUNTS_DATA', []);
 
