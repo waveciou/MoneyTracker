@@ -193,7 +193,7 @@ export default {
 
   .enumeration-btn {
     min-width: 100%;
-    padding: 12px 20px;
+    padding: 12px 7px;
     line-height: 1em;
     position: relative;
 

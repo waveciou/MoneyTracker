@@ -16,6 +16,32 @@
   margin-bottom: 5px;
 }
 
+.fieldset-text {
+  width: 100%;
+  position: relative;
+
+  &__input {
+    @at-root .fieldset-text & {
+      padding-right: 50px;
+    }
+  }
+
+  &__btn {
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &::before {
+      @include fontawesome;
+
+      content: '\f00d';
+      color: $color-white;
+    }
+  }
+}
+
 .fieldset-tags {
   width: 100%;
   position: relative;

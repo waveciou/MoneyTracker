@@ -44,11 +44,19 @@
               class="fieldset-caption"
               for="from__name"
             >名稱</label>
-            <input
-              id="from__name"
-              v-model="resource.name"
-              type="text"
-            >
+            <div class="fieldset-text">
+              <input
+                id="from__name"
+                v-model="resource.name"
+                class="fieldset-text__input"
+                type="text"
+              >
+              <button
+                class="fieldset-text__btn"
+                title="清除"
+                @click.stop="resource.name = ''"
+              />
+            </div>
           </div>
         </div>
         <div class="col col-100">
@@ -99,11 +107,19 @@
               class="fieldset-caption"
               for="from__store"
             >商家</label>
-            <input
-              id="from__store"
-              v-model="resource.store"
-              type="text"
-            >
+            <div class="fieldset-text">
+              <input
+                id="from__store"
+                v-model="resource.store"
+                class="fieldset-text__input"
+                type="text"
+              >
+              <button
+                class="fieldset-text__btn"
+                title="清除"
+                @click.stop="resource.store = ''"
+              />
+            </div>
           </div>
         </div>
         <div class="col col-100">
