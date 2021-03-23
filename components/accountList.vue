@@ -98,7 +98,7 @@ export default {
     // 刪除帳目項目
     deleteAccountItem(id) {
       if (process.client) {
-        let isConfirm = window.confirm('確定要刪除帳目項目？');
+        const isConfirm = window.confirm('確定要刪除帳目項目？');
 
         if (isConfirm === true) {
           let accounts = [...this.$store.state.accounts];
@@ -117,11 +117,8 @@ export default {
     },
     // 名稱欄位
     accountName(isExpense, name, categories, subcategories) {
-      if (isExpense === true) {
-        return name === '' ? this.GET_CATEGORIES_NAME(subcategories) : name;
-      } else {
-        return name === '' ? this.GET_CATEGORIES_NAME(categories) : name;
-      }
+      const nameType = isExpense === true ? subcategories : categories;
+      return name === '' ? this.GET_CATEGORIES_NAME(nameType) : name;
     },
     // 類別欄位
     accountCategoriesName(categories, subcategories) {
@@ -139,15 +136,18 @@ export default {
   computed: {
     accountSortList() {
       let result = [...this.accountList];
+
       result.sort((a, b) => {
         let aHour = a.time.hour;
         let bHour = b.time.hour;
+
         if (aHour === bHour) {
           return a.time.minute - b.time.minute;
         } else {
           return aHour - bHour;
         }
       });
+
       return result;
     }
   }

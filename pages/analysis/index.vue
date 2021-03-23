@@ -113,9 +113,7 @@ export default {
       if (month <= 0) {
         month = 12;
         this.activeDate.year = this.activeDate.year - 1;
-      }
-
-      if (month > 12) {
+      } else if (month > 12) {
         month = 1;
         this.activeDate.year = this.activeDate.year + 1;
       }
@@ -127,6 +125,7 @@ export default {
     // 篩選出對應日期的資料
     accountList() {
       let accountList = [...this.$store.state.accounts];
+
       return accountList.filter(item => {
         return Object.keys(this.activeDate).every(key => this.activeDate[key] === item.time[key]);
       });

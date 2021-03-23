@@ -17,7 +17,8 @@
 export default {
   computed: {
     menuRouteList() {
-      let routeList = [...this.$store.state.route];
+      let routeList = [...this.$store.state.route.route];
+
       let result = routeList.map(data => {
         let item = this.DEEP_CLONE(data);
         if (item.routeName === 'index') {
@@ -25,6 +26,7 @@ export default {
         }
         return item;
       });
+
       return result;
     }
   }

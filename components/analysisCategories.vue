@@ -109,6 +109,7 @@ export default {
             id: id,
             collection: [ this.DEEP_CLONE(accountItem) ]
           };
+
           resultList.push(dataItem);
         } else {
           resultList[index].collection.push(this.DEEP_CLONE(accountItem));

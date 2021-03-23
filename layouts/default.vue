@@ -64,17 +64,17 @@ export default {
 
           result = Array.isArray(accountList) ? accountList : [];
         } else {
-          let isConfirm = window.confirm('是否要載入範例資料？');
+          const isConfirm = window.confirm('是否要載入範例資料？');
 
           if (isConfirm === true) {
             // 載入範例資料
-            let example = require('../assets/example');
+            const example = require('../assets/example');
             let exampleList = [...example.example];
 
             const thisYear = this.$dayjs().utcOffset(8).year();
             const thisMonth = this.$dayjs().utcOffset(8).month() + 1;
 
-            exampleList.forEach((item, index) => {
+            exampleList.forEach(item => {
               item.time.year = thisYear;
               item.time.month = thisMonth;
             });

@@ -109,9 +109,7 @@ export default {
       if (month <= 0) {
         month = 12;
         this.current.year = this.current.year - 1;
-      }
-
-      if (month > 12) {
+      } else if (month > 12) {
         month = 1;
         this.current.year = this.current.year + 1;
       }
@@ -183,6 +181,7 @@ export default {
           number: '',
           none: true
         };
+
         resultList.splice(i, 0, obj);
       }
 
@@ -194,6 +193,7 @@ export default {
           number: '',
           none: true
         };
+
         resultList.splice(resultList.length, 0, obj);
       }
 

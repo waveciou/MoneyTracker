@@ -25,9 +25,9 @@ export default {
     name: String
   },
   fetch() {
-    this.$store.commit('GET_PAGE_TITLE', this.$route.name);
-    this.title.name = this.$store.state.pages.name;
-    this.title.head = this.$store.state.pages.head;
+    this.$store.commit('route/GET_PAGE_TITLE', this.$route.name);
+    this.title.name = this.$store.state.route.pages.name;
+    this.title.head = this.$store.state.route.pages.head;
 
     if (process.client) {
       if (this.name) {
