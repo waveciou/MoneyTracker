@@ -62,25 +62,10 @@ export default {
             accountList = [];
           }
 
-          result = Array.isArray(accountList) ? accountList : [];
+          const localData = Array.isArray(accountList) ? accountList : [];
+          result = localData.length < 1 ? this.exampleDataConfirm(localData) : localData;
         } else {
-          const isConfirm = window.confirm('是否要載入範例資料？');
-
-          if (isConfirm === true) {
-            // 載入範例資料
-            const example = require('../assets/example');
-            let exampleList = [...example.example];
-
-            const thisYear = this.$dayjs().utcOffset(8).year();
-            const thisMonth = this.$dayjs().utcOffset(8).month() + 1;
-
-            exampleList.forEach(item => {
-              item.time.year = thisYear;
-              item.time.month = thisMonth;
-            });
-
-            result = exampleList;
-          }
+          result = this.exampleDataConfirm(result);
         }
 
         this.$store.commit('SET_ACCOUNTS_DATA', result);
@@ -102,11 +87,15 @@ export default {
           }
         });
       });
-
     },
     // 取得 Scroll Value
     getScrollValue() {
       this.scrollValue = this.$refs.content.scrollTop;
+    },
+    // 載入範例資料確認
+    exampleDataConfirm(container) {
+      const isConfirm = window.confirm('是否要載入範例資料？');
+      return isConfirm === true ? this.GET_EXAMPLE_DATA() : container;
     }
   },
   watch: {

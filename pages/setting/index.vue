@@ -72,10 +72,8 @@ export default {
         if (isConfirm === true) {
           this.$store.commit('SET_ACCOUNTS_DATA', []);
 
-          // 載入範例資料
-          let example = require('../../assets/example');
-          let exampleList = [...example.example];
-          this.$store.commit('SET_ACCOUNTS_DATA', exampleList);
+          const result = this.GET_EXAMPLE_DATA();
+          this.$store.commit('SET_ACCOUNTS_DATA', result);
         }
       }
     }

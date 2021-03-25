@@ -42,6 +42,21 @@ Vue.mixin({
         result = isFloat === true ? value.toFixed(1) : value;
       }
       return result;
+    },
+    // 取得範例資料
+    GET_EXAMPLE_DATA() {
+      const example = require('../assets/example.json');
+      let exampleList = [...example.example];
+
+      const thisYear = this.$dayjs().utcOffset(8).year();
+      const thisMonth = this.$dayjs().utcOffset(8).month() + 1;
+
+      exampleList.forEach(item => {
+        item.time.year = thisYear;
+        item.time.month = thisMonth;
+      });
+
+      return exampleList;
     }
   }
 });
