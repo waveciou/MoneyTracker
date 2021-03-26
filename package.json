@@ -2,7 +2,7 @@
   "name": "money-tracker",
   "version": "1.0.1",
   "private": true,
-  "author": "Wave Ciou <waveciou@gmail.com>",
+  "author": "waveciou <waveciou@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "nuxt",
