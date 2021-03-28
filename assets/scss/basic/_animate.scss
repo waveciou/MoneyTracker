@@ -32,17 +32,20 @@
   opacity: 0;
 }
 
-// * Slide In Up
+// * List Animation
 
-@keyframes slideInUp {
-  from {
-    visibility: visible;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
+.list-enter-active,
+.list-leave-active,
+.list-move {
+  transition: opacity 0.6s, transform 0.6s;
+}
 
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
+.list-enter-from {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
 }

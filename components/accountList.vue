@@ -1,6 +1,10 @@
 <template>
   <div>
-    <ul class="accounts">
+    <transition-group
+      name="list"
+      tag="ul"
+      class="accounts"
+    >
       <li
         v-for="account in accountSortList"
         :key="account.id"
@@ -41,7 +45,7 @@
           </div>
         </a>
       </li>
-    </ul>
+    </transition-group>
     <lightbox-component
       :control="detailDialogCtrl"
       @click-overlay="closeDetailDialog"
@@ -160,6 +164,8 @@ export default {
 
   .accounts {
     margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
     margin-bottom: 1rem;
 
     > li {
