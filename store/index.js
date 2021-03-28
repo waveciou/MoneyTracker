@@ -10,7 +10,8 @@ export const state = () => ({
     year: 0,
     month: 0,
     date: 0
-  }
+  },
+  searchBarCtrl: false
 });
 
 // * Mutations
@@ -31,5 +32,9 @@ export const mutations = {
     Object.keys(state.currentDate).forEach(key => {
       state.currentDate[key] = payload[key];
     });
+  },
+  // 設定搜尋欄是否開啟
+  SET_SEARCHBAR_CONTROL(state, payload) {
+    state.searchBarCtrl = payload;
   }
 };

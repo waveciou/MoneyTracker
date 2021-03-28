@@ -14,11 +14,18 @@
       </transition>
     </div>
     <menu-component />
+    <transition
+      name="fade"
+      mode="out-in"
+    >
+      <searchBar-component v-if="$store.state.searchBarCtrl === true" />
+    </transition>
   </main>
 </template>
 
 <script>
 import menu from '~/components/menu.vue';
+import searchBar from '~/components/searchbar.vue';
 
 export default {
   data() {
@@ -27,7 +34,8 @@ export default {
     };
   },
   components: {
-    'menu-component': menu
+    'menu-component': menu,
+    'searchBar-component': searchBar
   },
   created() {
     // 設定目前選取日期為今天
@@ -99,8 +107,9 @@ export default {
     }
   },
   watch: {
-    $route(value) {
+    $route() {
       this.$refs.content.scrollTop = 0;
+      this.$store.commit('SET_SEARCHBAR_CONTROL', false);
     }
   }
 };
