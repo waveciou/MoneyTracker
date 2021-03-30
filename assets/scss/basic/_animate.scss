@@ -35,17 +35,12 @@
 // * List Animation
 
 .list-enter-active,
-.list-leave-active,
-.list-move {
-  transition: opacity 0.6s, transform 0.6s;
+.list-leave-active {
+  transition: all 0.75s;
 }
 
-.list-enter-from {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
+.list-enter,
 .list-leave-to {
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(-15px);
 }
