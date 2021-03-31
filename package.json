@@ -1,6 +1,6 @@
 {
   "name": "money-tracker",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "author": "waveciou <waveciou@gmail.com>",
   "license": "MIT",
@@ -16,14 +16,6 @@
     "apexcharts": "^3.23.1",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
-    "pre-commit": "^1.2.2",
-    "stylelint": "^13.8.0",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-sass-guidelines": "^7.1.0",
-    "stylelint-config-standard": "^20.0.0",
-    "stylelint-order": "^4.1.0",
-    "stylelint-scss": "^3.18.0",
-    "stylelint-selector-bem-pattern": "^2.1.0",
     "vue-apexcharts": "^1.6.0",
     "vue-no-ssr": "^1.1.1"
   },
@@ -31,6 +23,14 @@
     "eslint": "^7.14.0",
     "eslint-plugin-vue": "^7.1.0",
     "node-sass": "^5.0.0",
-    "sass-loader": "^10.1.0"
+    "pre-commit": "^1.2.2",
+    "sass-loader": "^10.1.0",
+    "stylelint": "^13.12.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.19.0",
+    "stylelint-selector-bem-pattern": "^2.1.0"
   }
 }
