@@ -2,60 +2,63 @@
   <div>
     <header-component />
     <div class="wrap">
-      <div class="overview-title">
-        <span>總額：</span>
+      <client-only>
+        <div class="overview-title">
+          <span>總額：</span>
+          <div
+            class="total-value"
+            :class="{'color-red': totalValue < 0}"
+          >
+            TWD {{ overviewNumber }}
+          </div>
+        </div>
+
         <div
-          class="total-value"
-          :class="{'color-red': totalValue < 0}"
+          v-if="chartXaxisList.length > 0"
+          class="overview-according"
         >
-          TWD {{ overviewNumber }}
+          <div class="radio-button">
+            <input
+              id="according-month"
+              v-model="according"
+              type="radio"
+              :value="'month'"
+            >
+            <label for="according-month">月份</label>
+          </div>
+          <div class="radio-button">
+            <input
+              id="according-date"
+              v-model="according"
+              type="radio"
+              :value="'date'"
+            >
+            <label for="according-date">日期</label>
+          </div>
         </div>
-      </div>
 
-      <div
-        v-if="chartXaxisList.length > 0"
-        class="overview-according"
-      >
-        <div class="radio-button">
-          <input
-            id="according-month"
-            v-model="according"
-            type="radio"
-            :value="'month'"
+        <chartbar-component
+          :series-data="chartSeries"
+          :xaxis-list="chartXaxisList"
+        />
+
+        <ul class="accountFormatList">
+          <li
+            v-for="accountItem in accountFormatList"
+            :key="accountItem.id"
           >
-          <label for="according-month">月份</label>
-        </div>
-        <div class="radio-button">
-          <input
-            id="according-date"
-            v-model="according"
-            type="radio"
-            :value="'date'"
-          >
-          <label for="according-date">日期</label>
-        </div>
-      </div>
-
-      <chartbar-component
-        :series-data="chartSeries"
-        :xaxis-list="chartXaxisList"
-      />
-
-      <ul class="accountFormatList">
-        <li
-          v-for="accountItem in accountFormatList"
-          :key="accountItem.id"
-        >
-          <accordionClass :title="setDateTitle(accountItem)">
-            <accountList-component :account-list="accountItem.collection" />
-          </accordionClass>
-        </li>
-      </ul>
+            <accordionClass :title="setDateTitle(accountItem)">
+              <accountList-component :account-list="accountItem.collection" />
+            </accordionClass>
+          </li>
+        </ul>
+      </client-only>
     </div>
   </div>
 </template>
 
 <script>
+import NoSSR from 'vue-no-ssr';
 import header from '~/components/header.vue';
 import chartbar from '~/components/chartbar.vue';
 import accordionClass from '~/components/accordionClass.vue';
@@ -68,6 +71,7 @@ export default {
     };
   },
   components: {
+    'client-only': NoSSR,
     'header-component': header,
     'chartbar-component': chartbar,
     'accordionClass': accordionClass,

@@ -6,7 +6,16 @@
         :default-date="defaultCalendarData"
         @get-date="getDateHandler"
       />
-      <accountList-component :account-list="accountList" />
+      <accountList-component
+        v-if="accountList.length > 0"
+        :account-list="accountList"
+      />
+      <p
+        v-else
+        class="none-tips"
+      >
+        目前尚無任何資料
+      </p>
     </div>
   </div>
 </template>

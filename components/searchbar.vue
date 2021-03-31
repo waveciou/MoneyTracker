@@ -16,7 +16,7 @@
           <input
             id="form__search"
             ref="keywordInput"
-            v-model="inputKeyword"
+            v-model.trim="inputKeyword"
             class="fieldset-text__input"
             type="text"
             placeholder="請輸入關鍵字"
@@ -27,11 +27,24 @@
             @click.stop="inputKeyword = ''"
           />
         </div>
-        <button class="searchBar__search-btn" />
+        <button
+          class="searchBar__search-btn"
+          title="搜尋"
+          @click.stop="searchHandler"
+        />
       </div>
       <div class="searchBar__main">
         <div class="searchBar__content">
-          <accountList-component :account-list="accountList" />
+          <accountList-component
+            v-if="searchResultList.length > 0"
+            :account-list="searchResultList"
+          />
+          <p
+            v-else
+            class="none-tips"
+          >
+            目前尚無任何資料
+          </p>
         </div>
       </div>
     </div>
@@ -45,7 +58,8 @@ export default {
   data() {
     return {
       init: false,
-      inputKeyword: ''
+      inputKeyword: '',
+      searchResultList: []
     };
   },
   components: {
@@ -58,11 +72,34 @@ export default {
     // 關閉搜尋欄
     closeSearchBarHandler() {
       this.$store.commit('SET_SEARCHBAR_CONTROL', false);
+    },
+    // 搜尋
+    searchHandler() {
+      let keyword = this.inputKeyword;
+
+      if (keyword === '') {
+        if (process.client) {
+          window.alert('請輸入關鍵字');
+        }
+        return false;
+      }
+
+      let accounts = [...this.$store.state.accounts];
+
+      this.searchResultList = accounts.filter(accountItem => {
+        const { name, notes, store, tags } = accountItem;
+        const compareItems = [ name, notes, store, ...tags ].filter(item => item !== '');
+
+        if (compareItems.length <= 0) {
+          return false;
+        }
+
+        return compareItems.some(item => item.indexOf(keyword) >= 0);
+      });
     }
   },
   computed: {
-    // 帳目列表
-    accountList() {
+    accountsList() {
       return this.$store.state.accounts;
     }
   }
@@ -76,7 +113,7 @@ export default {
   .searchBar {
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     background-color: $color-black-light;

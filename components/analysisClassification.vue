@@ -100,8 +100,8 @@ export default {
         filterList = this.accountList.filter(accountItem => accountItem[classTypeName] !== '');
 
         filterList.forEach(accountItem => {
-          const index = resultList.findIndex(dataItem => dataItem.id === accountItem.store);
-          this.setAccountItem(resultList, index, accountItem.store, accountItem);
+          const index = resultList.findIndex(dataItem => dataItem.id === accountItem[classTypeName]);
+          this.setAccountItem(resultList, index, accountItem[classTypeName], accountItem);
         });
       }
 
