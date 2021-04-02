@@ -124,18 +124,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '~/assets/scss/utils/_utils.scss';
+@import '~/assets/scss/utils/_utils.scss';
 
-  .main {
-    width: 100%;
-    height: 100%;
-    padding-top: $header-height;
-    margin: auto;
-    position: relative;
-    background-color: $color-black-light;
+.main {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  position: relative;
+  background-color: $color-black-light;
 
-    @include min-width(map-get($phone, md) + 20px) {
-      max-width: map-get($phone, md);
-    }
+  @include min-width(map-get($phone, md) + 20px) {
+    max-width: map-get($phone, md);
   }
+}
+
+.content {
+  width: 100%;
+  height: calc(100% - #{$menu-height});
+  padding-top: $header-height + 10px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -o-overflow-scrolling: touch;
+
+  &.is-lightbox-open {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
 </style>
