@@ -3,7 +3,10 @@
     <div
       ref="content"
       class="content"
-      :class="{'is-fixed': scrollValue > 0}"
+      :class="{
+        'is-fixed': scrollValue > 0,
+        'is-lightbox-open': isLightboxOpen
+      }"
       @scroll="getScrollValue"
     >
       <transition
@@ -104,6 +107,11 @@ export default {
     exampleDataConfirm(container) {
       const isConfirm = window.confirm('是否要載入範例資料？');
       return isConfirm === true ? this.GET_EXAMPLE_DATA() : container;
+    }
+  },
+  computed: {
+    isLightboxOpen() {
+      return this.$store.state.isLightboxOpen;
     }
   },
   watch: {

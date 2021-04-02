@@ -193,6 +193,11 @@ export default {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     -o-overflow-scrolling: touch;
+
+    &.is-lightbox-open {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
   }
 
   .searchBar__content {

@@ -11,7 +11,8 @@ export const state = () => ({
     month: 0,
     date: 0
   },
-  searchBarCtrl: false
+  searchBarCtrl: false,
+  isLightboxOpen: false
 });
 
 // * Mutations
@@ -36,5 +37,9 @@ export const mutations = {
   // 設定搜尋欄是否開啟
   SET_SEARCHBAR_CONTROL(state, payload) {
     state.searchBarCtrl = payload;
+  },
+  // 設定監聽 Lightbox 是否開啟的參數
+  SET_LIGHTBOX_CTRL_VALUE(state, payload) {
+    state.isLightboxOpen = payload;
   }
 };

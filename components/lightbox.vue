@@ -28,6 +28,14 @@ export default {
     overlayClickHandler() {
       this.$emit('click-overlay');
     }
+  },
+  watch: {
+    control: {
+      handler(value) {
+        this.$store.commit('SET_LIGHTBOX_CTRL_VALUE', value);
+      },
+      immediate: true
+    }
   }
 };
 </script>
