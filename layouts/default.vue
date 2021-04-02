@@ -129,6 +129,7 @@ export default {
   .main {
     width: 100%;
     height: 100%;
+    padding-top: $header-height;
     margin: auto;
     position: relative;
     background-color: $color-black-light;
