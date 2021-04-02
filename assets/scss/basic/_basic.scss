@@ -213,25 +213,6 @@ button {
 }
 
 // * ==========================================================================
-// * content
-// * ==========================================================================
-
-.content {
-  width: 100%;
-  height: calc(100% - #{$menu-height});
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  -o-overflow-scrolling: touch;
-
-  &.is-lightbox-open {
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-}
-
-// * ==========================================================================
 // * 頁面外圍控制整體布局寬度
 // * ==========================================================================
 
