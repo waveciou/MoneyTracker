@@ -33,7 +33,10 @@
           @click.stop="searchHandler"
         />
       </div>
-      <div class="searchBar__main">
+      <div
+        class="searchBar__main"
+        :class="{'is-lightbox-open': isLightboxOpen}"
+      >
         <div class="searchBar__content">
           <accountList-component
             v-if="searchResultList.length > 0"
@@ -101,6 +104,9 @@ export default {
   computed: {
     accountsList() {
       return this.$store.state.accounts;
+    },
+    isLightboxOpen() {
+      return this.$store.state.isLightboxOpen;
     }
   }
 };

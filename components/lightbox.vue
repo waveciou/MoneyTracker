@@ -30,11 +30,8 @@ export default {
     }
   },
   watch: {
-    control: {
-      handler(value) {
-        this.$store.commit('SET_LIGHTBOX_CTRL_VALUE', value);
-      },
-      immediate: true
+    control(value) {
+      this.$store.commit('SET_LIGHTBOX_CTRL_VALUE', value);
     }
   }
 };
