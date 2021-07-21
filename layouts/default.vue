@@ -105,8 +105,9 @@ export default {
     },
     // 載入範例資料確認
     exampleDataConfirm(container) {
-      const isConfirm = window.confirm('是否要載入範例資料？');
-      return isConfirm === true ? this.GET_EXAMPLE_DATA() : container;
+      // const isConfirm = window.confirm('是否要載入範例資料？');
+      // return isConfirm === true ? this.GET_EXAMPLE_DATA() : container;
+      return container;
     }
   },
   computed: {
