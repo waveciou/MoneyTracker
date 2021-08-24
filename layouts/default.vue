@@ -119,6 +119,7 @@ export default {
     $route() {
       this.$refs.content.scrollTop = 0;
       this.$store.commit('SET_SEARCHBAR_CONTROL', false);
+      this.$store.commit('SET_LIGHTBOX_CTRL_VALUE', false);
     }
   }
 };
