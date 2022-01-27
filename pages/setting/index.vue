@@ -53,13 +53,16 @@ import header from '~/components/header.vue';
 import pkg from '../../package.json';
 
 export default {
+  data() {
+    return {
+      version: ''
+    };
+  },
   components: {
     'header-component': header
   },
-  asyncData() {
-    return {
-      version: pkg.version
-    };
+  created() {
+    this.version = pkg.version;
   },
   methods: {
     // 刪除所有資料
