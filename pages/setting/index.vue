@@ -38,7 +38,7 @@
         </li>
       </ul>
       <div class="copyright">
-        Version: 1.1.3<br>Created By <a
+        Version: {{ version }}<br>Created By <a
           href="https://github.com/waveciou"
           target="_blank"
           title="GitHub @waveciou"
@@ -50,10 +50,16 @@
 
 <script>
 import header from '~/components/header.vue';
+import pkg from '../../package.json';
 
 export default {
   components: {
     'header-component': header
+  },
+  asyncData() {
+    return {
+      version: pkg.version
+    };
   },
   methods: {
     // 刪除所有資料
