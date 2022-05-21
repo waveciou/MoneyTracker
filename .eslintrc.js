@@ -1,40 +1,41 @@
 module.exports = {
-  'env': {
-    'browser': true,
-    'es2021': true
+  env: {
+    browser: true,
+    es2021: true,
   },
-  'extends': [
-    'eslint:recommended',
-    'plugin:vue/recommended'
+  extends: [
+    'plugin:vue/essential',
+    'airbnb-base',
   ],
-  'parserOptions': {
-    'ecmaVersion': 12
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
   },
-  'plugins': [
-    'vue'
+  plugins: [
+    'vue',
   ],
-  'rules': {
-    'indent': [
+  rules: {
+    indent: [
       'error',
-      2
+      2,
     ],
     'linebreak-style': [
       'off',
-      'unix'
+      'unix',
     ],
-    'quotes': [
+    quotes: [
       'error',
-      'single'
+      'single',
     ],
-    'semi': [
+    semi: [
       'error',
-      'always'
+      'always',
     ],
     'no-unused-vars': ['off'],
     'no-undef': ['off'],
     'vue/require-default-prop': ['off'],
     'vue/order-in-components': ['error', {
-      'order': [
+      order: [
         'el',
         ['template', 'render'],
         'renderError',
@@ -67,8 +68,8 @@ module.exports = {
         'methods',
         'computed',
         'watch',
-        'watchQuery'
-      ]
-    }]
-  }
+        'watchQuery',
+      ],
+    }],
+  },
 };
