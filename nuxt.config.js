@@ -87,6 +87,7 @@ export default {
     plugins: ['utc']
   },
   build: {
+    postcss: null,
     vendor: ['vue-apexcharts'],
     extend(config, { isDev, isClient }) {
       if (!isDev) {

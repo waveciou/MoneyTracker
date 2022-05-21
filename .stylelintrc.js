@@ -1,4 +1,4 @@
-{
+module.exports = {
   "extends": [
     "stylelint-config-standard",
     "stylelint-config-prettier",
@@ -10,6 +10,7 @@
     "stylelint-selector-bem-pattern"
   ],
   "rules": {
+    "color-function-notation": "legacy",
     "max-nesting-depth": null,
     "no-empty-source": null,
     "no-descending-specificity": null,
