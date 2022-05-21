@@ -11,26 +11,26 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.12.2",
-    "@nuxtjs/dayjs": "^1.2.1",
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/dayjs": "^1.4.1",
     "apexcharts": "^3.23.1",
-    "core-js": "^3.6.5",
-    "nuxt": "^2.14.6",
-    "vue-apexcharts": "^1.6.0",
+    "core-js": "^3.22.5",
+    "nuxt": "^2.15.8",
+    "vue-apexcharts": "^1.6.2",
     "vue-no-ssr": "^1.1.1"
   },
   "devDependencies": {
-    "eslint": "^7.14.0",
-    "eslint-plugin-vue": "^7.1.0",
+    "eslint": "^8.16.0",
+    "eslint-plugin-vue": "^9.0.1",
     "node-sass": "^5.0.0",
-    "pre-commit": "^1.2.2",
     "sass-loader": "^10.1.0",
-    "stylelint": "^13.12.0",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-sass-guidelines": "^8.0.0",
-    "stylelint-config-standard": "^21.0.0",
-    "stylelint-order": "^4.1.0",
-    "stylelint-scss": "^3.19.0",
-    "stylelint-selector-bem-pattern": "^2.1.0"
+    "stylelint": "^14.8.3",
+    "stylelint-config-html": "^1.0.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-selector-bem-pattern": "^2.1.1"
   }
 }
