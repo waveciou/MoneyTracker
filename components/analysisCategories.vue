@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <chartpie-component 
+    <Chartpie
       :series-data="seriesData"
       :labels-data="labelsData"
     />
@@ -49,97 +49,85 @@
 </template>
 
 <script>
-import chartpie from '~/components/chartpie.vue';
+  import Chartpie from '~/components/chartpie.vue';
 
-export default {
-  data() {
-    return {
-      categories: '',
-      categoriesData: []
-    };
-  },
-  components: {
-    'chartpie-component': chartpie,
-  },
-  props: {
-    accountList: Array
-  },
-  created() {
-    // 取得類別資料
-    this.categoriesData = require('../assets/categories');
-    this.categories = this.categoriesData['expense'][0].id;
-  },
-  methods: {
-    // 計算總額
-    getTotalValue(payload) {
-      let result = payload.reduce((accumulator, currentItem) => {
-        return accumulator + currentItem.price;
-      }, 0);
-
-      return this.TO_CURRENCY(result);
-    }
-  },
-  computed: {
-    // 主類別列表
-    categorieList() {
-      let result = this.categoriesData['expense'].map(item => {
-        return { id: item.id, name: item.name };
-      });
-
-      result.push({ id: 'income', name: '收入' });
-      return result;
+  export default {
+    data() {
+      return {
+        categories: '',
+        categoriesData: [],
+      };
     },
-    // 分類列表
-    accountFormatList() {
-      let resultList = [];
-      let filterList = this.accountList.filter(accountItem => {
-        if (this.categories === 'income') {
-          return accountItem.isExpense === false;
-        } else {
+    components: {
+      Chartpie,
+    },
+    props: {
+      accountList: Array,
+    },
+    created() {
+      // 取得類別資料
+      // eslint-disable-next-line global-require
+      this.categoriesData = require('../assets/categories.json');
+      this.categories = this.categoriesData.expense[0].id;
+    },
+    methods: {
+      // 計算總額
+      getTotalValue(payload) {
+        const result = payload.reduce((accumulator, currentItem) => accumulator + currentItem.price, 0);
+
+        return this.TO_CURRENCY(result);
+      },
+    },
+    computed: {
+      // 主類別列表
+      categorieList() {
+        const result = this.categoriesData.expense.map((item) => ({ id: item.id, name: item.name }));
+
+        result.push({ id: 'income', name: '收入' });
+        return result;
+      },
+      // 分類列表
+      accountFormatList() {
+        const resultList = [];
+        const filterList = this.accountList.filter((accountItem) => {
+          if (this.categories === 'income') {
+            return accountItem.isExpense === false;
+          }
           return accountItem.categories === this.categories;
-        }
-      });
+        });
 
-      filterList.forEach(accountItem => {
-        const id = this.categories === 'income' ? accountItem.categories : accountItem.subcategories;
-        const index = resultList.findIndex(dataItem => dataItem.id === id);
+        filterList.forEach((accountItem) => {
+          const id = this.categories === 'income' ? accountItem.categories : accountItem.subcategories;
+          const index = resultList.findIndex((dataItem) => dataItem.id === id);
 
-        if (index < 0) {
-          let dataItem = {
-            id: id,
-            collection: [ this.DEEP_CLONE(accountItem) ]
-          };
+          if (index < 0) {
+            const dataItem = {
+              id,
+              collection: [this.DEEP_CLONE(accountItem)],
+            };
 
-          resultList.push(dataItem);
-        } else {
-          resultList[index].collection.push(this.DEEP_CLONE(accountItem));
-        }
-      });
+            resultList.push(dataItem);
+          } else {
+            resultList[index].collection.push(this.DEEP_CLONE(accountItem));
+          }
+        });
 
-      return resultList;
+        return resultList;
+      },
+      // 圖表資料
+      seriesData() {
+        return this.accountFormatList.map((dataItem) => dataItem.collection.reduce((accumulator, currentItem) => accumulator + currentItem.price, 0)) || [];
+      },
+      // 圖表項目
+      labelsData() {
+        return this.accountFormatList.map((dataItem) => this.GET_CATEGORIES_NAME(dataItem.id)) || [];
+      },
+      // 計算總額
+      totalValue() {
+        return this.seriesData.reduce((accumulator, currentItem) => accumulator + currentItem, 0);
+      },
     },
-    // 圖表資料
-    seriesData() {
-      return this.accountFormatList.map(dataItem => {
-        return dataItem.collection.reduce((accumulator, currentItem) => {
-          return accumulator + currentItem.price;
-        }, 0);
-      }) || [];
-    },
-    // 圖表項目
-    labelsData() {
-      return this.accountFormatList.map(dataItem => {
-        return this.GET_CATEGORIES_NAME(dataItem.id);
-      }) || [];
-    },
-    // 計算總額
-    totalValue() {
-      return this.seriesData.reduce((accumulator, currentItem) => {
-        return accumulator + currentItem;
-      }, 0);
-    }
-  }
-};
+  };
 </script>
 
 <style lang="scss" scoped>

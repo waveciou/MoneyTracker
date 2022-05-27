@@ -22,24 +22,26 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      control: true
-    };
-  },
-  props: {
-    title: String
-  },
-  methods: {
-    accordionStartHandler(el) {
-      el.style.height = el.scrollHeight + 'px';
+  /* eslint-disable no-param-reassign */
+
+  export default {
+    data() {
+      return {
+        control: true,
+      };
     },
-    accordionEndHandler(el) {
-      el.style.height = '';
-    }
-  }
-};
+    props: {
+      title: String,
+    },
+    methods: {
+      accordionStartHandler(el) {
+        el.style.height = `${el.scrollHeight}px`;
+      },
+      accordionEndHandler(el) {
+        el.style.height = '';
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header-component />
+    <HeaderModule />
     <div class="wrap">
       <div class="logo">
         <span>Money Tracker</span>
@@ -49,45 +49,46 @@
 </template>
 
 <script>
-import header from '~/components/header.vue';
-import pkg from '../../package.json';
+  /* eslint-disable no-alert */
+  import HeaderModule from '~/components/header.vue';
+  import pkg from '../../package.json';
 
-export default {
-  data() {
-    return {
-      version: ''
-    };
-  },
-  components: {
-    'header-component': header
-  },
-  created() {
-    this.version = pkg.version;
-  },
-  methods: {
-    // 刪除所有資料
-    deleteHandler() {
-      if (process.client) {
-        const isConfirm = window.confirm('確定要刪除所有資料？');
-        if (isConfirm === true) {
-          this.$store.commit('SET_ACCOUNTS_DATA', []);
-        }
-      }
+  export default {
+    data() {
+      return {
+        version: '',
+      };
     },
-    // 載入預設資料
-    initExampleHandler() {
-      if (process.client) {
-        const isConfirm = window.confirm('載入範例資料將會覆蓋現有資料，確定要載入範例資料？');
-        if (isConfirm === true) {
-          this.$store.commit('SET_ACCOUNTS_DATA', []);
-
-          const result = this.GET_EXAMPLE_DATA();
-          this.$store.commit('SET_ACCOUNTS_DATA', result);
+    components: {
+      HeaderModule,
+    },
+    created() {
+      this.version = pkg.version;
+    },
+    methods: {
+      // 刪除所有資料
+      deleteHandler() {
+        if (process.client) {
+          const isConfirm = window.confirm('確定要刪除所有資料？');
+          if (isConfirm === true) {
+            this.$store.commit('SET_ACCOUNTS_DATA', []);
+          }
         }
-      }
-    }
-  }
-};
+      },
+      // 載入預設資料
+      initExampleHandler() {
+        if (process.client) {
+          const isConfirm = window.confirm('載入範例資料將會覆蓋現有資料，確定要載入範例資料？');
+          if (isConfirm === true) {
+            this.$store.commit('SET_ACCOUNTS_DATA', []);
+
+            const result = this.GET_EXAMPLE_DATA();
+            this.$store.commit('SET_ACCOUNTS_DATA', result);
+          }
+        }
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

@@ -2,21 +2,21 @@ export default {
   mode: 'universal',
   vue: {
     config: {
-      devtools: process.env.NODE_ENV === 'development' ? true : false
-    }
+      devtools: process.env.NODE_ENV === 'development',
+    },
   },
   router: {
-    base: '/MoneyTracker/'
+    base: '/MoneyTracker/',
   },
   generate: {
     fallback: false,
     minify: {
-      collapseWhitespace: false
-    }
+      collapseWhitespace: false,
+    },
   },
   head: {
     htmlAttrs: {
-      lang: 'zh-Hant-TW'
+      lang: 'zh-Hant-TW',
     },
     title: 'Money Tracker',
     meta: [
@@ -34,7 +34,7 @@ export default {
       { property: 'twitter:image', content: 'https://waveciou.github.io/MoneyTracker/_resources/money-tracker.jpg' },
       { property: 'og:description', content: '一個自製的記帳軟體 Side Project' },
       { property: 'twitter:description', content: '一個自製的記帳軟體 Side Project' },
-      { name: 'DC.Description', content: '一個自製的記帳軟體 Side Project' }
+      { name: 'DC.Description', content: '一個自製的記帳軟體 Side Project' },
     ],
     link: [
       { rel: 'apple-touch-icon', sizes: '57x57', href: './_resources/favicon/apple-icon-57x57.png' },
@@ -46,23 +46,31 @@ export default {
       { rel: 'apple-touch-icon', sizes: '144x144', href: './_resources/favicon/apple-icon-144x144.png' },
       { rel: 'apple-touch-icon', sizes: '152x152', href: './_resources/favicon/apple-icon-152x152.png' },
       { rel: 'apple-touch-icon', sizes: '180x180', href: './_resources/favicon/apple-icon-180x180.png' },
-      { rel: 'icon', type:'image/png', sizes: '192x192',  href: './_resources/favicon/android-icon-192x192.png' },
-      { rel: 'icon', type:'image/png', sizes: '32x32', href: './_resources/favicon/favicon-32x32.png' },
-      { rel: 'icon', type:'image/png', sizes: '96x96', href: './_resources/favicon/favicon-96x96.png' },
-      { rel: 'icon', type:'image/png', sizes: '16x16', href: './_resources/favicon/favicon-16x16.png' },
-      { rel: 'manifest', href: 'https://waveciou.github.io/MoneyTracker/manifest.json' }
+      {
+        rel: 'icon', type: 'image/png', sizes: '192x192', href: './_resources/favicon/android-icon-192x192.png',
+      },
+      {
+        rel: 'icon', type: 'image/png', sizes: '32x32', href: './_resources/favicon/favicon-32x32.png',
+      },
+      {
+        rel: 'icon', type: 'image/png', sizes: '96x96', href: './_resources/favicon/favicon-96x96.png',
+      },
+      {
+        rel: 'icon', type: 'image/png', sizes: '16x16', href: './_resources/favicon/favicon-16x16.png',
+      },
+      { rel: 'manifest', href: 'https://waveciou.github.io/MoneyTracker/manifest.json' },
     ],
     script: [
       {
-        src: './_resources/js/polyfill.min.js'
+        src: './_resources/js/polyfill.min.js',
       },
       {
-        src: './_resources/js/classList.js'
+        src: './_resources/js/classList.js',
       },
       {
-        src: './_resources/js/findIndex.js'
-      }
-    ]
+        src: './_resources/js/findIndex.js',
+      },
+    ],
   },
   css: [
     { src: '~/assets/scss/main.scss', lang: 'scss' },
@@ -71,33 +79,37 @@ export default {
     { src: '~/plugins/mixin.js' },
     {
       src: '~/plugins/vue-apexcharts.js',
-      ssr: false
-    }
+      ssr: false,
+    },
   ],
   components: true,
-  buildModules: [],
+  buildModules: [
+    // https://go.nuxtjs.dev/eslint
+    '@nuxtjs/eslint-module',
+  ],
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/dayjs'
+    '@nuxtjs/dayjs',
   ],
   axios: {},
   dayjs: {
     locales: ['en', 'zh-tw'],
     defaultLocale: 'zh-tw',
-    plugins: ['utc']
+    plugins: ['utc'],
   },
   build: {
     postcss: null,
     vendor: ['vue-apexcharts'],
     extend(config, { isDev, isClient }) {
       if (!isDev) {
-        config.output.publicPath = './_nuxt/';
+        const assignConfig = config;
+        assignConfig.output.publicPath = './_nuxt/';
       }
       return config;
     },
     filenames: {
       app: () => '[name].js',
-      chunk: () => '[name].js'
-    }
-  }
+      chunk: () => '[name].js',
+    },
+  },
 };

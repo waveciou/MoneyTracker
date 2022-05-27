@@ -38,7 +38,7 @@
         :class="{'is-lightbox-open': isLightboxOpen}"
       >
         <div class="searchBar__content">
-          <accountList-component
+          <AccountList
             v-if="searchResultList.length > 0"
             :account-list="searchResultList"
           />
@@ -55,61 +55,66 @@
 </template>
 
 <script>
-import accountList from '~/components/accountList.vue';
+  /* eslint-disable no-alert */
+  import AccountList from '~/components/accountList.vue';
 
-export default {
-  data() {
-    return {
-      init: false,
-      inputKeyword: '',
-      searchResultList: []
-    };
-  },
-  components: {
-    'accountList-component': accountList
-  },
-  mounted() {
-    this.$refs.keywordInput.focus();
-  },
-  methods: {
-    // 關閉搜尋欄
-    closeSearchBarHandler() {
-      this.$store.commit('SET_SEARCHBAR_CONTROL', false);
+  export default {
+    data() {
+      return {
+        init: false,
+        inputKeyword: '',
+        searchResultList: [],
+      };
     },
-    // 搜尋
-    searchHandler() {
-      let keyword = this.inputKeyword;
+    components: {
+      AccountList,
+    },
+    mounted() {
+      this.$refs.keywordInput.focus();
+    },
+    methods: {
+      // 關閉搜尋欄
+      closeSearchBarHandler() {
+        this.$store.commit('SET_SEARCHBAR_CONTROL', false);
+      },
+      // 搜尋
+      searchHandler() {
+        const keyword = this.inputKeyword;
 
-      if (keyword === '') {
-        if (process.client) {
-          window.alert('請輸入關鍵字');
-        }
-        return false;
-      }
-
-      let accounts = [...this.$store.state.accounts];
-
-      this.searchResultList = accounts.filter(accountItem => {
-        const { name, notes, store, tags } = accountItem;
-        const compareItems = [ name, notes, store, ...tags ].filter(item => item !== '');
-
-        if (compareItems.length <= 0) {
+        if (keyword === '') {
+          if (process.client) {
+            window.alert('請輸入關鍵字');
+          }
           return false;
         }
 
-        return compareItems.some(item => item.indexOf(keyword) >= 0);
-      });
-    }
-  },
-  computed: {
-    accountsList() {
-      return this.$store.state.accounts;
+        const accounts = [...this.$store.state.accounts];
+
+        this.searchResultList = accounts.filter((accountItem) => {
+          const {
+            name, notes, store, tags,
+          } = accountItem;
+          const compareItems = [name, notes, store, ...tags].filter((item) => item !== '');
+
+          if (compareItems.length <= 0) {
+            return false;
+          }
+
+          return compareItems.some((item) => item.includes(keyword));
+        });
+
+        return true;
+      },
     },
-    isLightboxOpen() {
-      return this.$store.state.isLightboxOpen;
-    }
-  }
-};
+    computed: {
+      accountsList() {
+        return this.$store.state.accounts;
+      },
+      isLightboxOpen() {
+        return this.$store.state.isLightboxOpen;
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

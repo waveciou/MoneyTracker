@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header-component />
+    <HeaderModule />
     <div class="wrap">
       <client-only>
         <div class="overview-title">
@@ -37,7 +37,7 @@
           </div>
         </div>
 
-        <chartbar-component
+        <Chartbar
           :series-data="chartSeries"
           :xaxis-list="chartXaxisList"
         />
@@ -47,9 +47,9 @@
             v-for="accountItem in accountFormatList"
             :key="accountItem.id"
           >
-            <accordionClass :title="setDateTitle(accountItem)">
-              <accountList-component :account-list="accountItem.collection" />
-            </accordionClass>
+            <AccordionClass :title="setDateTitle(accountItem)">
+              <AccountList :account-list="accountItem.collection" />
+            </AccordionClass>
           </li>
         </ul>
       </client-only>
@@ -58,136 +58,128 @@
 </template>
 
 <script>
-import NoSSR from 'vue-no-ssr';
-import header from '~/components/header.vue';
-import chartbar from '~/components/chartbar.vue';
-import accordionClass from '~/components/accordionClass.vue';
-import accountList from '~/components/accountList.vue';
+  import NoSSR from 'vue-no-ssr';
+  import HeaderModule from '~/components/header.vue';
+  import Chartbar from '~/components/chartbar.vue';
+  import AccordionClass from '~/components/accordionClass.vue';
+  import AccountList from '~/components/accountList.vue';
 
-export default {
-  data() {
-    return {
-      according: 'date' 
-    };
-  },
-  components: {
-    'client-only': NoSSR,
-    'header-component': header,
-    'chartbar-component': chartbar,
-    'accordionClass': accordionClass,
-    'accountList-component': accountList
-  },
-  methods: {
-    // 日期名稱
-    setDateTitle(payload) {
-      let time = payload.time;
+  export default {
+    data() {
+      return {
+        according: 'date',
+      };
+    },
+    components: {
+      'client-only': NoSSR,
+      HeaderModule,
+      Chartbar,
+      AccordionClass,
+      AccountList,
+    },
+    methods: {
+      // 日期名稱
+      setDateTitle(payload) {
+        const { time } = payload;
 
-      if (this.according === 'month') {
-        return `${time.year}年${this.TO_TIME_FORMAT(time.month)}月`;
-      } else {
+        if (this.according === 'month') {
+          return `${time.year}年${this.TO_TIME_FORMAT(time.month)}月`;
+        }
         return `${time.year}年${this.TO_TIME_FORMAT(time.month)}月${this.TO_TIME_FORMAT(time.date)}日`;
-      }
-    }
-  },
-  computed: {
-    // 計算總額
-    totalValue() {
-      let accounts = [...this.$store.state.accounts];
+      },
+    },
+    computed: {
+      // 計算總額
+      totalValue() {
+        const accounts = [...this.$store.state.accounts];
 
-      return accounts.reduce((accumulator, currentItem) => {
-        if (currentItem.isExpense === true) {
-          return accumulator - currentItem.price;
-        } else {
+        return accounts.reduce((accumulator, currentItem) => {
+          if (currentItem.isExpense === true) {
+            return accumulator - currentItem.price;
+          }
           return accumulator + currentItem.price;
-        }
-      }, 0);
-    },
-    // 總額呈現格式
-    overviewNumber() {
-      const isFloat = this.totalValue % 1 == 0 ? false : true; 
+        }, 0);
+      },
+      // 總額呈現格式
+      overviewNumber() {
+        const isFloat = this.totalValue % 1 !== 0;
 
-      if (this.totalValue >= 1000000) {
-        return `${(this.totalValue / 1000000).toFixed(2)}M`;
-      } else {
+        if (this.totalValue >= 1000000) {
+          return `${(this.totalValue / 1000000).toFixed(2)}M`;
+        }
         return isFloat === true ? this.totalValue.toFixed(1) : this.TO_CURRENCY(this.totalValue);
-      }
-    },
-    // 所有資料
-    accountFormatList() {
-      let resultList = [];
-      let accountList = [...this.$store.state.accounts];
+      },
+      // 所有資料
+      accountFormatList() {
+        const resultList = [];
+        const accountList = [...this.$store.state.accounts];
 
-      accountList.forEach(accountItem => {
-        let time = accountItem.time;
-        const id = this.according === 'month' ? `${time.year}-${time.month}` : `${time.year}-${time.month}-${time.date}`;
-        const index = resultList.findIndex(dataItem => dataItem.id === id);
+        accountList.forEach((accountItem) => {
+          const { time } = accountItem;
+          const id = this.according === 'month' ? `${time.year}-${time.month}` : `${time.year}-${time.month}-${time.date}`;
+          const index = resultList.findIndex((dataItem) => dataItem.id === id);
 
-        if (index < 0) {
-          let dataItem = {
-            id: id,
-            time: {
-              year: accountItem.time.year,
-              month: accountItem.time.month,
-              date: accountItem.time.date
-            },
-            collection: [ this.DEEP_CLONE(accountItem) ]
-          };
+          if (index < 0) {
+            const dataItem = {
+              id,
+              time: {
+                year: accountItem.time.year,
+                month: accountItem.time.month,
+                date: accountItem.time.date,
+              },
+              collection: [this.DEEP_CLONE(accountItem)],
+            };
 
-          resultList.push(dataItem);
-        } else {
-          resultList[index].collection.push(this.DEEP_CLONE(accountItem));
+            resultList.push(dataItem);
+          } else {
+            resultList[index].collection.push(this.DEEP_CLONE(accountItem));
+          }
+        });
+
+        resultList.sort((a, b) => {
+          const aTimestamp = this.$dayjs(`${a.time.year}-${a.time.month}-${a.time.date}`).unix();
+          const bTimestamp = this.$dayjs(`${b.time.year}-${b.time.month}-${b.time.date}`).unix();
+          return aTimestamp - bTimestamp;
+        });
+
+        return resultList;
+      },
+      // 圖表資料
+      chartSeries() {
+        const result = [{
+          name: '支出',
+          data: [],
+        }, {
+          name: '收入',
+          data: [],
+        }];
+
+        this.accountFormatList.forEach((dataItem) => {
+          const expense = dataItem.collection.reduce((accumulator, currentItem) => {
+            const priceValue = currentItem.isExpense === true ? currentItem.price : 0;
+            return accumulator + priceValue;
+          }, 0);
+
+          const income = dataItem.collection.reduce((accumulator, currentItem) => {
+            const priceValue = currentItem.isExpense === false ? currentItem.price : 0;
+            return accumulator + priceValue;
+          }, 0);
+
+          result[0].data.push(expense);
+          result[1].data.push(income);
+        });
+
+        return result;
+      },
+      // 圖表X軸欄位
+      chartXaxisList() {
+        if (this.according === 'month') {
+          return this.accountFormatList.map((dataItem) => `${this.TO_TIME_FORMAT(dataItem.time.month)}月`);
         }
-      });
-
-      resultList.sort((a, b) => {
-        const aTimestamp = this.$dayjs(`${a.time.year}-${a.time.month}-${a.time.date}`).unix();
-        const bTimestamp = this.$dayjs(`${b.time.year}-${b.time.month}-${b.time.date}`).unix();
-        return aTimestamp - bTimestamp;
-      });
-
-      return resultList;
+        return this.accountFormatList.map((dataItem) => `${this.TO_TIME_FORMAT(dataItem.time.month)}/${this.TO_TIME_FORMAT(dataItem.time.date)}`);
+      },
     },
-    // 圖表資料
-    chartSeries() {
-      let result = [{
-        name: '支出',
-        data: []
-      }, {
-        name: '收入',
-        data: []
-      }];
-
-      this.accountFormatList.forEach(dataItem => {
-        const expense = dataItem.collection.reduce((accumulator, currentItem) => {
-          let priceValue = currentItem.isExpense === true ? currentItem.price : 0;
-          return accumulator + priceValue;
-        }, 0);
-
-        const income = dataItem.collection.reduce((accumulator, currentItem) => {
-          let priceValue = currentItem.isExpense === false ? currentItem.price : 0;
-          return accumulator + priceValue;
-        }, 0);
-
-        result[0].data.push(expense);
-        result[1].data.push(income);
-      });
-
-      return result;
-    },
-    // 圖表X軸欄位
-    chartXaxisList() {
-      if (this.according === 'month') {
-        return this.accountFormatList.map(dataItem => {
-          return `${this.TO_TIME_FORMAT(dataItem.time.month)}月`;
-        });
-      } else {
-        return this.accountFormatList.map(dataItem => {
-          return `${this.TO_TIME_FORMAT(dataItem.time.month)}/${this.TO_TIME_FORMAT(dataItem.time.date)}`;
-        });
-      }
-    }
-  }
-};
+  };
 </script>
 
 <style lang="scss" scoped>

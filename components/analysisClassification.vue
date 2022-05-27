@@ -6,7 +6,7 @@
         :key="dataItem.id"
       >
         <div class="classificationList-item">
-          <accordionClass :title="`#${dataItem.id}`">
+          <AccordionClass :title="`#${dataItem.id}`">
             <div class="classificationList-header">
               <div
                 class="classificationList-value"
@@ -18,11 +18,11 @@
                 共{{ dataItem.collection.length }}筆
               </div>
             </div>
-            <accountList-component
+            <AccountList
               :account-list="dataItem.collection"
               :show-time="true"
             />
-          </accordionclass>
+          </AccordionClass>
         </div>
       </li>
     </ul>
@@ -36,79 +36,78 @@
 </template>
 
 <script>
-import accordionClass from '~/components/accordionClass.vue';
-import accountList from '~/components/accountList.vue';
+  import AccordionClass from '~/components/accordionClass.vue';
+  import AccountList from '~/components/accountList.vue';
 
-export default {
-  data() {
-    return {
-    };
-  },
-  components: {
-    'accordionClass': accordionClass,
-    'accountList-component': accountList
-  },
-  props: {
-    classType: String,
-    accountList: Array
-  },
-  methods: {
-    // 計算總額
-    getTotalValue(payload) {
-      return payload.reduce((accumulator, currentItem) => {
-        if (currentItem.isExpense === true) {
-          return accumulator - currentItem.price;
-        } else {
+  export default {
+    data() {
+      return {
+      };
+    },
+    components: {
+      AccordionClass,
+      AccountList,
+    },
+    props: {
+      classType: String,
+      accountList: Array,
+    },
+    methods: {
+      // 計算總額
+      getTotalValue(payload) {
+        return payload.reduce((accumulator, currentItem) => {
+          if (currentItem.isExpense === true) {
+            return accumulator - currentItem.price;
+          }
           return accumulator + currentItem.price;
+        }, 0);
+      },
+      setValueFormat(payload) {
+        const result = this.TO_CURRENCY(Math.abs(payload));
+        return payload < 0 ? `-$${result}` : `$${result}`;
+      },
+      // 新增項目類別或添加記帳
+      setAccountItem(resultList, index, id, accountItem) {
+        if (index < 0) {
+          const dataItem = {
+            id,
+            collection: [this.DEEP_CLONE(accountItem)],
+          };
+          resultList.push(dataItem);
+        } else {
+          resultList[index].collection.push(this.DEEP_CLONE(accountItem));
         }
-      }, 0);
+      },
     },
-    setValueFormat(payload) {
-      let result = this.TO_CURRENCY(Math.abs(payload));
-      return payload < 0 ? `-$${result}` : `$${result}`;
-    },
-    // 新增項目類別或添加記帳
-    setAccountItem(resultList, index, id, accountItem) {
-      if (index < 0) {
-        let dataItem = {
-          id: id,
-          collection: [ this.DEEP_CLONE(accountItem) ]
-        };
-        resultList.push(dataItem);
-      } else {
-        resultList[index].collection.push(this.DEEP_CLONE(accountItem));
-      }
-    }
-  },
-  computed: {
-    // 分類列表
-    accountFormatList() {
-      let classTypeName = this.classType;
-      let resultList = [];
-      let filterList = [];
+    computed: {
+      // 分類列表
+      accountFormatList() {
+        const classTypeName = this.classType;
+        const resultList = [];
+        let filterList = [];
 
-      if (classTypeName === 'tags') {
-        filterList = this.accountList.filter(accountItem => accountItem.tags.length > 0);
+        if (classTypeName === 'tags') {
+          filterList = this.accountList.filter((accountItem) => accountItem.tags.length > 0);
 
-        filterList.forEach(accountItem => {
-          accountItem.tags.forEach(tagName => {
-            const index = resultList.findIndex(dataItem => dataItem.id === tagName);
-            this.setAccountItem(resultList, index, tagName, accountItem);
+          filterList.forEach((accountItem) => {
+            accountItem.tags.forEach((tagName) => {
+              const index = resultList.findIndex((dataItem) => dataItem.id === tagName);
+              this.setAccountItem(resultList, index, tagName, accountItem);
+            });
           });
-        });
-      } else {
-        filterList = this.accountList.filter(accountItem => accountItem[classTypeName] !== '');
+        } else {
+          filterList = this.accountList.filter((accountItem) => accountItem[classTypeName] !== '');
 
-        filterList.forEach(accountItem => {
-          const index = resultList.findIndex(dataItem => dataItem.id === accountItem[classTypeName]);
-          this.setAccountItem(resultList, index, accountItem[classTypeName], accountItem);
-        });
-      }
+          filterList.forEach((accountItem) => {
+            const index = resultList.findIndex((dataItem) => dataItem.id === accountItem[classTypeName]);
+            this.setAccountItem(resultList, index, accountItem[classTypeName], accountItem);
+          });
+        }
 
-      return resultList;
-    }
-  }
-};
+        return resultList;
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

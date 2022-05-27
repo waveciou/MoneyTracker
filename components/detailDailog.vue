@@ -76,59 +76,58 @@
 </template>
 
 <script>
-export default {
-  props: {
-    detail: Object
-  },
-  methods: {
-    // 編輯
-    editHandler() {
-      const result = this.DEEP_CLONE(this.detail); 
-      this.$emit('edit', result);
+  export default {
+    props: {
+      detail: Object,
     },
-    // 刪除
-    deleteHandler() {
-      this.$emit('delete', this.detail.id);
+    methods: {
+      // 編輯
+      editHandler() {
+        const result = this.DEEP_CLONE(this.detail);
+        this.$emit('edit', result);
+      },
+      // 刪除
+      deleteHandler() {
+        this.$emit('delete', this.detail.id);
+      },
+      // 關閉
+      closeHandler() {
+        this.$emit('close');
+      },
     },
-    // 關閉
-    closeHandler() {
-      this.$emit('close');
-    }
-  },
-  computed: {
-    // 標題
-    textCaption() {
-      return this.detail.isExpense === true ? `${this.categoriesName}/${this.subcategoriesName}` : this.categoriesName;
-    },
-    // 時間
-    textTime() {
-      const date = `${this.detail.time.year}/${this.TO_TIME_FORMAT(this.detail.time.month)}/${this.TO_TIME_FORMAT(this.detail.time.date)}`;
-      const time = `${this.TO_TIME_FORMAT(this.detail.time.hour)}:${this.TO_TIME_FORMAT(this.detail.time.minute)}`;
-      return `${date} ${time}`;
-    },
-    // 名稱
-    textName() {
-      if (this.detail.isExpense === true) {
-        return this.detail.name === '' ? this.subcategoriesName : this.detail.name;
-      } else {
+    computed: {
+      // 標題
+      textCaption() {
+        return this.detail.isExpense === true ? `${this.categoriesName}/${this.subcategoriesName}` : this.categoriesName;
+      },
+      // 時間
+      textTime() {
+        const date = `${this.detail.time.year}/${this.TO_TIME_FORMAT(this.detail.time.month)}/${this.TO_TIME_FORMAT(this.detail.time.date)}`;
+        const time = `${this.TO_TIME_FORMAT(this.detail.time.hour)}:${this.TO_TIME_FORMAT(this.detail.time.minute)}`;
+        return `${date} ${time}`;
+      },
+      // 名稱
+      textName() {
+        if (this.detail.isExpense === true) {
+          return this.detail.name === '' ? this.subcategoriesName : this.detail.name;
+        }
         return this.detail.name === '' ? this.categoriesName : this.detail.name;
-      }
+      },
+      // 金額
+      textPrice() {
+        const price = this.TO_CURRENCY(this.detail.price);
+        return this.detail.isExpense === true ? `-$${price}` : `+$${price}`;
+      },
+      // 主類別名稱
+      categoriesName() {
+        return this.GET_CATEGORIES_NAME(this.detail.categories);
+      },
+      // 次類別名稱
+      subcategoriesName() {
+        return this.GET_CATEGORIES_NAME(this.detail.subcategories);
+      },
     },
-    // 金額
-    textPrice() {
-      const price = this.TO_CURRENCY(this.detail.price);
-      return this.detail.isExpense === true ? `-$${price}` : `+$${price}`;
-    },
-    // 主類別名稱
-    categoriesName() {
-      return this.GET_CATEGORIES_NAME(this.detail.categories);
-    },
-    // 次類別名稱
-    subcategoriesName() {
-      return this.GET_CATEGORIES_NAME(this.detail.subcategories);
-    }
-  }
-};
+  };
 </script>
 
 <style lang="scss" scoped>

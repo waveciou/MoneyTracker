@@ -21,89 +21,87 @@
 </template>
 
 <script>
-import NoSSR from 'vue-no-ssr';
+  import NoSSR from 'vue-no-ssr';
 
-export default {
-  data() {
-    return {
-      series: [],
-      options: {
-        chart: {
-          type: 'bar',
-          toolbar: {
-            show: false
+  export default {
+    data() {
+      return {
+        series: [],
+        options: {
+          chart: {
+            type: 'bar',
+            toolbar: {
+              show: false,
+            },
+            zoom: {
+              enabled: false,
+            },
           },
-          zoom: {
-            enabled: false
-          }
-        },
-        colors: ['#f76c83', '#94c962'],
-        dataLabels: {
-          enabled: false
-        },
-        xaxis: {
-          categories: [],
-          labels: {
-            style: {
-              colors: '#fff',
-            }
-          }
-        },
-        yaxis: {
-          labels: {
-            style: {
+          colors: ['#f76c83', '#94c962'],
+          dataLabels: {
+            enabled: false,
+          },
+          xaxis: {
+            categories: [],
+            labels: {
+              style: {
+                colors: '#fff',
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                colors: '#fff',
+              },
+              formatter: (value) => this.TO_CUSTOM_NUMBER_FORMAT(value),
+            },
+          },
+          fill: {
+            opacity: 1,
+          },
+          legend: {
+            labels: {
               colors: '#fff',
             },
-            formatter: (value) => {
-              return this.TO_CUSTOM_NUMBER_FORMAT(value);
-            }
-          }
-        },
-        fill: {
-          opacity: 1
-        },
-        legend: {
-          labels: {
-            colors: '#fff',
+            horizontalAlign: 'left',
           },
-          horizontalAlign: 'left' 
+          tooltip: {
+            enabled: true,
+            theme: false,
+          },
         },
-        tooltip: {
-          enabled: true,
-          theme: false
-        }
-      }
-    };
-  },
-  components: {
-    'client-only': NoSSR,
-  },
-  props: {
-    seriesData: Array,
-    xaxisList: Array
-  },
-  computed: {
-    chartWidth() {
-      let value = Math.ceil(this.xaxisList.length / 8);
-      let result = value < 1 ? 100 : value * 100;
-      return `${result}%`;
-    }
-  },
-  watch: {
-    seriesData: {
-      immediate: true,
-      handler(value) {
-        this.series = value;
-      }
+      };
     },
-    xaxisList: {
-      immediate: true,
-      handler(value) {
-        this.options.xaxis.categories = value;
-      }
-    }
-  }
-};
+    components: {
+      'client-only': NoSSR,
+    },
+    props: {
+      seriesData: Array,
+      xaxisList: Array,
+    },
+    computed: {
+      chartWidth() {
+        const value = Math.ceil(this.xaxisList.length / 8);
+        const result = value < 1 ? 100 : value * 100;
+        return `${result}%`;
+      },
+    },
+    watch: {
+      seriesData: {
+        immediate: true,
+        handler(value) {
+          this.series = value;
+        },
+      },
+      xaxisList: {
+        immediate: true,
+        handler(value) {
+          this.options.xaxis.categories = value;
+        },
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

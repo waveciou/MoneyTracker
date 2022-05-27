@@ -67,149 +67,148 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      current: {
-        year: 0,
-        month: 0,
-        date: 0
-      },
-      today: {
-        year: 0,
-        month: 0,
-        date: 0
-      },
-      weekdates: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
-    };
-  },
-  props: {
-    defaultDate: Object
-  },
-  mounted() {
-    // 取得今天日期
-    this.getTodayData();
-
-    if (this.defaultDate) {
-      // 移動至傳入的時間
-      Object.keys(this.current).forEach(key => {
-        this.current[key] = this.defaultDate[key];
-      });
-    } else {
-      // 移動至今天
-      this.directToToday();
-    }
-  },
-  methods: {
-    // 切換月份
-    changeMonth(isNext) {
-      let _month = this.current.month;
-      let month = isNext === true ? _month + 1 : _month - 1;
-
-      if (month <= 0) {
-        month = 12;
-        this.current.year = this.current.year - 1;
-      } else if (month > 12) {
-        month = 1;
-        this.current.year = this.current.year + 1;
-      }
-
-      this.current.month = month;
-      this.current.date = 1;
+  export default {
+    data() {
+      return {
+        current: {
+          year: 0,
+          month: 0,
+          date: 0,
+        },
+        today: {
+          year: 0,
+          month: 0,
+          date: 0,
+        },
+        weekdates: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
+      };
     },
-    // 取得日期資料
-    getDateData(data) {
-      if (data.none === true) {
-        return false;
+    props: {
+      defaultDate: Object,
+    },
+    mounted() {
+      // 取得今天日期
+      this.getTodayData();
+
+      if (this.defaultDate) {
+        // 移動至傳入的時間
+        Object.keys(this.current).forEach((key) => {
+          this.current[key] = this.defaultDate[key];
+        });
       } else {
+        // 移動至今天
+        this.directToToday();
+      }
+    },
+    methods: {
+      // 切換月份
+      changeMonth(isNext) {
+        let month = isNext === true ? this.current.month + 1 : this.current.month - 1;
+
+        if (month <= 0) {
+          month = 12;
+          this.current.year -= 1;
+        } else if (month > 12) {
+          month = 1;
+          this.current.year += 1;
+        }
+
+        this.current.month = month;
+        this.current.date = 1;
+      },
+      // 取得日期資料
+      getDateData(data) {
+        if (data.none === true) {
+          return false;
+        }
         this.current.year = data.year;
         this.current.month = data.month;
         this.current.date = data.date;
-      }
+        return true;
+      },
+      // 移動至今天
+      directToToday() {
+        this.current.year = this.today.year;
+        this.current.month = this.today.month;
+        this.current.date = this.today.date;
+      },
+      // 取得今天資料
+      getTodayData() {
+        this.today.year = this.$dayjs().utcOffset(8).year();
+        this.today.month = this.$dayjs().utcOffset(8).month() + 1;
+        this.today.date = this.$dayjs().utcOffset(8).date();
+      },
     },
-    // 移動至今天
-    directToToday() {
-      this.current.year = this.today.year;
-      this.current.month = this.today.month;
-      this.current.date = this.today.date;
-    },
-    // 取得今天資料
-    getTodayData() {
-      this.today.year = this.$dayjs().utcOffset(8).year();
-      this.today.month = this.$dayjs().utcOffset(8).month() + 1;
-      this.today.date = this.$dayjs().utcOffset(8).date();
-    }
-  },
-  computed: {
-    // 產生月曆
-    buildCalendar() {
-      let resultList = [];
-      let myYears = this.current.year;
-      let myMonth = this.current.month;
-      let myDate = this.current.date;
+    computed: {
+      // 產生月曆
+      buildCalendar() {
+        const resultList = [];
+        const myYears = this.current.year;
+        const myMonth = this.current.month;
+        const myDate = this.current.date;
 
-      let monthText = this.TO_TIME_FORMAT(myMonth);
+        const monthText = this.TO_TIME_FORMAT(myMonth);
 
-      let totalDate = this.$dayjs(`${myYears}-${monthText}`).utcOffset(8).daysInMonth();
+        const totalDate = this.$dayjs(`${myYears}-${monthText}`).utcOffset(8).daysInMonth();
 
-      for (let i = 0; i < totalDate; i++) {
-        let dateNumber = i + 1;
-        let isToday = false;
+        for (let i = 0; i < totalDate; i++) {
+          const dateNumber = i + 1;
+          let isToday = false;
 
-        if (myYears === this.today.year && myMonth === this.today.month && dateNumber === this.today.date) {
-          isToday = true;
+          if (myYears === this.today.year && myMonth === this.today.month && dateNumber === this.today.date) {
+            isToday = true;
+          }
+
+          const result = {
+            id: `${myYears}-${myMonth}-${dateNumber}`,
+            year: myYears,
+            month: myMonth,
+            date: dateNumber,
+            number: this.TO_TIME_FORMAT(dateNumber),
+            today: isToday,
+            current: dateNumber === myDate,
+          };
+
+          resultList.push(result);
         }
 
-        const result = {
-          id: `${myYears}-${myMonth}-${dateNumber}`,
-          year: myYears,
-          month: myMonth,
-          date: dateNumber,
-          number: this.TO_TIME_FORMAT(dateNumber),
-          today: isToday,
-          current: dateNumber === myDate ? true : false
-        };
+        // 補上前面的日期
+        const week = this.$dayjs(`${myYears}-${monthText}`).utcOffset(8).format('d');
 
-        resultList.push(result);
-      }
+        for (let i = 0; i < week; i++) {
+          const obj = {
+            number: '',
+            none: true,
+          };
 
-      // 補上前面的日期
-      let week = this.$dayjs(`${myYears}-${monthText}`).utcOffset(8).format('d');
+          resultList.splice(i, 0, obj);
+        }
 
-      for (let i = 0; i < week; i++) {
-        let obj = {
-          number: '',
-          none: true
-        };
+        // 補上後面的日期
+        const patchNumber = (resultList.length % 7 === 0) ? 0 : 7 - (resultList.length % 7);
 
-        resultList.splice(i, 0, obj);
-      }
+        for (let i = 0; i < patchNumber; i++) {
+          const obj = {
+            number: '',
+            none: true,
+          };
 
-      // 補上後面的日期
-      let patchNumber = (resultList.length % 7 === 0) ? 0 : 7 - (resultList.length % 7);
+          resultList.splice(resultList.length, 0, obj);
+        }
 
-      for (let i = 0; i < patchNumber; i++) {
-        let obj = {
-          number: '',
-          none: true
-        };
-
-        resultList.splice(resultList.length, 0, obj);
-      }
-
-      return resultList;
-    }
-  },
-  watch: {
-    current: {
-      handler: function(value) {
-        this.$emit('get-date', value);
+        return resultList;
       },
-      deep: true,
-      immediate: false
-    }
-  }
-};
+    },
+    watch: {
+      current: {
+        handler(value) {
+          this.$emit('get-date', value);
+        },
+        deep: true,
+        immediate: false,
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

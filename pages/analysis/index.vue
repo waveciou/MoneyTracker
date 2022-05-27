@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header-component />
+    <HeaderModule />
     <div class="wrap">
       <div class="analysis-header">
         <button
@@ -56,82 +56,79 @@
 </template>
 
 <script>
-import NoSSR from 'vue-no-ssr';
-import header from '~/components/header.vue';
-import analysisCategories from '~/components/analysisCategories.vue';
-import analysisClassification from '~/components/analysisClassification.vue';
+  import NoSSR from 'vue-no-ssr';
+  import HeaderModule from '~/components/header.vue';
+  import AnalysisCategories from '~/components/analysisCategories.vue';
+  import AnalysisClassification from '~/components/analysisClassification.vue';
 
-export default {
-  data() {
-    return {
-      activeDate: {
-        year: 0,
-        month: 0
-      },
-      enumeration: 'categories',
-      enumerationList: [
-        {
-          id: 'categories',
-          name: '類別',
-          componentName: 'analysisCategories'
+  export default {
+    data() {
+      return {
+        activeDate: {
+          year: 0,
+          month: 0,
         },
-        {
-          id: 'name',
-          name: '名稱',
-          componentName: 'analysisClassification'
-        },
-        {
-          id: 'store',
-          name: '商家',
-          componentName: 'analysisClassification'
-        },
-        {
-          id: 'tags',
-          name: '標籤',
-          componentName: 'analysisClassification'
-        }
-      ]
-    };
-  },
-  components: {
-    'client-only': NoSSR,
-    'header-component': header,
-    'analysisCategories': analysisCategories,
-    'analysisClassification': analysisClassification
-  },
-  created() {
-    // 取得現在的時間
-    this.activeDate.year = this.$dayjs().utcOffset(8).year();
-    this.activeDate.month = this.$dayjs().utcOffset(8).month() + 1;
-  },
-  methods: {
-    // 切換月份
-    changeMonth(isNext) {
-      let _month = this.activeDate.month;
-      let month = isNext === true ? _month + 1 : _month - 1;
-
-      if (month <= 0) {
-        month = 12;
-        this.activeDate.year = this.activeDate.year - 1;
-      } else if (month > 12) {
-        month = 1;
-        this.activeDate.year = this.activeDate.year + 1;
-      }
-
-      this.activeDate.month = month;
+        enumeration: 'categories',
+        enumerationList: [
+          {
+            id: 'categories',
+            name: '類別',
+            componentName: 'AnalysisCategories',
+          },
+          {
+            id: 'name',
+            name: '名稱',
+            componentName: 'AnalysisClassification',
+          },
+          {
+            id: 'store',
+            name: '商家',
+            componentName: 'AnalysisClassification',
+          },
+          {
+            id: 'tags',
+            name: '標籤',
+            componentName: 'AnalysisClassification',
+          },
+        ],
+      };
     },
-  },
-  computed: {
-    // 篩選出對應日期的資料
-    accountList() {
-      let accountList = [...this.$store.state.accounts];
+    components: {
+      'client-only': NoSSR,
+      HeaderModule,
+      AnalysisCategories,
+      AnalysisClassification,
+    },
+    created() {
+      // 取得現在的時間
+      this.activeDate.year = this.$dayjs().utcOffset(8).year();
+      this.activeDate.month = this.$dayjs().utcOffset(8).month() + 1;
+    },
+    methods: {
+      // 切換月份
+      changeMonth(isNext) {
+        let month = isNext === true ? this.activeDate.month + 1 : this.activeDate.month - 1;
 
-      return accountList.filter(item => {
-        return Object.keys(this.activeDate).every(key => this.activeDate[key] === item.time[key]);
-      });
-    }
-  }
-};
+        if (month <= 0) {
+          month = 12;
+          this.activeDate.year -= 1;
+        } else if (month > 12) {
+          month = 1;
+          this.activeDate.year += 1;
+        }
+
+        this.activeDate.month = month;
+      },
+    },
+    computed: {
+      // 篩選出對應日期的資料
+      accountList() {
+        const accountList = [...this.$store.state.accounts];
+
+        return accountList.filter((item) => Object.keys(this.activeDate).every((key) => this.activeDate[key] === item.time[key]));
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

@@ -21,18 +21,26 @@
           />
           <div class="accounts-content">
             <div class="accounts-header">
-              <span class="accounts-name">{{ accountName(account.isExpense, account.name, account.categories, account.subcategories) }}</span>
+              <span class="accounts-name">
+                {{ accountName(account.isExpense, account.name, account.categories, account.subcategories) }}
+              </span>
               <span
                 class="accounts-price"
                 :class="{'is-expense': account.isExpense === true}"
-              >${{ TO_CURRENCY(account.price) }}</span>
+              >
+                ${{ TO_CURRENCY(account.price) }}
+              </span>
             </div>
             <div class="accounts-body">
               <span
                 v-if="showTime === true"
                 class="item-option"
-              >{{ accountTimeName(account.time) }}</span>
-              <span class="item-option">{{ accountCategoriesName(account.categories, account.subcategories) }}</span>
+              >
+                {{ accountTimeName(account.time) }}
+              </span>
+              <span class="item-option">
+                {{ accountCategoriesName(account.categories, account.subcategories) }}
+              </span>
               <span class="item-option">{{ account.store }}</span>
             </div>
             <div class="accounts-footer">
@@ -46,116 +54,115 @@
         </a>
       </li>
     </transition-group>
-    <lightbox-component
+    <Lightbox
       :control="detailDialogCtrl"
       @click-overlay="closeDetailDialog"
     >
-      <detail-component
+      <DetailDailog
         :detail="detailAccount"
         @close="closeDetailDialog"
         @edit="editAccountItem"
         @delete="deleteAccountItem"
       />
-    </lightbox-component>
+    </Lightbox>
   </div>
 </template>
 
 <script>
-import lightbox from '~/components/lightbox.vue';
-import detailDailog from '~/components/detailDailog.vue';
+  /* eslint-disable no-alert */
+  import Lightbox from '~/components/lightbox.vue';
+  import DetailDailog from '~/components/detailDailog.vue';
 
-export default {
-  data() {
-    return {
-      detailDialogCtrl: false,
-      detailAccount: {}
-    };
-  },
-  components: {
-    'lightbox-component': lightbox,
-    'detail-component': detailDailog
-  },
-  props: {
-    accountList: Array,
-    showTime: Boolean
-  },
-  methods: {
-    // 打開帳目資訊視窗
-    openDetailDialog(payload) {
-      this.detailAccount = this.DEEP_CLONE(payload);
-      this.detailDialogCtrl = true;
+  export default {
+    data() {
+      return {
+        detailDialogCtrl: false,
+        detailAccount: {},
+      };
     },
-    // 關閉帳目資訊視窗
-    closeDetailDialog() {
-      this.detailAccount = {};
-      this.detailDialogCtrl = false;
+    components: {
+      Lightbox,
+      DetailDailog,
     },
-    // 編輯帳目項目
-    editAccountItem(payload) {
-      this.$router.push({
-        name: 'record',
-        params: {
-          defaultData: payload
-        }
-      });
+    props: {
+      accountList: Array,
+      showTime: Boolean,
     },
-    // 刪除帳目項目
-    deleteAccountItem(id) {
-      if (process.client) {
-        const isConfirm = window.confirm('確定要刪除帳目項目？');
+    methods: {
+      // 打開帳目資訊視窗
+      openDetailDialog(payload) {
+        this.detailAccount = this.DEEP_CLONE(payload);
+        this.detailDialogCtrl = true;
+      },
+      // 關閉帳目資訊視窗
+      closeDetailDialog() {
+        this.detailAccount = {};
+        this.detailDialogCtrl = false;
+      },
+      // 編輯帳目項目
+      editAccountItem(payload) {
+        this.$router.push({
+          name: 'record',
+          params: {
+            defaultData: payload,
+          },
+        });
+      },
+      // 刪除帳目項目
+      deleteAccountItem(id) {
+        if (process.client) {
+          const isConfirm = window.confirm('確定要刪除帳目項目？');
 
-        if (isConfirm === true) {
-          let accounts = [...this.$store.state.accounts];
-          const index = accounts.findIndex(account => account.id === id);
+          if (isConfirm === true) {
+            const accounts = [...this.$store.state.accounts];
+            const index = accounts.findIndex((account) => account.id === id);
 
-          if (index < 0) {
-            window.alert('項目刪除失敗');
-          } else {
-            accounts.splice(index, 1);
+            if (index < 0) {
+              window.alert('項目刪除失敗');
+            } else {
+              accounts.splice(index, 1);
+            }
+
+            this.$store.commit('SET_ACCOUNTS_DATA', accounts);
+            this.closeDetailDialog();
           }
-
-          this.$store.commit('SET_ACCOUNTS_DATA', accounts);
-          this.closeDetailDialog();
         }
-      }
-    },
-    // 名稱欄位
-    accountName(isExpense, name, categories, subcategories) {
-      const nameType = isExpense === true ? subcategories : categories;
-      return name === '' ? this.GET_CATEGORIES_NAME(nameType) : name;
-    },
-    // 類別欄位
-    accountCategoriesName(categories, subcategories) {
-      if (subcategories !== '') {
-        return `${this.GET_CATEGORIES_NAME(categories)} - ${this.GET_CATEGORIES_NAME(subcategories)}`;
-      } else {
+      },
+      // 名稱欄位
+      accountName(isExpense, name, categories, subcategories) {
+        const nameType = isExpense === true ? subcategories : categories;
+        return name === '' ? this.GET_CATEGORIES_NAME(nameType) : name;
+      },
+      // 類別欄位
+      accountCategoriesName(categories, subcategories) {
+        if (subcategories !== '') {
+          return `${this.GET_CATEGORIES_NAME(categories)} - ${this.GET_CATEGORIES_NAME(subcategories)}`;
+        }
         return this.GET_CATEGORIES_NAME(categories);
-      }
+      },
+      // 時間欄位
+      accountTimeName(time) {
+        return `${time.year}年${this.TO_TIME_FORMAT(time.month)}月${this.TO_TIME_FORMAT(time.date)}日`;
+      },
     },
-    // 時間欄位
-    accountTimeName(time) {
-      return `${time.year}年${this.TO_TIME_FORMAT(time.month)}月${this.TO_TIME_FORMAT(time.date)}日`;
-    }
-  },
-  computed: {
-    accountSortList() {
-      let result = [...this.accountList];
+    computed: {
+      accountSortList() {
+        const result = [...this.accountList];
 
-      result.sort((a, b) => {
-        let aHour = a.time.hour;
-        let bHour = b.time.hour;
+        result.sort((a, b) => {
+          const aHour = a.time.hour;
+          const bHour = b.time.hour;
 
-        if (aHour === bHour) {
-          return a.time.minute - b.time.minute;
-        } else {
+          if (aHour === bHour) {
+            return a.time.minute - b.time.minute;
+          }
           return aHour - bHour;
-        }
-      });
+        });
 
-      return result;
-    }
-  }
-};
+        return result;
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

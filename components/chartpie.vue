@@ -21,56 +21,56 @@
 </template>
 
 <script>
-import NoSSR from 'vue-no-ssr';
+  import NoSSR from 'vue-no-ssr';
 
-export default {
-  data() {
-    return {
-      series: [],
-      options: {
-        colors: ['#50aaf8', '#32c8a4', '#f76c83', '#ffdf5e', '#94c962', '#ac93e8'],
-        labels: [],
-        legend: {
-          labels: {
-            colors: '#fff',
+  export default {
+    data() {
+      return {
+        series: [],
+        options: {
+          colors: ['#50aaf8', '#32c8a4', '#f76c83', '#ffdf5e', '#94c962', '#ac93e8'],
+          labels: [],
+          legend: {
+            labels: {
+              colors: '#fff',
+            },
+            formatter: (seriesName) => {
+              const index = parseInt(seriesName.substr(7), 10) - 1;
+              return this.labelsData[index];
+            },
           },
-          formatter: (seriesName) => {
-            const index = parseInt(seriesName.substr(7)) - 1;
-            return this.labelsData[index];
-          }
+          tooltip: {
+            y: {
+              title: {
+                formatter: (seriesName) => {
+                  const index = parseInt(seriesName.substr(7), 10) - 1;
+                  return `${this.labelsData[index]}:`;
+                },
+              },
+            },
+          },
+          stroke: {
+            width: 1,
+          },
         },
-        tooltip: {
-          y: {
-            title: {
-              formatter: (seriesName) => {
-                const index = parseInt(seriesName.substr(7)) - 1;
-                return `${this.labelsData[index]}:`;
-              }
-            }
-          }
+      };
+    },
+    components: {
+      'client-only': NoSSR,
+    },
+    props: {
+      seriesData: Array,
+      labelsData: Array,
+    },
+    watch: {
+      seriesData: {
+        immediate: true,
+        handler(value) {
+          this.series = value;
         },
-        stroke: {
-          width: 1
-        }
-      }
-    };
-  },
-  components: {
-    'client-only': NoSSR,
-  },
-  props: {
-    seriesData: Array,
-    labelsData: Array
-  },
-  watch: {
-    seriesData: {
-      immediate: true,
-      handler(value) {
-        this.series = value;
-      }
-    }
-  }
-};
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
