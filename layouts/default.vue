@@ -16,113 +16,114 @@
         <Nuxt />
       </transition>
     </div>
-    <menu-component />
+    <MenuModule />
     <transition
       name="fade"
       mode="out-in"
     >
-      <searchBar-component v-if="$store.state.searchBarCtrl === true" />
+      <SearchBar v-if="$store.state.searchBarCtrl === true" />
     </transition>
   </main>
 </template>
 
 <script>
-import menu from '~/components/menu.vue';
-import searchBar from '~/components/searchbar.vue';
+  /* eslint-disable global-require */
+  import MenuModule from '~/components/menu.vue';
+  import SearchBar from '~/components/searchbar.vue';
 
-export default {
-  data() {
-    return {
-      scrollValue: 0
-    };
-  },
-  components: {
-    'menu-component': menu,
-    'searchBar-component': searchBar
-  },
-  created() {
-    // 設定目前選取日期為今天
-    this.getTodayData();
-    // 取得儲存在 localStorage 的資料
-    this.getLocalStorageData();
-    // 取得類別項目資料庫
-    this.getCategoriesData();
-  },
-  methods: {
-    // 設定目前選取日期為今天
-    getTodayData() {
-      const result = {
-        year: this.$dayjs().utcOffset(8).year(),
-        month: this.$dayjs().utcOffset(8).month() + 1,
-        date: this.$dayjs().utcOffset(8).date()
+  export default {
+    data() {
+      return {
+        scrollValue: 0,
       };
-      this.$store.commit('SET_CURRENT_DATE', result);
     },
-    // 取得儲存在 localStorage 的資料
-    getLocalStorageData() {
-      if (process.client && window.localStorage) {
-        let database = localStorage.getItem('monetkyAccounts');
-        let result = [];
+    components: {
+      MenuModule,
+      SearchBar,
+    },
+    created() {
+      // 設定目前選取日期為今天
+      this.getTodayData();
+      // 取得儲存在 localStorage 的資料
+      this.getLocalStorageData();
+      // 取得類別項目資料庫
+      this.getCategoriesData();
+    },
+    methods: {
+      // 設定目前選取日期為今天
+      getTodayData() {
+        const result = {
+          year: this.$dayjs().utcOffset(8).year(),
+          month: this.$dayjs().utcOffset(8).month() + 1,
+          date: this.$dayjs().utcOffset(8).date(),
+        };
+        this.$store.commit('SET_CURRENT_DATE', result);
+      },
+      // 取得儲存在 localStorage 的資料
+      getLocalStorageData() {
+        if (process.client && window.localStorage) {
+          const database = localStorage.getItem('monetkyAccounts');
+          let result = [];
 
-        if (database) {
-          let accountList = [];
+          if (database) {
+            let accountList = [];
 
-          try {
-            accountList = JSON.parse(database) || [];
-          } catch {
-            accountList = [];
+            try {
+              accountList = JSON.parse(database) || [];
+            } catch {
+              accountList = [];
+            }
+
+            const localData = Array.isArray(accountList) ? accountList : [];
+            result = localData.length < 1 ? this.exampleDataConfirm(localData) : localData;
+          } else {
+            result = this.exampleDataConfirm(result);
           }
 
-          const localData = Array.isArray(accountList) ? accountList : [];
-          result = localData.length < 1 ? this.exampleDataConfirm(localData) : localData;
-        } else {
-          result = this.exampleDataConfirm(result);
+          this.$store.commit('SET_ACCOUNTS_DATA', result);
         }
+      },
+      // 取得類別項目資料庫
+      getCategoriesData() {
+        const collection = require('../assets/categories.json');
 
-        this.$store.commit('SET_ACCOUNTS_DATA', result);
-      }
-    },
-    // 取得類別項目資料庫
-    getCategoriesData() {
-      const collection = require('../assets/categories');
+        Object.keys(collection).forEach((typeKey) => {
+          collection[typeKey].forEach((categorieItem) => {
+            const result = { id: categorieItem.id, name: categorieItem.name };
+            this.$store.commit('SET_CATEGORIES_LIST', result);
 
-      Object.keys(collection).forEach(typeKey => {
-        collection[typeKey].forEach(categorieItem => {
-          const result = { id: categorieItem.id, name: categorieItem.name };
-          this.$store.commit('SET_CATEGORIES_LIST', result);
-
-          if (categorieItem.subcategories) {
-            categorieItem.subcategories.forEach(subcategorieItem => {
-              this.$store.commit('SET_CATEGORIES_LIST', subcategorieItem);
-            });
-          }
+            if (categorieItem.subcategories) {
+              categorieItem.subcategories.forEach((subcategorieItem) => {
+                this.$store.commit('SET_CATEGORIES_LIST', subcategorieItem);
+              });
+            }
+          });
         });
-      });
+      },
+      // 取得 Scroll Value
+      getScrollValue() {
+        this.scrollValue = this.$refs.content.scrollTop;
+      },
+      // 載入範例資料確認
+      exampleDataConfirm(container) {
+        // const isConfirm = window.confirm('是否要載入範例資料？');
+        // return isConfirm === true ? this.GET_EXAMPLE_DATA() : container;
+        return container;
+      },
     },
-    // 取得 Scroll Value
-    getScrollValue() {
-      this.scrollValue = this.$refs.content.scrollTop;
+    computed: {
+      isLightboxOpen() {
+        return this.$store.state.isLightboxOpen;
+      },
     },
-    // 載入範例資料確認
-    exampleDataConfirm(container) {
-      // const isConfirm = window.confirm('是否要載入範例資料？');
-      // return isConfirm === true ? this.GET_EXAMPLE_DATA() : container;
-      return container;
-    }
-  },
-  computed: {
-    isLightboxOpen() {
-      return this.$store.state.isLightboxOpen;
-    }
-  },
-  watch: {
-    $route() {
-      this.$refs.content.scrollTop = 0;
-      this.$store.commit('SET_SEARCHBAR_CONTROL', false);
-      this.$store.commit('SET_LIGHTBOX_CTRL_VALUE', false);
-    }
-  }
-};
+    watch: {
+      $route() {
+        this.$refs.content.scrollTop = 0;
+        this.$store.commit('SET_SEARCHBAR_CONTROL', false);
+        this.$store.commit('SET_LIGHTBOX_CTRL_VALUE', false);
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

@@ -14,23 +14,23 @@
 </template>
 
 <script>
-export default {
-  computed: {
-    menuRouteList() {
-      let routeList = [...this.$store.state.route.route];
+  export default {
+    computed: {
+      menuRouteList() {
+        const routeList = [...this.$store.state.route.route];
 
-      let result = routeList.map(data => {
-        let item = this.DEEP_CLONE(data);
-        if (item.routeName === 'index') {
-          item.routeName = '';
-        }
-        return item;
-      });
+        const result = routeList.map((data) => {
+          const item = this.DEEP_CLONE(data);
+          if (item.routeName === 'index') {
+            item.routeName = '';
+          }
+          return item;
+        });
 
-      return result;
-    }
-  }
-};
+        return result;
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

@@ -19,22 +19,22 @@
 </template>
 
 <script>
-export default {
-  props: {
-    control: Boolean
-  },
-  methods: {
-    // 點擊視窗背板
-    overlayClickHandler() {
-      this.$emit('click-overlay');
-    }
-  },
-  watch: {
-    control(value) {
-      this.$store.commit('SET_LIGHTBOX_CTRL_VALUE', value);
-    }
-  }
-};
+  export default {
+    props: {
+      control: Boolean,
+    },
+    methods: {
+      // 點擊視窗背板
+      overlayClickHandler() {
+        this.$emit('click-overlay');
+      },
+    },
+    watch: {
+      control(value) {
+        this.$store.commit('SET_LIGHTBOX_CTRL_VALUE', value);
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <template>
   <div class="calendarDailog">
-    <calendar-component
+    <Calendar
       :default-date="defaultTime"
       @get-date="getDateHandler"
     />
@@ -27,51 +27,51 @@
 </template>
 
 <script>
-import calendar from '~/components/calendar.vue';
+  import Calendar from '~/components/calendar.vue';
 
-export default {
-  data() {
-    return {
-      activeDate: {
-        date: 0,
-        month: 0,
-        year: 0
-      }
-    };
-  },
-  components: {
-    'calendar-component': calendar
-  },
-  props: {
-    defaultTime: Object
-  },
-  created() {
-    Object.keys(this.activeDate).forEach(key => {
-      this.activeDate[key] = this.defaultTime[key];
-    });
-  },
-  methods: {
-    // 取得日期
-    getDateHandler(payload) {
-      Object.keys(this.activeDate).forEach(key => {
-        this.activeDate[key] = payload[key];
+  export default {
+    data() {
+      return {
+        activeDate: {
+          date: 0,
+          month: 0,
+          year: 0,
+        },
+      };
+    },
+    components: {
+      Calendar,
+    },
+    props: {
+      defaultTime: Object,
+    },
+    created() {
+      Object.keys(this.activeDate).forEach((key) => {
+        this.activeDate[key] = this.defaultTime[key];
       });
     },
-    // 確定
-    submitHandler() {
-      this.$emit('submit', this.activeDate);
+    methods: {
+      // 取得日期
+      getDateHandler(payload) {
+        Object.keys(this.activeDate).forEach((key) => {
+          this.activeDate[key] = payload[key];
+        });
+      },
+      // 確定
+      submitHandler() {
+        this.$emit('submit', this.activeDate);
+      },
+      // 取消
+      cancelHandler() {
+        this.$emit('cancel');
+      },
     },
-    // 取消
-    cancelHandler() {
-      this.$emit('cancel');
-    }
-  },
-  computed: {
-    textTitle() {
-      return `${this.activeDate.year}年${this.TO_TIME_FORMAT(this.activeDate.month)}月${this.TO_TIME_FORMAT(this.activeDate.date)}日`;
-    }
-  }
-};
+    computed: {
+      textTitle() {
+        return `${this.activeDate.year}年${this.TO_TIME_FORMAT(this.activeDate.month)}月${this.TO_TIME_FORMAT(this.activeDate.date)}日`;
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

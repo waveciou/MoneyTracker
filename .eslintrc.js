@@ -1,15 +1,21 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
+    node: true,
     es2021: true,
   },
   extends: [
+    '@nuxtjs',
+    'plugin:nuxt/recommended',
     'plugin:vue/essential',
     'airbnb-base',
   ],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
+    parser: '@babel/eslint-parser',
+    requireConfigFile: false,
   },
   plugins: [
     'vue',
@@ -31,15 +37,18 @@ module.exports = {
       'off',
       'unix',
     ],
+    'import/no-unresolved': ['off'],
     'no-unused-vars': ['off'],
     'no-plusplus': ['off'],
     'no-undef': ['off'],
     'max-len': ['off'],
+    'space-before-function-paren': ['off'],
     'vue/script-indent': [
       'error',
       2,
       {
         baseIndent: 1,
+        switchCase: 1,
       },
     ],
     'vue/require-default-prop': ['off'],
@@ -81,6 +90,10 @@ module.exports = {
       ],
     }],
     'vue/multi-word-component-names': ['off'],
+    'vue/html-closing-bracket-newline': ['error', {
+      singleline: 'never',
+      multiline: 'always',
+    }],
   },
   overrides: [
     {

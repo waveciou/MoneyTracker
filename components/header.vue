@@ -11,41 +11,42 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      title: {
-        name: '',
-        head: '',
-      },
-    };
-  },
-  head() {
-    return {
-      title: this.title.head,
-    };
-  },
-  props: {
-    name: String
-  },
-  fetch() {
-    this.$store.commit('route/GET_PAGE_TITLE', this.$route.name);
-    this.title.name = this.$store.state.route.pages.name;
-    this.title.head = this.$store.state.route.pages.head;
+  export default {
+    data() {
+      return {
+        title: {
+          name: '',
+          head: '',
+        },
+      };
+    },
+    name: 'HeaderModule',
+    head() {
+      return {
+        title: this.title.head,
+      };
+    },
+    props: {
+      name: String,
+    },
+    fetch() {
+      this.$store.commit('route/GET_PAGE_TITLE', this.$route.name);
+      this.title.name = this.$store.state.route.pages.name;
+      this.title.head = this.$store.state.route.pages.head;
 
-    if (process.client) {
-      if (this.name) {
-        this.title.name = this.name;
+      if (process.client) {
+        if (this.name) {
+          this.title.name = this.name;
+        }
       }
-    }
-  },
-  methods: {
-    // 開啟搜尋欄
-    openSearchBarHandler() {
-      this.$store.commit('SET_SEARCHBAR_CONTROL', true);
-    }
-  }
-};
+    },
+    methods: {
+      // 開啟搜尋欄
+      openSearchBarHandler() {
+        this.$store.commit('SET_SEARCHBAR_CONTROL', true);
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
