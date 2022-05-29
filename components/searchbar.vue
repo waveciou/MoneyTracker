@@ -55,7 +55,6 @@
 </template>
 
 <script>
-  /* eslint-disable no-alert */
   import AccountList from '~/components/accountList.vue';
 
   export default {

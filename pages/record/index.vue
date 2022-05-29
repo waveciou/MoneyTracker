@@ -251,7 +251,6 @@
 </template>
 
 <script>
-  /* eslint-disable no-alert */
   /* eslint-disable global-require */
   import HeaderModule from '~/components/header.vue';
   import Lightbox from '~/components/lightbox.vue';
