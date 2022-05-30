@@ -41,6 +41,7 @@ module.exports = {
     'no-unused-vars': ['off'],
     'no-plusplus': ['off'],
     'no-undef': ['off'],
+    'no-alert': ['off'],
     'max-len': ['off'],
     'space-before-function-paren': ['off'],
     'vue/script-indent': [

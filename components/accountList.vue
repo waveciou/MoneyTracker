@@ -69,7 +69,6 @@
 </template>
 
 <script>
-  /* eslint-disable no-alert */
   import Lightbox from '~/components/lightbox.vue';
   import DetailDailog from '~/components/detailDailog.vue';
 

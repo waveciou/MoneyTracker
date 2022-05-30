@@ -49,7 +49,6 @@
 </template>
 
 <script>
-  /* eslint-disable no-alert */
   import HeaderModule from '~/components/header.vue';
   import pkg from '../../package.json';
 
