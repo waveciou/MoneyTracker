@@ -23,5 +23,12 @@
     "nuxt": "^3.6.3",
     "prettier": "^3.0.0",
     "sass": "^1.63.6"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
+    "pinia": "^2.1.4"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
