@@ -1,0 +1,69 @@
+/* stylelint-disable value-keyword-case */
+@charset 'UTF-8';
+
+// * RWD Max Breakpoints
+@mixin max-width($breakpoints) {
+  @media screen and (max-width: $breakpoints) {
+    @content;
+  }
+}
+
+// * RWD Min Breakpoints
+@mixin min-width($breakpoints) {
+  @media screen and (min-width: $breakpoints) {
+    @content;
+  }
+}
+
+// * RWD Max Height Breakpoints
+@mixin max-height($breakpoints) {
+  @media screen and (max-height: $breakpoints) {
+    @content;
+  }
+}
+
+// * RWD Min Height Breakpoints
+@mixin min-height($breakpoints) {
+  @media screen and (min-height: $breakpoints) {
+    @content;
+  }
+}
+
+// * CSS Hack for IE10 and IE11
+@mixin hack-ie {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @content;
+  }
+}
+
+// * Font Awesome
+@mixin font-awesome {
+  font-family: 'Font Awesome 5 solid', sans-serif;
+  font-weight: 900;
+}
+
+// * Font Material
+@mixin font-material {
+  font-size: 24px;
+  font-family: 'Material Icons', sans-serif;
+  font-weight: normal;
+  white-space: nowrap;
+  font-style: normal;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
