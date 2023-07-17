@@ -1,48 +1,47 @@
-/* stylelint-disable value-keyword-case */
 @charset 'UTF-8';
 
-// * RWD Max Breakpoints
+/* - RWD Max Breakpoints */
 @mixin max-width($breakpoints) {
   @media screen and (max-width: $breakpoints) {
     @content;
   }
 }
 
-// * RWD Min Breakpoints
+/* - RWD Min Breakpoints */
 @mixin min-width($breakpoints) {
   @media screen and (min-width: $breakpoints) {
     @content;
   }
 }
 
-// * RWD Max Height Breakpoints
+/* - RWD Max Height Breakpoints */
 @mixin max-height($breakpoints) {
   @media screen and (max-height: $breakpoints) {
     @content;
   }
 }
 
-// * RWD Min Height Breakpoints
+/* - RWD Min Height Breakpoints */
 @mixin min-height($breakpoints) {
   @media screen and (min-height: $breakpoints) {
     @content;
   }
 }
 
-// * CSS Hack for IE10 and IE11
+/* - CSS Hack for IE10 and IE11 */
 @mixin hack-ie {
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     @content;
   }
 }
 
-// * Font Awesome
+/* - Font Awesome */
 @mixin font-awesome {
   font-family: 'Font Awesome 5 solid', sans-serif;
   font-weight: 900;
 }
 
-// * Font Material
+/* - Font Material */
 @mixin font-material {
   font-size: 24px;
   font-family: 'Material Icons', sans-serif;

@@ -1,6 +1,6 @@
 /* stylelint-disable function-no-unknown */
 @charset 'UTF-8';
-@import './_utils.scss';
+@import './utils/_utils.scss';
 
 // * ==========================================================================
 // * RESET
@@ -108,18 +108,7 @@ section {
   display: block;
 }
 
-body {
-  overflow-x: hidden;
-  overflow-y: auto;
-  font-size: 16px;
-  font-family: $font-family;
-  color: #333333;
-  background-color: #FFFFFF;
-  line-height: 1.6em;
-  letter-spacing: 1px;
-  -webkit-overflow-scrolling: touch;
-  -o-overflow-scrolling: touch;
-}
+
 
 * {
   box-sizing: border-box;

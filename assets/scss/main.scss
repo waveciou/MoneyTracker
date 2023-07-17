@@ -1,7 +1,8 @@
 @charset "UTF-8";
-@import './_utils.scss';
+@import './utils/_utils.scss';
 @import './_font.scss';
 @import './_reset.scss';
+@import './_animate.scss';
 
 @tailwind base;
 @tailwind components;
@@ -16,3 +17,24 @@
 .after-font-awesome::after {
   @include font-awesome;
 }
+
+// * ==========================================================================
+// * MAIN
+// * ==========================================================================
+
+html, body, #__nuxt, #app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+body {
+  font-size: 16px;
+  font-family: $font-family;
+  color: #FFFFFF;
+  background-color: #000000;
+  line-height: 1.6em;
+  letter-spacing: 1px;
+}
+
