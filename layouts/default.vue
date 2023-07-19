@@ -1,13 +1,13 @@
 <template>
   <main class="w-full h-full flex flex-col relative overflow-hidden">
-    <header class="w-full h-header-height basis-header-height">Header</header>
+    <TheHeader />
     <div
       id="content"
       class="w-full h-full overflow-x-hidden overflow-y-auto relative"
     >
       <slot />
     </div>
-    <nav class="w-full h-menu-height basis-menu-height">Menu</nav>
+    <TheMenu />
   </main>
 </template>
 

@@ -1,9 +1,7 @@
 <template>
-  <div id="app" class="max-w-container m-auto bg-black">
+  <div id="app" class="max-w-container m-auto bg-black-base">
     <NuxtLayout>
-      <transition name="fade" mode="out-in">
-        <NuxtPage />
-      </transition>
+      <NuxtPage />
     </NuxtLayout>
   </div>
 </template>

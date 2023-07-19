@@ -23,18 +23,10 @@
 // * ==========================================================================
 
 html, body, #__nuxt, #app {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
+  @apply w-full h-full relative overflow-hidden;
 }
 
 body {
-  font-size: 16px;
   font-family: $font-family;
-  color: #FFFFFF;
-  background-color: #000000;
-  line-height: 1.6em;
-  letter-spacing: 1px;
+  @apply text-white text-base bg-black tracking-wider;
 }
-
