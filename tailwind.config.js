@@ -9,6 +9,7 @@ module.exports = {
       'black-dark': '#2E363D',
       'black-darker': '#232323',
       'black-darkest': '#161616',
+      yellow: '#ffDF5E',
     },
     extend: {
       spacing: {
