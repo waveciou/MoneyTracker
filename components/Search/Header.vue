@@ -17,9 +17,7 @@
   const commonStore = useCommonStore();
 
   const handleClose = (): void => {
-    commonStore.$patch((state) => {
-      state.isShowSearch = false;
-    });
+    commonStore.isShowSearch = false;
   };
 </script>
 

@@ -1,9 +1,9 @@
 <template>
-  <div
+  <article
     class="w-full h-full flex flex-col absolute top-0 left-0 overflow-hidden bg-black-base"
   >
     <SearchHeader />
-  </div>
+  </article>
 </template>
 
 <script setup lang="ts"></script>

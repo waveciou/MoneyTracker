@@ -4,8 +4,10 @@
       <TheHeader />
       <div
         id="content"
+        ref="contentRef"
         class="w-full h-full overflow-x-hidden relative"
         :class="isShowSearch ? 'overflow-y-hidden' : 'overflow-y-auto'"
+        @scroll="handleScroll"
       >
         <slot />
       </div>
@@ -19,8 +21,29 @@
   import { storeToRefs } from 'pinia';
   import { useCommonStore } from '@/stores/commonStore';
 
+  const route = useRoute();
   const commonStore = useCommonStore();
   const { isShowSearch } = storeToRefs(commonStore);
+
+  const contentRef = ref<HTMLDivElement>(null as unknown as HTMLDivElement);
+
+  const handleScroll = (): void => {
+    const value: number = contentRef.value.scrollTop || 0;
+    commonStore.scrollValue = value;
+  };
+
+  watch(
+    () => route.path,
+    () => {
+      nextTick(() => {
+        handleScroll();
+      });
+    },
+    {
+      immediate: true,
+      deep: true,
+    }
+  );
 </script>
 
 <style lang="scss" scoped>

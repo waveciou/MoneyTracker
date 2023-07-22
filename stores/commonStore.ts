@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 interface IDefaultState {
   isLoading: boolean;
   isShowSearch: boolean;
+  scrollValue: number;
 }
 
 export const useCommonStore = defineStore({
@@ -11,6 +12,7 @@ export const useCommonStore = defineStore({
     return {
       isLoading: false,
       isShowSearch: false,
+      scrollValue: 0,
     };
   },
 });

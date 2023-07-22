@@ -1,6 +1,7 @@
 <template>
   <header
-    class="w-full h-header-height basis-header-height bg-black-darkest relative"
+    class="w-full h-header-height basis-header-height relative"
+    :class="scrollValue > 0 ? 'bg-black-darkest' : 'bg-black-base'"
   >
     <div
       class="w-full h-header-height flex justify-center items-center text-center px-header-height"
@@ -15,10 +16,12 @@
 </template>
 
 <script setup lang="ts">
+  import { storeToRefs } from 'pinia';
   import { useCommonStore } from '@/stores/commonStore';
 
   const route = useRoute();
   const commonStore = useCommonStore();
+  const { scrollValue } = storeToRefs(commonStore);
 
   const provideHeaderName = computed((): string => {
     switch (route.path) {
@@ -38,9 +41,7 @@
   });
 
   const handleOpenSearch = (): void => {
-    commonStore.$patch((state) => {
-      state.isShowSearch = true;
-    });
+    commonStore.isShowSearch = true;
   };
 </script>
 
