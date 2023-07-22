@@ -9,12 +9,16 @@
     </div>
     <button
       class="before-font-material icon-search w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
+      @click="handleOpenSearch"
     />
   </header>
 </template>
 
 <script setup lang="ts">
+  import { useCommonStore } from '@/stores/commonStore';
+
   const route = useRoute();
+  const commonStore = useCommonStore();
 
   const provideHeaderName = computed((): string => {
     switch (route.path) {
@@ -32,6 +36,12 @@
         return '';
     }
   });
+
+  const handleOpenSearch = (): void => {
+    commonStore.$patch((state) => {
+      state.isShowSearch = true;
+    });
+  };
 </script>
 
 <style lang="scss" scoped>
