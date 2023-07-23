@@ -3,11 +3,14 @@
     Home
     <TheButton class="mb-2">送出</TheButton>
     <InputText v-model="textValue" class="mb-2" />
+    <InputNumber v-model.number="numberValue" class="mb-2" />
+    {{ numberValue }}
   </div>
 </template>
 
 <script setup lang="ts">
   const textValue = ref<string>();
+  const numberValue = ref<number>(0);
 </script>
 
 <style lang="scss" scoped></style>
