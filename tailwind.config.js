@@ -15,6 +15,7 @@ module.exports = {
       spacing: {
         'header-height': '50px',
         'menu-height': '70px',
+        'wrap-space': '15px',
       },
       maxWidth: {
         'container': '480px',

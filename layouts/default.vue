@@ -5,7 +5,7 @@
       <div
         id="content"
         ref="contentRef"
-        class="w-full h-full overflow-x-hidden relative"
+        class="w-full h-full overflow-x-hidden relative px-wrap-space"
         :class="isShowSearch ? 'overflow-y-hidden' : 'overflow-y-auto'"
         @scroll="handleScroll"
       >
@@ -28,7 +28,7 @@
   const contentRef = ref<HTMLDivElement>(null as unknown as HTMLDivElement);
 
   const handleScroll = (): void => {
-    const value: number = contentRef.value.scrollTop || 0;
+    const value: number = contentRef?.value?.scrollTop || 0;
     commonStore.scrollValue = value;
   };
 
