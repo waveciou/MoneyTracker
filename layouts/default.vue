@@ -1,7 +1,7 @@
 <template>
   <main class="w-full h-full relative overflow-hidden">
     <article class="w-full h-full flex flex-col relative overflow-hidden">
-      <TheHeader />
+      <HeaderSection />
       <div
         id="content"
         ref="contentRef"
@@ -11,7 +11,7 @@
       >
         <slot />
       </div>
-      <TheMenu />
+      <MenuSection />
     </article>
     <SearchSection v-if="isShowSearch" />
   </main>

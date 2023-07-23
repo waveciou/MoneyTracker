@@ -157,6 +157,7 @@ select {
   border-radius: 0;
   outline: none;
   transform: translateZ(0);
+  transition: box-shadow .3s;
 }
 
 button {

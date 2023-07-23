@@ -20,6 +20,9 @@ module.exports = {
       maxWidth: {
         'container': '480px',
       },
+      boxShadow: {
+        'input': '0px 0px 0px 0.2rem rgba(255,223,94,.55)',
+      },
     },
   },
 };
