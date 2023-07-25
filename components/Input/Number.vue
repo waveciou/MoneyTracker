@@ -1,14 +1,16 @@
 <template>
-  <input
-    v-model.number="contextQuantity"
-    type="number"
-    class="w-full py-1.5 px-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
-    :placeholder="placeholder"
-    :disabled="disabled"
-    :readonly="readonly"
-    @focus="handleFocus"
-    @blur="handleBlur"
-  />
+  <div class="w-full relative">
+    <input
+      v-model.number="contextQuantity"
+      type="number"
+      class="w-full py-1.5 px-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :readonly="readonly"
+      @focus="handleFocus"
+      @blur="handleBlur"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -35,6 +37,10 @@
 
   const quantity = ref<number>(0);
 
+  onBeforeMount(() => {
+    quantity.value = Number(props.modelValue);
+  });
+
   watch(
     () => quantity.value,
     (value: number | string) => {
@@ -55,10 +61,6 @@
       const verification = !!reg.test(value as unknown as string);
       quantity.value = verification ? value : 0;
     },
-  });
-
-  onBeforeMount(() => {
-    quantity.value = Number(props.modelValue);
   });
 
   const handleFocus = (): void => {

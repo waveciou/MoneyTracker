@@ -4,12 +4,13 @@
     <TheButton class="mb-2">送出</TheButton>
     <InputText v-model="textValue" class="mb-2" />
     <InputNumber v-model.number="numberValue" class="mb-2" />
-    {{ numberValue }}
+    <InputClearText v-model="clearTextValue" class="mb-2" />
   </div>
 </template>
 
 <script setup lang="ts">
-  const textValue = ref<string>();
+  const textValue = ref<string>('');
+  const clearTextValue = ref<string>('');
   const numberValue = ref<number>(0);
 </script>
 
