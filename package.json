@@ -17,17 +17,19 @@
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@types/node": "^18.16.19",
+    "@types/uuid": "^9.0.2",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-nuxt": "^4.0.0",
-    "vite-plugin-eslint": "^1.8.1",
     "nuxt": "^3.6.3",
     "prettier": "^3.0.0",
-    "sass": "^1.63.6"
+    "sass": "^1.63.6",
+    "vite-plugin-eslint": "^1.8.1"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
-    "pinia": "^2.1.4"
+    "pinia": "^2.1.4",
+    "uuid": "^9.0.0"
   },
   "overrides": {
     "vue": "latest"

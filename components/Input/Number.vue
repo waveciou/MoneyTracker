@@ -1,6 +1,7 @@
 <template>
   <div class="w-full relative">
     <input
+      :id="id"
       v-model.number="contextQuantity"
       type="number"
       class="w-full py-1.5 px-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
@@ -15,15 +16,18 @@
 
 <script setup lang="ts">
   import { ref, computed, watch, onBeforeMount } from 'vue';
+  import { v4 as uuidv4 } from 'uuid';
 
   const props = withDefaults(
     defineProps<{
+      id?: string;
       modelValue: number;
       placeholder?: string;
       disabled?: boolean;
       readonly?: boolean;
     }>(),
     {
+      id: uuidv4(),
       modelValue: 0,
       placeholder: '',
       disabled: false,
