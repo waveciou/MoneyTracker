@@ -11,7 +11,7 @@
       @input="handleInput"
     />
     <button
-      class="before-font-material icon-clear w-9 h-full absolute top-0 right-0 flex justify-center items-center"
+      class="before-font-material icon-cancel w-9 h-full absolute top-0 right-0 flex justify-center items-center"
       @click="handleClear"
     />
   </div>
@@ -51,7 +51,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .icon-clear::before {
+  .icon-cancel::before {
     content: '\e5c9';
     @apply text-lg;
   }

@@ -4,10 +4,10 @@
     <TheButton class="mb-2">送出</TheButton>
     <InputText v-model="textValue" class="mb-2" />
     <InputNumber v-model.number="numberValue" class="mb-2" />
-    <InputClearText v-model="clearTextValue" class="mb-2" />
+    <InputClearableText v-model="clearTextValue" class="mb-2" />
     <InputTextArea v-model="textAreaValue" class="mb-2" />
     <InputSelect v-model="selectValue" :options="options" class="mb-2" />
-    {{ selectValue }}
+    <InputTagsController v-model="tags" class="mb-2" />
   </div>
 </template>
 
@@ -34,6 +34,8 @@
       name: 'c',
     },
   ];
+
+  const tags = ref<string[]>([]);
 </script>
 
 <style lang="scss" scoped></style>
