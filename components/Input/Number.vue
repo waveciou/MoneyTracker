@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, computed, watch, onBeforeMount } from 'vue';
+  import { ref, computed, watch } from 'vue';
   import { v4 as uuidv4 } from 'uuid';
 
   const props = withDefaults(
@@ -41,10 +41,6 @@
 
   const quantity = ref<number>(0);
 
-  onBeforeMount(() => {
-    quantity.value = Number(props.modelValue);
-  });
-
   watch(
     () => quantity.value,
     (value: number | string) => {
@@ -54,6 +50,12 @@
         emits('update:modelValue', value);
       }
     }
+  );
+
+  watch(
+    () => props.modelValue,
+    (value: number) => (quantity.value = value),
+    { immediate: true }
   );
 
   const contextQuantity = computed({
