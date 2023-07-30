@@ -17,11 +17,21 @@ module.exports = {
         'menu-height': '70px',
         'wrap-space': '15px',
       },
+      width: {
+        'popup': 'calc(100% - 30px)',
+      },
       maxWidth: {
         'container': '480px',
+        'popup': '450px',
+      },
+      maxHeight: {
+        'popup': 'calc(100% - 30px)',
       },
       boxShadow: {
         'input': '0px 0px 0px 0.2rem rgba(255,223,94,.55)',
+      },
+      zIndex: {
+        'popup': '5500',
       },
     },
   },
