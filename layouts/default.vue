@@ -13,7 +13,9 @@
       </div>
       <MenuSection />
     </article>
-    <SearchSection v-if="isShowSearch" />
+    <Transition name="fade">
+      <SearchSection v-if="isShowSearch" class="fade-animation" />
+    </Transition>
   </main>
 </template>
 

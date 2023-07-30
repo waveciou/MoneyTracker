@@ -43,7 +43,7 @@
 
   const tags = ref<string[]>([]);
 
-  const isPopUpOpen = ref<boolean>(true);
+  const isPopUpOpen = ref<boolean>(false);
 </script>
 
 <style lang="scss" scoped></style>

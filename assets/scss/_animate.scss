@@ -5,7 +5,16 @@
 // * ANIMATION
 // * ==========================================================================
 
-// * Fade
+// * Fade Animation
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .fade-enter-active,
 .fade-leave-active {
@@ -15,6 +24,42 @@
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.fade-animation {
+  animation: fade-in 0.3s ease;
+}
+
+// * Modal Animation
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+
+  .modal-animation {
+    transform: scale(1.1);
+  }
+}
+
+.modal-animation {
+  transition: all 0.3s ease;
+  animation: modal-fade-in 0.2s ease;
 }
 
 // * Accordion
@@ -43,39 +88,4 @@
 .list-leave-to {
   opacity: 0;
   transform: translateY(-15px);
-}
-
-// * Modal Animation
-
-@keyframes modal-fade-in {
-  from {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.modal-enter-active,
-.modal-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-
-  .modal-container {
-    transform: scale(1.1);
-  }
-}
-
-.modal-container {
-  transition: all 0.3s ease;
-
-  @media screen and (min-width: 1025px) {
-    animation: modal-fade-in 0.2s ease;
-  }
 }
