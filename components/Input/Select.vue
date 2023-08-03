@@ -5,9 +5,9 @@
     >
       <select
         :id="id"
+        v-model="contextValue"
         class="w-full py-1.5 pl-2.5 pr-9 block text-white text-base truncate bg-black-base appearance-none cursor-pointer focus:outline-none"
         :disabled="disabled"
-        @input="handleInput"
       >
         <option v-for="item in options" :key="item.id" :value="item.id">
           {{ item.name }}
@@ -18,10 +18,11 @@
 </template>
 
 <script setup lang="ts">
+  import { watch } from 'vue';
   import { v4 as uuidv4 } from 'uuid';
   import { IInputSelectOption } from '@/assets/interfaces/element';
 
-  withDefaults(
+  const props = withDefaults(
     defineProps<{
       id?: string;
       modelValue: string;
@@ -38,10 +39,14 @@
     (e: 'update:modelValue', value: string): void;
   }>();
 
-  const handleInput = ($event: Event): void => {
-    const value = ($event.target as HTMLInputElement).value;
-    emits('update:modelValue', value);
-  };
+  const contextValue = ref<string>(props.modelValue);
+
+  watch(
+    () => contextValue.value,
+    (value: string) => {
+      emits('update:modelValue', value);
+    }
+  );
 </script>
 
 <style lang="scss" scoped>

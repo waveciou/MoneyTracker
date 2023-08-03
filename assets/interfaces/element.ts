@@ -1,5 +1,5 @@
 interface IInputSelectOption {
-  id: string;
+  id: string | number;
   name: string;
 }
 
