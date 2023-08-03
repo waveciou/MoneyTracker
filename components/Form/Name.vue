@@ -1,9 +1,9 @@
 <template>
   <div>
-    <label :for="id" class="block text-base mb-2">金額</label>
-    <InputNumber
+    <label :for="id" class="block text-base mb-2">名稱</label>
+    <InputClearableText
       :id="id"
-      v-model.number="contextValue"
+      v-model.trim="contextValue"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :readonly="props.readonly"
@@ -17,13 +17,13 @@
 
   const props = withDefaults(
     defineProps<{
-      modelValue: number;
+      modelValue: string;
       placeholder?: string;
       disabled?: boolean;
       readonly?: boolean;
     }>(),
     {
-      modelValue: 0,
+      modelValue: '',
       placeholder: '',
       disabled: false,
       readonly: false,
@@ -31,11 +31,11 @@
   );
 
   const emits = defineEmits<{
-    (e: 'update:modelValue', value: number): void;
+    (e: 'update:modelValue', value: string): void;
   }>();
 
   const id = ref<string>(uuidv4());
-  const contextValue = ref<number>(props.modelValue);
+  const contextValue = ref<string>(props.modelValue);
 
   watch(
     () => contextValue.value,

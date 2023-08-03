@@ -48,11 +48,11 @@
     }
   );
 
-  const inputValue = ref<string>('');
-
   const emits = defineEmits<{
     (e: 'update:modelValue', value: string[]): void;
   }>();
+
+  const inputValue = ref<string>('');
 
   const handleCreate = (): void => {
     if (inputValue.value !== '') {
