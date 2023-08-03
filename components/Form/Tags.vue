@@ -1,9 +1,9 @@
 <template>
   <div>
-    <label :for="id" class="block text-base mb-2">名稱</label>
-    <InputClearableText
+    <label :for="id" class="block text-base mb-2">標籤</label>
+    <InputHashTags
       :id="id"
-      v-model.trim="contextValue"
+      v-model="contextValue"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :readonly="props.readonly"
@@ -17,13 +17,12 @@
 
   const props = withDefaults(
     defineProps<{
-      modelValue: string;
+      modelValue: string[];
       placeholder?: string;
       disabled?: boolean;
       readonly?: boolean;
     }>(),
     {
-      modelValue: '',
       placeholder: '',
       disabled: false,
       readonly: false,
@@ -31,16 +30,19 @@
   );
 
   const emits = defineEmits<{
-    (e: 'update:modelValue', value: string): void;
+    (e: 'update:modelValue', value: string[]): void;
   }>();
 
   const id = ref<string>(uuidv4());
-  const contextValue = ref<string>(props.modelValue);
+  const contextValue = ref<string[]>([...props.modelValue]);
 
   watch(
     () => contextValue.value,
-    (value: string) => {
-      emits('update:modelValue', value);
+    (value: string[]) => {
+      emits('update:modelValue', [...value]);
+    },
+    {
+      deep: true,
     }
   );
 </script>
