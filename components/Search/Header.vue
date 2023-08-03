@@ -6,7 +6,7 @@
       <h1 class="block text-lg truncate">搜尋</h1>
     </div>
     <button
-      class="before-font-material icon-close w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
+      class="before-font-material icon-cancel w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
       @click="handleClose"
     />
   </header>
@@ -22,7 +22,7 @@
 </script>
 
 <style scoped>
-  .icon-close::before {
+  .icon-cancel::before {
     content: '\e5cd';
   }
 </style>

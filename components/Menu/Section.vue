@@ -20,8 +20,6 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
-
   interface IMenuButtonItem {
     name: string;
     path: string;

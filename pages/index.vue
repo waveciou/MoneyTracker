@@ -10,7 +10,7 @@
     <InputClearableText v-model="clearTextValue" class="mb-2" />
     <InputTextArea v-model="textAreaValue" class="mb-2" />
     <InputSelect v-model="selectValue" :options="options" class="mb-2" />
-    <InputTagsController v-model="tags" class="mb-2" />
+    <InputHashTags v-model="tags" class="mb-2" />
     <ThePopUp :is-open="isPopUpOpen" @close="isPopUpOpen = false">
       <div class="bg-white w-full h-[800px]"></div>
     </ThePopUp>
