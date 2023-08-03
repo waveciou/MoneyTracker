@@ -25,7 +25,7 @@
   const props = withDefaults(
     defineProps<{
       id?: string;
-      modelValue: string;
+      modelValue: string | number;
       options: IInputSelectOption[];
       disabled?: boolean;
     }>(),
@@ -36,14 +36,14 @@
   );
 
   const emits = defineEmits<{
-    (e: 'update:modelValue', value: string): void;
+    (e: 'update:modelValue', value: string | number): void;
   }>();
 
-  const contextValue = ref<string>(props.modelValue);
+  const contextValue = ref<string | number>(props.modelValue);
 
   watch(
     () => contextValue.value,
-    (value: string) => {
+    (value: string | number) => {
       emits('update:modelValue', value);
     }
   );
