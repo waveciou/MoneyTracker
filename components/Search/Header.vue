@@ -3,7 +3,7 @@
     <div
       class="w-full h-header-height flex justify-center items-center text-center px-header-height"
     >
-      <h1 class="block text-lg truncate">搜尋</h1>
+      <h1 class="block text-lg truncate">Search</h1>
     </div>
     <button
       class="before-font-material icon-cancel w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
