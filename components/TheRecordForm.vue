@@ -6,7 +6,7 @@
     <FormNote v-model.trim="contextForm.note" class="mb-4" />
     <FormTags v-model.trim="contextForm.tags" class="mb-4" />
     <div class="flex items-center mb-4">
-      <TheButton class="w-full flex-1 mr-[0.3125rem]">清除</TheButton>
+      <TheButton class="w-full flex-1 mr-[0.3125rem]">重置</TheButton>
       <TheButton class="w-full flex-1 ml-[0.3125rem]">送出</TheButton>
     </div>
   </div>
