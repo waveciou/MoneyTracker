@@ -3,4 +3,4 @@ interface IInputSelectOption {
   name: string;
 }
 
-export type { IInputSelectOption };
+export { IInputSelectOption };

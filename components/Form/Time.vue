@@ -1,22 +1,20 @@
 <template>
   <div>
     <label :for="id" class="block text-base mb-2">時間</label>
-    <div class="w-full flex items-center justify-between">
-      <div class="w-[calc((100%-0.625rem)/2)]">
-        <InputSelect
-          :id="id"
-          v-model="contextHour"
-          :options="optionHour"
-          :disabled="props.disabled"
-        />
-      </div>
-      <div class="w-[calc((100%-0.625rem)/2)]">
-        <InputSelect
-          v-model="contextMinute"
-          :options="optionMinute"
-          :disabled="props.disabled"
-        />
-      </div>
+    <div class="flex items-center">
+      <InputSelect
+        :id="id"
+        v-model="contextHour"
+        class="w-full flex-1 mr-[0.3125rem]"
+        :options="optionHour"
+        :disabled="props.disabled"
+      />
+      <InputSelect
+        v-model="contextMinute"
+        class="w-full flex-1 ml-[0.3125rem]"
+        :options="optionMinute"
+        :disabled="props.disabled"
+      />
     </div>
   </div>
 </template>
