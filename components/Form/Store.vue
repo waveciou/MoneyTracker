@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="id" class="block text-base mb-2">商家</label>
+    <label :for="id" class="block text-base mb-2">Store Name</label>
     <InputClearableText
       :id="id"
       v-model.trim="contextValue"

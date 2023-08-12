@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="id" class="block text-base mb-2">時間</label>
+    <label :for="id" class="block text-base mb-2">Time</label>
     <div class="flex items-center">
       <InputSelect
         :id="id"

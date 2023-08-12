@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="id" class="block text-base mb-2">標籤</label>
+    <label :for="id" class="block text-base mb-2">Tags</label>
     <InputHashTags
       :id="id"
       v-model="contextValue"

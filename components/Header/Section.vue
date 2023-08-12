@@ -26,15 +26,15 @@
   const provideHeaderName = computed((): string => {
     switch (route.path) {
       case '/':
-        return '記帳日誌';
+        return 'Calendar';
       case '/overview':
-        return '帳戶總覽';
+        return 'Overview';
       case '/record':
-        return '新增記帳';
+        return 'Create Record';
       case '/analysis':
-        return '項目分析';
+        return 'Analysis';
       case '/setting':
-        return '設定';
+        return 'Setting';
       default:
         return '';
     }

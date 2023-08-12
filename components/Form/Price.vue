@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="id" class="block text-base mb-2">金額</label>
+    <label :for="id" class="block text-base mb-2">Price</label>
     <InputNumber
       :id="id"
       v-model.number="contextValue"

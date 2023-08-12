@@ -8,6 +8,7 @@
             ? 'bg-yellow border-yellow text-black-darker'
             : 'bg-black-base border-white text-white'
         "
+        title="Expense"
         @click="handleClickTab(EnumRecordType.EXPENSE)"
       >
         EXPENSE
@@ -19,6 +20,7 @@
             ? 'bg-yellow border-yellow text-black-darker'
             : 'bg-black-base border-white text-white'
         "
+        title="Income"
         @click="handleClickTab(EnumRecordType.INCOME)"
       >
         INCOME

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="id" class="block text-base mb-2">備註</label>
+    <label :for="id" class="block text-base mb-2">Note</label>
     <InputTextArea
       :id="id"
       v-model.trim="contextValue"

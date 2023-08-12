@@ -12,7 +12,9 @@
           class="before-font-material w-full text-center before:block before:w-10 before:h-9 before:m-auto before:text-center before:text-3xl"
           :class="`${item.className}`"
         >
-          <span class="block leading-5 text-sm truncate">{{ item.name }}</span>
+          <span class="block leading-5 tracking-normal text-sm truncate">
+            {{ item.name }}
+          </span>
         </div>
       </NuxtLink>
     </div>
@@ -28,27 +30,27 @@
 
   const menuButtons = ref<IMenuButtonItem[]>([
     {
-      name: '記帳日誌',
+      name: 'Calendar',
       path: '/',
       className: 'icon-home',
     },
     {
-      name: '帳戶總覽',
+      name: 'Overview',
       path: '/overview',
       className: 'icon-overview',
     },
     {
-      name: '新增記帳',
+      name: 'Record',
       path: '/record',
       className: 'icon-record',
     },
     {
-      name: '項目分析',
+      name: 'Analysis',
       path: '/analysis',
       className: 'icon-analysis',
     },
     {
-      name: '設定',
+      name: 'Setting',
       path: '/setting',
       className: 'icon-setting',
     },
