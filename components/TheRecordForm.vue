@@ -3,10 +3,13 @@
     <client-only>
       <FormPrice v-model.number="contextForm.price" class="mb-4" />
       <FormStore v-model.trim="contextForm.store" class="mb-4" />
-      <FormTime :timestamp="contextForm.time" class="mb-4" />
+      <FormTime
+        :timestamp="contextForm.time"
+        class="mb-4"
+        @update="handleTimeUpdate"
+      />
       <FormNote v-model.trim="contextForm.note" class="mb-4" />
       <FormTags v-model.trim="contextForm.tags" class="mb-4" />
-      {{ contextForm }}
       <div class="flex items-center mb-4">
         <TheButton
           class="w-full flex-1 mr-[0.3125rem]"
@@ -40,10 +43,7 @@
 
   const props = withDefaults(
     defineProps<{ accountType: EnumAccountType; recordId?: string }>(),
-    {
-      accountType: EnumAccountType.EXPENSE,
-      recordId: '',
-    }
+    { accountType: EnumAccountType.EXPENSE, recordId: '' }
   );
 
   // 2. Validate this record data was save in Pinia and get record form.
@@ -59,6 +59,12 @@
   // 3. Validate the data types and setting the form.
 
   const contextForm = reactive<IRecordForm>(useRecordForm(currentForm));
+
+  // Function
+
+  const handleTimeUpdate = (payload: number): void => {
+    contextForm.time = payload;
+  };
 
   const handleReset = (): void => {
     const result: IRecordForm = useRecordForm();

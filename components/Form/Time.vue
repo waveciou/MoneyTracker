@@ -21,29 +21,61 @@
 
 <script setup lang="ts">
   import { v4 as uuidv4 } from 'uuid';
+  import { computed, watch } from 'vue';
+  import { storeToRefs } from 'pinia';
   import { IInputSelectOption } from '@/assets/interfaces/element';
+  import { useCommonStore } from '@/stores/commonStore';
 
   const props = withDefaults(
     defineProps<{
       timestamp: number;
       disabled?: boolean;
     }>(),
-    {
-      disabled: false,
-    }
+    { disabled: false }
   );
 
-  const dayjs = useDayjs();
-  const id = ref<string>(uuidv4());
+  const emits = defineEmits<{
+    (e: 'update', value: number): void;
+  }>();
 
+  const dayjs = useDayjs();
+  const commonStore = useCommonStore();
+  const { utcOffset } = storeToRefs(commonStore);
+
+  const id = ref<string>(uuidv4());
   const optionHour = ref<IInputSelectOption[]>([...useOptionHour()]);
   const optionMinute = ref<IInputSelectOption[]>([...useOptionMinute()]);
 
   const contextHour = ref<number>(
-    dayjs(props.timestamp).utcOffset(8).get('hour')
+    dayjs(props.timestamp).utcOffset(utcOffset.value).get('hour')
   );
 
   const contextMinute = ref<number>(
-    dayjs(props.timestamp).utcOffset(8).get('minute')
+    dayjs(props.timestamp).utcOffset(utcOffset.value).get('minute')
+  );
+
+  const contextFormat = computed((): string => {
+    const offset = utcOffset.value;
+    const year = dayjs(props.timestamp).utcOffset(offset).get('year');
+    const month = dayjs(props.timestamp).utcOffset(offset).get('month') + 1;
+    const date = dayjs(props.timestamp).utcOffset(offset).get('date');
+    return `${year}-${month}-${date} ${contextHour.value}:${contextMinute.value}`;
+  });
+
+  watch(
+    () => props.timestamp,
+    (value: number) => {
+      const offset = utcOffset.value;
+      contextHour.value = dayjs(value).utcOffset(offset).get('hour');
+      contextMinute.value = dayjs(value).utcOffset(offset).get('minute');
+    }
+  );
+
+  watch(
+    () => contextFormat.value,
+    (value: string) => {
+      const result: number = dayjs(value).valueOf();
+      emits('update', result);
+    }
   );
 </script>

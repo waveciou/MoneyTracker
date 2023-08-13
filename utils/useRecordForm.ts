@@ -1,9 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { IRecordForm } from '@/assets/interfaces/record';
 
-export const useRecordForm = (
-  payload?: IRecordForm | undefined
-): IRecordForm => {
+export const useRecordForm = (payload?: IRecordForm): IRecordForm => {
   const dayjs = useDayjs();
 
   if (payload) {
