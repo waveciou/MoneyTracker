@@ -9,7 +9,7 @@
             : 'bg-black-base border-white text-white'
         "
         title="Expense"
-        @click="handleClickTab(EnumRecordType.EXPENSE)"
+        @click="handleClickTab(EnumAccountType.EXPENSE)"
       >
         EXPENSE
       </button>
@@ -21,7 +21,7 @@
             : 'bg-black-base border-white text-white'
         "
         title="Income"
-        @click="handleClickTab(EnumRecordType.INCOME)"
+        @click="handleClickTab(EnumAccountType.INCOME)"
       >
         INCOME
       </button>
@@ -29,20 +29,20 @@
     <Transition name="fade">
       <TheRecordForm
         v-if="isShowTabExpense"
-        :record-type="EnumRecordType.EXPENSE"
+        :account-type="EnumAccountType.EXPENSE"
       />
-      <TheRecordForm v-else :record-type="EnumRecordType.INCOME" />
+      <TheRecordForm v-else :account-type="EnumAccountType.INCOME" />
     </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { EnumRecordType } from '@/assets/enums/record';
+  import { EnumAccountType } from '@/assets/enums/record';
 
   const isShowTabExpense = ref<boolean>(true);
 
-  const handleClickTab = (recordType: EnumRecordType): void => {
-    if (recordType === EnumRecordType.EXPENSE) {
+  const handleClickTab = (accountType: EnumAccountType): void => {
+    if (accountType === EnumAccountType.EXPENSE) {
       isShowTabExpense.value = true;
     } else {
       isShowTabExpense.value = false;

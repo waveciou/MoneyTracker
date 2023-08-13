@@ -1,6 +1,6 @@
-enum EnumRecordType {
+enum EnumAccountType {
   INCOME = 'income',
   EXPENSE = 'expense',
 }
 
-export { EnumRecordType };
+export { EnumAccountType };

@@ -2,18 +2,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { IRecordForm } from '@/assets/interfaces/record';
 
 export const useRecordForm = (
-  payload: IRecordForm | undefined
+  payload?: IRecordForm | undefined
 ): IRecordForm => {
   const dayjs = useDayjs();
-
-  const defaultForm: IRecordForm = {
-    id: uuidv4(),
-    price: 0,
-    store: '',
-    time: dayjs().valueOf(),
-    note: '',
-    tags: [],
-  };
 
   if (payload) {
     const { price, store, time, note, tags } = payload;
@@ -28,5 +19,15 @@ export const useRecordForm = (
       return JSON.parse(JSON.stringify(payload));
     }
   }
+
+  const defaultForm: IRecordForm = {
+    id: uuidv4(),
+    price: 0,
+    store: '',
+    time: dayjs().valueOf(),
+    note: '',
+    tags: [],
+  };
+
   return defaultForm;
 };

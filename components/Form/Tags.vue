@@ -37,12 +37,22 @@
   const contextValue = ref<string[]>([...props.modelValue]);
 
   watch(
+    () => props.modelValue,
+    (value: string[]) => {
+      if (value.length <= 0) {
+        contextValue.value = [...value];
+      }
+    },
+    { deep: true }
+  );
+
+  watch(
     () => contextValue.value,
     (value: string[]) => {
-      emits('update:modelValue', [...value]);
+      if (value.length > 0) {
+        emits('update:modelValue', [...value]);
+      }
     },
-    {
-      deep: true,
-    }
+    { deep: true }
   );
 </script>

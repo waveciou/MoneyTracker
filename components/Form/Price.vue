@@ -38,6 +38,13 @@
   const contextValue = ref<number>(props.modelValue);
 
   watch(
+    () => props.modelValue,
+    (value: number) => {
+      contextValue.value = value;
+    }
+  );
+
+  watch(
     () => contextValue.value,
     (value: number) => {
       emits('update:modelValue', value);
