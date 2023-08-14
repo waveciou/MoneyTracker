@@ -71,5 +71,11 @@
     Object.assign(contextForm, result);
   };
 
-  const handleSubmit = (): void => {};
+  const handleSubmit = (): void => {
+    if (props.accountType === EnumAccountType.EXPENSE) {
+      recordStore.ADD_EXPENSE_ACTION(contextForm);
+    } else {
+      recordStore.ADD_INCOME_ACTION(contextForm);
+    }
+  };
 </script>

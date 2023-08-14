@@ -42,12 +42,7 @@
   const isShowTabExpense = ref<boolean>(true);
 
   const handleClickTab = (accountType: EnumAccountType): void => {
-    if (accountType === EnumAccountType.EXPENSE) {
-      isShowTabExpense.value = true;
-    } else {
-      isShowTabExpense.value = false;
-    }
+    const result: boolean = accountType === EnumAccountType.EXPENSE;
+    isShowTabExpense.value = result;
   };
 </script>
-
-<style lang="scss" scoped></style>
