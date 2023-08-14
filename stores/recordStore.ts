@@ -12,7 +12,7 @@ export const useRecordStore = defineStore({
     return { income: [], expense: [] };
   },
   actions: {
-    ADD_INCOME_ACTION(payload: IRecordForm) {
+    ADD_INCOME_RECORD(payload: IRecordForm) {
       const index: number = this.income.findIndex(
         ({ id }) => id === payload.id
       );
@@ -21,7 +21,7 @@ export const useRecordStore = defineStore({
       }
       this.income.push(payload);
     },
-    ADD_EXPENSE_ACTION(payload: IRecordForm) {
+    ADD_EXPENSE_RECORD(payload: IRecordForm) {
       const index: number = this.expense.findIndex(
         ({ id }) => id === payload.id
       );
@@ -30,13 +30,13 @@ export const useRecordStore = defineStore({
       }
       this.expense.push(payload);
     },
-    DELETE_INCOME_ACTION(id: string) {
+    DELETE_INCOME_RECORD(id: string) {
       const index: number = this.income.findIndex((item) => item.id === id);
       if (index >= 0) {
         this.income.splice(index, 1);
       }
     },
-    DELETE_EXPENSE_ACTION(id: string) {
+    DELETE_EXPENSE_RECORD(id: string) {
       const index: number = this.expense.findIndex((item) => item.id === id);
       if (index >= 0) {
         this.expense.splice(index, 1);

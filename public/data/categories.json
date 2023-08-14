@@ -1,0 +1,235 @@
+{
+  "expense": [
+    {
+      "id": "food",
+      "name": "飲食",
+      "subcategories": [
+        {
+          "id": "breakfast",
+          "name": "早餐"
+        },
+        {
+          "id": "lunch",
+          "name": "午餐"
+        },
+        {
+          "id": "dinner",
+          "name": "晚餐"
+        },
+        {
+          "id": "dessert",
+          "name": "點心"
+        },
+        {
+          "id": "drink",
+          "name": "飲料"
+        }
+      ]
+    },
+    {
+      "id": "traffic",
+      "name": "交通",
+      "subcategories": [
+        {
+          "id": "car",
+          "name": "汽車"
+        },
+        {
+          "id": "motorcycle",
+          "name": "機車"
+        },
+        {
+          "id": "bus",
+          "name": "公車"
+        },
+        {
+          "id": "train",
+          "name": "火車"
+        },
+        {
+          "id": "taxi",
+          "name": "計程車"
+        }
+      ]
+    },
+    {
+      "id": "recreation",
+      "name": "娛樂",
+      "subcategories": [
+        {
+          "id": "movie",
+          "name": "電影"
+        },
+        {
+          "id": "exhibition",
+          "name": "展覽"
+        },
+        {
+          "id": "music",
+          "name": "音樂"
+        },
+        {
+          "id": "game",
+          "name": "遊戲"
+        },
+        {
+          "id": "sports",
+          "name": "運動"
+        }
+      ]
+    },
+    {
+      "id": "shopping",
+      "name": "購物",
+      "subcategories": [
+        {
+          "id": "clothing",
+          "name": "衣物"
+        },
+        {
+          "id": "shoes",
+          "name": "鞋子"
+        },
+        {
+          "id": "fitting",
+          "name": "配件"
+        },
+        {
+          "id": "gift",
+          "name": "禮物"
+        },
+        {
+          "id": "3c-products",
+          "name": "3C電子"
+        }
+      ]
+    },
+    {
+      "id": "investment",
+      "name": "投資",
+      "subcategories": [
+        {
+          "id": "stock",
+          "name": "股票"
+        },
+        {
+          "id": "time-deposit.",
+          "name": "定存"
+        }
+      ]
+    },
+    {
+      "id": "medical",
+      "name": "醫療",
+      "subcategories": [
+        {
+          "id": "hospital",
+          "name": "門診"
+        },
+        {
+          "id": "tooth-care",
+          "name": "牙齒保健"
+        },{
+          "id": "medicine",
+          "name": "藥物"
+        },
+        {
+          "id": "surgery",
+          "name": "手術"
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "name": "家居",
+      "subcategories": [
+        {
+          "id": "water-fee",
+          "name": "水費"
+        },
+        {
+          "id": "electricity-bill",
+          "name": "電費"
+        },
+        {
+          "id": "gas-fee",
+          "name": "瓦斯費"
+        },
+        {
+          "id": "internet-fee",
+          "name": "網路費"
+        },
+        {
+          "id": "telephone-fee",
+          "name": "通話費"
+        },
+        {
+          "id": "rent",
+          "name": "房租"
+        }
+      ]
+    },
+    {
+      "id": "life",
+      "name": "生活",
+      "subcategories": [
+        {
+          "id": "hair",
+          "name": "美髮"
+        },
+        {
+          "id": "massage",
+          "name": "按摩"
+        },
+        {
+          "id": "party",
+          "name": "派對"
+        },
+        {
+          "id": "travel",
+          "name": "旅行"
+        }
+      ]
+    },
+    {
+      "id": "learning",
+      "name": "學習",
+      "subcategories": [
+        {
+          "id": "tuition",
+          "name": "學費"
+        },
+        {
+          "id": "stationery",
+          "name": "文具"
+        },
+        {
+          "id": "explore",
+          "name": "探索"
+        }
+      ]
+    }
+  ],
+  "income": [
+    {
+      "id": "salary",
+      "name": "薪水"
+    },
+    {
+      "id": "bonus",
+      "name": "獎金"
+    },
+    {
+      "id": "allowance",
+      "name": "輔助費"
+    },
+    {
+      "id": "interest",
+      "name": "利息"
+    },
+    {
+      "id": "investment-profit",
+      "name": "投資獲利"
+    }
+  ]
+}

@@ -22,12 +22,15 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useCommonStore } from '@/stores/commonStore';
+  import { useSetCategories } from '@/composables/useSetCategories';
 
   const route = useRoute();
   const commonStore = useCommonStore();
   const { isShowSearch } = storeToRefs(commonStore);
 
   const contentRef = ref<HTMLDivElement>(null as unknown as HTMLDivElement);
+
+  useSetCategories();
 
   const handleScroll = (): void => {
     const value: number = contentRef?.value?.scrollTop || 0;
