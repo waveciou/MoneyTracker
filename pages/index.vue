@@ -7,6 +7,7 @@
     <ThePopUp :is-open="isPopUpOpen" @close="isPopUpOpen = false">
       <div class="bg-white w-full h-[800px]"></div>
     </ThePopUp>
+    <TheCalendar />
   </div>
 </template>
 

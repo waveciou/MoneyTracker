@@ -7,4 +7,15 @@ interface IRecordForm {
   tags: string[];
 }
 
-export type { IRecordForm };
+interface ICalendarValue {
+  year: number;
+  month: number;
+  date: number;
+}
+
+interface ITimestampValue extends ICalendarValue {
+  hour: number;
+  minute: number;
+}
+
+export type { IRecordForm, ICalendarValue, ITimestampValue };

@@ -32,6 +32,7 @@
   import { storeToRefs } from 'pinia';
   import { IInputSelectOption } from '@/assets/interfaces/element';
   import { useCommonStore } from '@/stores/commonStore';
+  import { useTimeValue } from '@/composables/useTimeValue';
 
   const props = withDefaults(
     defineProps<{
@@ -63,19 +64,16 @@
   );
 
   const contextFormat = computed((): string => {
-    const offset = utcOffset.value;
-    const year = dayjs(props.timestamp).utcOffset(offset).get('year');
-    const month = dayjs(props.timestamp).utcOffset(offset).get('month') + 1;
-    const date = dayjs(props.timestamp).utcOffset(offset).get('date');
+    const { year, month, date } = useTimeValue(props.timestamp);
     return `${year}-${month}-${date} ${contextHour.value}:${contextMinute.value}`;
   });
 
   watch(
     () => props.timestamp,
     (value: number) => {
-      const offset = utcOffset.value;
-      contextHour.value = dayjs(value).utcOffset(offset).get('hour');
-      contextMinute.value = dayjs(value).utcOffset(offset).get('minute');
+      const { hour, minute } = useTimeValue(value);
+      contextHour.value = hour;
+      contextMinute.value = minute;
     }
   );
 
