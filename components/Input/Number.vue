@@ -2,20 +2,21 @@
   <div class="w-full relative">
     <input
       :id="id"
-      v-model.number="contextQuantity"
+      v-model.number="quantity"
       type="number"
       class="w-full py-1.5 px-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
       :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
-      @focus="handleFocus"
+      @imput="handleInput"
       @blur="handleBlur"
+      @focus="handleFocus"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-  import { computed, watch } from 'vue';
+  import { watch } from 'vue';
   import { v4 as uuidv4 } from 'uuid';
 
   const props = withDefaults(
@@ -58,17 +59,6 @@
     { immediate: true }
   );
 
-  const contextQuantity = computed({
-    get(): number {
-      return quantity.value;
-    },
-    set(value: number): void {
-      const reg = /^[0-9]*$/;
-      const verification = !!reg.test(value as unknown as string);
-      quantity.value = verification ? value : 0;
-    },
-  });
-
   const handleFocus = (): void => {
     if (quantity.value === 0) {
       quantity.value = '' as unknown as number;
@@ -76,7 +66,25 @@
   };
 
   const handleBlur = (): void => {
-    if (quantity.value === ('' as unknown as number)) {
+    if (typeof quantity.value === 'number') {
+      if (quantity.value <= 0) {
+        quantity.value = 0;
+      } else {
+        const numberValue = quantity.value;
+        quantity.value = 0;
+        quantity.value = numberValue;
+      }
+    } else {
+      quantity.value = 0;
+    }
+  };
+
+  const handleInput = (): void => {
+    if (typeof quantity.value === 'number') {
+      if (quantity.value <= 0) {
+        quantity.value = 0;
+      }
+    } else {
       quantity.value = 0;
     }
   };
