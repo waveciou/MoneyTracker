@@ -36,6 +36,7 @@
   import { IRecordForm } from '@/assets/interfaces/record';
   import { EnumAccountType } from '@/assets/enums/record';
 
+  const router = useRouter();
   const recordStore = useRecordStore();
   const { income, expense } = storeToRefs(recordStore);
 
@@ -78,5 +79,6 @@
       recordStore.ADD_INCOME_RECORD(contextForm);
     }
     handleReset();
+    router.push('/');
   };
 </script>

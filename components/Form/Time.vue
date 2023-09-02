@@ -1,20 +1,27 @@
 <template>
   <div>
-    <label :for="id" class="block text-base mb-2">Time</label>
+    <label class="block text-base mb-1">Time</label>
     <div class="flex items-center">
-      <InputSelect
-        :id="id"
-        v-model="contextHour"
-        class="w-full flex-1 mr-[0.3125rem]"
-        :options="optionHour"
-        :disabled="props.disabled"
-      />
-      <InputSelect
-        v-model="contextMinute"
-        class="w-full flex-1 ml-[0.3125rem]"
-        :options="optionMinute"
-        :disabled="props.disabled"
-      />
+      <div class="flex-1 mr-[0.3125rem]">
+        <label :for="hourID" class="block text-xs pl-1 mb-1">Hour</label>
+        <InputSelect
+          :id="hourID"
+          v-model="contextHour"
+          class="w-full"
+          :options="optionHour"
+          :disabled="props.disabled"
+        />
+      </div>
+      <div class="flex-1 ml-[0.3125rem]">
+        <label :for="minuteID" class="block text-xs pl-1 mb-1">Minute</label>
+        <InputSelect
+          :id="minuteID"
+          v-model="contextMinute"
+          class="w-full"
+          :options="optionMinute"
+          :disabled="props.disabled"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +49,8 @@
   const commonStore = useCommonStore();
   const { utcOffset } = storeToRefs(commonStore);
 
-  const id = ref<string>(uuidv4());
+  const hourID = ref<string>(uuidv4());
+  const minuteID = ref<string>(uuidv4());
   const optionHour = ref<IInputSelectOption[]>([...useOptionHour()]);
   const optionMinute = ref<IInputSelectOption[]>([...useOptionMinute()]);
 

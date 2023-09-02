@@ -59,5 +59,6 @@
 <style lang="scss" scoped>
   .icon-arrow-down::after {
     content: '\e5cf';
+    pointer-events: none;
   }
 </style>
