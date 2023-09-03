@@ -9,7 +9,7 @@
       <div class="w-full h-7 flex justify-center">
         <button class="block" @click="handleMoveToday">
           <span class="mr-1">{{ selected.year }} 年</span>
-          <span>{{ selected.month }} 月</span>
+          <span>{{ useNumberFormat(selected.month) }} 月</span>
         </button>
       </div>
       <button
@@ -30,12 +30,12 @@
       </ul>
       <ul class="py-2 flex items-center flex-wrap">
         <li
-          v-for="item in contextCalendar"
-          :key="item.id"
+          v-for="(item, index) in contextCalendar"
+          :key="index"
           class="w-[14.285%] text-center"
         >
           <button class="w-full block p-1" @click="handleClick(item)">
-            {{ item.date }}
+            {{ useNumberFormat(item.date) }}
           </button>
         </li>
       </ul>
@@ -44,16 +44,13 @@
 </template>
 
 <script setup lang="ts">
-  import { v4 as uuidv4 } from 'uuid';
-  import { computed } from 'vue';
+  import { computed, watch } from 'vue';
   import { storeToRefs } from 'pinia';
+  import calendarData from '@/public/data/calendar.json';
   import { useCommonStore } from '@/stores/commonStore';
-  import { ICalendarValue } from '@/assets/interfaces/record';
   import { useTodayValue } from '@/composables/useTodayValue';
-
-  interface ICalendarCell extends ICalendarValue {
-    id: string;
-  }
+  import { useNumberFormat } from '@/utils/useNumberFormat';
+  import { ICalendarValue } from '@/assets/interfaces/record';
 
   const props = withDefaults(
     defineProps<{
@@ -66,23 +63,14 @@
     }
   );
 
-  // const emits = defineEmits<{
-  //   (e: 'update', value: ICalendarValue): void;
-  // }>();
+  const emits = defineEmits<{
+    (e: 'update', value: ICalendarValue): void;
+  }>();
 
   const dayjs = useDayjs();
   const commonStore = useCommonStore();
   const { utcOffset } = storeToRefs(commonStore);
-
-  const captionDays = ref<string[]>([
-    'SUN',
-    'MON',
-    'TUE',
-    'WED',
-    'THU',
-    'FRI',
-    'SAT',
-  ]);
+  const captionDays = ref<string[]>([...calendarData.daysShort]);
 
   const selected = ref<ICalendarValue>({
     year: props.default.year,
@@ -90,7 +78,9 @@
     date: props.default.date,
   });
 
-  const contextCalendar = computed((): ICalendarCell[] => {
+  // Calendar Cells
+
+  const contextCalendar = computed((): ICalendarValue[] => {
     const result = [];
     const offset: number = utcOffset.value;
 
@@ -102,7 +92,6 @@
 
     for (let i = 0; i < totalDates; i++) {
       const dateCell = {
-        id: uuidv4(),
         year: selected.value.year,
         month: selected.value.month,
         date: i + 1,
@@ -117,7 +106,7 @@
         .format('d')
     );
 
-    const prevMonth = provideOthersMonth(
+    const prevMonth = provideMonthValue(
       selected.value.year,
       selected.value.month,
       false
@@ -129,7 +118,6 @@
 
     for (let i = 0; i < frontPart; i++) {
       const dateCell = {
-        id: uuidv4(),
         year: prevMonth.year,
         month: prevMonth.month,
         date: prevMonthDates - frontPart + (i + 1),
@@ -140,7 +128,7 @@
     // 補上後面的日期
     const backPart = result.length % 7 === 0 ? 0 : 7 - (result.length % 7);
 
-    const nextMonth = provideOthersMonth(
+    const nextMonth = provideMonthValue(
       selected.value.year,
       selected.value.month,
       true
@@ -148,7 +136,6 @@
 
     for (let i = 0; i < backPart; i++) {
       const dateCell = {
-        id: uuidv4(),
         year: nextMonth.year,
         month: nextMonth.month,
         date: i + 1,
@@ -159,8 +146,9 @@
     return result;
   });
 
-  // Get previous or next month (Getting year and month)
-  const provideOthersMonth = (
+  // Get Previous or Next Month (Getting Value of Year & Month)
+
+  const provideMonthValue = (
     originalYear: number,
     originalMonth: number,
     isNext: boolean
@@ -180,9 +168,10 @@
     return result;
   };
 
-  // Change month (Previous or Next)
+  // Change Month
+
   const handleChangeMonth = (isNext: boolean): void => {
-    const { year, month } = provideOthersMonth(
+    const { year, month } = provideMonthValue(
       selected.value.year,
       selected.value.month,
       isNext
@@ -193,7 +182,8 @@
     selected.value.date = 1;
   };
 
-  // Move to today
+  // Move to Today
+
   const handleMoveToday = (): void => {
     const { year, month, date } = useTodayValue();
     selected.value.year = year;
@@ -201,11 +191,24 @@
     selected.value.date = date;
   };
 
-  const handleClick = (payload: ICalendarCell): void => {
+  // Pick Calendar Cell
+
+  const handleClick = (payload: ICalendarValue): void => {
     selected.value.year = payload.year;
     selected.value.month = payload.month;
     selected.value.date = payload.date;
   };
+
+  watch(
+    () => selected.value,
+    (value) => {
+      emits('update', value);
+    },
+    {
+      immediate: true,
+      deep: true,
+    }
+  );
 </script>
 
 <style lang="scss" scoped>

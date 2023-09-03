@@ -6,7 +6,7 @@
         <label :for="hourID" class="block text-xs pl-1 mb-1">Hour</label>
         <InputSelect
           :id="hourID"
-          v-model="contextHour"
+          v-model="selectedHour"
           class="w-full"
           :options="optionHour"
           :disabled="props.disabled"
@@ -16,7 +16,7 @@
         <label :for="minuteID" class="block text-xs pl-1 mb-1">Minute</label>
         <InputSelect
           :id="minuteID"
-          v-model="contextMinute"
+          v-model="selectedMinute"
           class="w-full"
           :options="optionMinute"
           :disabled="props.disabled"
@@ -55,25 +55,25 @@
   const optionHour = ref<IInputSelectOption[]>([...useOptionHour()]);
   const optionMinute = ref<IInputSelectOption[]>([...useOptionMinute()]);
 
-  const contextHour = ref<number>(
+  const selectedHour = ref<number>(
     dayjs(props.timestamp).utcOffset(utcOffset.value).get('hour')
   );
 
-  const contextMinute = ref<number>(
+  const selectedMinute = ref<number>(
     dayjs(props.timestamp).utcOffset(utcOffset.value).get('minute')
   );
 
   const contextFormat = computed((): string => {
     const { year, month, date } = useTimeValue(props.timestamp);
-    return `${year}-${month}-${date} ${contextHour.value}:${contextMinute.value}`;
+    return `${year}-${month}-${date} ${selectedHour.value}:${selectedMinute.value}`;
   });
 
   watch(
     () => props.timestamp,
     (value: number) => {
       const { hour, minute } = useTimeValue(value);
-      contextHour.value = hour;
-      contextMinute.value = minute;
+      selectedHour.value = hour;
+      selectedMinute.value = minute;
     }
   );
 
