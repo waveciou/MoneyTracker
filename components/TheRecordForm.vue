@@ -3,6 +3,11 @@
     <client-only>
       <FormPrice v-model.number="contextForm.price" class="mb-4" />
       <FormStore v-model.trim="contextForm.store" class="mb-4" />
+      <FormDatePicker
+        :timestamp="contextForm.time"
+        class="mb-4"
+        @update="handleTimeUpdate"
+      />
       <FormTime
         :timestamp="contextForm.time"
         class="mb-4"

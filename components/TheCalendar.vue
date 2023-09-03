@@ -2,7 +2,7 @@
   <div>
     <div class="flex items-center">
       <button
-        class="before-font-material icon-arrow-left block w-7 h-7 basis-7 before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
+        class="before-font-material icon-arrow-left block w-7 h-7 ml-2 basis-7 before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
         title="Previous"
         @click="handleChangeMonth(false)"
       />
@@ -13,7 +13,7 @@
         </button>
       </div>
       <button
-        class="before-font-material icon-arrow-right block w-7 h-7 basis-7 before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
+        class="before-font-material icon-arrow-right block w-7 h-7 mr-2 basis-7 before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
         title="Next"
         @click="handleChangeMonth(true)"
       />
