@@ -34,7 +34,11 @@
           :key="index"
           class="w-[14.285%] text-center"
         >
-          <button class="w-full block p-1" @click="handleClick(item)">
+          <button
+            class="w-full block p-1 rounded"
+            :class="provideClassName(item)"
+            @click="handleClick(item)"
+          >
             {{ useNumberFormat(item.date) }}
           </button>
         </li>
@@ -166,6 +170,33 @@
       result.year += 1;
     }
     return result;
+  };
+
+  const provideClassName = (payload: ICalendarValue): string => {
+    const today = useTodayValue();
+    const formatPayload = `${payload.year}-${payload.month}-${payload.date}`;
+    const formatToday = `${today.year}-${today.month}-${today.date}`;
+    const formatSelected = `${selected.value.year}-${selected.value.month}-${selected.value.date}`;
+
+    // Is Selected
+    if (formatSelected === formatPayload) {
+      return 'bg-yellow text-black-base';
+    }
+
+    // Is Today
+    if (formatToday === formatPayload) {
+      return 'text-yellow';
+    }
+
+    // Is Others Month
+    if (
+      payload.year !== selected.value.year ||
+      payload.month !== selected.value.month
+    ) {
+      return 'opacity-30';
+    }
+
+    return '';
   };
 
   // Change Month

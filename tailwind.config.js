@@ -16,7 +16,7 @@ module.exports = {
     extend: {
       spacing: {
         'header-height': '50px',
-        'menu-height': '70px',
+        'menu-height': '60px',
         'wrap-space': '15px',
       },
       width: {

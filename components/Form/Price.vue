@@ -3,7 +3,7 @@
     <label :for="id" class="block text-base mb-2">Price</label>
     <InputNumber
       :id="id"
-      v-model.number="contextValue"
+      v-model.number="selectedValue"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :readonly="props.readonly"
@@ -35,17 +35,17 @@
   }>();
 
   const id = ref<string>(uuidv4());
-  const contextValue = ref<number>(props.modelValue);
+  const selectedValue = ref<number>(props.modelValue);
 
   watch(
     () => props.modelValue,
     (value: number) => {
-      contextValue.value = value;
+      selectedValue.value = value;
     }
   );
 
   watch(
-    () => contextValue.value,
+    () => selectedValue.value,
     (value: number) => {
       emits('update:modelValue', value);
     }

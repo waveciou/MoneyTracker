@@ -5,7 +5,7 @@
       <div
         id="content"
         ref="contentRef"
-        class="w-full h-full overflow-x-hidden relative px-wrap-space"
+        class="h-full overflow-x-hidden relative px-wrap-space"
         :class="isShowSearch ? 'overflow-y-hidden' : 'overflow-y-auto'"
         @scroll="handleScroll"
       >

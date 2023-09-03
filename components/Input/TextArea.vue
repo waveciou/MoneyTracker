@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full relative">
+  <div class="relative">
     <textarea
       :id="id"
       class="w-full h-40 p-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input resize-none"

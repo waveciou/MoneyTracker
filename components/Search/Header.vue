@@ -1,7 +1,7 @@
 <template>
   <header class="w-full h-header-height basis-header-height relative">
     <div
-      class="w-full h-header-height flex justify-center items-center text-center px-header-height"
+      class="h-header-height flex justify-center items-center text-center px-header-height"
     >
       <h1 class="block text-lg truncate">Search</h1>
     </div>

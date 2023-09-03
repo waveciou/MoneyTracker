@@ -3,7 +3,7 @@
     <label :for="id" class="block text-base mb-2">Tags</label>
     <InputHashTags
       :id="id"
-      v-model="contextValue"
+      v-model="selectedValue"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :readonly="props.readonly"
@@ -34,20 +34,20 @@
   }>();
 
   const id = ref<string>(uuidv4());
-  const contextValue = ref<string[]>([...props.modelValue]);
+  const selectedValue = ref<string[]>([...props.modelValue]);
 
   watch(
     () => props.modelValue,
     (value: string[]) => {
       if (value.length <= 0) {
-        contextValue.value = [...value];
+        selectedValue.value = [...value];
       }
     },
     { deep: true }
   );
 
   watch(
-    () => contextValue.value,
+    () => selectedValue.value,
     (value: string[]) => {
       if (value.length > 0) {
         emits('update:modelValue', [...value]);

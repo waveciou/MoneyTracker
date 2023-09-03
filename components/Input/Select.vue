@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full relative">
+  <div class="relative">
     <div
-      class="after-font-material icon-arrow-down w-full relative border border-white border-solid rounded overflow-hidden after:w-9 after:h-full after:flex after:justify-center after:items-center after:absolute after:top-0 after:right-0"
+      class="after-font-material icon-arrow-down relative border border-white border-solid rounded overflow-hidden after:w-9 after:h-full after:flex after:justify-center after:items-center after:absolute after:top-0 after:right-0"
     >
       <select
         :id="id"

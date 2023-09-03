@@ -3,7 +3,7 @@
     <label :for="id" class="block text-base mb-2">Store Name</label>
     <InputClearableText
       :id="id"
-      v-model.trim="contextValue"
+      v-model.trim="selectedValue"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :readonly="props.readonly"
@@ -35,17 +35,17 @@
   }>();
 
   const id = ref<string>(uuidv4());
-  const contextValue = ref<string>(props.modelValue);
+  const selectedValue = ref<string>(props.modelValue);
 
   watch(
     () => props.modelValue,
     (value: string) => {
-      contextValue.value = value;
+      selectedValue.value = value;
     }
   );
 
   watch(
-    () => contextValue.value,
+    () => selectedValue.value,
     (value: string) => {
       emits('update:modelValue', value);
     }

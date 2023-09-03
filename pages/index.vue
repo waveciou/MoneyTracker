@@ -1,17 +1,15 @@
 <template>
-  <div class="w-full h-[1000px]">
-    <!-- <TheButton class="mb-2" @click="isPopUpOpen = !isPopUpOpen">
-      PopUp
-    </TheButton>
-    <ThePopUp :is-open="isPopUpOpen" @close="isPopUpOpen = false">
-      <div class="bg-white w-full h-[800px]"></div>
-    </ThePopUp> -->
-    <TheCalendar />
+  <div>
+    <TheCalendar @update="handleCalendarUpdate" />
   </div>
 </template>
 
 <script setup lang="ts">
-  // const isPopUpOpen = ref<boolean>(false);
+  import { ICalendarValue } from '@/assets/interfaces/record';
+
+  const handleCalendarUpdate = (payload: ICalendarValue): void => {
+    console.log(payload);
+  };
 </script>
 
 <style lang="scss" scoped></style>

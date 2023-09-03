@@ -9,10 +9,10 @@
         class="w-1/5 h-menu-height flex justify-center items-center"
       >
         <div
-          class="before-font-material w-full text-center before:block before:w-10 before:h-9 before:m-auto before:text-center before:text-3xl"
+          class="before-font-material text-center before:block before:w-10 before:h-8 before:m-auto before:text-center before:text-3xl"
           :class="`${item.className}`"
         >
-          <span class="block leading-5 tracking-normal text-sm truncate">
+          <span class="block leading-5 tracking-normal text-xs truncate">
             {{ item.name }}
           </span>
         </div>

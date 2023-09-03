@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full relative">
+  <div class="relative">
     <input
       :id="id"
       type="text"

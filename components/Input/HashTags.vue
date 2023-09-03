@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full relative">
+  <div class="relative">
     <ul v-if="modelValue.length" class="flex flex-wrap items-center">
       <li v-for="tag in modelValue" :key="tag" class="max-w-full mr-2 mb-2">
         <button
@@ -10,7 +10,7 @@
         </button>
       </li>
     </ul>
-    <div class="w-full relative">
+    <div class="relative">
       <input
         :id="id"
         v-model.trim="inputValue"
