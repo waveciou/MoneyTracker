@@ -13,9 +13,9 @@ interface ICalendarValue {
   date: number;
 }
 
-interface ITimestampValue extends ICalendarValue {
+interface ITimeStampValue extends ICalendarValue {
   hour: number;
   minute: number;
 }
 
-export type { IRecordForm, ICalendarValue, ITimestampValue };
+export type { IRecordForm, ICalendarValue, ITimeStampValue };

@@ -21,7 +21,7 @@
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .icon-cancel::before {
     content: '\e5cd';
   }

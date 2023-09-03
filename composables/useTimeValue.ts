@@ -1,8 +1,8 @@
 import { storeToRefs } from 'pinia';
 import { useCommonStore } from '@/stores/commonStore';
-import { ITimestampValue } from '@/assets/interfaces/record';
+import { ITimeStampValue } from '@/assets/interfaces/record';
 
-export const useTimeValue = (timestamp: number): ITimestampValue => {
+export const useTimeValue = (timestamp: number): ITimeStampValue => {
   const dayjs = useDayjs();
   const commonStore = useCommonStore();
   const { utcOffset } = storeToRefs(commonStore);

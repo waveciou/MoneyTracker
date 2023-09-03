@@ -27,10 +27,10 @@
           </TheButton>
           <TheButton
             class="w-full flex-1 ml-[0.3125rem] bg-black-dark"
-            title="Submit"
-            @click="handleSubmit"
+            title="Pick"
+            @click="handlePick"
           >
-            Submit
+            Pick
           </TheButton>
         </div>
       </div>
@@ -82,7 +82,7 @@
     isPopUpOpen.value = false;
   };
 
-  const handleSubmit = (): void => {
+  const handlePick = (): void => {
     const { year, month, date } = selectedDate.value;
     const { hour, minute } = useTimeValue(props.timestamp);
     const timeFormat = `${year}-${month}-${date} ${hour}:${minute}`;

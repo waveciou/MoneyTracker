@@ -8,8 +8,8 @@
       />
       <div class="w-full h-7 flex justify-center">
         <button class="block" @click="handleMoveToday">
-          <span class="mr-1">{{ selected.year }} 年</span>
-          <span>{{ useNumberFormat(selected.month) }} 月</span>
+          <span class="mr-1">{{ selectedDate.year }} 年</span>
+          <span>{{ useNumberFormat(selectedDate.month) }} 月</span>
         </button>
       </div>
       <button
@@ -76,7 +76,7 @@
   const { utcOffset } = storeToRefs(commonStore);
   const captionDays = ref<string[]>([...calendarData.daysShort]);
 
-  const selected = ref<ICalendarValue>({
+  const selectedDate = ref<ICalendarValue>({
     year: props.default.year,
     month: props.default.month,
     date: props.default.date,
@@ -85,19 +85,19 @@
   // Calendar Cells
 
   const contextCalendar = computed((): ICalendarValue[] => {
-    const result = [];
+    const result: ICalendarValue[] = [];
     const offset: number = utcOffset.value;
 
     const totalDates: number = dayjs(
-      `${selected.value.year}-${selected.value.month}`
+      `${selectedDate.value.year}-${selectedDate.value.month}`
     )
       .utcOffset(offset)
       .daysInMonth();
 
     for (let i = 0; i < totalDates; i++) {
       const dateCell = {
-        year: selected.value.year,
-        month: selected.value.month,
+        year: selectedDate.value.year,
+        month: selectedDate.value.month,
         date: i + 1,
       };
       result.push(dateCell);
@@ -105,14 +105,14 @@
 
     // 補上前面的日期
     const frontPart = Number(
-      dayjs(`${selected.value.year}-${selected.value.month}`)
+      dayjs(`${selectedDate.value.year}-${selectedDate.value.month}`)
         .utcOffset(offset)
         .format('d')
     );
 
     const prevMonth = provideMonthValue(
-      selected.value.year,
-      selected.value.month,
+      selectedDate.value.year,
+      selectedDate.value.month,
       false
     );
 
@@ -133,8 +133,8 @@
     const backPart = result.length % 7 === 0 ? 0 : 7 - (result.length % 7);
 
     const nextMonth = provideMonthValue(
-      selected.value.year,
-      selected.value.month,
+      selectedDate.value.year,
+      selectedDate.value.month,
       true
     );
 
@@ -176,7 +176,7 @@
     const today = useTodayValue();
     const formatPayload = `${payload.year}-${payload.month}-${payload.date}`;
     const formatToday = `${today.year}-${today.month}-${today.date}`;
-    const formatSelected = `${selected.value.year}-${selected.value.month}-${selected.value.date}`;
+    const formatSelected = `${selectedDate.value.year}-${selectedDate.value.month}-${selectedDate.value.date}`;
 
     // Is Selected
     if (formatSelected === formatPayload) {
@@ -190,8 +190,8 @@
 
     // Is Others Month
     if (
-      payload.year !== selected.value.year ||
-      payload.month !== selected.value.month
+      payload.year !== selectedDate.value.year ||
+      payload.month !== selectedDate.value.month
     ) {
       return 'opacity-30';
     }
@@ -199,46 +199,45 @@
     return '';
   };
 
+  // Set SelectedDate
+
+  const handleSetSelectedDate = (payload: ICalendarValue): void => {
+    const { year, month, date } = payload;
+    selectedDate.value.year = year;
+    selectedDate.value.month = month;
+    selectedDate.value.date = date;
+  };
+
   // Change Month
 
   const handleChangeMonth = (isNext: boolean): void => {
     const { year, month } = provideMonthValue(
-      selected.value.year,
-      selected.value.month,
+      selectedDate.value.year,
+      selectedDate.value.month,
       isNext
     );
-
-    selected.value.year = year;
-    selected.value.month = month;
-    selected.value.date = 1;
+    handleSetSelectedDate({ year, month, date: 1 });
   };
 
   // Move to Today
 
   const handleMoveToday = (): void => {
-    const { year, month, date } = useTodayValue();
-    selected.value.year = year;
-    selected.value.month = month;
-    selected.value.date = date;
+    const today = useTodayValue();
+    handleSetSelectedDate(today);
   };
 
   // Pick Calendar Cell
 
   const handleClick = (payload: ICalendarValue): void => {
-    selected.value.year = payload.year;
-    selected.value.month = payload.month;
-    selected.value.date = payload.date;
+    handleSetSelectedDate(payload);
   };
 
   watch(
-    () => selected.value,
+    () => selectedDate.value,
     (value) => {
       emits('update', value);
     },
-    {
-      immediate: true,
-      deep: true,
-    }
+    { immediate: true, deep: true }
   );
 </script>
 
