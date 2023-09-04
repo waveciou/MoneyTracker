@@ -64,7 +64,9 @@
 
   // 3. Validate the data types and setting the form.
 
-  const contextForm = reactive<IRecordForm>(useRecordForm(currentForm));
+  const contextForm = reactive<IRecordForm>(
+    useRecordForm(props.accountType, currentForm)
+  );
 
   // Function
 
@@ -73,7 +75,7 @@
   };
 
   const handleReset = (): void => {
-    const result: IRecordForm = useRecordForm();
+    const result: IRecordForm = useRecordForm(props.accountType);
     Object.assign(contextForm, result);
   };
 

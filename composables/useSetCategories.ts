@@ -1,11 +1,12 @@
 import { useCategoriesStore } from '@/stores/categoriesStore';
-import categoriesData from '@/public/data/categories.json';
+import expenseCategories from '@/public/data/categories/expense.json';
+import incomeCategories from '@/public/data/categories/income.json';
 
 export const useSetCategories = () => {
   const categoriesStore = useCategoriesStore();
 
   categoriesStore.$patch((state) => {
-    state.income = [...categoriesData.income];
-    state.expense = [...categoriesData.expense];
+    state.expense = [...expenseCategories.data];
+    state.income = [...incomeCategories.data];
   });
 };

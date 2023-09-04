@@ -74,7 +74,7 @@
   const dayjs = useDayjs();
   const commonStore = useCommonStore();
   const { utcOffset } = storeToRefs(commonStore);
-  const captionDays = ref<string[]>([...calendarData.daysShort]);
+  const captionDays = ref<string[]>([...calendarData.locale.daysShort]);
 
   const selectedDate = ref<ICalendarValue>({
     year: props.default.year,

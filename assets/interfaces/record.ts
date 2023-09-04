@@ -1,5 +1,6 @@
 interface IRecordForm {
   id: string;
+  category: string;
   price: number;
   store: string;
   time: number;

@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 
 import {
-  IMainCategoriesItem,
   ICategoriesItem,
+  IMainCategoriesItem,
 } from '@/assets/interfaces/categories';
 
 interface IDefaultState {

@@ -1,8 +1,16 @@
 import { v4 as uuidv4 } from 'uuid';
+import { storeToRefs } from 'pinia';
+import { useCategoriesStore } from '@/stores/categoriesStore';
 import { IRecordForm } from '@/assets/interfaces/record';
+import { EnumAccountType } from '@/assets/enums/record';
 
-export const useRecordForm = (payload?: IRecordForm): IRecordForm => {
+export const useRecordForm = (
+  accountType: EnumAccountType,
+  payload?: IRecordForm
+): IRecordForm => {
   const dayjs = useDayjs();
+  const categoriesStore = useCategoriesStore();
+  const { income, expense } = storeToRefs(categoriesStore);
 
   if (payload) {
     const { price, store, time, note, tags } = payload;
@@ -20,6 +28,7 @@ export const useRecordForm = (payload?: IRecordForm): IRecordForm => {
 
   const defaultForm: IRecordForm = {
     id: uuidv4(),
+    category: '',
     price: 0,
     store: '',
     time: dayjs().valueOf(),

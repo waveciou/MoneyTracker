@@ -1,5 +1,5 @@
 {
-  "expense": [
+  "data": [
     {
       "id": "food",
       "name": "飲食",
@@ -208,28 +208,6 @@
           "name": "探索"
         }
       ]
-    }
-  ],
-  "income": [
-    {
-      "id": "salary",
-      "name": "薪水"
-    },
-    {
-      "id": "bonus",
-      "name": "獎金"
-    },
-    {
-      "id": "allowance",
-      "name": "輔助費"
-    },
-    {
-      "id": "interest",
-      "name": "利息"
-    },
-    {
-      "id": "investment-profit",
-      "name": "投資獲利"
     }
   ]
 }
