@@ -44,13 +44,8 @@
   import { useNumberFormat } from '@/utils/useNumberFormat';
   import { ICalendarValue } from '@/assets/interfaces/record';
 
-  const props = defineProps<{
-    timestamp: number;
-  }>();
-
-  const emits = defineEmits<{
-    (e: 'update', value: number): void;
-  }>();
+  const props = defineProps<{ timestamp: number }>();
+  const emits = defineEmits<{ (e: 'update', value: number): void }>();
 
   const dayjs = useDayjs();
   const isPopUpOpen = ref<boolean>(false);

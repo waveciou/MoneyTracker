@@ -2,6 +2,12 @@
   <div class="w-full">
     <client-only>
       <FormPrice v-model.number="contextForm.price" class="mb-4" />
+      <FormCategoryExpense
+        v-if="accountType === EnumAccountType.EXPENSE"
+        v-model.trim="contextForm.category"
+        class="mb-4"
+        @update="handleCategoryUpdate"
+      />
       <FormStore v-model.trim="contextForm.store" class="mb-4" />
       <FormDatePicker
         :timestamp="contextForm.time"
@@ -72,6 +78,10 @@
 
   const handleTimeUpdate = (payload: number): void => {
     contextForm.time = payload;
+  };
+
+  const handleCategoryUpdate = (payload: string): void => {
+    contextForm.category = payload;
   };
 
   const handleReset = (): void => {

@@ -42,9 +42,7 @@
     { disabled: false }
   );
 
-  const emits = defineEmits<{
-    (e: 'update', value: number): void;
-  }>();
+  const emits = defineEmits<{ (e: 'update', value: number): void }>();
 
   const dayjs = useDayjs();
   const commonStore = useCommonStore();
