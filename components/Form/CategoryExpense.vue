@@ -45,8 +45,7 @@
       return expense.value[0].id || '';
     }
     const mainItem = expense.value.find(({ subcategories }) => {
-      const result = subcategories.find(({ id }) => id === subCategoryID);
-      return !!result;
+      return subcategories.some(({ id }) => id === subCategoryID);
     });
     return mainItem ? mainItem.id : '';
   };
@@ -104,5 +103,3 @@
     { immediate: true, deep: true }
   );
 </script>
-
-<style scoped></style>

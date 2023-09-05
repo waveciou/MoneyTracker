@@ -8,6 +8,12 @@
         class="mb-4"
         @update="handleCategoryUpdate"
       />
+      <FormCategoryIncome
+        v-if="accountType === EnumAccountType.INCOME"
+        v-model.trim="contextForm.category"
+        class="mb-4"
+        @update="handleCategoryUpdate"
+      />
       <FormStore v-model.trim="contextForm.store" class="mb-4" />
       <FormDatePicker
         :timestamp="contextForm.time"
