@@ -50,7 +50,7 @@
 <script setup lang="ts">
   import { computed, watch } from 'vue';
   import { storeToRefs } from 'pinia';
-  import calendarData from '@/public/data/calendar.json';
+  import calendarData from '@/assets/data/calendar.json';
   import { useCommonStore } from '@/stores/commonStore';
   import { useTodayValue } from '@/composables/useTodayValue';
   import { useNumberFormat } from '@/utils/useNumberFormat';
