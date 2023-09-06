@@ -6,13 +6,11 @@
         v-if="accountType === EnumAccountType.EXPENSE"
         v-model.trim="contextForm.category"
         class="mb-4"
-        @update="handleCategoryUpdate"
       />
       <FormCategoryIncome
         v-if="accountType === EnumAccountType.INCOME"
         v-model.trim="contextForm.category"
         class="mb-4"
-        @update="handleCategoryUpdate"
       />
       <FormStore v-model.trim="contextForm.store" class="mb-4" />
       <FormDatePicker
@@ -84,10 +82,6 @@
 
   const handleTimeUpdate = (payload: number): void => {
     contextForm.time = payload;
-  };
-
-  const handleCategoryUpdate = (payload: string): void => {
-    contextForm.category = payload;
   };
 
   const handleReset = (): void => {

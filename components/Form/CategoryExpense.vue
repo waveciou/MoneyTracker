@@ -33,7 +33,9 @@
   }
 
   const props = defineProps<{ modelValue: string }>();
-  const emits = defineEmits<{ (e: 'update', value: string): void }>();
+  const emits = defineEmits<{
+    (e: 'update:modelValue', value: string): void;
+  }>();
 
   const categoriesStore = useCategoriesStore();
   const { expense } = storeToRefs(categoriesStore);
@@ -98,7 +100,7 @@
   watch(
     () => selectedItem.value,
     (value) => {
-      emits('update', value.sub);
+      emits('update:modelValue', value.sub);
     },
     { immediate: true, deep: true }
   );

@@ -17,7 +17,9 @@
   import { EnumAccountType } from '@/assets/enums/record';
 
   const props = defineProps<{ modelValue: string }>();
-  const emits = defineEmits<{ (e: 'update', value: string): void }>();
+  const emits = defineEmits<{
+    (e: 'update:modelValue', value: string): void;
+  }>();
 
   const categoriesStore = useCategoriesStore();
   const { income } = storeToRefs(categoriesStore);
@@ -38,7 +40,7 @@
   watch(
     () => selectedID.value,
     (value) => {
-      emits('update', value);
+      emits('update:modelValue', value);
     },
     { immediate: true, deep: true }
   );
