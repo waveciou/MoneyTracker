@@ -16,17 +16,23 @@
     <Transition name="fade">
       <SearchSection v-if="isShowSearch" class="fade-animation" />
     </Transition>
+    <Transition name="fade">
+      <RecordSection v-if="isShowRecord" class="fade-animation" />
+    </Transition>
   </main>
 </template>
 
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useCommonStore } from '@/stores/commonStore';
+  import { useRecordStore } from '@/stores/recordStore';
   import { useSetCategories } from '@/composables/useSetCategories';
 
   const route = useRoute();
   const commonStore = useCommonStore();
+  const recordStore = useRecordStore();
   const { isShowSearch } = storeToRefs(commonStore);
+  const { isShowRecord } = storeToRefs(recordStore);
 
   const contentRef = ref<HTMLDivElement>(null as unknown as HTMLDivElement);
 

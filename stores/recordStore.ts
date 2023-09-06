@@ -4,12 +4,13 @@ import { IRecordForm } from '@/assets/interfaces/record';
 interface IDefaultState {
   income: IRecordForm[];
   expense: IRecordForm[];
+  isShowRecord: boolean;
 }
 
 export const useRecordStore = defineStore({
   id: 'recordStore',
   state: (): IDefaultState => {
-    return { income: [], expense: [] };
+    return { income: [], expense: [], isShowRecord: false };
   },
   actions: {
     ADD_INCOME_RECORD(payload: IRecordForm) {

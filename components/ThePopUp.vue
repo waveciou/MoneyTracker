@@ -18,9 +18,7 @@
 </template>
 
 <script setup lang="ts">
-  const emits = defineEmits<{
-    (e: 'close'): void;
-  }>();
+  const emits = defineEmits<{ (e: 'close'): void }>();
 
   defineProps<{ isOpen: boolean }>();
 </script>

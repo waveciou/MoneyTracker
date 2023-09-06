@@ -1,27 +1,40 @@
 <template>
   <nav class="w-full h-menu-height basis-menu-height bg-black-darkest">
     <div class="flex">
-      <NuxtLink
-        v-for="item in menuButtons"
-        :key="item.path"
-        :to="item.path"
-        :title="item.name"
-        class="w-1/5 h-menu-height flex justify-center items-center"
-      >
-        <div
-          class="before-font-material text-center before:block before:w-10 before:h-8 before:m-auto before:text-center before:text-3xl"
-          :class="`${item.className}`"
+      <template v-for="item in menuButtons" :key="item.path">
+        <button
+          v-if="item.name === 'Record'"
+          :title="item.name"
+          :class="provideLinkClassName"
+          @click="handleClickRecord"
         >
-          <span class="block leading-5 tracking-normal text-xs truncate">
-            {{ item.name }}
-          </span>
-        </div>
-      </NuxtLink>
+          <div :class="`${provideDivClassName} ${item.className}`">
+            <span :class="provideSpanClassName">
+              {{ item.name }}
+            </span>
+          </div>
+        </button>
+        <NuxtLink
+          v-else
+          :to="item.path"
+          :title="item.name"
+          :class="provideLinkClassName"
+        >
+          <div :class="`${provideDivClassName} ${item.className}`">
+            <span :class="provideSpanClassName">
+              {{ item.name }}
+            </span>
+          </div>
+        </NuxtLink>
+      </template>
     </div>
   </nav>
 </template>
 
 <script setup lang="ts">
+  import { useRecordStore } from '@/stores/recordStore';
+  const recordStore = useRecordStore();
+
   interface IMenuButtonItem {
     name: string;
     path: string;
@@ -41,7 +54,7 @@
     },
     {
       name: 'Record',
-      path: '/record',
+      path: '',
       className: 'icon-record',
     },
     {
@@ -55,6 +68,22 @@
       className: 'icon-setting',
     },
   ]);
+
+  const provideLinkClassName = ref<string>(
+    'w-1/5 h-menu-height flex justify-center items-center'
+  );
+
+  const provideDivClassName = ref<string>(
+    'before-font-material text-center before:block before:w-10 before:h-8 before:m-auto before:text-center before:text-3xl'
+  );
+
+  const provideSpanClassName = ref<string>(
+    'block leading-5 tracking-normal text-xs truncate'
+  );
+
+  const handleClickRecord = (): void => {
+    recordStore.isShowRecord = true;
+  };
 </script>
 
 <style lang="scss" scoped>
