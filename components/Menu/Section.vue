@@ -1,38 +1,33 @@
 <template>
   <nav class="w-full h-menu-height basis-menu-height bg-black-darkest">
     <div class="flex">
-      <template v-for="item in menuButtons" :key="item.path">
-        <button
-          v-if="item.name === 'Record'"
-          :title="item.name"
-          :class="provideLinkClassName"
-          @click="handleClickRecord"
+      <button
+        v-for="item in menuButtons"
+        :key="item.name"
+        :title="item.name"
+        class="w-1/5 h-menu-height flex justify-center items-center"
+        :class="item.path === route.path && 'text-yellow'"
+        @click="handleClick(item)"
+      >
+        <div
+          class="before-font-material text-center before:block before:w-10 before:h-8 before:m-auto before:text-center before:text-3xl"
+          :class="`${item.className}`"
         >
-          <div :class="`${provideDivClassName} ${item.className}`">
-            <span :class="provideSpanClassName">
-              {{ item.name }}
-            </span>
-          </div>
-        </button>
-        <NuxtLink
-          v-else
-          :to="item.path"
-          :title="item.name"
-          :class="provideLinkClassName"
-        >
-          <div :class="`${provideDivClassName} ${item.className}`">
-            <span :class="provideSpanClassName">
-              {{ item.name }}
-            </span>
-          </div>
-        </NuxtLink>
-      </template>
+          <span class="block leading-5 tracking-normal text-xs truncate">
+            {{ item.name }}
+          </span>
+        </div>
+      </button>
     </div>
   </nav>
 </template>
 
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
+  import { EnumMenuName } from '@/assets/enums/menu';
+
+  const route = useRoute();
+  const router = useRouter();
   const recordStore = useRecordStore();
 
   interface IMenuButtonItem {
@@ -43,54 +38,42 @@
 
   const menuButtons = ref<IMenuButtonItem[]>([
     {
-      name: 'Calendar',
+      name: EnumMenuName.CALENDAR,
       path: '/',
       className: 'icon-home',
     },
     {
-      name: 'Overview',
+      name: EnumMenuName.OVERVIEW,
       path: '/overview',
       className: 'icon-overview',
     },
     {
-      name: 'Record',
+      name: EnumMenuName.RECORD,
       path: '',
       className: 'icon-record',
     },
     {
-      name: 'Analysis',
+      name: EnumMenuName.ANALYSIS,
       path: '/analysis',
       className: 'icon-analysis',
     },
     {
-      name: 'Setting',
+      name: EnumMenuName.SETTING,
       path: '/setting',
       className: 'icon-setting',
     },
   ]);
 
-  const provideLinkClassName = ref<string>(
-    'w-1/5 h-menu-height flex justify-center items-center'
-  );
-
-  const provideDivClassName = ref<string>(
-    'before-font-material text-center before:block before:w-10 before:h-8 before:m-auto before:text-center before:text-3xl'
-  );
-
-  const provideSpanClassName = ref<string>(
-    'block leading-5 tracking-normal text-xs truncate'
-  );
-
-  const handleClickRecord = (): void => {
-    recordStore.isShowRecord = true;
+  const handleClick = (payload: IMenuButtonItem): void => {
+    if (payload.name === EnumMenuName.RECORD) {
+      recordStore.isShowRecord = true;
+    } else {
+      router.push(payload.path);
+    }
   };
 </script>
 
 <style lang="scss" scoped>
-  .router-link-active {
-    @apply text-yellow;
-  }
-
   .icon-home::before {
     content: '\ebcc';
   }
