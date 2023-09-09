@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { EnumRecordMode, EnumAccountType } from '@/assets/enums/record';
+import { EnumRecordMode } from '@/assets/enums/record';
 import { IRecordForm } from '@/assets/interfaces/record';
 
 interface IDefaultState {
@@ -8,7 +8,6 @@ interface IDefaultState {
   isShowRecord: boolean;
   contextID: string;
   contextMode: EnumRecordMode;
-  contextForm: IRecordForm;
 }
 
 export const useRecordStore = defineStore({
@@ -20,7 +19,6 @@ export const useRecordStore = defineStore({
       isShowRecord: false,
       contextID: '',
       contextMode: EnumRecordMode.CREATER,
-      contextForm: useRecordForm(EnumAccountType.EXPENSE),
     };
   },
   actions: {
@@ -53,9 +51,6 @@ export const useRecordStore = defineStore({
       if (index >= 0) {
         this.expense.splice(index, 1);
       }
-    },
-    SET_CONTEXT_FORM(payload: IRecordForm) {
-      Object.assign(this.contextForm, payload);
     },
     HANDLE_CLOSE() {
       this.contextID = '';
