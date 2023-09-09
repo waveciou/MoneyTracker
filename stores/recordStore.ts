@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia';
-import { EnumAccountType } from '@/assets/enums/record';
+import { EnumRecordMode, EnumAccountType } from '@/assets/enums/record';
 import { IRecordForm } from '@/assets/interfaces/record';
 
 interface IDefaultState {
   income: IRecordForm[];
   expense: IRecordForm[];
   isShowRecord: boolean;
-  contextAccountType: EnumAccountType;
+  contextID: string;
+  contextMode: EnumRecordMode;
   contextForm: IRecordForm;
 }
 
@@ -17,16 +18,9 @@ export const useRecordStore = defineStore({
       income: [],
       expense: [],
       isShowRecord: false,
-      contextAccountType: EnumAccountType.EXPENSE,
-      contextForm: {
-        id: '',
-        category: '',
-        price: 0,
-        store: '',
-        time: 0,
-        note: '',
-        tags: [],
-      },
+      contextID: '',
+      contextMode: EnumRecordMode.CREATER,
+      contextForm: useRecordForm(EnumAccountType.EXPENSE),
     };
   },
   actions: {
@@ -60,11 +54,13 @@ export const useRecordStore = defineStore({
         this.expense.splice(index, 1);
       }
     },
-    SET_CONTEXT_ACCOUNT_TYPE(payload: EnumAccountType) {
-      this.contextAccountType = payload;
-    },
     SET_CONTEXT_FORM(payload: IRecordForm) {
       Object.assign(this.contextForm, payload);
+    },
+    HANDLE_CLOSE() {
+      this.contextID = '';
+      this.contextMode = EnumRecordMode.CREATER;
+      this.isShowRecord = false;
     },
   },
 });

@@ -11,26 +11,25 @@
     </div>
     <button
       class="before-font-material icon-done w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
+      @click="handleSubmit"
     />
   </header>
 </template>
 
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
+
+  const emits = defineEmits<{ (e: 'submit'): void }>();
+
   const recordStore = useRecordStore();
 
   const handleClose = (): void => {
-    recordStore.isShowRecord = false;
+    recordStore.HANDLE_CLOSE();
   };
 
-  // const handleSubmit = (): void => {
-  //   if (props.accountType === EnumAccountType.EXPENSE) {
-  //     recordStore.ADD_EXPENSE_RECORD(contextForm);
-  //   } else {
-  //     recordStore.ADD_INCOME_RECORD(contextForm);
-  //   }
-  //   router.push('/');
-  // };
+  const handleSubmit = (): void => {
+    emits('submit');
+  };
 </script>
 
 <style lang="scss" scoped>

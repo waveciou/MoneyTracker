@@ -25,6 +25,7 @@
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
   import { EnumMenuName } from '@/assets/enums/menu';
+  import { EnumRecordMode } from '@/assets/enums/record';
 
   const route = useRoute();
   const router = useRouter();
@@ -66,6 +67,8 @@
 
   const handleClick = (payload: IMenuButtonItem): void => {
     if (payload.name === EnumMenuName.RECORD) {
+      recordStore.contextID = '';
+      recordStore.contextMode = EnumRecordMode.CREATER;
       recordStore.isShowRecord = true;
     } else {
       router.push(payload.path);

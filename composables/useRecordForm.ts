@@ -36,9 +36,9 @@ export const useRecordForm = (
 
   const defaultCategory: string = (() => {
     if (accountType === EnumAccountType.EXPENSE) {
-      return expense.value[0].subcategories[0].id;
+      return expense.value[0]?.subcategories[0]?.id || '';
     }
-    return income.value[0].id;
+    return income.value[0]?.id || '';
   })();
 
   const defaultForm: IRecordForm = {

@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+  import { watch } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import { IRecordForm } from '@/assets/interfaces/record';
@@ -45,6 +46,8 @@
     { accountType: EnumAccountType.EXPENSE, recordId: '' }
   );
 
+  const emits = defineEmits<{ (e: 'update', value: IRecordForm): void }>();
+
   // 2. Validate this record data was save in Pinia and get record form.
 
   const currentForm: IRecordForm | undefined = (() => {
@@ -57,13 +60,21 @@
 
   // 3. Validate the data types and setting the form.
 
-  const contextForm = reactive<IRecordForm>(
+  const contextForm = ref<IRecordForm>(
     useRecordForm(props.accountType, currentForm)
   );
 
   // Function
 
   const handleTimeUpdate = (payload: number): void => {
-    contextForm.time = payload;
+    contextForm.value.time = payload;
   };
+
+  watch(
+    () => contextForm.value,
+    (value) => {
+      emits('update', value);
+    },
+    { immediate: true, deep: true }
+  );
 </script>
