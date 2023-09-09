@@ -25,22 +25,6 @@
       />
       <FormNote v-model.trim="contextForm.note" class="mb-4" />
       <FormTags v-model.trim="contextForm.tags" class="mb-4" />
-      <div class="flex items-center mb-4">
-        <TheButton
-          class="w-full flex-1 mr-[0.3125rem]"
-          title="Reset"
-          @click="handleReset"
-        >
-          Reset
-        </TheButton>
-        <TheButton
-          class="w-full flex-1 ml-[0.3125rem]"
-          title="Submit"
-          @click="handleSubmit"
-        >
-          Submit
-        </TheButton>
-      </div>
     </client-only>
   </div>
 </template>
@@ -51,7 +35,6 @@
   import { IRecordForm } from '@/assets/interfaces/record';
   import { EnumAccountType } from '@/assets/enums/record';
 
-  const router = useRouter();
   const recordStore = useRecordStore();
   const { income, expense } = storeToRefs(recordStore);
 
@@ -82,20 +65,5 @@
 
   const handleTimeUpdate = (payload: number): void => {
     contextForm.time = payload;
-  };
-
-  const handleReset = (): void => {
-    const result: IRecordForm = useRecordForm(props.accountType);
-    Object.assign(contextForm, result);
-  };
-
-  const handleSubmit = (): void => {
-    if (props.accountType === EnumAccountType.EXPENSE) {
-      recordStore.ADD_EXPENSE_RECORD(contextForm);
-    } else {
-      recordStore.ADD_INCOME_RECORD(contextForm);
-    }
-    handleReset();
-    router.push('/');
   };
 </script>

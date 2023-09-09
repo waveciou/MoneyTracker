@@ -7,9 +7,7 @@
 <script setup lang="ts">
   import { ICalendarValue } from '@/assets/interfaces/record';
 
-  const handleCalendarUpdate = (payload: ICalendarValue): void => {
-    console.log(payload);
-  };
+  const handleCalendarUpdate = (_payload: ICalendarValue): void => {};
 </script>
 
 <style lang="scss" scoped></style>

@@ -42,5 +42,3 @@
     emits('update:modelValue', payload);
   };
 </script>
-
-<style scoped></style>
