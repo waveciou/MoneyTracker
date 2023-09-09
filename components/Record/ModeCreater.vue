@@ -31,7 +31,7 @@
   const selectedForm = ref<IRecordForm>(useRecordForm(EnumAccountType.EXPENSE));
 
   const handleUpdate = (payload: IRecordForm): void => {
-    selectedForm.value = payload;
+    Object.assign(selectedForm.value, payload);
   };
 
   const handleSubmit = (): void => {

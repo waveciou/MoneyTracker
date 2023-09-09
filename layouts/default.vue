@@ -26,7 +26,6 @@
   import { storeToRefs } from 'pinia';
   import { useCommonStore } from '@/stores/commonStore';
   import { useRecordStore } from '@/stores/recordStore';
-  import { useSetCategories } from '@/composables/useSetCategories';
 
   const route = useRoute();
   const commonStore = useCommonStore();
@@ -35,8 +34,6 @@
   const { isShowRecord } = storeToRefs(recordStore);
 
   const contentRef = ref<HTMLDivElement>(null as unknown as HTMLDivElement);
-
-  useSetCategories();
 
   const handleScroll = (): void => {
     const value: number = contentRef?.value?.scrollTop || 0;

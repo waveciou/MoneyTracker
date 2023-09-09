@@ -6,6 +6,9 @@ import {
   IMainCategoriesItem,
 } from '@/assets/interfaces/categories';
 
+import expenseCategories from '@/assets/data/categories/expense.json';
+import incomeCategories from '@/assets/data/categories/income.json';
+
 interface IDefaultState {
   income: ICategoriesItem[];
   expense: IMainCategoriesItem[];
@@ -14,7 +17,10 @@ interface IDefaultState {
 export const useCategoriesStore = defineStore({
   id: 'categoriesStore',
   state: (): IDefaultState => {
-    return { income: [], expense: [] };
+    return {
+      income: [...incomeCategories.data],
+      expense: [...expenseCategories.data],
+    };
   },
   getters: {
     optionsExpenseMainCategory: (state): IInputSelectOption[] => {
