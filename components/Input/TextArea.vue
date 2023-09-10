@@ -40,5 +40,3 @@
     emits('update:modelValue', value);
   };
 </script>
-
-<style lang="scss" scoped></style>

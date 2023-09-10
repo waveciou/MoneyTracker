@@ -12,5 +12,3 @@
 <script setup lang="ts">
   const isPopUpOpen = ref<boolean>(false);
 </script>
-
-<style lang="scss" scoped></style>

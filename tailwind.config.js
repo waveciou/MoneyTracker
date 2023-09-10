@@ -17,10 +17,12 @@ module.exports = {
       spacing: {
         'header-height': '50px',
         'menu-height': '60px',
+        'icon-size': '60px',
         'wrap-space': '15px',
       },
       width: {
         'popup': 'calc(100% - 30px)',
+        'card-content': 'calc(100% - 60px)',
       },
       maxWidth: {
         'container': '480px',

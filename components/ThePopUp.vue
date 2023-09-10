@@ -22,5 +22,3 @@
 
   defineProps<{ isOpen: boolean }>();
 </script>
-
-<style lang="scss" scoped></style>

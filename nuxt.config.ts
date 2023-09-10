@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        lang: 'zh-Hant-TW',
+        lang: 'en',
       },
       title: 'Money Tracker',
       meta: [

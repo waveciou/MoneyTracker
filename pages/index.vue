@@ -1,13 +1,16 @@
 <template>
   <div>
-    <TheCalendar @update="handleCalendarUpdate" />
+    <TheCalendar class="mb-4" @update="handleCalendarUpdate" />
+    <CardList :date-info="selectedDate" />
   </div>
 </template>
 
 <script setup lang="ts">
   import { ICalendarValue } from '@/assets/interfaces/record';
 
-  const handleCalendarUpdate = (_payload: ICalendarValue): void => {};
-</script>
+  const selectedDate = ref<ICalendarValue>(useTodayValue());
 
-<style lang="scss" scoped></style>
+  const handleCalendarUpdate = (payload: ICalendarValue): void => {
+    selectedDate.value = payload;
+  };
+</script>

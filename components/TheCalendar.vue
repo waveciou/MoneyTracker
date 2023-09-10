@@ -56,16 +56,11 @@
   import { useNumberFormat } from '@/utils/useNumberFormat';
   import { ICalendarValue } from '@/assets/interfaces/record';
 
-  const props = withDefaults(
-    defineProps<{
-      default?: ICalendarValue;
-    }>(),
-    {
-      default() {
-        return useTodayValue();
-      },
-    }
-  );
+  const props = withDefaults(defineProps<{ default?: ICalendarValue }>(), {
+    default() {
+      return useTodayValue();
+    },
+  });
 
   const emits = defineEmits<{
     (e: 'update', value: ICalendarValue): void;
