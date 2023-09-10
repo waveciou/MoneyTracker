@@ -66,7 +66,7 @@
 
   const handleClick = (payload: IMenuButtonItem): void => {
     if (payload.name === EnumMenuName.RECORD) {
-      recordStore.HANDLE_MODE_CREATER();
+      recordStore.HANDLE_MODE_CREATOR();
     } else {
       router.push(payload.path);
     }

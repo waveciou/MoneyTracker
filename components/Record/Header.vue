@@ -30,7 +30,7 @@
   const { contextMode } = storeToRefs(recordStore);
 
   const provideTitle = computed((): string => {
-    if (contextMode.value === EnumRecordMode.CREATER) {
+    if (contextMode.value === EnumRecordMode.CREATOR) {
       return 'New Record';
     } else if (contextMode.value === EnumRecordMode.EDITOR) {
       return 'Edit Record';

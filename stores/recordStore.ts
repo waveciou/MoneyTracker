@@ -40,9 +40,9 @@ export const useRecordStore = defineStore({
       this.contextMode = null;
       this.isShowRecord = false;
     },
-    HANDLE_MODE_CREATER(): void {
+    HANDLE_MODE_CREATOR(): void {
       this.contextID = '';
-      this.contextMode = EnumRecordMode.CREATER;
+      this.contextMode = EnumRecordMode.CREATOR;
       this.isShowRecord = true;
     },
     HANDLE_MODE_EDITOR(id: string): void {

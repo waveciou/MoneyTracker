@@ -37,7 +37,7 @@
 
   const recordStore = useRecordStore();
 
-  // 1. Get Record ID from Props
+  // 1. Get Record Type & Record ID from Props.
 
   const props = withDefaults(
     defineProps<{ recordType: EnumRecordType; recordId?: string }>(),
@@ -56,7 +56,7 @@
     }
   })();
 
-  // 3. Validate the data types and setting the form.
+  // 3. Validate the data types and setting this form.
 
   const contextForm = ref<IRecordForm>(
     useRecordForm(props.recordType, currentForm)

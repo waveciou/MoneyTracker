@@ -2,7 +2,7 @@
   <article
     class="w-full h-full absolute top-0 left-0 overflow-hidden bg-black-base"
   >
-    <RecordModeCreater v-if="contextMode === EnumRecordMode.CREATER" />
+    <RecordModeCreator v-if="contextMode === EnumRecordMode.CREATOR" />
     <RecordModeEditor v-else-if="contextMode === EnumRecordMode.EDITOR" />
   </article>
 </template>

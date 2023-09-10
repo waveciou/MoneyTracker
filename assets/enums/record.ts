@@ -1,5 +1,5 @@
 enum EnumRecordMode {
-  CREATER = 'creater',
+  CREATOR = 'creator',
   EDITOR = 'editor',
 }
 
