@@ -18,6 +18,7 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useCommonStore } from '@/stores/commonStore';
+  import { EnumHeaderName, EnumRouteName } from '@/assets/enums/index';
 
   const route = useRoute();
   const commonStore = useCommonStore();
@@ -25,16 +26,14 @@
 
   const provideHeaderName = computed((): string => {
     switch (route.path) {
-      case '/':
-        return 'Calendar';
-      case '/overview':
-        return 'Overview';
-      case '/record':
-        return 'Create Record';
-      case '/analysis':
-        return 'Analysis';
-      case '/setting':
-        return 'Setting';
+      case EnumRouteName.CALENDAR:
+        return EnumHeaderName.CALENDAR;
+      case EnumRouteName.OVERVIEW:
+        return EnumHeaderName.OVERVIEW;
+      case EnumRouteName.ANALYSIS:
+        return EnumHeaderName.ANALYSIS;
+      case EnumRouteName.SETTING:
+        return EnumHeaderName.SETTING;
       default:
         return '';
     }

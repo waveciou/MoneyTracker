@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumMenuName } from '@/assets/enums/menu';
+  import { EnumMenuName, EnumRouteName } from '@/assets/enums/index';
 
   const route = useRoute();
   const router = useRouter();
@@ -39,12 +39,12 @@
   const menuButtons = ref<IMenuButtonItem[]>([
     {
       name: EnumMenuName.CALENDAR,
-      path: '/',
+      path: EnumRouteName.CALENDAR,
       className: 'icon-home',
     },
     {
       name: EnumMenuName.OVERVIEW,
-      path: '/overview',
+      path: EnumRouteName.OVERVIEW,
       className: 'icon-overview',
     },
     {
@@ -54,12 +54,12 @@
     },
     {
       name: EnumMenuName.ANALYSIS,
-      path: '/analysis',
+      path: EnumRouteName.ANALYSIS,
       className: 'icon-analysis',
     },
     {
       name: EnumMenuName.SETTING,
-      path: '/setting',
+      path: EnumRouteName.SETTING,
       className: 'icon-setting',
     },
   ]);
