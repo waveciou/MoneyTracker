@@ -23,14 +23,14 @@
   import { useRecordStore } from '@/stores/recordStore';
   import { EnumAccountType } from '@/assets/enums/record';
   import { IRecordForm } from '@/assets/interfaces/record';
-  import { useGetAccountType } from '@/composables/useGetAccountType';
 
   const recordStore = useRecordStore();
   const { contextID } = storeToRefs(recordStore);
 
   const selectedAccountType = ref<EnumAccountType | null>(
-    useGetAccountType(contextID.value)
+    recordStore.contextAccountType
   );
+
   const selectedForm = ref<IRecordForm>(useRecordForm(EnumAccountType.EXPENSE));
 
   const handleUpdate = (payload: IRecordForm): void => {
@@ -38,11 +38,7 @@
   };
 
   const handleSubmit = (): void => {
-    if (selectedAccountType.value === EnumAccountType.EXPENSE) {
-      recordStore.ADD_EXPENSE_RECORD(selectedForm.value);
-    } else {
-      recordStore.ADD_INCOME_RECORD(selectedForm.value);
-    }
+    recordStore.ADD_RECORD(selectedForm.value);
     recordStore.HANDLE_CLOSE();
   };
 </script>

@@ -35,11 +35,7 @@
   };
 
   const handleSubmit = (): void => {
-    if (selectedAccountType.value === EnumAccountType.EXPENSE) {
-      recordStore.ADD_EXPENSE_RECORD(selectedForm.value);
-    } else {
-      recordStore.ADD_INCOME_RECORD(selectedForm.value);
-    }
+    recordStore.ADD_RECORD(selectedForm.value);
     recordStore.HANDLE_CLOSE();
     router.push('/');
   };

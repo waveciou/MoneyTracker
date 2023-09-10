@@ -1,61 +1,76 @@
 import { defineStore } from 'pinia';
-import { EnumRecordMode } from '@/assets/enums/record';
+import { EnumRecordMode, EnumAccountType } from '@/assets/enums/record';
 import { IRecordForm } from '@/assets/interfaces/record';
 
 interface IDefaultState {
-  income: IRecordForm[];
-  expense: IRecordForm[];
+  storage: IRecordForm[];
   isShowRecord: boolean;
   contextID: string;
-  contextMode: EnumRecordMode;
+  contextMode: EnumRecordMode | null;
 }
 
 export const useRecordStore = defineStore({
   id: 'recordStore',
   state: (): IDefaultState => {
     return {
-      income: [],
-      expense: [],
+      storage: [],
       isShowRecord: false,
       contextID: '',
-      contextMode: EnumRecordMode.CREATER,
+      contextMode: null,
     };
   },
   actions: {
-    ADD_INCOME_RECORD(payload: IRecordForm) {
-      const index: number = this.income.findIndex(
+    ADD_RECORD(payload: IRecordForm): void {
+      const index: number = this.storage.findIndex(
         ({ id }) => id === payload.id
       );
       if (index >= 0) {
-        this.income.splice(index, 1);
+        this.storage.splice(index, 1);
       }
-      this.income.push(payload);
+      this.storage.push(payload);
     },
-    ADD_EXPENSE_RECORD(payload: IRecordForm) {
-      const index: number = this.expense.findIndex(
-        ({ id }) => id === payload.id
-      );
+    DELETE_RECORD(id: string): void {
+      const index: number = this.storage.findIndex((item) => item.id === id);
       if (index >= 0) {
-        this.expense.splice(index, 1);
-      }
-      this.expense.push(payload);
-    },
-    DELETE_INCOME_RECORD(id: string) {
-      const index: number = this.income.findIndex((item) => item.id === id);
-      if (index >= 0) {
-        this.income.splice(index, 1);
+        this.storage.splice(index, 1);
       }
     },
-    DELETE_EXPENSE_RECORD(id: string) {
-      const index: number = this.expense.findIndex((item) => item.id === id);
-      if (index >= 0) {
-        this.expense.splice(index, 1);
-      }
+    HANDLE_CLOSE(): void {
+      this.contextID = '';
+      this.contextMode = null;
+      this.isShowRecord = false;
     },
-    HANDLE_CLOSE() {
+    HANDLE_MODE_CREATER(): void {
       this.contextID = '';
       this.contextMode = EnumRecordMode.CREATER;
-      this.isShowRecord = false;
+      this.isShowRecord = true;
+    },
+    HANDLE_MODE_EDITOR(id: string): void {
+      this.contextID = id;
+      this.contextMode = EnumRecordMode.EDITOR;
+      this.isShowRecord = true;
+    },
+  },
+  getters: {
+    incomeRecords: (state: IDefaultState): IRecordForm[] => {
+      return state.storage.filter(
+        ({ category }) => useValidCategory(category) === EnumAccountType.INCOME
+      );
+    },
+    expenseRecords: (state: IDefaultState): IRecordForm[] => {
+      return state.storage.filter(
+        ({ category }) => useValidCategory(category) === EnumAccountType.EXPENSE
+      );
+    },
+    contextAccountType: (state: IDefaultState): EnumAccountType | null => {
+      const currentRecord = state.storage.find(
+        ({ id }) => state.contextID === id
+      );
+
+      if (currentRecord) {
+        return useValidCategory(currentRecord.category);
+      }
+      return null;
     },
   },
 });

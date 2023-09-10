@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-  import { watch, computed } from 'vue';
+  import { computed, watch } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useCategoriesStore } from '@/stores/categoriesStore';
   import { IInputSelectOption } from '@/assets/interfaces/element';

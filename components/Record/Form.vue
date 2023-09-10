@@ -31,13 +31,11 @@
 
 <script setup lang="ts">
   import { watch } from 'vue';
-  import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import { IRecordForm } from '@/assets/interfaces/record';
   import { EnumAccountType } from '@/assets/enums/record';
 
   const recordStore = useRecordStore();
-  const { income, expense } = storeToRefs(recordStore);
 
   // 1. Get Record ID from Props
 
@@ -52,9 +50,9 @@
 
   const currentForm: IRecordForm | undefined = (() => {
     if (props.accountType === EnumAccountType.EXPENSE) {
-      return expense.value.find(({ id }) => id === props.recordId);
+      return recordStore.expenseRecords.find(({ id }) => id === props.recordId);
     } else {
-      return income.value.find(({ id }) => id === props.recordId);
+      return recordStore.incomeRecords.find(({ id }) => id === props.recordId);
     }
   })();
 
