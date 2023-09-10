@@ -3,24 +3,24 @@
     <button
       class="w-full flex-1 mr-[0.3125rem] py-1.5 px-2.5 block border border-solid rounded text-base truncate"
       :class="
-        props.modelValue === EnumAccountType.EXPENSE
+        props.modelValue === EnumRecordType.EXPENSE
           ? 'bg-yellow border-yellow text-black-darker'
           : 'bg-black-base border-white text-white'
       "
       title="Expense"
-      @click="handleClick(EnumAccountType.EXPENSE)"
+      @click="handleClick(EnumRecordType.EXPENSE)"
     >
       EXPENSE
     </button>
     <button
       class="w-full flex-1 ml-[0.3125rem] py-1.5 px-2.5 block border border-solid rounded text-base truncate"
       :class="
-        props.modelValue === EnumAccountType.INCOME
+        props.modelValue === EnumRecordType.INCOME
           ? 'bg-yellow border-yellow text-black-darker'
           : 'bg-black-base border-white text-white'
       "
       title="Income"
-      @click="handleClick(EnumAccountType.INCOME)"
+      @click="handleClick(EnumRecordType.INCOME)"
     >
       INCOME
     </button>
@@ -28,17 +28,17 @@
 </template>
 
 <script setup lang="ts">
-  import { EnumAccountType } from '@/assets/enums/record';
+  import { EnumRecordType } from '@/assets/enums/record';
 
   const props = withDefaults(defineProps<{ modelValue: string }>(), {
-    modelValue: EnumAccountType.EXPENSE,
+    modelValue: EnumRecordType.EXPENSE,
   });
 
   const emits = defineEmits<{
-    (e: 'update:modelValue', value: EnumAccountType): void;
+    (e: 'update:modelValue', value: EnumRecordType): void;
   }>();
 
-  const handleClick = (payload: EnumAccountType): void => {
+  const handleClick = (payload: EnumRecordType): void => {
     emits('update:modelValue', payload);
   };
 </script>

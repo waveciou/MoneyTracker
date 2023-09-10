@@ -25,7 +25,8 @@
   import { storeToRefs } from 'pinia';
   import { useCategoriesStore } from '@/stores/categoriesStore';
   import { IInputSelectOption } from '@/assets/interfaces/element';
-  import { EnumAccountType } from '@/assets/enums/record';
+  import { EnumRecordType } from '@/assets/enums/record';
+  import { useValidCategory } from '@/composables/useValidCategory';
 
   interface ISelectedID {
     main: string;
@@ -43,7 +44,7 @@
   // Validate & Getting Default Main Category ID
 
   const provideDefaultMainID = (subCategoryID: string): string => {
-    if (useValidCategory(subCategoryID) !== EnumAccountType.EXPENSE) {
+    if (useValidCategory(subCategoryID) !== EnumRecordType.EXPENSE) {
       return expense.value[0].id || '';
     }
     const mainItem = expense.value.find(({ subcategories }) => {
@@ -55,7 +56,7 @@
   // Validate & Getting Default Sub Category ID
 
   const provideDefaultSubID = (subCategoryID: string): string => {
-    if (useValidCategory(subCategoryID) !== EnumAccountType.EXPENSE) {
+    if (useValidCategory(subCategoryID) !== EnumRecordType.EXPENSE) {
       return expense.value[0].subcategories[0].id || '';
     }
     return subCategoryID;

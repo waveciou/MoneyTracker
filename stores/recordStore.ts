@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { EnumRecordMode, EnumAccountType } from '@/assets/enums/record';
+import { EnumRecordMode, EnumRecordType } from '@/assets/enums/record';
 import { IRecordForm } from '@/assets/interfaces/record';
 
 interface IDefaultState {
@@ -54,15 +54,15 @@ export const useRecordStore = defineStore({
   getters: {
     incomeRecords: (state: IDefaultState): IRecordForm[] => {
       return state.storage.filter(
-        ({ category }) => useValidCategory(category) === EnumAccountType.INCOME
+        ({ category }) => useValidCategory(category) === EnumRecordType.INCOME
       );
     },
     expenseRecords: (state: IDefaultState): IRecordForm[] => {
       return state.storage.filter(
-        ({ category }) => useValidCategory(category) === EnumAccountType.EXPENSE
+        ({ category }) => useValidCategory(category) === EnumRecordType.EXPENSE
       );
     },
-    contextAccountType: (state: IDefaultState): EnumAccountType | null => {
+    contextRecordType: (state: IDefaultState): EnumRecordType | null => {
       const currentRecord = state.storage.find(
         ({ id }) => state.contextID === id
       );

@@ -2,10 +2,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { storeToRefs } from 'pinia';
 import { useCategoriesStore } from '@/stores/categoriesStore';
 import { IRecordForm } from '@/assets/interfaces/record';
-import { EnumAccountType } from '@/assets/enums/record';
+import { EnumRecordType } from '@/assets/enums/record';
 
 export const useRecordForm = (
-  accountType: EnumAccountType,
+  recordType: EnumRecordType,
   payload?: IRecordForm
 ): IRecordForm => {
   const dayjs = useDayjs();
@@ -15,7 +15,7 @@ export const useRecordForm = (
   if (payload) {
     const { category, price, store, time, note, tags } = payload;
 
-    const validCategory: boolean = useValidCategory(category) === accountType;
+    const validCategory: boolean = useValidCategory(category) === recordType;
     const validPrice: boolean = typeof price === 'number' && price >= 0;
     const validStore: boolean = typeof store === 'string';
     const validTime: boolean = typeof time === 'number';
@@ -35,7 +35,7 @@ export const useRecordForm = (
   }
 
   const defaultCategory: string = (() => {
-    if (accountType === EnumAccountType.EXPENSE) {
+    if (recordType === EnumRecordType.EXPENSE) {
       return expense.value[0]?.subcategories[0]?.id || '';
     }
     return income.value[0]?.id || '';

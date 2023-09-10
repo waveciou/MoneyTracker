@@ -1,18 +1,16 @@
 import { storeToRefs } from 'pinia';
 import { useCategoriesStore } from '@/stores/categoriesStore';
 import { IMainCategoriesItem } from '@/assets/interfaces/categories';
-import { EnumAccountType } from '@/assets/enums/record';
+import { EnumRecordType } from '@/assets/enums/record';
 
-export const useValidCategory = (
-  categoryID: string
-): EnumAccountType | null => {
+export const useValidCategory = (categoryID: string): EnumRecordType | null => {
   const categoriesStore = useCategoriesStore();
   const { income, expense } = storeToRefs(categoriesStore);
 
   const isIncome: boolean = income.value.some(({ id }) => id === categoryID);
 
   if (isIncome) {
-    return EnumAccountType.INCOME;
+    return EnumRecordType.INCOME;
   }
 
   const isExpens: boolean = expense.value.reduce(
@@ -27,7 +25,7 @@ export const useValidCategory = (
   );
 
   if (isExpens) {
-    return EnumAccountType.EXPENSE;
+    return EnumRecordType.EXPENSE;
   }
   return null;
 };

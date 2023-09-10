@@ -3,9 +3,9 @@ enum EnumRecordMode {
   EDITOR = 'editor',
 }
 
-enum EnumAccountType {
+enum EnumRecordType {
   INCOME = 'income',
   EXPENSE = 'expense',
 }
 
-export { EnumRecordMode, EnumAccountType };
+export { EnumRecordMode, EnumRecordType };

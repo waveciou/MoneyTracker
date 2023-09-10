@@ -3,12 +3,12 @@
     <client-only>
       <FormPrice v-model.number="contextForm.price" class="mb-4" />
       <FormCategoryExpense
-        v-if="accountType === EnumAccountType.EXPENSE"
+        v-if="recordType === EnumRecordType.EXPENSE"
         v-model.trim="contextForm.category"
         class="mb-4"
       />
       <FormCategoryIncome
-        v-if="accountType === EnumAccountType.INCOME"
+        v-if="recordType === EnumRecordType.INCOME"
         v-model.trim="contextForm.category"
         class="mb-4"
       />
@@ -33,15 +33,15 @@
   import { watch } from 'vue';
   import { useRecordStore } from '@/stores/recordStore';
   import { IRecordForm } from '@/assets/interfaces/record';
-  import { EnumAccountType } from '@/assets/enums/record';
+  import { EnumRecordType } from '@/assets/enums/record';
 
   const recordStore = useRecordStore();
 
   // 1. Get Record ID from Props
 
   const props = withDefaults(
-    defineProps<{ accountType: EnumAccountType; recordId?: string }>(),
-    { accountType: EnumAccountType.EXPENSE, recordId: '' }
+    defineProps<{ recordType: EnumRecordType; recordId?: string }>(),
+    { recordType: EnumRecordType.EXPENSE, recordId: '' }
   );
 
   const emits = defineEmits<{ (e: 'update', value: IRecordForm): void }>();
@@ -49,7 +49,7 @@
   // 2. Validate this record data was save in Pinia and get record form.
 
   const currentForm: IRecordForm | undefined = (() => {
-    if (props.accountType === EnumAccountType.EXPENSE) {
+    if (props.recordType === EnumRecordType.EXPENSE) {
       return recordStore.expenseRecords.find(({ id }) => id === props.recordId);
     } else {
       return recordStore.incomeRecords.find(({ id }) => id === props.recordId);
@@ -59,7 +59,7 @@
   // 3. Validate the data types and setting the form.
 
   const contextForm = ref<IRecordForm>(
-    useRecordForm(props.accountType, currentForm)
+    useRecordForm(props.recordType, currentForm)
   );
 
   // Function

@@ -2,16 +2,16 @@
   <div class="w-full h-full flex flex-col">
     <RecordHeader @submit="handleSubmit" />
     <div class="h-full overflow-x-hidden relative px-wrap-space">
-      <RecordAccountSelect v-model="selectedAccountType" />
+      <RecordTypeSelector v-model="selectedRecordType" />
       <Transition name="fade">
         <RecordForm
-          v-if="selectedAccountType === EnumAccountType.EXPENSE"
-          :account-type="EnumAccountType.EXPENSE"
+          v-if="selectedRecordType === EnumRecordType.EXPENSE"
+          :record-type="EnumRecordType.EXPENSE"
           @update="handleUpdate"
         />
         <RecordForm
-          v-else-if="selectedAccountType === EnumAccountType.INCOME"
-          :account-type="EnumAccountType.INCOME"
+          v-else-if="selectedRecordType === EnumRecordType.INCOME"
+          :record-type="EnumRecordType.INCOME"
           @update="handleUpdate"
         />
       </Transition>
@@ -21,14 +21,14 @@
 
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumAccountType } from '@/assets/enums/record';
+  import { EnumRecordType } from '@/assets/enums/record';
   import { IRecordForm } from '@/assets/interfaces/record';
 
   const router = useRouter();
   const recordStore = useRecordStore();
 
-  const selectedAccountType = ref<EnumAccountType>(EnumAccountType.EXPENSE);
-  const selectedForm = ref<IRecordForm>(useRecordForm(EnumAccountType.EXPENSE));
+  const selectedRecordType = ref<EnumRecordType>(EnumRecordType.EXPENSE);
+  const selectedForm = ref<IRecordForm>(useRecordForm(EnumRecordType.EXPENSE));
 
   const handleUpdate = (payload: IRecordForm): void => {
     Object.assign(selectedForm.value, payload);

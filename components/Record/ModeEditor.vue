@@ -3,14 +3,14 @@
     <RecordHeader @submit="handleSubmit" />
     <div class="h-full overflow-x-hidden relative px-wrap-space">
       <RecordForm
-        v-if="selectedAccountType === EnumAccountType.EXPENSE"
-        :account-type="EnumAccountType.EXPENSE"
+        v-if="selectedRecordType === EnumRecordType.EXPENSE"
+        :record-type="EnumRecordType.EXPENSE"
         :record-id="contextID"
         @update="handleUpdate"
       />
       <RecordForm
-        v-else-if="selectedAccountType === EnumAccountType.INCOME"
-        :account-type="EnumAccountType.INCOME"
+        v-else-if="selectedRecordType === EnumRecordType.INCOME"
+        :record-type="EnumRecordType.INCOME"
         :record-id="contextID"
         @update="handleUpdate"
       />
@@ -21,17 +21,17 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumAccountType } from '@/assets/enums/record';
+  import { EnumRecordType } from '@/assets/enums/record';
   import { IRecordForm } from '@/assets/interfaces/record';
 
   const recordStore = useRecordStore();
   const { contextID } = storeToRefs(recordStore);
 
-  const selectedAccountType = ref<EnumAccountType | null>(
-    recordStore.contextAccountType
+  const selectedRecordType = ref<EnumRecordType | null>(
+    recordStore.contextRecordType
   );
 
-  const selectedForm = ref<IRecordForm>(useRecordForm(EnumAccountType.EXPENSE));
+  const selectedForm = ref<IRecordForm>(useRecordForm(EnumRecordType.EXPENSE));
 
   const handleUpdate = (payload: IRecordForm): void => {
     Object.assign(selectedForm.value, payload);

@@ -14,7 +14,7 @@
   import { storeToRefs } from 'pinia';
   import { useCategoriesStore } from '@/stores/categoriesStore';
   import { IInputSelectOption } from '@/assets/interfaces/element';
-  import { EnumAccountType } from '@/assets/enums/record';
+  import { EnumRecordType } from '@/assets/enums/record';
 
   const props = defineProps<{ modelValue: string }>();
   const emits = defineEmits<{
@@ -25,7 +25,7 @@
   const { income } = storeToRefs(categoriesStore);
 
   const provideDefaultID = (categoryID: string): string => {
-    if (useValidCategory(categoryID) !== EnumAccountType.INCOME) {
+    if (useValidCategory(categoryID) !== EnumRecordType.INCOME) {
       return income.value[0].id || '';
     }
     return categoryID;
