@@ -14,8 +14,8 @@
   import { useRecordStore } from '@/stores/recordStore';
   import { IRecordForm, ICalendarValue } from '@/assets/interfaces/record';
 
-  const props = withDefaults(defineProps<{ dataInfo?: ICalendarValue }>(), {
-    dataInfo() {
+  const props = withDefaults(defineProps<{ dateInfo?: ICalendarValue }>(), {
+    dateInfo() {
       return useTodayValue();
     },
   });
@@ -24,7 +24,7 @@
   const { storage } = storeToRefs(recordStore);
 
   const dateInfoFormat = computed((): string => {
-    const { year, month, date } = props.dataInfo;
+    const { year, month, date } = props.dateInfo;
     return `${year}-${month}-${date}`;
   });
 

@@ -13,7 +13,17 @@ export const useRecordStore = defineStore({
   id: 'recordStore',
   state: (): IDefaultState => {
     return {
-      storage: [],
+      storage: [
+        {
+          'id': 'ebf961e0-3269-4f13-bbe0-a7d00bf11279',
+          'category': 'breakfast',
+          'price': 333,
+          'store': 'rrr',
+          'time': 1694438705666,
+          'note': '',
+          'tags': ['333', '888', 'fff'],
+        },
+      ],
       isShowRecord: false,
       contextID: '',
       contextMode: null,
