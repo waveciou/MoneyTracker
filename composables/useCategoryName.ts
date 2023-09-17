@@ -1,16 +1,18 @@
 import { storeToRefs } from 'pinia';
 import { useCategoriesStore } from '@/stores/categoriesStore';
+
 import {
   IMainCategoriesItem,
   ICategoriesItem,
 } from '@/assets/interfaces/categories';
+
 import { EnumRecordType } from '@/assets/enums/record';
 
 export const useCategoryName = (categoryID: string): string => {
   const categoriesStore = useCategoriesStore();
   const { income, expense } = storeToRefs(categoriesStore);
 
-  const recordType = useValidCategory(categoryID);
+  const recordType = useCategoryValidator(categoryID);
 
   if (recordType === null) {
     return '';

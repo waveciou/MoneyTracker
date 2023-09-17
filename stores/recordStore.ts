@@ -64,12 +64,14 @@ export const useRecordStore = defineStore({
   getters: {
     incomeRecords: (state: IDefaultState): IRecordForm[] => {
       return state.storage.filter(
-        ({ category }) => useValidCategory(category) === EnumRecordType.INCOME
+        ({ category }) =>
+          useCategoryValidator(category) === EnumRecordType.INCOME
       );
     },
     expenseRecords: (state: IDefaultState): IRecordForm[] => {
       return state.storage.filter(
-        ({ category }) => useValidCategory(category) === EnumRecordType.EXPENSE
+        ({ category }) =>
+          useCategoryValidator(category) === EnumRecordType.EXPENSE
       );
     },
     contextRecordType: (state: IDefaultState): EnumRecordType | null => {
@@ -78,7 +80,7 @@ export const useRecordStore = defineStore({
       );
 
       if (currentRecord) {
-        return useValidCategory(currentRecord.category);
+        return useCategoryValidator(currentRecord.category);
       }
       return null;
     },

@@ -16,7 +16,7 @@
 
   const props = withDefaults(defineProps<{ dateInfo?: ICalendarValue }>(), {
     dateInfo() {
-      return useTodayValue();
+      return useTimeTodayValue();
     },
   });
 

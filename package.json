@@ -17,6 +17,7 @@
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@types/node": "^18.16.19",
+    "@types/numeral": "^2.0.2",
     "@types/uuid": "^9.0.2",
     "dayjs-nuxt": "^1.1.2",
     "eslint": "^8.45.0",
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
+    "numeral": "^2.0.6",
     "pinia": "^2.1.4",
     "uuid": "^9.0.0"
   },

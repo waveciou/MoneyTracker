@@ -15,7 +15,8 @@ export const useRecordForm = (
   if (payload) {
     const { category, price, store, time, note, tags } = payload;
 
-    const validCategory: boolean = useValidCategory(category) === recordType;
+    const validCategory: boolean =
+      useCategoryValidator(category) === recordType;
     const validPrice: boolean = typeof price === 'number' && price >= 0;
     const validStore: boolean = typeof store === 'string';
     const validTime: boolean = typeof time === 'number';

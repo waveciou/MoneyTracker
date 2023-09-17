@@ -12,9 +12,9 @@
 <script setup lang="ts">
   import { computed, watch } from 'vue';
   import { storeToRefs } from 'pinia';
-  import { useCategoriesStore } from '@/stores/categoriesStore';
   import { IInputSelectOption } from '@/assets/interfaces/element';
   import { EnumRecordType } from '@/assets/enums/record';
+  import { useCategoriesStore } from '@/stores/categoriesStore';
 
   const props = defineProps<{ modelValue: string }>();
   const emits = defineEmits<{
@@ -25,7 +25,7 @@
   const { income } = storeToRefs(categoriesStore);
 
   const provideDefaultID = (categoryID: string): string => {
-    if (useValidCategory(categoryID) !== EnumRecordType.INCOME) {
+    if (useCategoryValidator(categoryID) !== EnumRecordType.INCOME) {
       return income.value[0].id || '';
     }
     return categoryID;

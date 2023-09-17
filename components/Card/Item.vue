@@ -9,11 +9,8 @@
           <span class="block truncate text-yellow">
             {{ useCategoryName(props.data.category) }}
           </span>
-          <span
-            class="block pl-2 before:content-['$']"
-            :class="providePriceClass"
-          >
-            {{ props.data.price }}
+          <span class="block pl-2" :class="providePriceClass">
+            {{ useFinanceNumber(props.data.price) }}
           </span>
         </div>
         <div class="text-sm truncate">{{ props.data.store }}</div>
@@ -44,7 +41,7 @@
   const isPopUpOpen = ref<boolean>(false);
 
   const providePriceClass = computed((): string => {
-    switch (useValidCategory(props.data.category)) {
+    switch (useCategoryValidator(props.data.category)) {
       case EnumRecordType.EXPENSE:
         return 'text-red';
       case EnumRecordType.INCOME:

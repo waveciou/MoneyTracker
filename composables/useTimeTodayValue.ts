@@ -2,7 +2,7 @@ import { storeToRefs } from 'pinia';
 import { useCommonStore } from '@/stores/commonStore';
 import { ICalendarValue } from '@/assets/interfaces/record';
 
-export const useTodayValue = (): ICalendarValue => {
+export const useTimeTodayValue = (): ICalendarValue => {
   const dayjs = useDayjs();
   const commonStore = useCommonStore();
   const { utcOffset } = storeToRefs(commonStore);

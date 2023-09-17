@@ -3,7 +3,9 @@ import { useCategoriesStore } from '@/stores/categoriesStore';
 import { IMainCategoriesItem } from '@/assets/interfaces/categories';
 import { EnumRecordType } from '@/assets/enums/record';
 
-export const useValidCategory = (categoryID: string): EnumRecordType | null => {
+export const useCategoryValidator = (
+  categoryID: string
+): EnumRecordType | null => {
   const categoriesStore = useCategoriesStore();
   const { income, expense } = storeToRefs(categoriesStore);
 

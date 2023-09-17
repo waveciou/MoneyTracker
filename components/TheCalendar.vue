@@ -52,13 +52,12 @@
   import { storeToRefs } from 'pinia';
   import calendarData from '@/assets/data/calendar.json';
   import { useCommonStore } from '@/stores/commonStore';
-  import { useTodayValue } from '@/composables/useTodayValue';
   import { useNumberFormat } from '@/utils/useNumberFormat';
   import { ICalendarValue } from '@/assets/interfaces/record';
 
   const props = withDefaults(defineProps<{ default?: ICalendarValue }>(), {
     default() {
-      return useTodayValue();
+      return useTimeTodayValue();
     },
   });
 
@@ -168,7 +167,7 @@
   };
 
   const provideClassName = (payload: ICalendarValue): string => {
-    const today = useTodayValue();
+    const today = useTimeTodayValue();
     const formatPayload = `${payload.year}-${payload.month}-${payload.date}`;
     const formatToday = `${today.year}-${today.month}-${today.date}`;
     const formatSelected = `${selectedDate.value.year}-${selectedDate.value.month}-${selectedDate.value.date}`;
@@ -217,7 +216,7 @@
   // Move to Today
 
   const handleMoveToday = (): void => {
-    const today = useTodayValue();
+    const today = useTimeTodayValue();
     handleSetSelectedDate(today);
   };
 

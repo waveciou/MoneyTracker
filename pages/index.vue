@@ -8,7 +8,7 @@
 <script setup lang="ts">
   import { ICalendarValue } from '@/assets/interfaces/record';
 
-  const selectedDate = ref<ICalendarValue>(useTodayValue());
+  const selectedDate = ref<ICalendarValue>(useTimeTodayValue());
 
   const handleCalendarUpdate = (payload: ICalendarValue): void => {
     selectedDate.value = payload;
