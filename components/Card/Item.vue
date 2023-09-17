@@ -7,7 +7,7 @@
       <div class="w-card-content pl-2.5 text-left">
         <div class="flex items-center justify-between text-base">
           <span class="block truncate text-yellow">
-            {{ props.data.category }}
+            {{ useCategoryName(props.data.category) }}
           </span>
           <span
             class="block pl-2 before:content-['$']"

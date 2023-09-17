@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const ICON_SIZE = 60;
+
 module.exports = {
   theme: {
     colors: {
@@ -9,7 +12,7 @@ module.exports = {
       'black-dark': '#2E363D',
       'black-darker': '#232323',
       'black-darkest': '#161616',
-      yellow: '#ffDF5E',
+      yellow: '#FFDF5E',
       red: '#f76C83',
       green: '#94C962',
     },
@@ -17,12 +20,12 @@ module.exports = {
       spacing: {
         'header-height': '50px',
         'menu-height': '60px',
-        'icon-size': '60px',
+        'icon-size': `${ICON_SIZE}px`,
         'wrap-space': '15px',
       },
       width: {
         'popup': 'calc(100% - 30px)',
-        'card-content': 'calc(100% - 60px)',
+        'card-content': `calc(100% - ${ICON_SIZE}px)`,
       },
       maxWidth: {
         'container': '480px',

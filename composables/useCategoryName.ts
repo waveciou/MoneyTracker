@@ -1,11 +1,14 @@
 import { storeToRefs } from 'pinia';
 import { useCategoriesStore } from '@/stores/categoriesStore';
-import { ICategoriesItem } from '@/assets/interfaces/categories';
+import {
+  IMainCategoriesItem,
+  ICategoriesItem,
+} from '@/assets/interfaces/categories';
 import { EnumRecordType } from '@/assets/enums/record';
 
 export const useCategoryName = (categoryID: string): string => {
   const categoriesStore = useCategoriesStore();
-  const { income } = storeToRefs(categoriesStore);
+  const { income, expense } = storeToRefs(categoriesStore);
 
   const recordType = useValidCategory(categoryID);
 
@@ -25,8 +28,23 @@ export const useCategoryName = (categoryID: string): string => {
     }, '' as string);
   }
 
-  // if (recordType === EnumRecordType.EXPENSE) {
-  // }
+  if (recordType === EnumRecordType.EXPENSE) {
+    return expense.value.reduce(
+      (prev: string, current: IMainCategoriesItem) => {
+        if (prev === '') {
+          const { name, subcategories } = current;
+          const subcategoryItem = subcategories.find(
+            ({ id }) => id === categoryID
+          );
+          if (subcategoryItem) {
+            return `${name} - ${subcategoryItem.name}`;
+          }
+        }
+        return prev;
+      },
+      '' as string
+    );
+  }
 
   return '';
 };

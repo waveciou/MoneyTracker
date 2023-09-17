@@ -15,13 +15,13 @@ export const useRecordStore = defineStore({
     return {
       storage: [
         {
-          'id': 'ebf961e0-3269-4f13-bbe0-a7d00bf11279',
+          'id': '07622068-6fc4-4213-ab42-d51649942b31',
           'category': 'breakfast',
-          'price': 333,
-          'store': 'rrr',
-          'time': 1694438705666,
+          'price': 666,
+          'store': 'eee',
+          'time': 1694931987741,
           'note': '',
-          'tags': ['333', '888', 'fff'],
+          'tags': ['www', 'fff', 'bb'],
         },
       ],
       isShowRecord: false,
