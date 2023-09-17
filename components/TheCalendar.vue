@@ -9,7 +9,7 @@
       <div class="w-full h-7 flex justify-center">
         <button class="block" @click="handleMoveToday">
           <span class="mr-1">{{ selectedDate.year }} 年</span>
-          <span>{{ useNumberFormat(selectedDate.month) }} 月</span>
+          <span>{{ useFormatNumber(selectedDate.month) }} 月</span>
         </button>
       </div>
       <button
@@ -39,7 +39,7 @@
             :class="provideClassName(item)"
             @click="handleClick(item)"
           >
-            {{ useNumberFormat(item.date) }}
+            {{ useFormatNumber(item.date) }}
           </button>
         </li>
       </ul>
@@ -52,7 +52,6 @@
   import { storeToRefs } from 'pinia';
   import calendarData from '@/assets/data/calendar.json';
   import { useCommonStore } from '@/stores/commonStore';
-  import { useNumberFormat } from '@/utils/useNumberFormat';
   import { ICalendarValue } from '@/assets/interfaces/record';
 
   const props = withDefaults(defineProps<{ default?: ICalendarValue }>(), {

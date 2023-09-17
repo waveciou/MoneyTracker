@@ -6,8 +6,8 @@
         class="flex justify-center items-center before-font-material icon-calandar before:block before:mr-1 before:w-6 before:h-6"
       >
         <span class="mr-1">{{ contextDate.year }} 年</span>
-        <span class="mr-1">{{ useNumberFormat(contextDate.month) }} 月</span>
-        <span>{{ useNumberFormat(contextDate.date) }} 日</span>
+        <span class="mr-1">{{ useFormatNumber(contextDate.month) }} 月</span>
+        <span>{{ useFormatNumber(contextDate.date) }} 日</span>
       </div>
     </TheButton>
     <ThePopUp :is-open="isPopUpOpen" @close="handleCancel">
@@ -40,8 +40,6 @@
 
 <script setup lang="ts">
   import { computed } from 'vue';
-
-  import { useNumberFormat } from '@/utils/useNumberFormat';
   import { ICalendarValue } from '@/assets/interfaces/record';
 
   const props = defineProps<{ timestamp: number }>();
