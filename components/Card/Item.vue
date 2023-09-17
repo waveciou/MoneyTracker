@@ -7,9 +7,9 @@
       <div class="w-card-content pl-2.5 text-left">
         <div class="flex items-center justify-between text-base">
           <span class="block truncate text-yellow">
-            {{ useCategoryName(props.data.category) }}
+            {{ useCategoryName(props.data.category, false) }}
           </span>
-          <span class="block pl-2" :class="providePriceClass">
+          <span class="block truncate pl-2" :class="providePriceClass">
             {{ useFinanceNumber(props.data.price) }}
           </span>
         </div>
@@ -26,7 +26,51 @@
       </div>
     </button>
     <ThePopUp :is-open="isPopUpOpen" @close="isPopUpOpen = false">
-      <div class="bg-white h-[100px]"></div>
+      <div class="text-white bg-black-base">
+        <div class="h-[150px] bg-yellow"></div>
+        <div class="p-2">
+          <div
+            class="mb-2"
+            :class="hasDetail && 'pb-2 border-b border-white border-solid'"
+          >
+            <div class="mb-1 flex items-center justify-between text-lg">
+              <span class="block truncate text-yellow">
+                {{ useCategoryName(props.data.category) }}
+              </span>
+              <span class="block truncate pl-2" :class="providePriceClass">
+                {{ providePrice }}
+              </span>
+            </div>
+            <div class="text-right">
+              {{ provideTime }}
+            </div>
+          </div>
+          <div v-if="props.data.store.trim()" class="mb-1 text-sm">
+            <span class="font-bold">Store:</span>
+            {{ props.data.store }}
+          </div>
+          <div v-if="props.data.note.trim()" class="mb-1 text-sm">
+            <span class="font-bold">Note:</span>
+            {{ props.data.note }}
+          </div>
+          <ul
+            v-if="props.data.tags.length"
+            class="mt-2 flex flex-wrap items-center"
+          >
+            <li
+              v-for="tag in props.data.tags"
+              :key="tag"
+              class="max-w-full mr-1.5 mb-1.5"
+            >
+              <div
+                class="w-full flex items-center px-1.5 py-1 rounded bg-yellow text-black text-xs font-bold before:content-['#']"
+              >
+                <span class="truncate">{{ tag }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </ThePopUp>
   </div>
 </template>
@@ -40,6 +84,14 @@
 
   const isPopUpOpen = ref<boolean>(false);
 
+  const hasDetail = computed((): boolean => {
+    const { store, note, tags } = props.data;
+    if (!store.trim() && !note.trim() && !tags.length) {
+      return false;
+    }
+    return true;
+  });
+
   const providePriceClass = computed((): string => {
     switch (useCategoryValidator(props.data.category)) {
       case EnumRecordType.EXPENSE:
@@ -49,5 +101,25 @@
       default:
         return '';
     }
+  });
+
+  const providePrice = computed((): string => {
+    const price: string = useFinanceNumber(props.data.price);
+
+    switch (useCategoryValidator(props.data.category)) {
+      case EnumRecordType.EXPENSE:
+        return `-${price}`;
+      case EnumRecordType.INCOME:
+        return `+${price}`;
+      default:
+        return price;
+    }
+  });
+
+  const provideTime = computed((): string => {
+    const { year, month, date, hour, minute } = useTimeValue(props.data.time);
+    const _date = `${year}/${useFormatNumber(month)}/${useFormatNumber(date)}`;
+    const _time = `${useFormatNumber(hour)}:${useFormatNumber(minute)}`;
+    return `${_date} ${_time}`;
   });
 </script>

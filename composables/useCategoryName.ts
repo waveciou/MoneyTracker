@@ -8,7 +8,10 @@ import {
 
 import { EnumRecordType } from '@/assets/enums/record';
 
-export const useCategoryName = (categoryID: string): string => {
+export const useCategoryName = (
+  categoryID: string,
+  hasMainName = true
+): string => {
   const categoriesStore = useCategoriesStore();
   const { income, expense } = storeToRefs(categoriesStore);
 
@@ -39,7 +42,10 @@ export const useCategoryName = (categoryID: string): string => {
             ({ id }) => id === categoryID
           );
           if (subcategoryItem) {
-            return `${name} - ${subcategoryItem.name}`;
+            if (hasMainName) {
+              return `${name} - ${subcategoryItem.name}`;
+            }
+            return subcategoryItem.name;
           }
         }
         return prev;
