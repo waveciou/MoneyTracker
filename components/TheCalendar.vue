@@ -2,7 +2,7 @@
   <div>
     <div class="flex items-center">
       <button
-        class="before-font-material icon-arrow-left block w-7 h-7 ml-2 basis-7 before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
+        class="before-font-material block w-7 h-7 ml-2 basis-7 before:content-['\e5cb'] before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
         title="Previous"
         @click="handleChangeMonth(false)"
       />
@@ -13,7 +13,7 @@
         </button>
       </div>
       <button
-        class="before-font-material icon-arrow-right block w-7 h-7 mr-2 basis-7 before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
+        class="before-font-material block w-7 h-7 mr-2 basis-7 before:content-['\e5cc'] before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
         title="Next"
         @click="handleChangeMonth(true)"
       />
@@ -233,15 +233,3 @@
     { immediate: true, deep: true }
   );
 </script>
-
-<style lang="scss" scoped>
-  .icon-arrow-left::before {
-    content: '\e5cb';
-    pointer-events: none;
-  }
-
-  .icon-arrow-right::before {
-    content: '\e5cc';
-    pointer-events: none;
-  }
-</style>

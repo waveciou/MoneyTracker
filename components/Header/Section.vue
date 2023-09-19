@@ -9,7 +9,7 @@
       <h1 class="block text-lg truncate">{{ provideHeaderName }}</h1>
     </div>
     <button
-      class="before-font-material icon-search w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
+      class="before-font-material before:content-['\e8b6'] w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
       @click="handleOpenSearch"
     />
   </header>
@@ -43,9 +43,3 @@
     commonStore.isShowSearch = true;
   };
 </script>
-
-<style lang="scss" scoped>
-  .icon-search::before {
-    content: '\e8b6';
-  }
-</style>

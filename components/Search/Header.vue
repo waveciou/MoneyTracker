@@ -6,7 +6,7 @@
       <h1 class="block text-lg truncate">Search</h1>
     </div>
     <button
-      class="before-font-material icon-cancel w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
+      class="before-font-material before:content-['\e5cd'] w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
       @click="handleClose"
     />
   </header>
@@ -20,9 +20,3 @@
     commonStore.isShowSearch = false;
   };
 </script>
-
-<style lang="scss" scoped>
-  .icon-cancel::before {
-    content: '\e5cd';
-  }
-</style>

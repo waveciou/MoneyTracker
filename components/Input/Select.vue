@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <div
-      class="after-font-material icon-arrow-down relative border border-white border-solid rounded overflow-hidden after:w-9 after:h-full after:flex after:justify-center after:items-center after:absolute after:top-0 after:right-0"
+      class="after-font-material relative border border-white border-solid rounded overflow-hidden after:content-['\e5cf'] after:w-9 after:h-full after:flex after:justify-center after:items-center after:absolute after:top-0 after:right-0 after:pointer-events-none"
     >
       <select
         :id="id"
@@ -55,10 +55,3 @@
     }
   );
 </script>
-
-<style lang="scss" scoped>
-  .icon-arrow-down::after {
-    content: '\e5cf';
-    pointer-events: none;
-  }
-</style>

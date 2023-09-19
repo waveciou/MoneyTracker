@@ -11,7 +11,7 @@
       @input="handleInput"
     />
     <button
-      class="before-font-material icon-cancel w-9 h-full absolute top-0 right-0 flex justify-center items-center"
+      class="before-font-material before:content-['\e5c9'] before:text-lg w-9 h-full absolute top-0 right-0 flex justify-center items-center"
       @click="handleClear"
     />
   </div>
@@ -49,10 +49,3 @@
     emits('update:modelValue', '');
   };
 </script>
-
-<style lang="scss" scoped>
-  .icon-cancel::before {
-    content: '\e5c9';
-    @apply text-lg;
-  }
-</style>

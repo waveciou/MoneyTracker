@@ -6,15 +6,15 @@
         <div class="h-[150px] bg-yellow">
           <div class="p-1 flex justify-end text-black-base">
             <button
-              class="w-6 h-6 ml-1 before-font-material icon-edit"
+              class="w-6 h-6 ml-1 before-font-material before:content-['\e3c9']"
               @click="handleEdit"
             />
             <button
-              class="w-6 h-6 ml-1 before-font-material icon-delete"
+              class="w-6 h-6 ml-1 before-font-material before:content-['\e872']"
               @click="isConfirmOpen = true"
             />
             <button
-              class="w-6 h-6 ml-1 before-font-material icon-close"
+              class="w-6 h-6 ml-1 before-font-material before:content-['\e5cd']"
               @click="isPopUpOpen = false"
             />
           </div>
@@ -60,17 +60,3 @@
     recordStore.DELETE_RECORD(props.data.id);
   };
 </script>
-
-<style lang="scss" scoped>
-  .icon-close::before {
-    content: '\e5cd';
-  }
-
-  .icon-delete::before {
-    content: '\e872';
-  }
-
-  .icon-edit::before {
-    content: '\e3c9';
-  }
-</style>

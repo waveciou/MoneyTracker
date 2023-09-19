@@ -1,7 +1,7 @@
 <template>
   <header class="w-full h-header-height basis-header-height relative">
     <button
-      class="before-font-material icon-cancel w-header-height h-header-height flex justify-center items-center absolute top-0 left-0"
+      class="before-font-material before:content-['\e5cd'] w-header-height h-header-height flex justify-center items-center absolute top-0 left-0"
       title="Close"
       @click="handleClose"
     />
@@ -11,7 +11,7 @@
       <h1 class="block text-lg truncate">{{ provideTitle }}</h1>
     </div>
     <button
-      class="before-font-material icon-done w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
+      class="before-font-material before:content-['\e876'] w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
       title="Submit"
       @click="handleSubmit"
     />
@@ -47,13 +47,3 @@
     emits('submit');
   };
 </script>
-
-<style lang="scss" scoped>
-  .icon-done::before {
-    content: '\e876';
-  }
-
-  .icon-cancel::before {
-    content: '\e5cd';
-  }
-</style>

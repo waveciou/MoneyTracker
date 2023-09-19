@@ -3,7 +3,7 @@
     <label class="block text-base mb-2">Date</label>
     <TheButton class="w-full mb-2" @click="isPopUpOpen = !isPopUpOpen">
       <div
-        class="flex justify-center items-center before-font-material icon-calandar before:block before:mr-1 before:w-6 before:h-6"
+        class="flex justify-center items-center before-font-material before:content-['\ebcc'] before:block before:mr-1 before:w-6 before:h-6"
       >
         <span class="mr-1">{{ contextDate.year }} 年</span>
         <span class="mr-1">{{ useFormatNumber(contextDate.month) }} 月</span>
@@ -85,9 +85,3 @@
     isPopUpOpen.value = false;
   };
 </script>
-
-<style lang="scss" scoped>
-  .icon-calandar::before {
-    content: '\ebcc';
-  }
-</style>
