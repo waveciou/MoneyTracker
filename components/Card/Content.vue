@@ -1,6 +1,11 @@
 <template>
   <button class="w-full flex" @click="emits('click')">
-    <div class="w-icon-size h-icon-size basis-icon-size bg-yellow rounded" />
+    <div class="w-icon-size h-icon-size basis-icon-size bg-yellow rounded">
+      <TheIcon
+        :category-id="props.data.category"
+        class="w-full h-full flex justify-center items-center text-black-base before:text-4xl"
+      />
+    </div>
     <div class="w-card-content pl-2.5 text-left">
       <div class="flex items-center justify-between text-base">
         <span class="block truncate text-yellow">

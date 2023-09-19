@@ -3,7 +3,7 @@
     <CardContent :data="props.data" @click="isPopUpOpen = true" />
     <ThePopUp :is-open="isPopUpOpen" @close="isPopUpOpen = false">
       <div class="text-white bg-black-base">
-        <div class="h-[150px] bg-yellow">
+        <div class="pb-6 bg-yellow">
           <div class="p-1 flex justify-end text-black-base">
             <button
               class="w-6 h-6 ml-1 before-font-material before:content-['\e3c9']"
@@ -18,6 +18,10 @@
               @click="isPopUpOpen = false"
             />
           </div>
+          <TheIcon
+            :category-id="props.data.category"
+            class="w-24 h-24 rounded-full m-auto flex justify-center items-center bg-black-base text-yellow before:text-6xl"
+          />
         </div>
         <CardDetail :data="props.data" />
       </div>
