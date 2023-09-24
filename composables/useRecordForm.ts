@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { storeToRefs } from 'pinia';
+import { useRecordStore } from '@/stores/recordStore';
 import { useCategoriesStore } from '@/stores/categoriesStore';
 import { IRecordForm } from '@/assets/interfaces/record';
 import { EnumRecordType } from '@/assets/enums/record';
@@ -9,8 +10,10 @@ export const useRecordForm = (
   payload?: IRecordForm
 ): IRecordForm => {
   const dayjs = useDayjs();
+  const recordStore = useRecordStore();
   const categoriesStore = useCategoriesStore();
   const { income, expense } = storeToRefs(categoriesStore);
+  const { contextDate } = storeToRefs(recordStore);
 
   if (payload) {
     const { category, price, store, time, note, tags } = payload;
@@ -42,12 +45,22 @@ export const useRecordForm = (
     return income.value[0]?.id || '';
   })();
 
+  const defaultTime: number = (() => {
+    if (contextDate.value) {
+      const { year, month, date } = contextDate.value;
+      const { hour, minute } = useTimeValue(dayjs().valueOf());
+      const timeFormat = `${year}-${month}-${date} ${hour}:${minute}`;
+      return dayjs(timeFormat).valueOf();
+    }
+    return dayjs().valueOf();
+  })();
+
   const defaultForm: IRecordForm = {
     id: uuidv4(),
     category: defaultCategory,
     price: 0,
     store: '',
-    time: dayjs().valueOf(),
+    time: defaultTime,
     note: '',
     tags: [],
   };

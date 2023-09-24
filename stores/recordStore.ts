@@ -1,43 +1,39 @@
 import { defineStore } from 'pinia';
 import { EnumRecordMode, EnumRecordType } from '@/assets/enums/record';
-import { IRecordForm } from '@/assets/interfaces/record';
+import { IRecordForm, ICalendarValue } from '@/assets/interfaces/record';
 
 interface IDefaultState {
   storage: IRecordForm[];
   isShowRecord: boolean;
   contextID: string;
   contextMode: EnumRecordMode | null;
+  contextDate: ICalendarValue | null;
 }
 
 export const useRecordStore = defineStore({
   id: 'recordStore',
   state: (): IDefaultState => {
     return {
-      storage: [
-        {
-          'id': '07622068-6fc4-4213-ab42-d51649942b31',
-          'category': 'breakfast',
-          'price': 666,
-          'store': 'eee',
-          'time': 1694931987741,
-          'note': '',
-          'tags': ['www', 'fff', 'bb'],
-        },
-      ],
+      storage: [],
       isShowRecord: false,
       contextID: '',
       contextMode: null,
+      contextDate: null,
     };
   },
   actions: {
     ADD_RECORD(payload: IRecordForm): void {
+      const { year, month, date } = useTimeValue(payload.time);
+
       const index: number = this.storage.findIndex(
         ({ id }) => id === payload.id
       );
       if (index >= 0) {
         this.storage.splice(index, 1);
       }
+
       this.storage.push(payload);
+      this.contextDate = { year, month, date };
     },
     DELETE_RECORD(id: string): void {
       const index: number = this.storage.findIndex((item) => item.id === id);

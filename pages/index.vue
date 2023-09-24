@@ -1,16 +1,39 @@
 <template>
   <div>
-    <TheCalendar class="mb-4" @update="handleCalendarUpdate" />
+    <TheCalendar
+      class="mb-4"
+      :default="selectedDate"
+      @update="handleCalendarUpdate"
+    />
     <CardList :date-info="selectedDate" />
   </div>
 </template>
 
 <script setup lang="ts">
+  import { watch } from 'vue';
+  import { storeToRefs } from 'pinia';
+  import { useRecordStore } from '@/stores/recordStore';
   import { ICalendarValue } from '@/assets/interfaces/record';
 
-  const selectedDate = ref<ICalendarValue>(useTimeTodayValue());
+  const recordStore = useRecordStore();
+  const { contextDate } = storeToRefs(recordStore);
+
+  const selectedDate = ref<ICalendarValue>(
+    contextDate.value || useTimeTodayValue()
+  );
 
   const handleCalendarUpdate = (payload: ICalendarValue): void => {
     selectedDate.value = payload;
+    recordStore.contextDate = payload;
   };
+
+  watch(
+    () => contextDate.value,
+    (value) => {
+      if (value) {
+        Object.assign(selectedDate.value, value);
+      }
+    },
+    { immediate: true, deep: true }
+  );
 </script>
