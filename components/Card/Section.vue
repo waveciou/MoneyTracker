@@ -26,21 +26,14 @@
         <CardDetail :data="props.data" />
       </div>
     </ThePopUp>
-    <ThePopUp :is-open="isConfirmOpen">
-      <div
-        class="w-4/5 m-auto bg-black-base text-white rounded-md overflow-hidden"
-      >
-        <div class="px-2 py-3 text-center">
-          Are you sure to delete this record?
-        </div>
-        <div class="flex border-t border-black-base border-solid">
-          <button class="w-6/12 p-2" @click="handleDelete">Delete</button>
-          <button class="w-6/12 p-2" @click="isConfirmOpen = false">
-            Cancel
-          </button>
-        </div>
-      </div>
-    </ThePopUp>
+    <ThePopConfirm
+      :is-open="isConfirmOpen"
+      title="Are you sure to delete this record?"
+      left-text="Delete"
+      right-text="Cancel"
+      @click-left-button="handleDelete"
+      @click-right-button="isConfirmOpen = false"
+    />
   </div>
 </template>
 
