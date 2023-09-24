@@ -10,6 +10,7 @@ export const useRecordForm = (
   payload?: IRecordForm
 ): IRecordForm => {
   const dayjs = useDayjs();
+  const route = useRoute();
   const recordStore = useRecordStore();
   const categoriesStore = useCategoriesStore();
   const { income, expense } = storeToRefs(categoriesStore);
@@ -46,7 +47,7 @@ export const useRecordForm = (
   })();
 
   const defaultTime: number = (() => {
-    if (contextDate.value) {
+    if (route.path === '/' && contextDate.value) {
       const { year, month, date } = contextDate.value;
       const { hour, minute } = useTimeValue(dayjs().valueOf());
       const timeFormat = `${year}-${month}-${date} ${hour}:${minute}`;
