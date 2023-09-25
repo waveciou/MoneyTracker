@@ -5,7 +5,7 @@ import { IRecordForm, ICalendarValue } from '@/assets/interfaces/record';
 interface IDefaultState {
   storage: IRecordForm[];
   isShowRecord: boolean;
-  contextID: string;
+  contextID: string | null;
   contextMode: EnumRecordMode | null;
   contextDate: ICalendarValue | null;
 }
@@ -16,7 +16,7 @@ export const useRecordStore = defineStore({
     return {
       storage: [],
       isShowRecord: false,
-      contextID: '',
+      contextID: null,
       contextMode: null,
       contextDate: null,
     };
@@ -42,12 +42,12 @@ export const useRecordStore = defineStore({
       }
     },
     HANDLE_CLOSE(): void {
-      this.contextID = '';
+      this.contextID = null;
       this.contextMode = null;
       this.isShowRecord = false;
     },
     HANDLE_MODE_CREATOR(): void {
-      this.contextID = '';
+      this.contextID = null;
       this.contextMode = EnumRecordMode.CREATOR;
       this.isShowRecord = true;
     },

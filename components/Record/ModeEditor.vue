@@ -1,7 +1,10 @@
 <template>
   <div class="w-full h-full flex flex-col">
     <RecordHeader @submit="handleSubmit" />
-    <div class="h-full overflow-x-hidden relative px-wrap-space">
+    <div
+      v-if="contextID"
+      class="h-full overflow-x-hidden relative px-wrap-space"
+    >
       <RecordForm
         v-if="selectedRecordType === EnumRecordType.EXPENSE"
         :record-type="EnumRecordType.EXPENSE"
