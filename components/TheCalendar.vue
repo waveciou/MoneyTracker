@@ -7,7 +7,7 @@
         @click="handleChangeMonth(false)"
       />
       <div class="w-full h-7 flex justify-center">
-        <button class="block" @click="handleMoveToday">
+        <button class="block" title="today" @click="handleMoveToday">
           <span class="mr-1">{{ selectedDate.year }} 年</span>
           <span>{{ useFormatNumber(selectedDate.month) }} 月</span>
         </button>
@@ -37,6 +37,7 @@
           <button
             class="w-full block p-1 rounded"
             :class="provideClassName(item)"
+            :title="useFormatNumber(item.date)"
             @click="handleClick(item)"
           >
             {{ useFormatNumber(item.date) }}

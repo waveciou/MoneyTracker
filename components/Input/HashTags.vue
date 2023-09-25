@@ -4,6 +4,7 @@
       <li v-for="tag in modelValue" :key="tag" class="max-w-full mr-2 mb-2">
         <button
           class="after-font-material w-full flex items-center py-1 pr-2 pl-2.5 rounded bg-black/40 leading-tight text-sm before:content-['#'] after:content-['\e5c9'] after:block after:ml-1 after:text-xs"
+          title="Delete"
           @click="handleDelete(tag)"
         >
           <span class="truncate" v-text="tag" />
@@ -23,6 +24,7 @@
       />
       <button
         class="before-font-material before:content-['\e147'] before:text-lg w-9 h-full absolute top-0 right-0 flex justify-center items-center"
+        title="Create"
         @click="handleCreate"
       />
     </div>

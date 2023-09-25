@@ -22,8 +22,6 @@
   </div>
 </template>
 
-<!-- eslint-disable quotes -->
-<!-- eslint-disable no-useless-escape -->
 <script setup lang="ts">
   import { computed } from 'vue';
 

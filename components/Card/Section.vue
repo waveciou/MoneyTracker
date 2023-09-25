@@ -7,14 +7,17 @@
           <div class="p-1 flex justify-end text-black-base">
             <button
               class="w-6 h-6 ml-1 before-font-material before:content-['\e3c9']"
+              title="Edit"
               @click="handleEdit"
             />
             <button
               class="w-6 h-6 ml-1 before-font-material before:content-['\e872']"
+              title="Delete"
               @click="isConfirmOpen = true"
             />
             <button
               class="w-6 h-6 ml-1 before-font-material before:content-['\e5cd']"
+              title="Close"
               @click="isPopUpOpen = false"
             />
           </div>

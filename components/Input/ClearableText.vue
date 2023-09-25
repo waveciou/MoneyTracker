@@ -12,6 +12,7 @@
     />
     <button
       class="before-font-material before:content-['\e5c9'] before:text-lg w-9 h-full absolute top-0 right-0 flex justify-center items-center"
+      title="Clear"
       @click="handleClear"
     />
   </div>

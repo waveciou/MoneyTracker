@@ -1,5 +1,9 @@
 <template>
-  <button class="w-full flex" @click="emits('click')">
+  <button
+    class="w-full flex"
+    :title="useCategoryName(props.data.category, false)"
+    @click="emits('click')"
+  >
     <div class="w-icon-size h-icon-size basis-icon-size bg-yellow rounded">
       <TheIcon
         :category-id="props.data.category"

@@ -10,6 +10,7 @@
     </div>
     <button
       class="before-font-material before:content-['\e8b6'] w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
+      title="Search"
       @click="handleOpenSearch"
     />
   </header>
