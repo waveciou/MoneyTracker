@@ -1,14 +1,32 @@
 <template>
   <div>
-    <TheButton class="mb-2" @click="isPopUpOpen = !isPopUpOpen">
-      PopUp
-    </TheButton>
-    <ThePopUp :is-open="isPopUpOpen" @close="isPopUpOpen = false">
-      <div class="bg-white h-[100px]"></div>
-    </ThePopUp>
+    <div class="py-3 text-2xl text-white text-center truncate">
+      Total
+      <span class="ml-1" :class="providePriceClass">{{ providePrice }}</span>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  const isPopUpOpen = ref<boolean>(false);
+  import { computed } from 'vue';
+  import { useRecordStore } from '@/stores/recordStore';
+
+  const recordStore = useRecordStore();
+
+  const providePriceClass = computed((): string => {
+    if (recordStore.totalPrice < 0) {
+      return 'text-red';
+    }
+    return 'text-green';
+  });
+
+  const providePrice = computed((): string => {
+    const price = useFinanceNumber(recordStore.totalPrice);
+
+    if (recordStore.totalPrice <= 0) {
+      return price;
+    } else {
+      return `+${price}`;
+    }
+  });
 </script>

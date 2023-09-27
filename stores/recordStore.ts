@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import { defineStore } from 'pinia';
 import { EnumRecordMode, EnumRecordType } from '@/assets/enums/record';
 import { IRecordForm, ICalendarValue } from '@/assets/interfaces/record';
@@ -79,6 +80,23 @@ export const useRecordStore = defineStore({
         return useCategoryValidator(currentRecord.category);
       }
       return null;
+    },
+    totalPrice(): number {
+      const totalIncome = this.incomeRecords.reduce(
+        (prev: number, current: IRecordForm) => {
+          return numeral(prev).add(current.price).value() || prev;
+        },
+        0 as number
+      );
+
+      const totalExpense = this.expenseRecords.reduce(
+        (prev: number, current: IRecordForm) => {
+          return numeral(prev).subtract(current.price).value() || prev;
+        },
+        0 as number
+      );
+
+      return numeral(totalIncome).add(totalExpense).value() || 0;
     },
   },
 });
