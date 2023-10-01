@@ -8,6 +8,11 @@ interface IRecordForm {
   tags: string[];
 }
 
+interface IRecordSeries {
+  id: string;
+  time: number;
+  storage: IRecordForm[];
+}
 interface ICalendarValue {
   year: number;
   month: number;
@@ -19,4 +24,4 @@ interface ITimeStampValue extends ICalendarValue {
   minute: number;
 }
 
-export type { IRecordForm, ICalendarValue, ITimeStampValue };
+export type { IRecordForm, IRecordSeries, ICalendarValue, ITimeStampValue };

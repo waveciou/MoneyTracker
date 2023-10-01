@@ -59,6 +59,16 @@ export const useRecordStore = defineStore({
     },
   },
   getters: {
+    contextRecordType: (state: IDefaultState): EnumRecordType | null => {
+      const currentRecord = state.storage.find(
+        ({ id }) => state.contextID === id
+      );
+
+      if (currentRecord) {
+        return useCategoryValidator(currentRecord.category);
+      }
+      return null;
+    },
     incomeRecords: (state: IDefaultState): IRecordForm[] => {
       return state.storage.filter(
         ({ category }) =>
@@ -70,16 +80,6 @@ export const useRecordStore = defineStore({
         ({ category }) =>
           useCategoryValidator(category) === EnumRecordType.EXPENSE
       );
-    },
-    contextRecordType: (state: IDefaultState): EnumRecordType | null => {
-      const currentRecord = state.storage.find(
-        ({ id }) => state.contextID === id
-      );
-
-      if (currentRecord) {
-        return useCategoryValidator(currentRecord.category);
-      }
-      return null;
     },
     totalPrice(): number {
       const totalIncome = this.incomeRecords.reduce(
