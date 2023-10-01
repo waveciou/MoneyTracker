@@ -3,14 +3,13 @@
     <div class="element-barchart w-full overflow-x-auto overflow-y-hidden">
       <VueApexCharts
         v-if="xaxis.length > 0"
-        ref="chart"
         type="bar"
         :width="provideChartWidth"
         height="300px"
         :options="chartOptions"
         :series="chartSeries"
       />
-      <div v-else>NO DATA</div>
+      <div v-else class="py-3 text-2xl text-white/60 text-center">NO DATA</div>
     </div>
   </ClientOnly>
 </template>
