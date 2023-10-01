@@ -1,8 +1,6 @@
 <template>
-  <div class="w-full overflow-x-auto overflow-y-hidden">
-    <client-only>
-      <ChartBar :series="provideSeries" :xaxis="provideXaxis" />
-    </client-only>
+  <div>
+    <ChartBar v-if="isInit" :series="provideSeries" :xaxis="provideXaxis" />
   </div>
 </template>
 
@@ -21,6 +19,8 @@
 
   const recordStore = useRecordStore();
   const { storage } = storeToRefs(recordStore);
+
+  const isInit = ref<boolean>(false);
 
   const recordSeries = computed((): IRecordSeries[] => {
     const series = storage.value.reduce((prev, current) => {

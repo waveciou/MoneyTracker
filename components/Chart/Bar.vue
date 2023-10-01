@@ -1,22 +1,30 @@
 <template>
-  <VueApexCharts
-    ref="chart"
-    type="bar"
-    width="375"
-    height="300"
-    :options="options"
-    :series="series"
-  />
+  <ClientOnly>
+    <div class="element-barchart w-full overflow-x-auto overflow-y-hidden">
+      <VueApexCharts
+        v-if="xaxis.length > 0"
+        ref="chart"
+        type="bar"
+        :width="provideChartWidth"
+        height="300px"
+        :options="chartOptions"
+        :series="chartSeries"
+      />
+      <div v-else>NO DATA</div>
+    </div>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
-  import { watch } from 'vue';
+  import { computed, watch } from 'vue';
   import VueApexCharts from 'vue3-apexcharts';
   import { IBarChartSeries } from '@/assets/interfaces/chart';
 
-  const props = defineProps<{ series: IBarChartSeries[]; xaxis: any[] }>();
+  const props = defineProps<{ series: IBarChartSeries[]; xaxis: string[] }>();
 
-  const options = ref({
+  const chartSeries = ref<IBarChartSeries[]>([]);
+
+  const chartOptions = ref({
     chart: {
       type: 'bar',
       toolbar: {
@@ -61,13 +69,45 @@
     },
   });
 
+  const provideChartWidth = computed((): string => {
+    const value = Math.ceil(props.xaxis.length / 8);
+    const result = value < 1 ? 100 : value * 100;
+    return `${result}%`;
+  });
+
+  watch(
+    () => props.series,
+    (value) => {
+      chartSeries.value = [...value];
+    },
+    { immediate: true, deep: true }
+  );
+
   watch(
     () => props.xaxis,
     (value) => {
-      options.value.xaxis.categories = value;
+      chartOptions.value.xaxis.categories = [...value];
     },
-    { immediate: true }
+    { immediate: true, deep: true }
   );
 </script>
 
-<style scoped></style>
+<style lang="scss">
+  .element-barchart {
+    .apexcharts-tooltip {
+      @apply text-black bg-yellow;
+    }
+
+    .apexcharts-tooltip-title {
+      @apply text-white bg-black leading-4;
+    }
+
+    .apexcharts-tooltip-y-group {
+      @apply leading-4;
+
+      > span {
+        @apply text-black;
+      }
+    }
+  }
+</style>

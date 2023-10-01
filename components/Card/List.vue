@@ -1,11 +1,11 @@
 <template>
-  <client-only>
+  <ClientOnly>
     <ul>
       <li v-for="item in contextCards" :key="item.id" class="mb-3">
         <CardSection :data="item" />
       </li>
     </ul>
-  </client-only>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">

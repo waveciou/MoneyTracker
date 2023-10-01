@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <client-only>
+    <ClientOnly>
       <FormPrice v-model.number="contextForm.price" class="mb-4" />
       <FormCategoryExpense
         v-if="recordType === EnumRecordType.EXPENSE"
@@ -25,7 +25,7 @@
       />
       <FormNote v-model.trim="contextForm.note" class="mb-4" />
       <FormTags v-model.trim="contextForm.tags" class="mb-4" />
-    </client-only>
+    </ClientOnly>
   </div>
 </template>
 
