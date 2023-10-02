@@ -1,5 +1,25 @@
 <template>
-  <ChartBar :series="provideSeries" :xaxis="provideXaxis" />
+  <div>
+    <div v-if="provideXaxis.length > 0" class="flex justify-end items-center">
+      <button
+        class="before-font-material before:text-xl before:mr-1 flex items-center mr-2"
+        :class="provideRadioClass(EnumChartMode.MONTH)"
+        title="Month"
+        @click="handleModeUpdate(EnumChartMode.MONTH)"
+      >
+        Month
+      </button>
+      <button
+        class="before-font-material before:text-xl before:mr-1 flex items-center"
+        :class="provideRadioClass(EnumChartMode.DATE)"
+        title="Date"
+        @click="handleModeUpdate(EnumChartMode.DATE)"
+      >
+        Date
+      </button>
+    </div>
+    <ChartBar :series="provideSeries" :xaxis="provideXaxis" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -14,6 +34,10 @@
   const props = withDefaults(defineProps<{ mode: EnumChartMode }>(), {
     mode: EnumChartMode.MONTH,
   });
+
+  const emits = defineEmits<{
+    (e: 'mode-update', value: EnumChartMode): void;
+  }>();
 
   const recordStore = useRecordStore();
 
@@ -89,4 +113,24 @@
       return `${month}/${date}`;
     });
   });
+
+  const handleModeUpdate = (payload: EnumChartMode): void => {
+    emits('mode-update', payload);
+  };
+
+  const provideRadioClass = (payload: EnumChartMode): string => {
+    return props.mode === payload
+      ? 'icon-radio-checked'
+      : 'icon-radio-unchecked';
+  };
 </script>
+
+<style lang="scss" scoped>
+  .icon-radio-unchecked::before {
+    content: '\e836';
+  }
+
+  .icon-radio-checked::before {
+    content: '\e837';
+  }
+</style>

@@ -1,11 +1,7 @@
 <template>
   <div>
     <OverviewTotalPrice />
-    <div class="flex justify-end items-center">
-      <button class="block mr-2" @click="handClickMonth">Month</button>
-      <button class="block" @click="handClickDate">Date</button>
-    </div>
-    <OverviewChart :mode="chartMode" />
+    <OverviewChart :mode="chartMode" @mode-update="handleModeUpdate" />
   </div>
 </template>
 
@@ -14,11 +10,7 @@
 
   const chartMode = ref<EnumChartMode>(EnumChartMode.MONTH);
 
-  const handClickMonth = () => {
-    chartMode.value = EnumChartMode.MONTH;
-  };
-
-  const handClickDate = () => {
-    chartMode.value = EnumChartMode.DATE;
+  const handleModeUpdate = (payload: EnumChartMode): void => {
+    chartMode.value = payload;
   };
 </script>
