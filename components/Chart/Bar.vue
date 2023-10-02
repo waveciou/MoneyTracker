@@ -19,6 +19,7 @@
 </template>
 
 <script setup lang="ts">
+  import numeral from 'numeral';
   import { computed, watch, onMounted, onBeforeUnmount } from 'vue';
   import VueApexCharts from 'vue3-apexcharts';
   import { IBarChartSeries, IBarChartOptions } from '@/assets/interfaces/chart';
@@ -65,7 +66,15 @@
         style: {
           colors: '#FFFFFF',
         },
-        formatter: (value: number): string => useFinanceNumber(value),
+        formatter: (value: number): string => {
+          if (!isFinite(value)) {
+            return '1';
+          }
+          if (value < 1000) {
+            return `${value}`;
+          }
+          return numeral(value).format('0.0a') || `${value}`;
+        },
       },
     },
     fill: {
