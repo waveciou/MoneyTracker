@@ -1,11 +1,9 @@
 <template>
-  <Transition name="fade">
-    <ChartBar v-if="isShow" :series="provideSeries" :xaxis="provideXaxis" />
-  </Transition>
+  <ChartBar :series="provideSeries" :xaxis="provideXaxis" />
 </template>
 
 <script setup lang="ts">
-  import { computed, watch, onMounted, onBeforeUnmount } from 'vue';
+  import { computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import { EnumChartMode } from '@/assets/enums/overview';
@@ -18,10 +16,8 @@
   });
 
   const recordStore = useRecordStore();
-  const { storage } = storeToRefs(recordStore);
 
-  const isShow = ref<boolean>(true);
-  const showerTimer = ref<number | null>(null);
+  const { storage } = storeToRefs(recordStore);
 
   const recordSeries = computed((): IRecordSeries[] => {
     const series = storage.value.reduce((prev, current) => {
@@ -51,11 +47,11 @@
   const provideSeries = computed((): IBarChartSeries[] => {
     const result: IBarChartSeries[] = [
       {
-        name: '支出',
+        name: 'Expense',
         data: [],
       },
       {
-        name: '收入',
+        name: 'Income',
         data: [],
       },
     ];
@@ -93,28 +89,4 @@
       return `${month}/${date}`;
     });
   });
-
-  onMounted(() => {
-    nextTick(() => {
-      if (process.client) {
-        window.dispatchEvent(new Event('resize'));
-      }
-    });
-  });
-
-  onBeforeUnmount(() => {
-    clearTimeout(showerTimer.value as unknown as number);
-  });
-
-  watch(
-    () => [provideSeries.value, provideXaxis.value],
-    () => {
-      isShow.value = false;
-
-      showerTimer.value = setTimeout(() => {
-        isShow.value = true;
-      }, 100) as unknown as number;
-    },
-    { deep: true }
-  );
 </script>

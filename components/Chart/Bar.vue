@@ -1,29 +1,44 @@
 <template>
-  <ClientOnly>
-    <div class="element-barchart w-full overflow-x-auto overflow-y-hidden">
-      <VueApexCharts
-        v-if="xaxis.length > 0"
-        type="bar"
-        :width="provideChartWidth"
-        height="300px"
-        :options="chartOptions"
-        :series="chartSeries"
-      />
-      <div v-else class="py-3 text-2xl text-white/60 text-center">NO DATA</div>
-    </div>
-  </ClientOnly>
+  <div v-if="isShow">
+    <ClientOnly>
+      <div class="element-barchart w-full overflow-x-auto overflow-y-hidden">
+        <VueApexCharts
+          v-if="xaxis.length > 0"
+          type="bar"
+          :width="chartWidth"
+          height="300px"
+          :options="chartOptions"
+          :series="chartSeries"
+        />
+        <div v-else class="py-3 text-2xl text-white/60 text-center">
+          {{ props.lostText }}
+        </div>
+      </div>
+    </ClientOnly>
+  </div>
 </template>
 
 <script setup lang="ts">
-  import { computed, watch } from 'vue';
+  import { computed, watch, onMounted, onBeforeUnmount } from 'vue';
   import VueApexCharts from 'vue3-apexcharts';
-  import { IBarChartSeries } from '@/assets/interfaces/chart';
+  import { IBarChartSeries, IBarChartOptions } from '@/assets/interfaces/chart';
 
-  const props = defineProps<{ series: IBarChartSeries[]; xaxis: string[] }>();
+  const props = withDefaults(
+    defineProps<{
+      series: IBarChartSeries[];
+      xaxis: string[];
+      lostText?: string;
+    }>(),
+    { lostText: 'NO DATA' }
+  );
+
+  const isShow = ref<boolean>(true);
+
+  const showerTimer = ref<number | null>(null);
 
   const chartSeries = ref<IBarChartSeries[]>([]);
 
-  const chartOptions = ref({
+  const chartOptions = ref<IBarChartOptions>({
     chart: {
       type: 'bar',
       toolbar: {
@@ -33,7 +48,7 @@
         enabled: false,
       },
     },
-    colors: ['#f76c83', '#94c962'],
+    colors: ['#F76C83', '#94C962'],
     dataLabels: {
       enabled: false,
     },
@@ -41,16 +56,16 @@
       categories: [],
       labels: {
         style: {
-          colors: '#fff',
+          colors: '#FFFFFF',
         },
       },
     },
     yaxis: {
       labels: {
         style: {
-          colors: '#fff',
+          colors: '#FFFFFF',
         },
-        formatter: (value: number) => useFinanceNumber(value),
+        formatter: (value: number): string => useFinanceNumber(value),
       },
     },
     fill: {
@@ -58,7 +73,7 @@
     },
     legend: {
       labels: {
-        colors: '#fff',
+        colors: '#FFFFFF',
       },
       horizontalAlign: 'left',
     },
@@ -68,15 +83,15 @@
     },
   });
 
-  const provideChartWidth = computed((): string => {
-    const value = Math.ceil(props.xaxis.length / 8);
-    const result = value < 1 ? 100 : value * 100;
+  const chartWidth = computed((): string => {
+    const value: number = Math.ceil(props.xaxis.length / 8);
+    const result: number = value < 1 ? 100 : value * 100;
     return `${result}%`;
   });
 
   watch(
     () => props.series,
-    (value) => {
+    (value: IBarChartSeries[]) => {
       chartSeries.value = [...value];
     },
     { immediate: true, deep: true }
@@ -84,11 +99,35 @@
 
   watch(
     () => props.xaxis,
-    (value) => {
+    (value: string[]) => {
       chartOptions.value.xaxis.categories = [...value];
     },
     { immediate: true, deep: true }
   );
+
+  watch(
+    () => [props.series, props.xaxis],
+    () => {
+      isShow.value = false;
+
+      showerTimer.value = setTimeout(() => {
+        isShow.value = true;
+      }, 100) as unknown as number;
+    },
+    { deep: true }
+  );
+
+  onMounted(() => {
+    nextTick(() => {
+      if (process.client) {
+        window.dispatchEvent(new Event('resize'));
+      }
+    });
+  });
+
+  onBeforeUnmount(() => {
+    clearTimeout(showerTimer.value as unknown as number);
+  });
 </script>
 
 <style lang="scss">
