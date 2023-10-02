@@ -2,7 +2,7 @@
   <ClientOnly>
     <ul>
       <li v-for="item in contextCards" :key="item.id" class="mb-3">
-        <CardSection :data="item" />
+        <CardItem :data="item" />
       </li>
     </ul>
   </ClientOnly>

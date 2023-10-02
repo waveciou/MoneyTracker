@@ -26,7 +26,7 @@
             class="w-24 h-24 rounded-full m-auto flex justify-center items-center bg-black-base text-yellow before:text-6xl"
           />
         </div>
-        <CardDetail :data="props.data" />
+        <CardPopUpDetail :data="props.data" />
       </div>
     </ThePopUp>
     <ThePopConfirm
