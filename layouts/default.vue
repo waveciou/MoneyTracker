@@ -54,18 +54,22 @@
 
     get('storage', moneyTrackerStore)
       .then((value: string | undefined) => {
-        if (!value) {
-          set('storage', [], moneyTrackerStore);
-        } else {
-          const parstStorage: IRecordForm[] = JSON.parse(value);
+        if (value) {
+          const parseStorage: IRecordForm[] | null = useParseJsonSafely(value);
 
-          parstStorage.forEach((item) => {
-            recordStore.ADD_RECORD(item);
-          });
+          if (parseStorage) {
+            parseStorage.forEach((item: IRecordForm) => {
+              recordStore.ADD_RECORD(item);
+            });
+          }
+        } else {
+          set('storage', [], moneyTrackerStore);
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log('GET STORAGE DATA ERROR:', error));
   });
+
+  // SET Record Data To IndexedDB
 
   watch(
     () => storage.value,
@@ -75,7 +79,9 @@
         'moneyTrackerStore'
       );
 
-      set('storage', JSON.stringify(value), moneyTrackerStore);
+      set('storage', JSON.stringify(value), moneyTrackerStore).catch((error) =>
+        console.log('SET STORAGE DATA ERROR:', error)
+      );
     },
     { deep: true }
   );
