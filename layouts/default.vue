@@ -22,16 +22,20 @@
   </main>
 </template>
 
+<!-- eslint-disable no-console -->
 <script setup lang="ts">
+  import { onMounted } from 'vue';
+  import { createStore, get, set } from 'idb-keyval';
   import { storeToRefs } from 'pinia';
   import { useCommonStore } from '@/stores/commonStore';
   import { useRecordStore } from '@/stores/recordStore';
+  import { IRecordForm } from '@/assets/interfaces/record';
 
   const route = useRoute();
   const commonStore = useCommonStore();
   const recordStore = useRecordStore();
   const { isShowSearch } = storeToRefs(commonStore);
-  const { isShowRecord } = storeToRefs(recordStore);
+  const { storage, isShowRecord } = storeToRefs(recordStore);
 
   const contentRef = ref<HTMLDivElement>(null as unknown as HTMLDivElement);
 
@@ -39,6 +43,42 @@
     const value: number = contentRef?.value?.scrollTop || 0;
     commonStore.scrollValue = value;
   };
+
+  // GET Record Data From IndexedDB
+
+  onMounted(() => {
+    const moneyTrackerStore = createStore(
+      'moneyTrackerDB',
+      'moneyTrackerStore'
+    );
+
+    get('storage', moneyTrackerStore)
+      .then((value: string | undefined) => {
+        if (!value) {
+          set('storage', [], moneyTrackerStore);
+        } else {
+          const parstStorage: IRecordForm[] = JSON.parse(value);
+
+          parstStorage.forEach((item) => {
+            recordStore.ADD_RECORD(item);
+          });
+        }
+      })
+      .catch((error) => console.log(error));
+  });
+
+  watch(
+    () => storage.value,
+    (value: IRecordForm[]) => {
+      const moneyTrackerStore = createStore(
+        'moneyTrackerDB',
+        'moneyTrackerStore'
+      );
+
+      set('storage', JSON.stringify(value), moneyTrackerStore);
+    },
+    { deep: true }
+  );
 
   watch(
     () => route.path,

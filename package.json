@@ -31,6 +31,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
     "apexcharts": "^3.42.0",
+    "idb-keyval": "^6.2.1",
     "numeral": "^2.0.6",
     "pinia": "^2.1.4",
     "uuid": "^9.0.0",
