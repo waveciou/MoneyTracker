@@ -81,22 +81,23 @@ export const useRecordStore = defineStore({
           useCategoryValidator(category) === EnumRecordType.EXPENSE
       );
     },
-    totalPrice(): number {
-      const totalIncome = this.incomeRecords.reduce(
-        (prev: number, current: IRecordForm) => {
-          return numeral(prev).add(current.price).value() || prev;
-        },
-        0 as number
-      );
-
-      const totalExpense = this.expenseRecords.reduce(
+    totalIncomePrice(): number {
+      return this.incomeRecords.reduce((prev: number, current: IRecordForm) => {
+        return numeral(prev).add(current.price).value() || prev;
+      }, 0 as number);
+    },
+    totalExpensePrice(): number {
+      return this.expenseRecords.reduce(
         (prev: number, current: IRecordForm) => {
           return numeral(prev).subtract(current.price).value() || prev;
         },
         0 as number
       );
-
-      return numeral(totalIncome).add(totalExpense).value() || 0;
+    },
+    totalPrice(): number {
+      return (
+        numeral(this.totalIncomePrice).add(this.totalExpensePrice).value() || 0
+      );
     },
   },
 });
