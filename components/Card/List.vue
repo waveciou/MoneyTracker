@@ -1,10 +1,11 @@
 <template>
   <ClientOnly>
-    <ul>
+    <ul v-if="contextCards.length">
       <li v-for="item in contextCards" :key="item.id" class="mb-3">
         <CardItem :data="item" />
       </li>
     </ul>
+    <div v-else class="py-3 text-2xl text-white/60 text-center">NO DATA</div>
   </ClientOnly>
 </template>
 
