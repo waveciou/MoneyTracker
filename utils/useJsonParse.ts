@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-export const useParseJsonSafely = (payload: string): any | null => {
+export const useJsonParse = (payload: string): any | null => {
   try {
     return JSON.parse(payload);
   } catch (error) {
