@@ -51,7 +51,7 @@
         props.mode === EnumChartMode.MONTH
           ? `${year}-${month}`
           : `${year}-${month}-${date}`;
-      const index = result.findIndex((item) => item.id === id);
+      const index: number = result.findIndex((item) => item.id === id);
 
       if (index < 0) {
         result.push({ id, time: current.time, storage: [current] });
@@ -61,47 +61,39 @@
       return result;
     }, [] as IRecordSeries[]);
 
-    const sortSeries = series.sort((a, b) => {
-      return a.time - b.time;
-    });
-
-    return sortSeries;
+    return series.sort((a, b) => a.time - b.time);
   });
 
   const provideSeries = computed((): IBarChartSeries[] => {
-    const result: IBarChartSeries[] = [
-      {
-        name: 'Expense',
-        data: [],
+    return recordSeries.value.reduce(
+      (prevSeries: IBarChartSeries[], currentSeries: IRecordSeries) => {
+        const result = [...prevSeries];
+
+        const expense = currentSeries.storage.reduce((prev, current) => {
+          const price =
+            useCategoryValidator(current.category) === EnumRecordType.EXPENSE
+              ? current.price
+              : 0;
+          return prev + price;
+        }, 0);
+
+        const income = currentSeries.storage.reduce((prev, current) => {
+          const price =
+            useCategoryValidator(current.category) === EnumRecordType.INCOME
+              ? current.price
+              : 0;
+          return prev + price;
+        }, 0);
+
+        result[0].data.push(expense);
+        result[1].data.push(income);
+        return result;
       },
-      {
-        name: 'Income',
-        data: [],
-      },
-    ];
-
-    recordSeries.value.forEach((item) => {
-      const expense = item.storage.reduce((prev, current) => {
-        const price =
-          useCategoryValidator(current.category) === EnumRecordType.EXPENSE
-            ? current.price
-            : 0;
-        return prev + price;
-      }, 0);
-
-      const income = item.storage.reduce((prev, current) => {
-        const price =
-          useCategoryValidator(current.category) === EnumRecordType.INCOME
-            ? current.price
-            : 0;
-        return prev + price;
-      }, 0);
-
-      result[0].data.push(expense);
-      result[1].data.push(income);
-    });
-
-    return result;
+      [
+        { name: 'Expense', data: [] },
+        { name: 'Income', data: [] },
+      ] as IBarChartSeries[]
+    );
   });
 
   const provideXaxis = computed((): string[] => {
