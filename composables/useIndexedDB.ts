@@ -23,9 +23,7 @@ export const useIndexedDB = (): void => {
           const parseStorage: IRecordForm[] | null = useJsonParse(value);
 
           if (parseStorage) {
-            parseStorage.forEach((item: IRecordForm) => {
-              recordStore.ADD_RECORD(item);
-            });
+            recordStore.SET_STORAGE(parseStorage);
           }
         } else {
           set('storage', [], moneyTrackerStore);

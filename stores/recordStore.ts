@@ -23,6 +23,18 @@ export const useRecordStore = defineStore({
     };
   },
   actions: {
+    SET_STORAGE(recordsData: IRecordForm[]): void {
+      for (let i = 0; i < recordsData.length; i++) {
+        const index: number = this.storage.findIndex(
+          ({ id }) => id === recordsData[i].id
+        );
+        if (index >= 0) {
+          this.storage.splice(index, 1);
+        }
+
+        this.storage.push(recordsData[i]);
+      }
+    },
     ADD_RECORD(payload: IRecordForm): void {
       const { year, month, date } = useTimeValue(payload.time);
 
