@@ -1,16 +1,14 @@
 <template>
   <ClientOnly>
-    <div>
-      <div v-if="contextCards.length">
-        <TheCountor :cards="contextCards" />
-        <ul>
-          <li v-for="item in contextCards" :key="item.id" class="mb-3">
-            <CardItem :data="item" />
-          </li>
-        </ul>
-      </div>
-      <div v-else class="py-3 text-2xl text-white/60 text-center">NO DATA</div>
+    <div v-if="contextCards.length">
+      <TheCountor :cards="contextCards" />
+      <ul>
+        <li v-for="item in contextCards" :key="item.id" class="mb-3">
+          <CardItem :data="item" />
+        </li>
+      </ul>
     </div>
+    <div v-else class="py-3 text-2xl text-white/60 text-center">NO DATA</div>
   </ClientOnly>
 </template>
 

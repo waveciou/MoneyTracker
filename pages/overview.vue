@@ -1,6 +1,6 @@
 <template>
   <div>
-    <OverviewTotalPrice />
+    <OverviewCountor />
     <OverviewChart :mode="chartMode" @mode-update="handleModeUpdate" />
   </div>
 </template>

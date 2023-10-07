@@ -1,6 +1,6 @@
 <template>
   <div class="py-2 px-3 mt-3 mb-5 bg-black-darkest rounded-lg">
-    <div class="mb-3 text-2xl text-white text-center truncate">
+    <div class="mb-1 text-2xl text-white text-center truncate">
       Total
       <span class="ml-1" :class="providePriceClass">
         {{ providePrice }}
