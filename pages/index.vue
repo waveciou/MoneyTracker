@@ -5,7 +5,7 @@
       :default="selectedDate"
       @update="handleCalendarUpdate"
     />
-    <CardList :date-info="selectedDate" />
+    <HomeCardList :date-info="selectedDate" />
   </div>
 </template>
 
