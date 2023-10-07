@@ -26,7 +26,7 @@
   import { computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumChartMode } from '@/assets/enums/overview';
+  import { EnumChartMode } from '@/assets/enums/chart';
   import { EnumRecordType } from '@/assets/enums/record';
   import { IRecordSeries } from '@/assets/interfaces/record';
   import { IBarChartSeries } from '@/assets/interfaces/chart';

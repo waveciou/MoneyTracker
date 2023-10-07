@@ -1,5 +1,5 @@
 <template>
-  <div class="py-2 px-3 mt-3 mb-5 bg-black-darkest rounded-lg">
+  <div class="py-2 px-3 my-3 bg-black-darkest rounded-lg">
     <div
       class="flex items-center justify-between mb-1 text-2xl text-white truncate"
     >

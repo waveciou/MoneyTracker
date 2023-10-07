@@ -1,3 +1,8 @@
+interface ITimeFrame {
+  year: number;
+  month: number | null;
+}
+
 // BarChart
 
 interface IBarChartSeries {
@@ -50,4 +55,4 @@ interface IBarChartOptions {
   };
 }
 
-export { IBarChartSeries, IBarChartOptions };
+export { ITimeFrame, IBarChartSeries, IBarChartOptions };

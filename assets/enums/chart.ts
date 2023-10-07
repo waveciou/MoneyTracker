@@ -1,6 +1,6 @@
 enum EnumChartMode {
-  MONTH = 'month',
-  DATE = 'date',
+  YEARS = 'years',
+  MONTHS = 'months',
 }
 
 export { EnumChartMode };
