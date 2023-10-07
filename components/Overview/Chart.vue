@@ -99,10 +99,13 @@
   const provideXaxis = computed((): string[] => {
     return recordSeries.value.map(({ time }) => {
       const { month, date } = useTimeValue(time);
+      const formatMonth: string = useFormatNumber(month);
+      const formatDate: string = useFormatNumber(date);
+
       if (props.mode === EnumChartMode.MONTH) {
-        return `${month}月`;
+        return `${formatMonth}月`;
       }
-      return `${month}/${date}`;
+      return `${formatMonth}/${formatDate}`;
     });
   });
 
