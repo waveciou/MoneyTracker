@@ -8,7 +8,7 @@
     </div>
     <div>
       <div
-        class="flex items-center justify-between mb-1 text-lg text-white truncate"
+        class="flex items-center justify-between mb-1 text text-white truncate"
       >
         Income:
         <span class="ml-1 text-green">
@@ -16,7 +16,7 @@
         </span>
       </div>
       <div
-        class="flex items-center justify-between mb-1 text-lg text-white truncate"
+        class="flex items-center justify-between mb-1 text text-white truncate"
       >
         Expense:
         <span class="ml-1 text-red">
