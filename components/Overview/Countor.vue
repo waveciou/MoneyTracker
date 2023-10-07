@@ -1,28 +1,28 @@
 <template>
   <div class="py-2 px-3 mt-3 mb-5 bg-black-darkest rounded-lg">
-    <div class="mb-1 text-2xl text-white text-center truncate">
+    <div
+      class="flex items-center justify-between mb-1 text-2xl text-white truncate"
+    >
       Total
       <span class="ml-1" :class="providePriceClass">
         {{ providePrice }}
       </span>
     </div>
-    <div>
-      <div
-        class="flex items-center justify-between mb-1 text text-white truncate"
-      >
-        Income:
-        <span class="ml-1 text-green">
-          {{ useFinanceNumber(recordStore.totalIncomePrice) }}
-        </span>
-      </div>
-      <div
-        class="flex items-center justify-between mb-1 text text-white truncate"
-      >
-        Expense:
-        <span class="ml-1 text-red">
-          {{ useFinanceNumber(recordStore.totalExpensePrice) }}
-        </span>
-      </div>
+    <div
+      class="flex items-center justify-between text-base text-white truncate"
+    >
+      Income
+      <span class="ml-1 text-green">
+        +{{ useFinanceNumber(recordStore.totalIncomePrice) }}
+      </span>
+    </div>
+    <div
+      class="flex items-center justify-between text-base text-white truncate"
+    >
+      Expense
+      <span class="ml-1 text-red">
+        {{ useFinanceNumber(recordStore.totalExpensePrice) }}
+      </span>
     </div>
   </div>
 </template>

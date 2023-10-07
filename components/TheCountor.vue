@@ -1,24 +1,21 @@
 <template>
   <div class="py-2 px-3 my-3 bg-black-darkest rounded">
     <div
-      class="flex items-center justify-between mb-1 text-sm text-white truncate"
+      class="flex items-center justify-between mb-1 text-base text-white truncate"
     >
-      Income:
-      <span class="ml-1 text-green">
-        {{ useFinanceNumber(incomePrice) }}
-      </span>
-    </div>
-    <div
-      class="flex items-center justify-between mb-1 text-sm text-white truncate"
-    >
-      Expense:
-      <span class="ml-1 text-red">
-        {{ useFinanceNumber(expensePrice) }}
-      </span>
-    </div>
-    <div class="flex justify-end text-sm text-white">
+      Count
       <span class="ml-1" :class="provideSumPriceClass">
         {{ provideSumPrice }}
+      </span>
+    </div>
+    <div class="flex items-center justify-between text-sm text-white truncate">
+      Income
+      <span class="ml-1 text-green">+{{ useFinanceNumber(incomePrice) }}</span>
+    </div>
+    <div class="flex items-center justify-between text-sm text-white truncate">
+      Expense
+      <span class="ml-1 text-red">
+        {{ useFinanceNumber(expensePrice) }}
       </span>
     </div>
   </div>
