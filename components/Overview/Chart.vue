@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <ChartBar :series="provideSeries" :xaxis="provideXaxis" />
-  </div>
+  <ChartBar :series="provideSeries" :xaxis="provideXaxis" />
 </template>
 
 <script setup lang="ts">
@@ -109,14 +107,20 @@
   });
 
   const provideXaxis = computed((): string[] => {
+    const isNoRecords: boolean = recordSeries.value.every(
+      ({ storage }) => storage.length <= 0
+    );
+
+    if (isNoRecords) {
+      return [];
+    }
+
     return recordSeries.value.map(({ time }) => {
       const formatMonth: string = useFormatNumber(time.month);
 
       if (props.mode === EnumChartMode.MONTHS) {
-        const formatDate: string = useFormatNumber(time.date || 0);
-        return `${formatMonth}/${formatDate}`;
+        return `${formatMonth}/${useFormatNumber(time.date || 0)}`;
       }
-
       if (props.mode === EnumChartMode.YEARS) {
         return `${formatMonth}月`;
       }

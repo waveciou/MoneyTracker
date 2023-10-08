@@ -1,22 +1,29 @@
 <template>
   <div>
     <OverviewTotalCountor />
-    <OverviewModeSelector :mode="chartMode" @update="handleModeUpdate" />
-    <OverviewTimeSelector
-      :mode="chartMode"
-      :time-frame="chartTimeFrame"
-      @update="handleTimeFrameUpdate"
-    />
-    <OverviewChart :mode="chartMode" :time-frame="chartTimeFrame" />
+    <div v-if="storage.length">
+      <OverviewModeSelector :mode="chartMode" @update="handleModeUpdate" />
+      <OverviewTimeSelector
+        :mode="chartMode"
+        :time-frame="chartTimeFrame"
+        @update="handleTimeFrameUpdate"
+      />
+      <OverviewChart :mode="chartMode" :time-frame="chartTimeFrame" />
+    </div>
+    <TheNoData v-else />
   </div>
 </template>
 
 <script setup lang="ts">
   import { watch } from 'vue';
+  import { storeToRefs } from 'pinia';
+  import { useRecordStore } from '@/stores/recordStore';
   import { EnumChartMode } from '@/assets/enums/chart';
   import { ITimeFrame } from '@/assets/interfaces/chart';
 
   const today = useTimeTodayValue();
+  const recordStore = useRecordStore();
+  const { storage } = storeToRefs(recordStore);
 
   const chartMode = ref<EnumChartMode>(EnumChartMode.MONTHS);
 

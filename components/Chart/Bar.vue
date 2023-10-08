@@ -10,9 +10,7 @@
           :options="chartOptions"
           :series="chartSeries"
         />
-        <div v-else class="py-3 text-2xl text-white/60 text-center">
-          {{ props.lostText }}
-        </div>
+        <TheNoData v-else />
       </div>
     </ClientOnly>
   </div>
@@ -24,14 +22,10 @@
   import VueApexCharts from 'vue3-apexcharts';
   import { IBarChartSeries, IBarChartOptions } from '@/assets/interfaces/chart';
 
-  const props = withDefaults(
-    defineProps<{
-      series: IBarChartSeries[];
-      xaxis: string[];
-      lostText?: string;
-    }>(),
-    { lostText: 'NO DATA' }
-  );
+  const props = defineProps<{
+    series: IBarChartSeries[];
+    xaxis: string[];
+  }>();
 
   const isShow = ref<boolean>(true);
 
