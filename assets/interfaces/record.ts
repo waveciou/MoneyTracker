@@ -9,8 +9,11 @@ interface IRecordForm {
 }
 
 interface IRecordSeries {
-  id: string;
-  time: number;
+  time: {
+    year: number;
+    month: number;
+    date: number | null;
+  };
   storage: IRecordForm[];
 }
 interface ICalendarValue {

@@ -7,6 +7,7 @@
       :time-frame="chartTimeFrame"
       @update="handleTimeFrameUpdate"
     />
+    <OverviewChart :mode="chartMode" :time-frame="chartTimeFrame" />
   </div>
 </template>
 
