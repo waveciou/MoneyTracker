@@ -1,6 +1,12 @@
 <template>
-  <div class="w-full h-[320px] flex items-center">
-    <ChartBar class="w-full" :series="provideSeries" :xaxis="provideXaxis" />
+  <div>
+    <div class="w-full h-[320px] flex items-center">
+      <ChartBar class="w-full" :series="provideSeries" :xaxis="provideXaxis" />
+    </div>
+    <div v-if="contextCards.length">
+      <TheCountor :cards="contextCards" />
+      <OverviewCardList :mode="props.mode" :series="recordSeries" />
+    </div>
   </div>
 </template>
 
@@ -11,7 +17,7 @@
   import { useRecordStore } from '@/stores/recordStore';
   import { EnumRecordType } from '@/assets/enums/record';
   import { EnumChartMode } from '@/assets/enums/chart';
-  import { IRecordSeries } from '@/assets/interfaces/record';
+  import { IRecordForm, IRecordSeries } from '@/assets/interfaces/record';
   import { ITimeFrame, IBarChartSeries } from '@/assets/interfaces/chart';
 
   const props = withDefaults(
@@ -26,8 +32,10 @@
   );
 
   const dayjs = useDayjs();
+
   const commonStore = useCommonStore();
   const recordStore = useRecordStore();
+
   const { utcOffset } = storeToRefs(commonStore);
   const { storage } = storeToRefs(recordStore);
 
@@ -127,6 +135,19 @@
         return `${formatMonth}月`;
       }
       return '';
+    });
+  });
+
+  const contextCards = computed((): IRecordForm[] => {
+    return storage.value.filter(({ time }) => {
+      const { year, month } = useTimeValue(time);
+      if (props.mode === EnumChartMode.YEARS) {
+        return year === props.timeFrame.year;
+      }
+      if (props.mode === EnumChartMode.MONTHS) {
+        return year === props.timeFrame.year && month === props.timeFrame.month;
+      }
+      return false;
     });
   });
 </script>

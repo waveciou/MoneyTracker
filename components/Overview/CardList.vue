@@ -1,48 +1,51 @@
 <template>
-  <ClientOnly>
-    <div v-if="contextCards.length">
-      <TheCountor :cards="contextCards" />
-      <ul>
-        <li v-for="item in contextCards" :key="item.id" class="mb-3">
-          <CardItem :data="item" />
-        </li>
-      </ul>
-    </div>
-  </ClientOnly>
+  <ul>
+    <li v-for="item in contextCards" :key="item.id">
+      <TheAccordion :title="item.name">
+        <ul>
+          <li v-for="cardItem in item.storage" :key="cardItem.id" class="mb-3">
+            <CardItem :data="cardItem" />
+          </li>
+        </ul>
+      </TheAccordion>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
   import { computed } from 'vue';
-  import { storeToRefs } from 'pinia';
-  import { useRecordStore } from '@/stores/recordStore';
   import { EnumChartMode } from '@/assets/enums/chart';
-  import { IRecordForm } from '@/assets/interfaces/record';
-  import { ITimeFrame } from '@/assets/interfaces/chart';
+  import { IRecordForm, IRecordSeries } from '@/assets/interfaces/record';
 
-  const props = withDefaults(
-    defineProps<{ mode: EnumChartMode; timeFrame: ITimeFrame }>(),
-    {
-      mode: EnumChartMode.MONTHS,
-      timeFrame() {
-        const { year, month } = useTimeTodayValue();
-        return { year, month };
-      },
-    }
-  );
+  interface IContextCardItem {
+    id: string;
+    name: string;
+    storage: IRecordForm[];
+  }
 
-  const recordStore = useRecordStore();
-  const { storage } = storeToRefs(recordStore);
+  const props = defineProps<{ mode: EnumChartMode; series: IRecordSeries[] }>();
 
-  const contextCards = computed((): IRecordForm[] => {
-    return storage.value.filter(({ time }) => {
-      const { year, month } = useTimeValue(time);
-      if (props.mode === EnumChartMode.YEARS) {
-        return year === props.timeFrame.year;
-      }
-      if (props.mode === EnumChartMode.MONTHS) {
-        return year === props.timeFrame.year && month === props.timeFrame.month;
-      }
-      return false;
+  const contextCards = computed((): IContextCardItem[] => {
+    const filterSeries = props.series.filter(
+      ({ storage }) => storage.length > 0
+    );
+
+    return filterSeries.map(({ time, storage }) => {
+      const { year, month, date } = time;
+      const formatMonth = useFormatNumber(month);
+      const formatDate = useFormatNumber(date || 0);
+
+      const id: string =
+        props.mode === EnumChartMode.YEARS
+          ? `${year}-${formatMonth}`
+          : `${year}-${formatMonth}-${formatDate}`;
+
+      const name: string =
+        props.mode === EnumChartMode.YEARS
+          ? `${year}年${formatMonth}月`
+          : `${year}年${formatMonth}月${formatDate}日`;
+
+      return { id, name, storage };
     });
   });
 </script>
