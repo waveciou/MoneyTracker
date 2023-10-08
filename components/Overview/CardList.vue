@@ -2,6 +2,7 @@
   <ul>
     <li v-for="item in contextCards" :key="item.id">
       <TheAccordion :title="item.name">
+        <h3 class="hidden">{{ item.name }}</h3>
         <ul>
           <li v-for="cardItem in item.storage" :key="cardItem.id" class="mb-3">
             <CardItem :data="cardItem" />

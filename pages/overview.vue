@@ -1,7 +1,7 @@
 <template>
   <div>
     <OverviewTotalCountor />
-    <div v-if="storage.length">
+    <section v-if="storage.length">
       <OverviewModeSelector :mode="chartMode" @update="handleModeUpdate" />
       <OverviewTimeSelector
         :mode="chartMode"
@@ -9,7 +9,7 @@
         @update="handleTimeFrameUpdate"
       />
       <OverviewContent :mode="chartMode" :time-frame="chartTimeFrame" />
-    </div>
+    </section>
     <TheNoData v-else />
   </div>
 </template>

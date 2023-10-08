@@ -5,14 +5,14 @@
       title="Previous"
       @click="handleChangeTime(false)"
     />
-    <div class="w-full h-7 flex justify-center">
+    <h2 class="w-full h-7 flex justify-center">
       <button class="block" title="today" @click="handleMoveToday">
         <span>{{ selectedTime.year }} 年</span>
         <span v-if="props.mode === EnumChartMode.MONTHS" class="ml-1">
           {{ useFormatNumber(selectedTime.month || 0) }} 月
         </span>
       </button>
-    </div>
+    </h2>
     <button
       class="before-font-material block w-7 h-7 mr-2 basis-7 before:content-['\e5cc'] before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
       title="Next"

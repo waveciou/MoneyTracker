@@ -1,13 +1,13 @@
 <template>
-  <div class="py-2 px-3 my-3 bg-black-darkest rounded-lg">
-    <div
+  <section class="py-2 px-3 my-3 bg-black-darkest rounded-lg">
+    <h2
       class="flex items-center justify-between mb-1 text-2xl text-white truncate"
     >
       Total
       <span class="ml-1" :class="providePriceClass">
         {{ providePrice }}
       </span>
-    </div>
+    </h2>
     <div
       class="flex items-center justify-between text-base text-white truncate"
     >
@@ -24,7 +24,7 @@
         {{ useFinanceNumber(recordStore.totalExpensePrice) }}
       </span>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
