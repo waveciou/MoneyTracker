@@ -1,5 +1,7 @@
 <template>
-  <ChartBar :series="provideSeries" :xaxis="provideXaxis" />
+  <div class="w-full h-[320px] flex items-center">
+    <ChartBar class="w-full" :series="provideSeries" :xaxis="provideXaxis" />
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -7,8 +7,8 @@
     />
     <div class="w-full h-7 flex justify-center">
       <button class="block" title="today" @click="handleMoveToday">
-        <span class="mr-1">{{ selectedTime.year }} 年</span>
-        <span v-if="props.mode === EnumChartMode.MONTHS">
+        <span>{{ selectedTime.year }} 年</span>
+        <span v-if="props.mode === EnumChartMode.MONTHS" class="ml-1">
           {{ useFormatNumber(selectedTime.month || 0) }} 月
         </span>
       </button>

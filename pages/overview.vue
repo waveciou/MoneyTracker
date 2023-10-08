@@ -9,6 +9,7 @@
         @update="handleTimeFrameUpdate"
       />
       <OverviewChart :mode="chartMode" :time-frame="chartTimeFrame" />
+      <OverviewCardList :mode="chartMode" :time-frame="chartTimeFrame" />
     </div>
     <TheNoData v-else />
   </div>

@@ -1,13 +1,5 @@
 <template>
   <div class="py-2 px-3 my-3 bg-black-darkest rounded">
-    <div
-      class="flex items-center justify-between mb-1 text-base text-white truncate"
-    >
-      Count
-      <span class="ml-1" :class="provideSumPriceClass">
-        {{ provideSumPrice }}
-      </span>
-    </div>
     <div class="flex items-center justify-between text-sm text-white truncate">
       Income
       <span class="ml-1 text-green">+{{ useFinanceNumber(incomePrice) }}</span>
@@ -17,6 +9,9 @@
       <span class="ml-1 text-red">
         {{ useFinanceNumber(expensePrice) }}
       </span>
+    </div>
+    <div class="flex items-center justify-end text-sm text-white truncate">
+      <span class="ml-1 text-yellow">{{ provideSumPrice }}</span>
     </div>
   </div>
 </template>
@@ -60,10 +55,10 @@
     return `${useFinanceNumber(sumPrice.value)}`;
   });
 
-  const provideSumPriceClass = computed((): string => {
-    if (sumPrice.value < 0) {
-      return 'text-red';
-    }
-    return 'text-green';
-  });
+  // const provideSumPriceClass = computed((): string => {
+  //   if (sumPrice.value < 0) {
+  //     return 'text-red';
+  //   }
+  //   return 'text-green';
+  // });
 </script>

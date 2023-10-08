@@ -8,7 +8,7 @@
         </li>
       </ul>
     </div>
-    <div v-else class="py-3 text-2xl text-white/60 text-center">NO DATA</div>
+    <TheNoData v-else />
   </ClientOnly>
 </template>
 
