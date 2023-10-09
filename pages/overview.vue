@@ -19,7 +19,7 @@
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import { EnumChartMode } from '@/assets/enums/chart';
-  import { ITimeFrame } from '@/assets/interfaces/chart';
+  import { IChartTimeFrame } from '@/assets/interfaces/chart';
 
   const today = useTimeTodayValue();
   const recordStore = useRecordStore();
@@ -27,7 +27,7 @@
 
   const chartMode = ref<EnumChartMode>(EnumChartMode.MONTHS);
 
-  const chartTimeFrame = ref<ITimeFrame>({
+  const chartTimeFrame = ref<IChartTimeFrame>({
     year: today.year,
     month: today.month,
   });
@@ -36,7 +36,7 @@
     chartMode.value = payload;
   };
 
-  const handleTimeFrameUpdate = (payload: ITimeFrame): void => {
+  const handleTimeFrameUpdate = (payload: IChartTimeFrame): void => {
     chartTimeFrame.value = payload;
   };
 

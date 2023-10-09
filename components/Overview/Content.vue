@@ -18,10 +18,10 @@
   import { EnumRecordType } from '@/assets/enums/record';
   import { EnumChartMode } from '@/assets/enums/chart';
   import { IRecordForm, IRecordSeries } from '@/assets/interfaces/record';
-  import { ITimeFrame, IBarChartSeries } from '@/assets/interfaces/chart';
+  import { IChartTimeFrame, IBarChartSeries } from '@/assets/interfaces/chart';
 
   const props = withDefaults(
-    defineProps<{ mode: EnumChartMode; timeFrame: ITimeFrame }>(),
+    defineProps<{ mode: EnumChartMode; timeFrame: IChartTimeFrame }>(),
     {
       mode: EnumChartMode.MONTHS,
       timeFrame() {

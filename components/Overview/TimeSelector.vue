@@ -24,10 +24,10 @@
 <script setup lang="ts">
   import { watch } from 'vue';
   import { EnumChartMode } from '@/assets/enums/chart';
-  import { ITimeFrame } from '@/assets/interfaces/chart';
+  import { IChartTimeFrame } from '@/assets/interfaces/chart';
 
   const props = withDefaults(
-    defineProps<{ mode: EnumChartMode; timeFrame: ITimeFrame }>(),
+    defineProps<{ mode: EnumChartMode; timeFrame: IChartTimeFrame }>(),
     {
       mode: EnumChartMode.MONTHS,
       timeFrame() {
@@ -38,10 +38,10 @@
   );
 
   const emits = defineEmits<{
-    (e: 'update', value: ITimeFrame): void;
+    (e: 'update', value: IChartTimeFrame): void;
   }>();
 
-  const selectedTime = ref<ITimeFrame>(props.timeFrame);
+  const selectedTime = ref<IChartTimeFrame>(props.timeFrame);
 
   const handleChangeTime = (isNext: boolean): void => {
     const amount: number = isNext ? 1 : -1;

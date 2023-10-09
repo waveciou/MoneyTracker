@@ -1,16 +1,16 @@
 <template>
-  <div class="py-2 px-3 my-3 bg-black-darkest rounded">
-    <div class="flex items-center justify-between text-sm text-white truncate">
+  <div class="py-2 px-3 my-3 text-sm text-white bg-black-darkest rounded">
+    <div class="flex items-center justify-between truncate">
       Income
       <span class="ml-1 text-green">+{{ useFinanceNumber(incomePrice) }}</span>
     </div>
-    <div class="flex items-center justify-between text-sm text-white truncate">
+    <div class="flex items-center justify-between truncate">
       Expense
       <span class="ml-1 text-red">
         {{ useFinanceNumber(expensePrice) }}
       </span>
     </div>
-    <div class="flex items-center justify-end text-sm text-white truncate">
+    <div class="flex items-center justify-end truncate">
       <span class="ml-1 text-yellow">{{ provideSumPrice }}</span>
     </div>
   </div>
