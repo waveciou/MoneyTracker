@@ -3,4 +3,10 @@ enum EnumChartMode {
   MONTHS = 'months',
 }
 
-export { EnumChartMode };
+enum EnumChartAnalysisType {
+  CATEGORY = 'Category',
+  STORE = 'Store',
+  TAGS = 'Tags',
+}
+
+export { EnumChartMode, EnumChartAnalysisType };

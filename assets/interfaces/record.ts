@@ -16,6 +16,7 @@ interface IRecordSeries {
   };
   storage: IRecordForm[];
 }
+
 interface ICalendarValue {
   year: number;
   month: number;

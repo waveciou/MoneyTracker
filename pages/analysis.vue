@@ -8,6 +8,24 @@
         :time-frame="chartTimeFrame"
         @update="handleTimeFrameUpdate"
       />
+      <ChartTypeSelector :type="chartAnalysisType" @update="handleTypeUpdate" />
+      <div>
+        <AreaAnalysisSectionCategory
+          v-if="chartAnalysisType === EnumChartAnalysisType.CATEGORY"
+          :mode="chartMode"
+          :time-frame="chartTimeFrame"
+        />
+        <AreaAnalysisSectionStore
+          v-else-if="chartAnalysisType === EnumChartAnalysisType.STORE"
+          :mode="chartMode"
+          :time-frame="chartTimeFrame"
+        />
+        <AreaAnalysisSectionTags
+          v-else-if="chartAnalysisType === EnumChartAnalysisType.TAGS"
+          :mode="chartMode"
+          :time-frame="chartTimeFrame"
+        />
+      </div>
     </section>
     <TheEmpty v-else />
   </div>
@@ -17,7 +35,7 @@
   import { watch } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumChartMode } from '@/assets/enums/chart';
+  import { EnumChartMode, EnumChartAnalysisType } from '@/assets/enums/chart';
   import { IChartTimeFrame } from '@/assets/interfaces/chart';
 
   const today = useTimeTodayValue();
@@ -31,12 +49,20 @@
     month: today.month,
   });
 
+  const chartAnalysisType = ref<EnumChartAnalysisType>(
+    EnumChartAnalysisType.CATEGORY
+  );
+
   const handleModeUpdate = (payload: EnumChartMode): void => {
     chartMode.value = payload;
   };
 
   const handleTimeFrameUpdate = (payload: IChartTimeFrame): void => {
     chartTimeFrame.value = payload;
+  };
+
+  const handleTypeUpdate = (payload: EnumChartAnalysisType): void => {
+    chartAnalysisType.value = payload;
   };
 
   watch(
