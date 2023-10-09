@@ -2,8 +2,9 @@
   <div>
     <AreaOverviewTotalCountor />
     <section v-if="storage.length">
-      <AreaOverviewModeSelector :mode="chartMode" @update="handleModeUpdate" />
-      <AreaOverviewTimeSelector
+      <ChartModeSelector :mode="chartMode" @update="handleModeUpdate" />
+      <ChartTimeSelector
+        tag-name="h2"
         :mode="chartMode"
         :time-frame="chartTimeFrame"
         @update="handleTimeFrameUpdate"

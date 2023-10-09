@@ -5,14 +5,14 @@
       title="Previous"
       @click="handleChangeTime(false)"
     />
-    <h2 class="w-full h-7 flex justify-center">
+    <Component :is="props.tagName" class="w-full h-7 flex justify-center">
       <button class="block" title="today" @click="handleMoveToday">
         <span>{{ selectedTime.year }} 年</span>
         <span v-if="props.mode === EnumChartMode.MONTHS" class="ml-1">
           {{ useFormatNumber(selectedTime.month || 0) }} 月
         </span>
       </button>
-    </h2>
+    </Component>
     <button
       class="before-font-material block w-7 h-7 mr-2 basis-7 before:content-['\e5cc'] before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
       title="Next"
@@ -27,8 +27,13 @@
   import { IChartTimeFrame } from '@/assets/interfaces/chart';
 
   const props = withDefaults(
-    defineProps<{ mode: EnumChartMode; timeFrame: IChartTimeFrame }>(),
+    defineProps<{
+      tagName?: string;
+      mode: EnumChartMode;
+      timeFrame: IChartTimeFrame;
+    }>(),
     {
+      tagName: 'div',
       mode: EnumChartMode.MONTHS,
       timeFrame() {
         const { year, month } = useTimeTodayValue();

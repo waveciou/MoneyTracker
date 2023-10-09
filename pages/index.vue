@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <section>
     <TheCalendar
       class="mb-4"
+      tag-name="h2"
       :default="selectedDate"
       @update="handleCalendarUpdate"
     />
     <AreaHomeCards :date-info="selectedDate" />
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

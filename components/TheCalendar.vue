@@ -6,12 +6,12 @@
         title="Previous"
         @click="handleChangeMonth(false)"
       />
-      <div class="w-full h-7 flex justify-center">
+      <Component :is="props.tagName" class="w-full h-7 flex justify-center">
         <button class="block" title="today" @click="handleMoveToday">
           <span class="mr-1">{{ selectedDate.year }} 年</span>
           <span>{{ useFormatNumber(selectedDate.month) }} 月</span>
         </button>
-      </div>
+      </Component>
       <button
         class="before-font-material block w-7 h-7 mr-2 basis-7 before:content-['\e5cc'] before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
         title="Next"
@@ -55,11 +55,15 @@
   import { useCommonStore } from '@/stores/commonStore';
   import { ICalendarValue } from '@/assets/interfaces/record';
 
-  const props = withDefaults(defineProps<{ default?: ICalendarValue }>(), {
-    default() {
-      return useTimeTodayValue();
-    },
-  });
+  const props = withDefaults(
+    defineProps<{ tagName?: string; default?: ICalendarValue }>(),
+    {
+      tagName: 'div',
+      default() {
+        return useTimeTodayValue();
+      },
+    }
+  );
 
   const emits = defineEmits<{
     (e: 'update', value: ICalendarValue): void;
