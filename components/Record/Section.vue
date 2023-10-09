@@ -1,6 +1,6 @@
 <template>
   <article
-    class="w-full h-full absolute top-0 left-0 overflow-hidden bg-black-base"
+    class="w-full h-full absolute top-0 left-0 z-rescord-section overflow-hidden bg-black-base"
   >
     <RecordModeCreator v-if="contextMode === EnumRecordMode.CREATOR" />
     <RecordModeEditor v-else-if="contextMode === EnumRecordMode.EDITOR" />

@@ -38,6 +38,8 @@ module.exports = {
         'input': '0px 0px 0px 0.2rem rgba(255,223,94,.55)',
       },
       zIndex: {
+        'search-section': '3000',
+        'rescord-section': '4000',
         'popup': '5500',
       },
     },
