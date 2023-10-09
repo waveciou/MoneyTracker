@@ -1,15 +1,15 @@
 <template>
   <div class="w-full h-full flex flex-col">
-    <RecordHeader @submit="handleSubmit" />
+    <AreaRecordHeader @submit="handleSubmit" />
     <div class="h-full overflow-x-hidden relative px-wrap-space">
-      <RecordTypeSelector v-model="selectedRecordType" />
+      <AreaRecordTypeSelector v-model="selectedRecordType" />
       <Transition name="fade">
-        <RecordForm
+        <AreaRecordForm
           v-if="selectedRecordType === EnumRecordType.EXPENSE"
           :record-type="EnumRecordType.EXPENSE"
           @update="handleUpdate"
         />
-        <RecordForm
+        <AreaRecordForm
           v-else-if="selectedRecordType === EnumRecordType.INCOME"
           :record-type="EnumRecordType.INCOME"
           @update="handleUpdate"

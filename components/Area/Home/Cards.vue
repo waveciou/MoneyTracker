@@ -8,7 +8,7 @@
         </li>
       </ul>
     </div>
-    <TheNoData v-else />
+    <TheEmpty v-else />
   </ClientOnly>
 </template>
 

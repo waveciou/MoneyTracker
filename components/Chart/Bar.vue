@@ -10,7 +10,7 @@
           :options="chartOptions"
           :series="chartSeries"
         />
-        <TheNoData v-else />
+        <TheEmpty v-else />
       </div>
     </ClientOnly>
   </div>

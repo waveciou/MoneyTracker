@@ -14,15 +14,14 @@
       <MenuSection />
     </article>
     <Transition name="fade">
-      <SearchSection v-if="isShowSearch" class="fade-animation" />
+      <AreaSearchSection v-if="isShowSearch" class="fade-animation" />
     </Transition>
     <Transition name="fade">
-      <RecordSection v-if="isShowRecord" class="fade-animation" />
+      <AreaRecordSection v-if="isShowRecord" class="fade-animation" />
     </Transition>
   </main>
 </template>
 
-<!-- eslint-disable no-console -->
 <script setup lang="ts">
   import { watch } from 'vue';
   import { storeToRefs } from 'pinia';

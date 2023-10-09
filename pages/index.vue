@@ -5,7 +5,7 @@
       :default="selectedDate"
       @update="handleCalendarUpdate"
     />
-    <HomeCardList :date-info="selectedDate" />
+    <AreaHomeCards :date-info="selectedDate" />
   </div>
 </template>
 

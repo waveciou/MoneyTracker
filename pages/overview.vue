@@ -1,16 +1,16 @@
 <template>
   <div>
-    <OverviewTotalCountor />
+    <AreaOverviewTotalCountor />
     <section v-if="storage.length">
-      <OverviewModeSelector :mode="chartMode" @update="handleModeUpdate" />
-      <OverviewTimeSelector
+      <AreaOverviewModeSelector :mode="chartMode" @update="handleModeUpdate" />
+      <AreaOverviewTimeSelector
         :mode="chartMode"
         :time-frame="chartTimeFrame"
         @update="handleTimeFrameUpdate"
       />
-      <OverviewContent :mode="chartMode" :time-frame="chartTimeFrame" />
+      <AreaOverviewContent :mode="chartMode" :time-frame="chartTimeFrame" />
     </section>
-    <TheNoData v-else />
+    <TheEmpty v-else />
   </div>
 </template>
 

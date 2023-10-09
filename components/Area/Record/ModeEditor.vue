@@ -1,17 +1,17 @@
 <template>
   <div class="w-full h-full flex flex-col">
-    <RecordHeader @submit="handleSubmit" />
+    <AreaRecordHeader @submit="handleSubmit" />
     <div
       v-if="contextID"
       class="h-full overflow-x-hidden relative px-wrap-space"
     >
-      <RecordForm
+      <AreaRecordForm
         v-if="selectedRecordType === EnumRecordType.EXPENSE"
         :record-type="EnumRecordType.EXPENSE"
         :record-id="contextID"
         @update="handleUpdate"
       />
-      <RecordForm
+      <AreaRecordForm
         v-else-if="selectedRecordType === EnumRecordType.INCOME"
         :record-type="EnumRecordType.INCOME"
         :record-id="contextID"

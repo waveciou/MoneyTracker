@@ -5,7 +5,7 @@
     </div>
     <div v-if="contextCards.length">
       <TheCountor :cards="contextCards" />
-      <OverviewCardList :mode="props.mode" :series="recordSeries" />
+      <AreaOverviewCards :mode="props.mode" :series="recordSeries" />
     </div>
   </div>
 </template>
@@ -32,10 +32,8 @@
   );
 
   const dayjs = useDayjs();
-
   const commonStore = useCommonStore();
   const recordStore = useRecordStore();
-
   const { utcOffset } = storeToRefs(commonStore);
   const { storage } = storeToRefs(recordStore);
 
