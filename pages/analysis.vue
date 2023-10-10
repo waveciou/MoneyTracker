@@ -6,7 +6,16 @@
         class="mt-0"
         @update="handleTypeUpdate"
       />
-      <ChartModeSelector :mode="chartMode" @update="handleModeUpdate" />
+      <ChartModeSelector
+        :mode="chartMode"
+        :options="[
+          EnumChartMode.ALL,
+          EnumChartMode.YEARS,
+          EnumChartMode.MONTHS,
+        ]"
+        class="mb-0"
+        @update="handleModeUpdate"
+      />
       <ChartTimeSelector
         v-if="
           chartMode === EnumChartMode.YEARS ||
@@ -50,7 +59,7 @@
   const recordStore = useRecordStore();
   const { storage } = storeToRefs(recordStore);
 
-  const chartMode = ref<EnumChartMode>(EnumChartMode.MONTHS);
+  const chartMode = ref<EnumChartMode>(EnumChartMode.ALL);
 
   const chartTimeFrame = ref<IChartTimeFrame>({
     year: today.year,

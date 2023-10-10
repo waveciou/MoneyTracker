@@ -2,7 +2,11 @@
   <div>
     <AreaOverviewTotalCountor />
     <section v-if="storage.length">
-      <ChartModeSelector :mode="chartMode" @update="handleModeUpdate" />
+      <ChartModeSelector
+        :mode="chartMode"
+        :options="[EnumChartMode.YEARS, EnumChartMode.MONTHS]"
+        @update="handleModeUpdate"
+      />
       <ChartTimeSelector
         tag-name="h2"
         :mode="chartMode"
