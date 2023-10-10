@@ -6,6 +6,7 @@
   import { EnumChartMode } from '@/assets/enums/chart';
   import { IChartTimeFrame } from '@/assets/interfaces/chart';
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const props = withDefaults(
     defineProps<{
       mode: EnumChartMode;

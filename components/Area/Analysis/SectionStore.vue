@@ -66,10 +66,7 @@
           const index = result.findIndex(({ name }) => name === current.store);
 
           if (index < 0) {
-            result.push({
-              name: current.store,
-              storage: [current],
-            });
+            result.push({ name: current.store, storage: [current] });
           } else {
             result[index].storage.push(current);
           }
