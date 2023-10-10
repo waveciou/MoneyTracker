@@ -54,6 +54,8 @@
           return year === timeFrame.year;
         case EnumChartMode.MONTHS:
           return year === timeFrame.year && month === timeFrame.month;
+        case EnumChartMode.ALL:
+          return true;
         default:
           return false;
       }

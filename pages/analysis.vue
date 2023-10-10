@@ -1,14 +1,22 @@
 <template>
   <div>
     <section v-if="storage.length">
+      <ChartTypeSelector
+        :type="chartAnalysisType"
+        class="mt-0"
+        @update="handleTypeUpdate"
+      />
       <ChartModeSelector :mode="chartMode" @update="handleModeUpdate" />
       <ChartTimeSelector
+        v-if="
+          chartMode === EnumChartMode.YEARS ||
+          chartMode === EnumChartMode.MONTHS
+        "
         tag-name="h2"
         :mode="chartMode"
         :time-frame="chartTimeFrame"
         @update="handleTimeFrameUpdate"
       />
-      <ChartTypeSelector :type="chartAnalysisType" @update="handleTypeUpdate" />
       <div>
         <AreaAnalysisSectionCategory
           v-if="chartAnalysisType === EnumChartAnalysisType.CATEGORY"

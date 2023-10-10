@@ -1,6 +1,7 @@
 enum EnumChartMode {
   YEARS = 'years',
   MONTHS = 'months',
+  ALL = 'all',
 }
 
 enum EnumChartAnalysisType {

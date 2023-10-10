@@ -2,6 +2,14 @@
   <div class="my-3 flex justify-end items-center">
     <button
       class="before-font-material before:text-xl before:mr-1 flex items-center mr-2"
+      :class="provideRadioClass(EnumChartMode.ALL)"
+      title="All"
+      @click="handleUpdate(EnumChartMode.ALL)"
+    >
+      All
+    </button>
+    <button
+      class="before-font-material before:text-xl before:mr-1 flex items-center mr-2"
       :class="provideRadioClass(EnumChartMode.YEARS)"
       title="Years"
       @click="handleUpdate(EnumChartMode.YEARS)"
@@ -36,7 +44,7 @@
 
   const provideRadioClass = (payload: EnumChartMode): string => {
     return props.mode === payload
-      ? 'icon-radio-checked'
+      ? 'icon-radio-checked before:text-yellow'
       : 'icon-radio-unchecked';
   };
 </script>
