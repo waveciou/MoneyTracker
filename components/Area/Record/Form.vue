@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full pb-5">
     <ClientOnly>
       <FormPrice v-model.number="contextForm.price" class="mb-4" />
       <FormCategoryExpense

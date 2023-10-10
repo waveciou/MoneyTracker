@@ -6,7 +6,7 @@
         id="content"
         ref="contentRef"
         class="h-full overflow-x-hidden relative px-wrap-space"
-        :class="isShowSearch ? 'overflow-y-hidden' : 'overflow-y-auto'"
+        :class="isFixContent ? 'overflow-y-hidden' : 'overflow-y-auto'"
         @scroll="handleScroll"
       >
         <slot />
@@ -22,8 +22,9 @@
   </main>
 </template>
 
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
-  import { watch } from 'vue';
+  import { computed, watch } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useCommonStore } from '@/stores/commonStore';
   import { useRecordStore } from '@/stores/recordStore';
@@ -42,12 +43,17 @@
   };
 
   // Init IndexedDB
-  useIndexedDB();
+  const indexedDB = useIndexedDB();
+
+  const isFixContent = computed(
+    (): boolean => !!(isShowSearch.value || isShowRecord.value)
+  );
 
   watch(
     () => route.path,
     () => {
       nextTick(() => {
+        contentRef?.value.scrollTo(0, 0);
         handleScroll();
       });
     },
