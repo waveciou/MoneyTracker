@@ -139,13 +139,16 @@
   const contextCards = computed((): IRecordForm[] => {
     return storage.value.filter(({ time }) => {
       const { year, month } = useTimeValue(time);
-      if (props.mode === EnumChartMode.YEARS) {
-        return year === props.timeFrame.year;
+      const { timeFrame } = props;
+
+      switch (props.mode) {
+        case EnumChartMode.YEARS:
+          return year === timeFrame.year;
+        case EnumChartMode.MONTHS:
+          return year === timeFrame.year && month === timeFrame.month;
+        default:
+          return false;
       }
-      if (props.mode === EnumChartMode.MONTHS) {
-        return year === props.timeFrame.year && month === props.timeFrame.month;
-      }
-      return false;
     });
   });
 </script>
