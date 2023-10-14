@@ -107,8 +107,12 @@
     return contextRecords.value.reduce((prev, current) => {
       const { category } = current;
       const result = [...prev];
-      const isOnlyMainName = selectedCategory.value === EnumRecordType.EXPENSE;
-      const name = useCategoryName(category, isOnlyMainName);
+
+      const name = useCategoryName(category, {
+        isOnlyMainName: selectedCategory.value === EnumRecordType.EXPENSE,
+        isIncludeMainName: false,
+      });
+
       const index = result.findIndex((item) => item.name === name);
 
       if (index < 0) {

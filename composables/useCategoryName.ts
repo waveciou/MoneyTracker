@@ -8,10 +8,14 @@ import {
 
 import { EnumRecordType } from '@/assets/enums/record';
 
+interface IOption {
+  isOnlyMainName: boolean;
+  isIncludeMainName: boolean;
+}
+
 export const useCategoryName = (
   categoryID: string,
-  isOnlyMainName = false,
-  isIncludeMainName = true
+  option: IOption
 ): string => {
   const categoriesStore = useCategoriesStore();
   const { income, expense } = storeToRefs(categoriesStore);
@@ -43,11 +47,11 @@ export const useCategoryName = (
             ({ id }) => id === categoryID
           );
           if (subcategoryItem) {
-            if (isOnlyMainName) {
+            if (option.isOnlyMainName) {
               return `${name}`;
             }
 
-            if (isIncludeMainName) {
+            if (option.isIncludeMainName) {
               return `${name} - ${subcategoryItem.name}`;
             }
             return subcategoryItem.name;

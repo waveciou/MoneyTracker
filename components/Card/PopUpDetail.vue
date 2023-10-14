@@ -6,7 +6,12 @@
     >
       <div class="mb-1 flex items-center justify-between text-lg">
         <span class="block truncate text-yellow">
-          {{ useCategoryName(props.data.category) }}
+          {{
+            useCategoryName(props.data.category, {
+              isOnlyMainName: false,
+              isIncludeMainName: true,
+            })
+          }}
         </span>
         <span class="block truncate pl-2" :class="providePriceClass">
           {{ providePrice }}
