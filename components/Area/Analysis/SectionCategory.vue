@@ -43,13 +43,13 @@
 
   const selectedCategory = ref<string>(EnumRecordType.EXPENSE);
 
-  const provideCategoryList = computed((): { id: string; name: string }[] => {
+  const contextCategories = computed((): string[] => {
     if (selectedCategory.value === EnumRecordType.EXPENSE) {
-      return expense.value.map(({ id, name }) => ({ id, name }));
+      return expense.value.map(({ id }) => id);
     }
 
     if (selectedCategory.value === EnumRecordType.INCOME) {
-      return income.value;
+      return income.value.map(({ id }) => id);
     }
 
     const contextCategory = expense.value.find(
@@ -57,7 +57,7 @@
     );
 
     if (contextCategory) {
-      return contextCategory.subcategories;
+      return contextCategory.subcategories.map(({ id }) => id);
     }
     return [];
   });
@@ -94,11 +94,51 @@
     }
 
     return timeFilter.filter(({ category }) => {
-      return provideCategoryList.value.some(({ id }) => id === category);
+      return contextCategories.value.includes(category);
     });
   });
 
-  const provideSeries = computed((): number[] => []);
+  const provideSeries = computed((): number[] => {
+    const result: { [key: string]: number } = {};
 
-  const provideLabels = computed((): string[] => []);
+    contextCards.value.forEach(({ category, price }) => {
+      if (selectedCategory.value === EnumRecordType.EXPENSE) {
+        const mainName = getMainCategoryID(category);
+
+        if (result[mainName] === undefined) {
+          result[mainName] = price;
+        } else {
+          result[mainName] = result[mainName] + price;
+        }
+      } else if (result[category] === undefined) {
+        result[category] = price;
+      } else {
+        result[category] = result[category] + price;
+      }
+    });
+
+    return Object.values(result);
+  });
+
+  const provideLabels = computed((): string[] => {
+    const result = contextCards.value.map(({ category }) =>
+      useCategoryName(category)
+    );
+    const a: Set<string> = new Set(result);
+    return [...a];
+  });
+
+  const getMainCategoryID = (categoryID: string): string => {
+    const recordType = useCategoryValidator(categoryID);
+    if (recordType === EnumRecordType.EXPENSE) {
+      return expense.value.reduce((prev, current) => {
+        const a = current.subcategories.some(({ id }) => id === categoryID);
+        if (a) {
+          return current.id;
+        }
+        return prev;
+      }, '' as string);
+    }
+    return categoryID;
+  };
 </script>

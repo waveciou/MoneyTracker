@@ -51,7 +51,7 @@
   const { storage } = storeToRefs(recordStore);
 
   const contextCards = computed((): IContextCardItem[] => {
-    const filterRecords: IRecordForm[] = storage.value.filter(({ time }) => {
+    const timeFilter: IRecordForm[] = storage.value.filter(({ time }) => {
       const { year, month } = useTimeValue(time);
       const { timeFrame } = props;
 
@@ -67,7 +67,7 @@
       }
     });
 
-    return filterRecords.reduce(
+    return timeFilter.reduce(
       (prev: IContextCardItem[], current: IRecordForm) => {
         if (current.tags.length) {
           const result = [...prev];

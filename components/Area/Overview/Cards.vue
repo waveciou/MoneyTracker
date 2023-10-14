@@ -27,11 +27,11 @@
   const props = defineProps<{ mode: EnumChartMode; series: IRecordSeries[] }>();
 
   const contextCards = computed((): IContextCardItem[] => {
-    const filterSeries = props.series.filter(
+    const seriesFilter = props.series.filter(
       ({ storage }) => storage.length > 0
     );
 
-    return filterSeries.map(({ time, storage }) => {
+    return seriesFilter.map(({ time, storage }) => {
       const { year, month, date } = time;
       const formatMonth = useFormatNumber(month);
       const formatDate = useFormatNumber(date || 0);
