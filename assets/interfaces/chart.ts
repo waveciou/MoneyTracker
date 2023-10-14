@@ -55,4 +55,27 @@ interface IBarChartOptions {
   };
 }
 
-export { IChartTimeFrame, IBarChartSeries, IBarChartOptions };
+// PieChart
+
+interface IPieChartOptions {
+  colors: string[];
+  labels: string[];
+  legend: {
+    labels: {
+      colors: string;
+    };
+    // formatter(value: string): string;
+  };
+  tooltip: {
+    y: {
+      title: {
+        // formatter(value: string): string;
+      };
+    };
+  };
+  stroke: {
+    width: number;
+  };
+}
+
+export { IChartTimeFrame, IBarChartSeries, IBarChartOptions, IPieChartOptions };

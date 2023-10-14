@@ -53,7 +53,9 @@
     () => route.path,
     () => {
       nextTick(() => {
-        contentRef?.value.scrollTo(0, 0);
+        if (contentRef) {
+          contentRef?.value.scrollTo(0, 0);
+        }
         handleScroll();
       });
     },
