@@ -3,7 +3,7 @@
     <ClientOnly>
       <div class="element-piechart w-full overflow-x-auto overflow-y-hidden">
         <VueApexCharts
-          v-if="true"
+          v-if="chartSeries.length > 0"
           type="pie"
           width="100%"
           height="300px"
@@ -32,10 +32,8 @@
 
   const chartSeries = ref<number[]>([]);
 
-  const chartLabels = ref<string[]>([]);
-
   const chartOptions = ref<IPieChartOptions>({
-    colors: ['#50aaf8', '#32c8a4', '#f76c83', '#ffdf5e', '#94c962', '#ac93e8'],
+    colors: ['#50AAF8', '#32C8A4', '#F76C83', '#FFDF5E', '#94C962', '#AC93E8'],
     labels: [],
     legend: {
       labels: {
@@ -72,7 +70,7 @@
   watch(
     () => props.labels,
     (value: string[]) => {
-      chartLabels.value = [...value];
+      chartOptions.value.labels = [...value];
     },
     { immediate: true, deep: true }
   );
