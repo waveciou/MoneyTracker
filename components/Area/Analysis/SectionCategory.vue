@@ -1,7 +1,6 @@
 <template>
   <div>
     <FormCategoryAnalysis v-model.trim="selectedCategory" />
-
     <div class="w-full h-[320px] flex items-center">
       <ChartPie
         class="w-full"
@@ -13,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+  import numeral from 'numeral';
   import { computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
@@ -21,6 +21,11 @@
   import { EnumRecordType } from '@/assets/enums/record';
   import { IChartTimeFrame } from '@/assets/interfaces/chart';
   import { IRecordForm } from '@/assets/interfaces/record';
+
+  interface IContextCardItem {
+    name: string;
+    storage: IRecordForm[];
+  }
 
   const props = withDefaults(
     defineProps<{
@@ -43,7 +48,7 @@
 
   const selectedCategory = ref<string>(EnumRecordType.EXPENSE);
 
-  const contextCategories = computed((): string[] => {
+  const contextCategoryList = computed((): string[] => {
     if (selectedCategory.value === EnumRecordType.EXPENSE) {
       return expense.value.map(({ id }) => id);
     }
@@ -62,7 +67,7 @@
     return [];
   });
 
-  const contextCards = computed((): IRecordForm[] => {
+  const contextRecords = computed((): IRecordForm[] => {
     const timeFilter: IRecordForm[] = storage.value.filter(({ time }) => {
       const { year, month } = useTimeValue(time);
       const { timeFrame } = props;
@@ -94,51 +99,36 @@
     }
 
     return timeFilter.filter(({ category }) => {
-      return contextCategories.value.includes(category);
+      return contextCategoryList.value.includes(category);
     });
+  });
+
+  const contextCards = computed((): IContextCardItem[] => {
+    return contextRecords.value.reduce((prev, current) => {
+      const { category } = current;
+      const result = [...prev];
+      const isOnlyMainName = selectedCategory.value === EnumRecordType.EXPENSE;
+      const name = useCategoryName(category, isOnlyMainName);
+      const index = result.findIndex((item) => item.name === name);
+
+      if (index < 0) {
+        result.push({ name, storage: [current] });
+      } else {
+        result[index].storage.push(current);
+      }
+      return result;
+    }, [] as IContextCardItem[]);
   });
 
   const provideSeries = computed((): number[] => {
-    const result: { [key: string]: number } = {};
-
-    contextCards.value.forEach(({ category, price }) => {
-      if (selectedCategory.value === EnumRecordType.EXPENSE) {
-        const mainName = getMainCategoryID(category);
-
-        if (result[mainName] === undefined) {
-          result[mainName] = price;
-        } else {
-          result[mainName] = result[mainName] + price;
-        }
-      } else if (result[category] === undefined) {
-        result[category] = price;
-      } else {
-        result[category] = result[category] + price;
-      }
+    return contextCards.value.map(({ storage }) => {
+      return storage.reduce((prev, current) => {
+        return numeral(prev).add(current.price).value() || prev;
+      }, 0);
     });
-
-    return Object.values(result);
   });
 
   const provideLabels = computed((): string[] => {
-    const result = contextCards.value.map(({ category }) =>
-      useCategoryName(category)
-    );
-    const a: Set<string> = new Set(result);
-    return [...a];
+    return contextCards.value.map(({ name }) => name);
   });
-
-  const getMainCategoryID = (categoryID: string): string => {
-    const recordType = useCategoryValidator(categoryID);
-    if (recordType === EnumRecordType.EXPENSE) {
-      return expense.value.reduce((prev, current) => {
-        const a = current.subcategories.some(({ id }) => id === categoryID);
-        if (a) {
-          return current.id;
-        }
-        return prev;
-      }, '' as string);
-    }
-    return categoryID;
-  };
 </script>

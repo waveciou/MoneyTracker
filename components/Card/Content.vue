@@ -1,7 +1,7 @@
 <template>
   <button
     class="w-full flex"
-    :title="useCategoryName(props.data.category, false)"
+    :title="useCategoryName(props.data.category, false, false)"
     @click="emits('click')"
   >
     <div class="w-icon-size h-icon-size basis-icon-size bg-yellow rounded">
@@ -13,7 +13,7 @@
     <div class="w-card-content pl-2.5 text-left">
       <div class="flex items-center justify-between text-base">
         <span class="block truncate text-yellow">
-          {{ useCategoryName(props.data.category, false) }}
+          {{ useCategoryName(props.data.category, false, false) }}
         </span>
         <span class="block truncate pl-2" :class="providePriceClass">
           {{ useFinanceNumber(props.data.price) }}
