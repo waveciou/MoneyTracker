@@ -1,30 +1,14 @@
 <template>
   <div>
     <FormCategoryAnalysis v-model.trim="selectedCategory" class="mt-3" />
-    <div class="w-full h-[320px] flex items-center">
+    <div class="w-full h-[300px] flex items-center">
       <ChartPie
         class="w-full"
         :series="provideSeries"
         :labels="provideLabels"
       />
     </div>
-    <ul v-if="contextCards.length">
-      <li v-for="item in contextCards" :key="item.name">
-        <TheAccordion :title="item.name" :default="false">
-          <div class="mb-5">
-            <ul>
-              <li
-                v-for="cardItem in item.storage"
-                :key="cardItem.id"
-                class="mb-3"
-              >
-                <CardItem :data="cardItem" />
-              </li>
-            </ul>
-          </div>
-        </TheAccordion>
-      </li>
-    </ul>
+    <AreaAnalysisCategoryDetail :cards="contextCards" />
   </div>
 </template>
 
@@ -144,7 +128,7 @@
     return contextCards.value.map(({ storage }) => {
       return storage.reduce((prev: number, current: IRecordForm) => {
         return numeral(prev).add(current.price).value() || prev;
-      }, 0);
+      }, 0 as number);
     });
   });
 

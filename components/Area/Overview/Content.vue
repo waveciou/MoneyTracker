@@ -87,21 +87,27 @@
       (prevSeries: IBarChartSeries[], currentSeries: IRecordSeries) => {
         const result = [...prevSeries];
 
-        const expense = currentSeries.storage.reduce((prev, current) => {
-          const price =
-            useCategoryValidator(current.category) === EnumRecordType.EXPENSE
-              ? current.price
-              : 0;
-          return prev + price;
-        }, 0);
+        const expense = currentSeries.storage.reduce(
+          (prev: number, current: IRecordForm) => {
+            const price =
+              useCategoryValidator(current.category) === EnumRecordType.EXPENSE
+                ? current.price
+                : 0;
+            return prev + price;
+          },
+          0 as number
+        );
 
-        const income = currentSeries.storage.reduce((prev, current) => {
-          const price =
-            useCategoryValidator(current.category) === EnumRecordType.INCOME
-              ? current.price
-              : 0;
-          return prev + price;
-        }, 0);
+        const income = currentSeries.storage.reduce(
+          (prev: number, current: IRecordForm) => {
+            const price =
+              useCategoryValidator(current.category) === EnumRecordType.INCOME
+                ? current.price
+                : 0;
+            return prev + price;
+          },
+          0 as number
+        );
 
         result[0].data.push(expense);
         result[1].data.push(income);
