@@ -8,6 +8,23 @@
         :labels="provideLabels"
       />
     </div>
+    <ul v-if="contextCards.length">
+      <li v-for="item in contextCards" :key="item.name">
+        <TheAccordion :title="item.name" :default="false">
+          <div class="mb-5">
+            <ul>
+              <li
+                v-for="cardItem in item.storage"
+                :key="cardItem.id"
+                class="mb-3"
+              >
+                <CardItem :data="cardItem" />
+              </li>
+            </ul>
+          </div>
+        </TheAccordion>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -21,11 +38,7 @@
   import { EnumRecordType } from '@/assets/enums/record';
   import { IChartTimeFrame } from '@/assets/interfaces/chart';
   import { IRecordForm } from '@/assets/interfaces/record';
-
-  interface IContextCardItem {
-    name: string;
-    storage: IRecordForm[];
-  }
+  import { IAnalysisCardGroup } from '@/assets/interfaces/analysis';
 
   const props = withDefaults(
     defineProps<{
@@ -103,7 +116,7 @@
     });
   });
 
-  const contextCards = computed((): IContextCardItem[] => {
+  const contextCards = computed((): IAnalysisCardGroup[] => {
     return contextRecords.value.reduce((prev, current) => {
       const { category } = current;
       const result = [...prev];
@@ -121,7 +134,7 @@
         result[index].storage.push(current);
       }
       return result;
-    }, [] as IContextCardItem[]);
+    }, [] as IAnalysisCardGroup[]);
   });
 
   const provideSeries = computed((): number[] => {

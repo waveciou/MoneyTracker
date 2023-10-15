@@ -27,11 +27,7 @@
   import { EnumChartMode } from '@/assets/enums/chart';
   import { IChartTimeFrame } from '@/assets/interfaces/chart';
   import { IRecordForm } from '@/assets/interfaces/record';
-
-  interface IContextCardItem {
-    name: string;
-    storage: IRecordForm[];
-  }
+  import { IAnalysisCardGroup } from '@/assets/interfaces/analysis';
 
   const props = withDefaults(
     defineProps<{
@@ -50,7 +46,7 @@
   const recordStore = useRecordStore();
   const { storage } = storeToRefs(recordStore);
 
-  const contextCards = computed((): IContextCardItem[] => {
+  const contextCards = computed((): IAnalysisCardGroup[] => {
     const timeFilter: IRecordForm[] = storage.value.filter(({ time }) => {
       const { year, month } = useTimeValue(time);
       const { timeFrame } = props;
@@ -68,7 +64,7 @@
     });
 
     return timeFilter.reduce(
-      (prev: IContextCardItem[], current: IRecordForm) => {
+      (prev: IAnalysisCardGroup[], current: IRecordForm) => {
         if (current.store) {
           const result = [...prev];
           const index = result.findIndex(({ name }) => name === current.store);
@@ -82,7 +78,7 @@
         }
         return prev;
       },
-      [] as IContextCardItem[]
+      [] as IAnalysisCardGroup[]
     );
   });
 </script>
