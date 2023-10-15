@@ -1,23 +1,5 @@
 <template>
-  <ul v-if="contextCards.length">
-    <li v-for="item in contextCards" :key="item.name">
-      <TheAccordion :title="item.name">
-        <div class="mb-5">
-          <TheCountor :cards="item.storage" class="mt-0" />
-          <ul>
-            <li
-              v-for="cardItem in item.storage"
-              :key="cardItem.id"
-              class="mb-3"
-            >
-              <CardItem :data="cardItem" />
-            </li>
-          </ul>
-        </div>
-      </TheAccordion>
-    </li>
-  </ul>
-  <TheEmpty v-else />
+  <AreaAnalysisCards :cards="contextCards" />
 </template>
 
 <script setup lang="ts">

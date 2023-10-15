@@ -117,29 +117,32 @@
   });
 
   const contextCards = computed((): IAnalysisCardGroup[] => {
-    return contextRecords.value.reduce((prev, current) => {
-      const { category } = current;
-      const result = [...prev];
+    return contextRecords.value.reduce(
+      (prev: IAnalysisCardGroup[], current: IRecordForm) => {
+        const { category } = current;
+        const result = [...prev];
 
-      const isMainCategoryName: boolean =
-        selectedCategory.value === EnumRecordType.EXPENSE;
+        const isMainCategoryName: boolean =
+          selectedCategory.value === EnumRecordType.EXPENSE;
 
-      const name = useCategoryName(category, isMainCategoryName);
+        const name = useCategoryName(category, isMainCategoryName);
 
-      const index = result.findIndex((item) => item.name === name);
+        const index = result.findIndex((item) => item.name === name);
 
-      if (index < 0) {
-        result.push({ name, storage: [current] });
-      } else {
-        result[index].storage.push(current);
-      }
-      return result;
-    }, [] as IAnalysisCardGroup[]);
+        if (index < 0) {
+          result.push({ name, storage: [current] });
+        } else {
+          result[index].storage.push(current);
+        }
+        return result;
+      },
+      [] as IAnalysisCardGroup[]
+    );
   });
 
   const provideSeries = computed((): number[] => {
     return contextCards.value.map(({ storage }) => {
-      return storage.reduce((prev, current) => {
+      return storage.reduce((prev: number, current: IRecordForm) => {
         return numeral(prev).add(current.price).value() || prev;
       }, 0);
     });
