@@ -64,14 +64,6 @@ interface IPieChartOptions {
     labels: {
       colors: string;
     };
-    // formatter(value: string): string;
-  };
-  tooltip: {
-    y: {
-      title: {
-        // formatter(value: string): string;
-      };
-    };
   };
   stroke: {
     width: number;

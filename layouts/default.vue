@@ -54,7 +54,7 @@
     () => {
       nextTick(() => {
         if (contentRef) {
-          contentRef?.value.scrollTo(0, 0);
+          contentRef?.value?.scrollTo(0, 0);
         }
         handleScroll();
       });

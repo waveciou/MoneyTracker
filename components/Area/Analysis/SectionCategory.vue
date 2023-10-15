@@ -108,10 +108,10 @@
       const { category } = current;
       const result = [...prev];
 
-      const name = useCategoryName(category, {
-        isOnlyMainName: selectedCategory.value === EnumRecordType.EXPENSE,
-        isIncludeMainName: false,
-      });
+      const isMainCategoryName: boolean =
+        selectedCategory.value === EnumRecordType.EXPENSE;
+
+      const name = useCategoryName(category, isMainCategoryName);
 
       const index = result.findIndex((item) => item.name === name);
 

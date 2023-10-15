@@ -8,23 +8,13 @@ import {
 
 import { EnumRecordType } from '@/assets/enums/record';
 
-interface IOption {
-  isOnlyMainName: boolean;
-  isIncludeMainName: boolean;
-}
-
 export const useCategoryName = (
   categoryID: string,
-  option: IOption
+  isMainCategoryName: boolean
 ): string => {
   const categoriesStore = useCategoriesStore();
   const { income, expense } = storeToRefs(categoriesStore);
-
   const recordType = useCategoryValidator(categoryID);
-
-  if (recordType === null) {
-    return '';
-  }
 
   if (recordType === EnumRecordType.INCOME) {
     return income.value.reduce((prev: string, current: ICategoriesItem) => {
@@ -46,15 +36,12 @@ export const useCategoryName = (
           const subcategoryItem = subcategories.find(
             ({ id }) => id === categoryID
           );
+
           if (subcategoryItem) {
-            if (option.isOnlyMainName) {
+            if (isMainCategoryName) {
               return `${name}`;
             }
-
-            if (option.isIncludeMainName) {
-              return `${name} - ${subcategoryItem.name}`;
-            }
-            return subcategoryItem.name;
+            return `${subcategoryItem.name}`;
           }
         }
         return prev;

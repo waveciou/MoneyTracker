@@ -6,12 +6,7 @@
     >
       <div class="mb-1 flex items-center justify-between text-lg">
         <span class="block truncate text-yellow">
-          {{
-            useCategoryName(props.data.category, {
-              isOnlyMainName: false,
-              isIncludeMainName: true,
-            })
-          }}
+          {{ provideName }}
         </span>
         <span class="block truncate pl-2" :class="providePriceClass">
           {{ providePrice }}
@@ -87,5 +82,11 @@
     const _date = `${year}/${useFormatNumber(month)}/${useFormatNumber(date)}`;
     const _time = `${useFormatNumber(hour)}:${useFormatNumber(minute)}`;
     return `${_date} ${_time}`;
+  });
+
+  const provideName = computed((): string => {
+    const mainName = useCategoryName(props.data.category, true);
+    const subName = useCategoryName(props.data.category, false);
+    return `${mainName} - ${subName}`;
   });
 </script>

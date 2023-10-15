@@ -37,21 +37,7 @@
     labels: [],
     legend: {
       labels: {
-        colors: '#fff',
-      },
-      // formatter: (seriesName) => {
-      //   const index = parseInt(seriesName.substr(7), 10) - 1;
-      //   return this.labelsData[index];
-      // },
-    },
-    tooltip: {
-      y: {
-        title: {
-          // formatter: (seriesName) => {
-          //   const index = parseInt(seriesName.substr(7), 10) - 1;
-          //   return `${this.labelsData[index]}:`;
-          // },
-        },
+        colors: '#FFFFFF',
       },
     },
     stroke: {
