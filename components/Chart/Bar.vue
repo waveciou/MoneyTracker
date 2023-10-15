@@ -111,6 +111,7 @@
   watch(
     () => [props.series, props.xaxis],
     () => {
+      clearTimeout(showerTimer.value as unknown as number);
       isShow.value = false;
 
       showerTimer.value = setTimeout(() => {

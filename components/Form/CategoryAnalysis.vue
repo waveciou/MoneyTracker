@@ -1,6 +1,5 @@
 <template>
   <div>
-    <label class="block text-base mb-2">Category</label>
     <InputSelect
       v-model="selectedID"
       :options="optionCategory"

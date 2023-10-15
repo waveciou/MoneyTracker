@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FormCategoryAnalysis v-model.trim="selectedCategory" />
+    <FormCategoryAnalysis v-model.trim="selectedCategory" class="mt-3" />
     <div class="w-full h-[320px] flex items-center">
       <ChartPie
         class="w-full"
@@ -48,7 +48,7 @@
 
   const selectedCategory = ref<string>(EnumRecordType.EXPENSE);
 
-  const contextCategoryList = computed((): string[] => {
+  const contextCategoriesID = computed((): string[] => {
     if (selectedCategory.value === EnumRecordType.EXPENSE) {
       return expense.value.map(({ id }) => id);
     }
@@ -99,7 +99,7 @@
     }
 
     return timeFilter.filter(({ category }) => {
-      return contextCategoryList.value.includes(category);
+      return contextCategoriesID.value.includes(category);
     });
   });
 
