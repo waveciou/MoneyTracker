@@ -1,6 +1,9 @@
 <template>
   <div>
-    <FormCategoryAnalysis v-model.trim="selectedCategory" class="mt-3" />
+    <AreaAnalysisCategorySelector
+      v-model.trim="selectedCategory"
+      class="mt-3"
+    />
     <div class="w-full h-[300px] flex items-center">
       <ChartPie
         class="w-full"
@@ -8,7 +11,7 @@
         :labels="provideLabels"
       />
     </div>
-    <AreaAnalysisCategoryDetail :cards="contextCards" />
+    <AreaAnalysisCategories :cards="contextCards" />
   </div>
 </template>
 
