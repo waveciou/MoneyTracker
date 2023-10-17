@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex flex-col">
+  <section class="w-full h-full flex flex-col">
     <AreaRecordHeader @submit="handleSubmit" />
     <div class="h-full overflow-x-hidden relative px-wrap-space">
       <AreaRecordTypeSelector v-model="selectedRecordType" />
@@ -16,7 +16,7 @@
         />
       </Transition>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

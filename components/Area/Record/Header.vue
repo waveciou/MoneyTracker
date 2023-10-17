@@ -8,7 +8,7 @@
     <div
       class="h-header-height flex justify-center items-center text-center px-header-height"
     >
-      <h1 class="block text-lg truncate">{{ provideTitle }}</h1>
+      <h2 class="block text-lg truncate">{{ provideTitle }}</h2>
     </div>
     <button
       class="before-font-material before:content-['\e876'] w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"

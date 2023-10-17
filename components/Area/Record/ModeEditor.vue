@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex flex-col">
+  <section class="w-full h-full flex flex-col">
     <AreaRecordHeader @submit="handleSubmit" />
     <div
       v-if="contextID"
@@ -18,7 +18,7 @@
         @update="handleUpdate"
       />
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
