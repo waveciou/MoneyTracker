@@ -11,11 +11,11 @@
         </div>
       </div>
       <div class="h-full overflow-x-hidden relative px-wrap-space">
-        <ul v-if="contextCards.length" class="py-3">
-          <li v-for="cardItem in contextCards" :key="cardItem.id" class="mb-3">
-            <CardItem :data="cardItem" />
-          </li>
-        </ul>
+        <CardList
+          v-if="contextCards.length"
+          class="py-3"
+          :cards="contextCards"
+        />
         <TheEmpty v-else />
       </div>
     </section>

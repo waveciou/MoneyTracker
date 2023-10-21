@@ -11,15 +11,7 @@
             <div class="mb-3 text-lg text-right text-yellow">
               {{ provideSumPrice(item.storage) }}
             </div>
-            <ul>
-              <li
-                v-for="cardItem in item.storage"
-                :key="cardItem.id"
-                class="mb-3"
-              >
-                <CardItem :data="cardItem" />
-              </li>
-            </ul>
+            <CardList :cards="item.storage" />
           </div>
         </TheAccordion>
       </li>

@@ -4,15 +4,7 @@
       <TheAccordion :title="item.name">
         <div class="mb-5">
           <TheCountor :cards="item.storage" class="mb-3" />
-          <ul>
-            <li
-              v-for="cardItem in item.storage"
-              :key="cardItem.id"
-              class="mb-3"
-            >
-              <CardItem :data="cardItem" />
-            </li>
-          </ul>
+          <CardList :cards="item.storage" />
         </div>
       </TheAccordion>
     </li>
