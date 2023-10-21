@@ -1,6 +1,6 @@
 <template>
   <div v-if="props.cards.length">
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center text-sm">
       <p class="text-white">
         Total
         <span class="text-yellow">{{ props.cards.length }}</span>
@@ -9,6 +9,7 @@
       <button
         class="before-font-material flex items-center"
         :class="isShow ? 'icon-less' : 'icon-more'"
+        title="Show Detail"
         @click="isShow = !isShow"
       >
         Detail

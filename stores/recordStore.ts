@@ -54,6 +54,9 @@ export const useRecordStore = defineStore({
         this.storage.splice(index, 1);
       }
     },
+    CLEAR_ALL_RECORDS(): void {
+      this.storage = [];
+    },
     HANDLE_CLOSE(): void {
       this.contextID = null;
       this.contextMode = null;

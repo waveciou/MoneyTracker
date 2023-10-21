@@ -7,7 +7,7 @@
         @click="handleChangeMonth(false)"
       />
       <Component :is="props.tagName" class="w-full h-7 flex justify-center">
-        <button class="block" title="today" @click="handleMoveToday">
+        <button class="block" title="Today" @click="handleMoveToday">
           <span class="mr-1">{{ selectedDate.year }} 年</span>
           <span>{{ useFormatNumber(selectedDate.month) }} 月</span>
         </button>
