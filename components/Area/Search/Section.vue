@@ -5,21 +5,47 @@
     <section class="w-full h-full flex flex-col">
       <div>
         <AreaSearchHeader />
-        <div class="w-full flex px-wrap-space pb-3">
-          <InputClearableText
-            v-model.trim="inputValue"
-            class="w-full flex-1 mr-2"
-          />
-          <button
-            class="w-9 h-9 basis-9 before-font-material before:content-['\e8b6'] flex justify-center items-center"
-          />
+        <div class="w-full px-wrap-space py-2">
+          <InputSearch v-model.trim="inputValue" class="w-full mb-2" />
+          <div v-if="contextCards.length" class="text-white text-right">
+            Total:
+            <span>{{ contextCards.length }}</span>
+          </div>
         </div>
       </div>
-      <div class="h-full overflow-x-hidden relative px-wrap-space"></div>
+      <div class="h-full overflow-x-hidden relative px-wrap-space">
+        <ul v-if="contextCards.length">
+          <li v-for="cardItem in contextCards" :key="cardItem.id" class="mb-3">
+            <CardItem :data="cardItem" />
+          </li>
+        </ul>
+        <TheEmpty v-else />
+      </div>
     </section>
   </article>
 </template>
 
 <script setup lang="ts">
+  import { computed } from 'vue';
+  import { storeToRefs } from 'pinia';
+  import { useRecordStore } from '@/stores/recordStore';
+  import { IRecordForm } from '@/assets/interfaces/record';
+
+  const recordStore = useRecordStore();
+  const { storage } = storeToRefs(recordStore);
+
   const inputValue = ref<string>('');
+
+  const contextCards = computed((): IRecordForm[] => {
+    if (inputValue.value === '') {
+      return [];
+    }
+    return storage.value.filter(({ store, note, tags }) => {
+      return (
+        store.includes(inputValue.value) ||
+        note.includes(inputValue.value) ||
+        tags.includes(inputValue.value)
+      );
+    });
+  });
 </script>
