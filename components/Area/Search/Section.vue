@@ -7,14 +7,11 @@
         <AreaSearchHeader />
         <div class="w-full px-wrap-space py-2">
           <InputSearch v-model.trim="inputValue" class="w-full mb-2" />
-          <div v-if="contextCards.length" class="text-white text-right">
-            Total:
-            <span>{{ contextCards.length }}</span>
-          </div>
+          <AreaSearchDetail :cards="contextCards" />
         </div>
       </div>
       <div class="h-full overflow-x-hidden relative px-wrap-space">
-        <ul v-if="contextCards.length">
+        <ul v-if="contextCards.length" class="py-3">
           <li v-for="cardItem in contextCards" :key="cardItem.id" class="mb-3">
             <CardItem :data="cardItem" />
           </li>
