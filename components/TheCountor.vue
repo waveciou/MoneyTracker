@@ -1,5 +1,5 @@
 <template>
-  <div class="py-2 px-3 my-3 text-sm text-white bg-black-darkest rounded">
+  <div class="py-2 px-3 text-sm text-white bg-black-darkest rounded">
     <div class="flex items-center justify-between truncate">
       Income
       <span class="ml-1 text-green">+{{ useFinanceNumber(incomePrice) }}</span>

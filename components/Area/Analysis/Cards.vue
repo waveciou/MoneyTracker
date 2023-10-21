@@ -3,7 +3,7 @@
     <li v-for="item in props.cards" :key="item.name">
       <TheAccordion :title="item.name">
         <div class="mb-5">
-          <TheCountor :cards="item.storage" class="mt-0" />
+          <TheCountor :cards="item.storage" class="mb-3" />
           <ul>
             <li
               v-for="cardItem in item.storage"

@@ -15,7 +15,7 @@
       </button>
     </div>
     <div v-if="isShow" class="pt-2">
-      <TheCountor :cards="props.cards" class="mt-0 mb-0" />
+      <TheCountor :cards="props.cards" />
     </div>
   </div>
 </template>

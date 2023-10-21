@@ -4,7 +4,7 @@
       <ChartBar class="w-full" :series="provideSeries" :xaxis="provideXaxis" />
     </div>
     <div v-if="contextCards.length">
-      <TheCountor :cards="contextCards" />
+      <TheCountor :cards="contextCards" class="my-3" />
       <AreaOverviewCards :mode="props.mode" :series="recordSeries" />
     </div>
   </div>

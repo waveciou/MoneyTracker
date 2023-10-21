@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <div v-if="contextCards.length">
-      <TheCountor :cards="contextCards" />
+      <TheCountor :cards="contextCards" class="my-3" />
       <ul>
         <li v-for="item in contextCards" :key="item.id" class="mb-3">
           <CardItem :data="item" />
