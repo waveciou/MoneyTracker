@@ -3,7 +3,7 @@ import { watch, onMounted } from 'vue';
 import { createStore, get, set } from 'idb-keyval';
 import { storeToRefs } from 'pinia';
 import { useRecordStore } from '@/stores/recordStore';
-import { IRecordForm } from '@/assets/interfaces/record';
+import type { IRecordForm } from '@/assets/interfaces/record';
 
 export const useIndexedDB = (): void => {
   const recordStore = useRecordStore();

@@ -1,4 +1,4 @@
-import { IRecordForm } from '@/assets/interfaces/record';
+import type { IRecordForm } from '@/assets/interfaces/record';
 
 interface IAnalysisCardGroup {
   name: string;

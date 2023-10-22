@@ -1,6 +1,6 @@
 import { storeToRefs } from 'pinia';
 import { useCategoriesStore } from '@/stores/categoriesStore';
-import { IMainCategoriesItem } from '@/assets/interfaces/categories';
+import type { IMainCategoriesItem } from '@/assets/interfaces/categories';
 import { EnumRecordType } from '@/assets/enums/record';
 
 export const useCategoryValidator = (

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import { IInputSelectOption } from '@/assets/interfaces/element';
+import type { IInputSelectOption } from '@/assets/interfaces/element';
 
-import {
+import type {
   ICategoriesItem,
   IMainCategoriesItem,
 } from '@/assets/interfaces/categories';

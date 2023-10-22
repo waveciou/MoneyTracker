@@ -1,7 +1,7 @@
 import { storeToRefs } from 'pinia';
 import { useCategoriesStore } from '@/stores/categoriesStore';
 
-import {
+import type {
   IMainCategoriesItem,
   ICategoriesItem,
 } from '@/assets/interfaces/categories';

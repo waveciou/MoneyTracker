@@ -1,4 +1,4 @@
-import { IInputSelectOption } from '@/assets/interfaces/element';
+import type { IInputSelectOption } from '@/assets/interfaces/element';
 
 export const useOptionHour = () => {
   const result: IInputSelectOption[] = [];
