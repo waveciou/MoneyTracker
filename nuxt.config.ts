@@ -18,16 +18,42 @@ export default defineNuxtConfig({
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'msapplication-TileColor', content: '#ffffff' },
         { name: 'theme-color', content: '#ffffff' },
-        { property: 'og:title', content: 'Money Tracker 我的記帳日誌' },
+        { property: 'og:title', content: 'Money Tracker' },
         {
           property: 'og:description',
-          content: '一個自製的記帳軟體 Side Project',
+          content: 'This is a side project for accounting application.',
         },
         {
           property: 'twitter:description',
-          content: '一個自製的記帳軟體 Side Project',
+          content: 'This is a side project for accounting application.',
         },
-        { name: 'DC.Description', content: '一個自製的記帳軟體 Side Project' },
+        {
+          name: 'DC.Description',
+          content: 'This is a side project for accounting application.',
+        },
+      ],
+      link: [
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/favicon/apple-touch-icon.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/favicon/favicon-32x32.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '16x16',
+          href: '/favicon/favicon-16x16.png',
+        },
+        {
+          rel: 'manifest',
+          href: '/manifest.json',
+        },
       ],
     },
     pageTransition: { name: 'fade', mode: 'out-in' },

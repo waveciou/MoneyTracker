@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 1024 1024" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs/>
+<clipPath id="ArtboardFrame">
+<rect height="1024" width="1024" x="0" y="0"/>
+</clipPath>
+<g clip-path="url(#ArtboardFrame)" id="圖層2" vectornator:layerName="圖層2">
+<path d="M0 60C0 26.8629 26.8629 5.68434e-14 60 5.68434e-14L964 5.68434e-14C997.137 5.68434e-14 1024 26.8629 1024 60L1024 964C1024 997.137 997.137 1024 964 1024L60 1024C26.8629 1024 0 997.137 0 964L0 60Z" fill="#ffdf5e" fill-rule="nonzero" opacity="1" stroke="#060202" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="0.35" vectornator:layerName="矩形 1"/>
+</g>
+<g id="圖層3" vectornator:layerName="圖層3">
+<path d="M152 512C152 313.177 313.177 152 512 152C710.823 152 872 313.177 872 512C872 710.823 710.823 872 512 872C313.177 872 152 710.823 152 512Z" fill="#333333" fill-rule="nonzero" opacity="1" stroke="none" vectornator:layerName="橢圓形 1"/>
+</g>
+<g id="圖層1" vectornator:layerName="圖層1">
+<path d="M711.65 703.605L623.621 703.605C621.139 703.605 619.127 701.593 619.127 699.111L619.127 448.545C619.127 446.063 618.648 446.005 618.057 448.415L556.533 699.415C555.942 701.826 553.451 703.78 550.969 703.78L472.156 703.78C469.674 703.78 467.168 701.829 466.559 699.423L404.052 452.605C403.443 450.199 402.949 450.26 402.949 452.742L402.949 699.286C402.949 701.768 400.937 703.78 398.455 703.78L316.494 703.78C314.012 703.78 312 701.768 312 699.286L312 324.714C312 322.232 314.012 320.22 316.494 320.22L448.127 320.22C450.609 320.22 453.13 322.167 453.757 324.568L511.126 544.119C511.754 546.52 512.758 546.517 513.37 544.112L569.222 324.576C569.834 322.17 572.342 320.22 574.824 320.22L707.506 320.22C709.988 320.22 712 322.232 712 324.714L712 703.605C712 703.605 711.65 703.605 711.65 703.605Z" fill="#ffdf5e" fill-rule="nonzero" opacity="1" stroke="none" vectornator:layerName="path"/>
+</g>
+<g id="圖層1-拷貝" vectornator:layerName="圖層1 拷貝" visibility="hidden">
+<g opacity="1" vectornator:layerName="g">
+<path d="M524.074 663.873L448.932 663.873L448.932 453.077L397.227 664.015L325.92 664.015L273.364 456.486L273.364 664.015L199.5 664.015L199.5 352.509L313.705 352.509L362.142 537.878L409.301 352.509L524.358 352.509L524.358 663.873C524.358 663.873 524.074 663.873 524.074 663.873Z" fill="#ffdf5e" fill-rule="nonzero" opacity="1" stroke="none" vectornator:layerName="path"/>
+<path d="M824.5 423.39L732.455 423.39L732.455 664.015L646.801 664.015L646.801 423.39L555.182 423.39L555.182 352.509L824.5 352.509L824.5 423.39Z" fill="#ffdf5e" fill-rule="nonzero" opacity="1" stroke="none" vectornator:layerName="path"/>
+</g>
+</g>
+</svg>

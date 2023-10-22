@@ -1,7 +1,11 @@
 <template>
   <section>
     <div class="py-3 text-center">
-      <h2 class="text-3xl">Money Tracker</h2>
+      <h2
+        class="flex justify-center items-center text-3xl leading-snug before:content-[''] before:inline-block before:mr-2 before:w-[42px] before:h-[42px] before:bg-no-repeat before:bg-contain before:bg-center before:bg-[url('@/assets/images/icon.svg')]"
+      >
+        Money Tracker
+      </h2>
     </div>
     <ul class="py-3">
       <li class="mb-3">
