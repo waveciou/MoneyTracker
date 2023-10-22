@@ -8,6 +8,15 @@ interface IRecordForm {
   tags: string[];
 }
 
+interface IRecordEncode {
+  c: string; // category
+  p: number; // price
+  s?: string; // store
+  t: number; // time
+  n?: string; // note
+  tg?: string[]; // tags
+}
+
 interface IRecordSeries {
   time: {
     year: number;
@@ -28,4 +37,10 @@ interface ITimeStampValue extends ICalendarValue {
   minute: number;
 }
 
-export type { IRecordForm, IRecordSeries, ICalendarValue, ITimeStampValue };
+export type {
+  IRecordForm,
+  IRecordEncode,
+  IRecordSeries,
+  ICalendarValue,
+  ITimeStampValue,
+};
