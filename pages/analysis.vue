@@ -55,6 +55,8 @@
   import { EnumChartMode, EnumChartAnalysisType } from '@/assets/enums/chart';
   import { IChartTimeFrame } from '@/assets/interfaces/chart';
 
+  useHead({ title: 'Money Tracker - Analysis' });
+
   const today = useTimeTodayValue();
   const recordStore = useRecordStore();
   const { storage } = storeToRefs(recordStore);

@@ -29,7 +29,7 @@
       </li>
     </ul>
     <p class="text-center text-sm">
-      Version: 2.0.0
+      Version: 2.0.0-beta
       <br />
       Created By
       <a
@@ -53,6 +53,8 @@
 
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
+
+  useHead({ title: 'Money Tracker - Setting' });
 
   const recordStore = useRecordStore();
   const isConfirmOpen = ref<boolean>(false);

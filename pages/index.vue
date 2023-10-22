@@ -16,6 +16,8 @@
   import { useRecordStore } from '@/stores/recordStore';
   import { ICalendarValue } from '@/assets/interfaces/record';
 
+  useHead({ title: 'Money Tracker - Calendar' });
+
   const recordStore = useRecordStore();
   const { contextDate } = storeToRefs(recordStore);
 
