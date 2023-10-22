@@ -1,12 +1,12 @@
 <template>
   <div class="relative">
     <textarea
-      :id="id"
+      :id="props.id"
       class="w-full h-40 p-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input resize-none"
-      :value="modelValue"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :readonly="readonly"
+      :value="props.modelValue"
+      :placeholder="props.placeholder"
+      :disabled="props.disabled"
+      :readonly="props.readonly"
       @input="handleInput"
     />
   </div>
@@ -15,7 +15,7 @@
 <script setup lang="ts">
   import { v4 as uuidv4 } from 'uuid';
 
-  withDefaults(
+  const props = withDefaults(
     defineProps<{
       id?: string;
       modelValue: string;

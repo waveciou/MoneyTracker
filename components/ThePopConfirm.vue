@@ -1,25 +1,25 @@
 <template>
-  <ThePopUp :is-open="isOpen">
+  <ThePopUp :is-open="props.isOpen">
     <div
       class="w-4/5 m-auto bg-black-base text-white rounded-md overflow-hidden"
     >
       <div class="px-2 py-3 text-center">
-        {{ title }}
+        {{ props.title }}
       </div>
       <div class="flex border-t border-black-base border-solid">
         <button
           class="w-6/12 p-2"
-          :title="leftText"
+          :title="props.leftText"
           @click="emits('clickLeftButton')"
         >
-          {{ leftText }}
+          {{ props.leftText }}
         </button>
         <button
           class="w-6/12 p-2"
-          :title="rightText"
+          :title="props.rightText"
           @click="emits('clickRightButton')"
         >
-          {{ rightText }}
+          {{ props.rightText }}
         </button>
       </div>
     </div>
@@ -32,7 +32,7 @@
     (e: 'clickRightButton'): void;
   }>();
 
-  withDefaults(
+  const props = withDefaults(
     defineProps<{
       title: string;
       leftText: string;

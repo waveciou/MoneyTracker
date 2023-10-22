@@ -54,11 +54,4 @@
     }
     return `${useFinanceNumber(sumPrice.value)}`;
   });
-
-  // const provideSumPriceClass = computed((): string => {
-  //   if (sumPrice.value < 0) {
-  //     return 'text-red';
-  //   }
-  //   return 'text-green';
-  // });
 </script>

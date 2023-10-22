@@ -3,12 +3,12 @@
     <ClientOnly>
       <FormPrice v-model.number="contextForm.price" class="mb-4" />
       <FormCategoryExpense
-        v-if="recordType === EnumRecordType.EXPENSE"
+        v-if="props.recordType === EnumRecordType.EXPENSE"
         v-model.trim="contextForm.category"
         class="mb-4"
       />
       <FormCategoryIncome
-        v-if="recordType === EnumRecordType.INCOME"
+        v-if="props.recordType === EnumRecordType.INCOME"
         v-model.trim="contextForm.category"
         class="mb-4"
       />
@@ -58,7 +58,9 @@
 
   // 3. Validate the data types and setting this form.
 
+  // eslint-disable-next-line vue/no-setup-props-destructure
   const contextForm = ref<IRecordForm>(
+    // eslint-disable-next-line vue/no-setup-props-destructure
     useRecordForm(props.recordType, currentForm)
   );
 

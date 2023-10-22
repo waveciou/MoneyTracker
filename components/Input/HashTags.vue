@@ -1,7 +1,11 @@
 <template>
   <div class="relative">
-    <ul v-if="modelValue.length" class="flex flex-wrap items-center">
-      <li v-for="tag in modelValue" :key="tag" class="max-w-full mr-2 mb-2">
+    <ul v-if="props.modelValue.length" class="flex flex-wrap items-center">
+      <li
+        v-for="tag in props.modelValue"
+        :key="tag"
+        class="max-w-full mr-2 mb-2"
+      >
         <button
           class="after-font-material w-full flex items-center py-1 pr-2 pl-2.5 rounded bg-black/40 leading-tight text-sm before:content-['#'] after:content-['\e5c9'] after:block after:ml-1 after:text-xs"
           title="Delete"
@@ -13,13 +17,13 @@
     </ul>
     <div class="relative">
       <input
-        :id="id"
+        :id="props.id"
         v-model.trim="inputValue"
         type="text"
         class="w-full py-1.5 pl-2.5 pr-9 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :readonly="readonly"
+        :placeholder="props.placeholder"
+        :disabled="props.disabled"
+        :readonly="props.readonly"
         @keyup.enter="handleCreate"
       />
       <button

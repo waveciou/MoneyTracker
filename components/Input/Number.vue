@@ -1,13 +1,13 @@
 <template>
   <div class="relative">
     <input
-      :id="id"
+      :id="props.id"
       v-model.number="quantity"
       type="number"
       class="w-full py-1.5 px-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :readonly="readonly"
+      :placeholder="props.placeholder"
+      :disabled="props.disabled"
+      :readonly="props.readonly"
       @imput="handleInput"
       @blur="handleBlur"
       @focus="handleFocus"

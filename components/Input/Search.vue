@@ -1,14 +1,14 @@
 <template>
   <div class="relative">
     <input
-      :id="id"
+      :id="props.id"
       ref="inputTextRef"
       type="text"
       class="w-full py-1.5 pl-2.5 pr-9 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
-      :value="modelValue"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :readonly="readonly"
+      :value="props.modelValue"
+      :placeholder="props.placeholder"
+      :disabled="props.disabled"
+      :readonly="props.readonly"
       @input="handleInput"
     />
     <button
@@ -23,19 +23,21 @@
   import { v4 as uuidv4 } from 'uuid';
   import { onMounted } from 'vue';
 
-  withDefaults(
+  const props = withDefaults(
     defineProps<{
       id?: string;
       modelValue: string;
       placeholder?: string;
       disabled?: boolean;
       readonly?: boolean;
+      isOnceFocus?: boolean;
     }>(),
     {
       id: uuidv4(),
       placeholder: '',
       disabled: false,
       readonly: false,
+      isOnceFocus: false,
     }
   );
 
@@ -51,7 +53,9 @@
   );
 
   onMounted(() => {
-    inputTextRef?.value.focus();
+    if (props.isOnceFocus) {
+      inputTextRef?.value.focus();
+    }
   });
 
   const handleInput = ($event: Event): void => {

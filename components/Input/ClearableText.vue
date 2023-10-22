@@ -1,13 +1,13 @@
 <template>
   <div class="relative">
     <input
-      :id="id"
+      :id="props.id"
       type="text"
       class="w-full py-1.5 pl-2.5 pr-9 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
-      :value="modelValue"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :readonly="readonly"
+      :value="props.modelValue"
+      :placeholder="props.placeholder"
+      :disabled="props.disabled"
+      :readonly="props.readonly"
       @input="handleInput"
     />
     <button
@@ -21,7 +21,7 @@
 <script setup lang="ts">
   import { v4 as uuidv4 } from 'uuid';
 
-  withDefaults(
+  const props = withDefaults(
     defineProps<{
       id?: string;
       modelValue: string;

@@ -31,6 +31,7 @@
     return categoryID;
   };
 
+  // eslint-disable-next-line vue/no-setup-props-destructure
   const selectedID = ref<string>(provideDefaultID(props.modelValue));
 
   const optionCategory = computed((): IInputSelectOption[] => {

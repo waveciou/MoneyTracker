@@ -4,12 +4,12 @@
       class="after-font-material relative border border-white border-solid rounded overflow-hidden after:content-['\e5cf'] after:w-9 after:h-full after:flex after:justify-center after:items-center after:absolute after:top-0 after:right-0 after:pointer-events-none"
     >
       <select
-        :id="id"
+        :id="props.id"
         v-model="contextValue"
         class="w-full py-1.5 pl-2.5 pr-9 block text-white text-base truncate bg-black-base appearance-none cursor-pointer focus:outline-none"
-        :disabled="disabled"
+        :disabled="props.disabled"
       >
-        <option v-for="item in options" :key="item.id" :value="item.id">
+        <option v-for="item in props.options" :key="item.id" :value="item.id">
           {{ item.name }}
         </option>
       </select>
@@ -39,6 +39,7 @@
     (e: 'update:modelValue', value: string | number): void;
   }>();
 
+  // eslint-disable-next-line vue/no-setup-props-destructure
   const contextValue = ref<string | number>(props.modelValue);
 
   watch(

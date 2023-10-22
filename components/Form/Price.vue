@@ -35,6 +35,7 @@
   }>();
 
   const id = ref<string>(uuidv4());
+  // eslint-disable-next-line vue/no-setup-props-destructure
   const selectedValue = ref<number>(props.modelValue);
 
   watch(

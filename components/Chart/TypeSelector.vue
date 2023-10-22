@@ -1,4 +1,3 @@
-import { type } from 'os';
 <template>
   <ul class="flex my-3">
     <li v-for="item in analysisTypes" :key="item" class="w-4/12">
@@ -29,7 +28,7 @@ import { type } from 'os';
     (e: 'update', value: EnumChartAnalysisType): void;
   }>();
 
-  const analysisTypes = ref<string[]>([
+  const analysisTypes = ref<EnumChartAnalysisType[]>([
     EnumChartAnalysisType.CATEGORY,
     EnumChartAnalysisType.STORE,
     EnumChartAnalysisType.TAGS,

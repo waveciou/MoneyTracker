@@ -74,6 +74,7 @@
   const { utcOffset } = storeToRefs(commonStore);
   const captionDays = ref<string[]>([...calendarData.locale.daysShort]);
 
+  // eslint-disable-next-line vue/no-setup-props-destructure
   const selectedDate = ref<ICalendarValue>({
     year: props.default.year,
     month: props.default.month,

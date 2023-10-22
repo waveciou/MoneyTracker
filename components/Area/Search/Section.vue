@@ -6,7 +6,11 @@
       <div>
         <AreaSearchHeader />
         <div class="w-full px-wrap-space py-2">
-          <InputSearch v-model.trim="inputValue" class="w-full mb-2" />
+          <InputSearch
+            v-model.trim="inputValue"
+            is-once-focus
+            class="w-full mb-2"
+          />
           <AreaSearchDetail :cards="contextCards" />
         </div>
       </div>
