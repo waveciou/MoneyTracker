@@ -1,0 +1,46 @@
+@charset 'UTF-8';
+@import './utils/_utils.scss';
+
+// * ==========================================================================
+// * FONT
+// * ==========================================================================
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700&display=fallback');
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@font-face {
+  font-family: 'Font Awesome 5 regular';
+  font-style: normal;
+  font-weight: 900;
+  font-display: fallback;
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/webfonts/fa-regular-400.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 solid';
+  font-style: normal;
+  font-weight: 900;
+  font-display: fallback;
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/webfonts/fa-solid-900.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 brands';
+  font-style: normal;
+  font-weight: 900;
+  font-display: fallback;
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/webfonts/fa-brands-400.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://example.com/MaterialIcons-Regular.eot'); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+  // url('https://example.com/MaterialIcons-Regular.woff2') format('woff2'),
+  // url('https://example.com/MaterialIcons-Regular.woff') format('woff'),
+  // url('https://example.com/MaterialIcons-Regular.ttf') format('truetype');
+}

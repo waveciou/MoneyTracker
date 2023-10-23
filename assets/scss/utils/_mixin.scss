@@ -1,63 +1,68 @@
-@charset "UTF-8";
-@import './_variables.scss';
+@charset 'UTF-8';
 
-// * RWD Max Breakpoints
+/* - RWD Max Breakpoints */
 @mixin max-width($breakpoints) {
   @media screen and (max-width: $breakpoints) {
     @content;
   }
 }
 
-// * RWD Min Breakpoints
+/* - RWD Min Breakpoints */
 @mixin min-width($breakpoints) {
   @media screen and (min-width: $breakpoints) {
     @content;
   }
 }
 
-// * RWD Max Height Breakpoints
+/* - RWD Max Height Breakpoints */
 @mixin max-height($breakpoints) {
   @media screen and (max-height: $breakpoints) {
     @content;
   }
 }
 
-// * RWD Min Height Breakpoints
+/* - RWD Min Height Breakpoints */
 @mixin min-height($breakpoints) {
   @media screen and (min-height: $breakpoints) {
     @content;
   }
 }
 
-// * 處理 IE10 和 IE11 的 CSS Hack
+/* - CSS Hack for IE10 and IE11 */
 @mixin hack-ie {
-  @media screen and (-ms-high-contrast: active),
-    (-ms-high-contrast: none) {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     @content;
   }
 }
 
-// * 列印
-@mixin print {
-  @content;
-}
-
-// * 隱藏文字
-@mixin hidetext {
-  overflow: hidden;
-  font-size: 0;
-  text-indent: -9999px;
-}
-
-// * Font Awesome
-@mixin fontawesome($type: 'solid') {
+/* - Font Awesome */
+@mixin font-awesome {
+  font-family: 'Font Awesome 5 solid', sans-serif;
   font-weight: 900;
+}
 
-  @if $type == 'brands' {
-    font-family: 'Font Awesome 5 brands', sans-serif;
-  } @else if $type == 'regular' {
-    font-family: 'Font Awesome 5 regular', sans-serif;
-  } @else {
-    font-family: 'Font Awesome 5 solid', sans-serif;
-  }
+/* - Font Material */
+@mixin font-material {
+  font-size: 24px;
+  font-family: 'Material Icons', sans-serif;
+  font-weight: normal;
+  white-space: nowrap;
+  font-style: normal;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }

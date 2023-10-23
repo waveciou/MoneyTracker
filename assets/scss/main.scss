@@ -1,40 +1,32 @@
-/* stylelint-disable function-no-unknown */
 @charset "UTF-8";
 @import './utils/_utils.scss';
-@import './basic/_reset.scss';
-@import './basic/_basic.scss';
-@import './basic/_animate.scss';
+@import './_font.scss';
+@import './_reset.scss';
+@import './_animate.scss';
 
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500&display=fallback');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@font-face {
-  font-family: 'Font Awesome 5 regular';
-  font-style: normal;
-  font-weight: 900;
-  font-display: fallback;
-  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/webfonts/fa-regular-400.ttf') format('truetype');
+.before-font-material::before,
+.after-font-material::after {
+  @include font-material;
 }
 
-@font-face {
-  font-family: 'Font Awesome 5 solid';
-  font-style: normal;
-  font-weight: 900;
-  font-display: fallback;
-  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/webfonts/fa-solid-900.ttf') format('truetype');
+.before-font-awesome::before,
+.after-font-awesome::after {
+  @include font-awesome;
 }
 
-@font-face {
-  font-family: 'Font Awesome 5 brands';
-  font-style: normal;
-  font-weight: 900;
-  font-display: fallback;
-  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/webfonts/fa-brands-400.ttf') format('truetype');
+// * ==========================================================================
+// * MAIN
+// * ==========================================================================
+
+html, body, #__nuxt, #app {
+  @apply w-full h-full relative overflow-hidden;
 }
 
-.none-tips {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  font-size: map-get($font-size, sm);
-  text-align: center;
-  opacity: 0.6;
+body {
+  font-family: $font-family;
+  @apply text-white text-base bg-black tracking-wider;
 }

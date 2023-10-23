@@ -1,0 +1,78 @@
+@charset 'UTF-8';
+@import './utils/_utils.scss';
+
+// * ==========================================================================
+// * ANIMATION
+// * ==========================================================================
+
+// * Fade Animation
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-animation {
+  animation: fade-in 0.3s ease;
+}
+
+// * Modal Animation
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+
+  .modal-animation {
+    transform: scale(1.1);
+  }
+}
+
+.modal-animation {
+  transition: all 0.3s ease;
+  animation: modal-fade-in 0.2s ease;
+}
+
+// * Accordion
+
+.accordion-enter-active,
+.accordion-leave-active {
+  overflow: hidden;
+  transition: height 0.3s ease, opacity 0.3s ease;
+  will-change: height, opacity;
+}
+
+.accordion-enter,
+.accordion-leave-to {
+  height: 0 !important;
+  opacity: 0;
+}
