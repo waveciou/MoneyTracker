@@ -46,7 +46,6 @@
     (e: 'update', value: IChartTimeFrame): void;
   }>();
 
-  // eslint-disable-next-line vue/no-setup-props-destructure
   const selectedTime = ref<IChartTimeFrame>(props.timeFrame);
 
   const handleChangeTime = (isNext: boolean): void => {

@@ -61,11 +61,8 @@
     return subCategoryID;
   };
 
-  // eslint-disable-next-line vue/no-setup-props-destructure
   const selectedItem = ref<ISelectedID>({
-    // eslint-disable-next-line vue/no-setup-props-destructure
     main: provideDefaultMainID(props.modelValue),
-    // eslint-disable-next-line vue/no-setup-props-destructure
     sub: provideDefaultSubID(props.modelValue),
   });
 

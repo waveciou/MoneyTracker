@@ -58,9 +58,7 @@
 
   // 3. Validate the data types and setting this form.
 
-  // eslint-disable-next-line vue/no-setup-props-destructure
   const contextForm = ref<IRecordForm>(
-    // eslint-disable-next-line vue/no-setup-props-destructure
     useRecordForm(props.recordType, currentForm)
   );
 

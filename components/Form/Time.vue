@@ -52,15 +52,11 @@
   const optionHour = ref<IInputSelectOption[]>([...useOptionHour()]);
   const optionMinute = ref<IInputSelectOption[]>([...useOptionMinute()]);
 
-  // eslint-disable-next-line vue/no-setup-props-destructure
   const selectedHour = ref<number>(
-    // eslint-disable-next-line vue/no-setup-props-destructure
     dayjs(props.timestamp).utcOffset(utcOffset.value).get('hour')
   );
 
-  // eslint-disable-next-line vue/no-setup-props-destructure
   const selectedMinute = ref<number>(
-    // eslint-disable-next-line vue/no-setup-props-destructure
     dayjs(props.timestamp).utcOffset(utcOffset.value).get('minute')
   );
 

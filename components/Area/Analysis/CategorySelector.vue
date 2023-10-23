@@ -21,7 +21,6 @@
 
   const categoriesStore = useCategoriesStore();
 
-  // eslint-disable-next-line vue/no-setup-props-destructure
   const selectedID = ref<string>(props.modelValue);
 
   const optionCategory = computed((): IInputSelectOption[] => {

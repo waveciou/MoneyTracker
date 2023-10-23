@@ -33,7 +33,6 @@
     }
   );
 
-  // eslint-disable-next-line vue/no-setup-props-destructure
   const isOpen = ref<boolean>(props.default || true);
 
   const provideButtonClass = computed((): string => {

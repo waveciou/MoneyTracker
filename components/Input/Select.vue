@@ -39,7 +39,6 @@
     (e: 'update:modelValue', value: string | number): void;
   }>();
 
-  // eslint-disable-next-line vue/no-setup-props-destructure
   const contextValue = ref<string | number>(props.modelValue);
 
   watch(
