@@ -25,8 +25,8 @@
 
   const optionCategory = computed((): IInputSelectOption[] => {
     return [
-      { id: EnumRecordType.EXPENSE, name: 'Expense' },
-      { id: EnumRecordType.INCOME, name: 'Income' },
+      { id: EnumRecordType.EXPENSE, name: 'All Expense' },
+      { id: EnumRecordType.INCOME, name: 'All Income' },
       ...categoriesStore.optionsExpenseMainCategory,
     ];
   });
