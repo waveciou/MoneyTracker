@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-full h-menu-height basis-menu-height bg-black-darkest">
+  <nav class="w-full h-24 basis-24 bg-black-darkest">
     <div class="flex">
       <button
         v-for="item in menuButtons"

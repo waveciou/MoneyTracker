@@ -14,10 +14,6 @@ export default defineNuxtConfig({
           name: 'viewport',
           content: 'width=device-width, initial-scale=1, maximum-scale=1',
         },
-        {
-          name: 'viewport',
-          content: 'width=device-width; initial-scale=1; viewport-fit=cover',
-        },
         { 'http-equiv': 'X-UA-Compatible', content: 'ie=edge' },
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'msapplication-TileColor', content: '#ffffff' },

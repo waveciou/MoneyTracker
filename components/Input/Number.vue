@@ -4,6 +4,8 @@
       :id="props.id"
       v-model.number="quantity"
       type="number"
+      pattern="\d*"
+      inputmode="decimal"
       class="w-full py-1.5 px-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
