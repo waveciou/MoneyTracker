@@ -1,7 +1,7 @@
 {
   "name": "Money Tracker",
   "start_url": ".",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "portrait",
   "icons":[
     {"src":"/favicon/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},
