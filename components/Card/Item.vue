@@ -3,8 +3,8 @@
     <CardContent :data="props.data" @click="isPopUpOpen = true" />
     <ThePopUp :is-open="isPopUpOpen" @close="isPopUpOpen = false">
       <div class="text-white bg-black-base">
-        <div class="pb-6 bg-yellow">
-          <div class="p-1 flex justify-end text-black-base">
+        <div class="pb-8 bg-yellow">
+          <div class="p-1 mb-4 flex justify-end text-black-base">
             <button
               class="w-6 h-6 ml-1 before-font-material before:content-['\e3c9']"
               title="Edit"
