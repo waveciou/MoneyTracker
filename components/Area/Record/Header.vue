@@ -1,5 +1,8 @@
 <template>
-  <header class="w-full h-header-height basis-header-height relative">
+  <header
+    class="w-full h-header-height basis-header-height relative"
+    :class="props.styleDark && 'bg-black-darkest'"
+  >
     <button
       class="before-font-material before:content-['\e5cd'] w-header-height h-header-height flex justify-center items-center absolute top-0 left-0"
       title="Close"
@@ -8,7 +11,7 @@
     <div
       class="h-header-height flex justify-center items-center text-center px-header-height"
     >
-      <h2 class="block text-lg truncate">{{ provideTitle }}</h2>
+      <h2 class="block text-lg font-bold truncate">{{ provideTitle }}</h2>
     </div>
     <button
       class="before-font-material before:content-['\e876'] w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
@@ -23,6 +26,10 @@
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import { EnumRecordMode } from '@/assets/enums/record';
+
+  const props = withDefaults(defineProps<{ styleDark?: boolean }>(), {
+    styleDark: false,
+  });
 
   const emits = defineEmits<{ (e: 'submit'): void }>();
 

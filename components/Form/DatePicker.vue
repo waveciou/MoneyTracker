@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="block text-base mb-2">Date</label>
+    <label class="block text-base font-bold mb-2">Date</label>
     <TheButton class="w-full mb-2" @click="isPopUpOpen = !isPopUpOpen">
       <div
         class="flex justify-center items-center before-font-material before:content-['\ebcc'] before:block before:mr-1 before:w-6 before:h-6"

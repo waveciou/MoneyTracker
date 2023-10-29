@@ -1,9 +1,14 @@
 <template>
   <section class="w-full h-full flex flex-col">
-    <AreaRecordHeader @submit="handleSubmit" />
+    <AreaRecordHeader
+      :style-dark="contentScrollValue > 0"
+      @submit="handleSubmit"
+    />
     <div
       v-if="contextID"
+      ref="contentRef"
       class="h-full overflow-x-hidden relative px-wrap-space"
+      @scroll="handleScroll"
     >
       <AreaRecordForm
         v-if="selectedRecordType === EnumRecordType.EXPENSE"
@@ -35,6 +40,14 @@
   );
 
   const selectedForm = ref<IRecordForm>(useRecordForm(EnumRecordType.EXPENSE));
+
+  const contentRef = ref<HTMLDivElement>(null as unknown as HTMLDivElement);
+  const contentScrollValue = ref<number>(0);
+
+  const handleScroll = (): void => {
+    const value: number = contentRef?.value?.scrollTop || 0;
+    contentScrollValue.value = value;
+  };
 
   const handleUpdate = (payload: IRecordForm): void => {
     Object.assign(selectedForm.value, payload);

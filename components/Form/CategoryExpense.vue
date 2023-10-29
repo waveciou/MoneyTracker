@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="block text-base mb-2">Category</label>
+    <label class="block text-base font-bold mb-2">Category</label>
     <div class="flex items-center">
       <div class="flex-1 mr-[0.3125rem]">
         <InputSelect
