@@ -29,7 +29,7 @@
       </li>
     </ul>
     <p class="text-center text-sm">
-      Version: 2.0.0-beta
+      Version: 2.0.0
       <br />
       Created By
       <a
