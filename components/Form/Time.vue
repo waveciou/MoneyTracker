@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="block text-base mb-1">Time</label>
+    <label class="block text-base font-bold mb-1">Time</label>
     <div class="flex items-center">
       <div class="flex-1 mr-[0.3125rem]">
         <label :for="hourID" class="block text-xs pl-1 mb-1">Hour</label>

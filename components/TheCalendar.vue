@@ -35,7 +35,7 @@
           class="w-[14.285%] text-center"
         >
           <button
-            class="w-full block p-1 rounded"
+            class="w-full block py-1.5 px-1 rounded"
             :class="provideClassName(item)"
             :title="useFormatNumber(item.date)"
             @click="handleClick(item)"

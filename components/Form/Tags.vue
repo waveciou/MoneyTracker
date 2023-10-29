@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="id" class="block text-base mb-2">Tags</label>
+    <label :for="id" class="block text-base font-bold mb-2">Tags</label>
     <InputHashTags
       :id="id"
       v-model="selectedValue"
