@@ -4,7 +4,7 @@
   >
     <section class="w-full h-full flex flex-col">
       <div>
-        <AreaSearchHeader />
+        <AreaSearchHeader :style-dark="contentScrollValue > 0" />
         <div class="w-full px-wrap-space py-2">
           <InputSearch
             v-model.trim="inputValue"
@@ -14,7 +14,11 @@
           <AreaSearchDetail :cards="contextCards" />
         </div>
       </div>
-      <div class="h-full overflow-x-hidden relative px-wrap-space">
+      <div
+        ref="contentRef"
+        class="h-full overflow-x-hidden relative px-wrap-space"
+        @scroll="handleScroll"
+      >
         <CardList
           v-if="contextCards.length"
           class="py-3"
@@ -36,6 +40,14 @@
   const { storage } = storeToRefs(recordStore);
 
   const inputValue = ref<string>('');
+
+  const contentRef = ref<HTMLDivElement>(null as unknown as HTMLDivElement);
+  const contentScrollValue = ref<number>(0);
+
+  const handleScroll = (): void => {
+    const value: number = contentRef?.value?.scrollTop || 0;
+    contentScrollValue.value = value;
+  };
 
   const contextCards = computed((): IRecordForm[] => {
     if (inputValue.value === '') {

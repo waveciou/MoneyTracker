@@ -1,5 +1,8 @@
 <template>
-  <header class="w-full h-header-height basis-header-height relative">
+  <header
+    class="w-full h-header-height basis-header-height relative"
+    :class="props.styleDark && 'bg-black-darkest'"
+  >
     <div
       class="h-header-height flex justify-center items-center text-center px-header-height"
     >
@@ -15,6 +18,11 @@
 
 <script setup lang="ts">
   import { useCommonStore } from '@/stores/commonStore';
+
+  const props = withDefaults(defineProps<{ styleDark?: boolean }>(), {
+    styleDark: false,
+  });
+
   const commonStore = useCommonStore();
 
   const handleClose = (): void => {
