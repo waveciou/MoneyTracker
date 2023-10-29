@@ -1,12 +1,13 @@
 <template>
   <ul>
-    <li v-for="item in props.cards" :key="item.id" class="mb-3">
+    <li v-for="item in contextCards" :key="item.id" class="mb-3">
       <CardItem :data="item" />
     </li>
   </ul>
 </template>
 
 <script setup lang="ts">
+  import { computed } from 'vue';
   import { IRecordForm } from '@/assets/interfaces/record';
 
   const props = withDefaults(
@@ -19,4 +20,9 @@
       },
     }
   );
+
+  const contextCards = computed((): IRecordForm[] => {
+    const result = props.cards;
+    return result.sort((a, b) => a.time - b.time);
+  });
 </script>
