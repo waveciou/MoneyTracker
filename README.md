@@ -2,6 +2,12 @@
 
 自製的記帳軟體 Side Project，包含記帳紀錄之建置、修改、刪除，以及項目分類、標籤分類、圖表分析、項目搜尋等功能。
 
+![banner](https://github.com/waveciou/MoneyTracker/assets/17502097/3ee7c8bd-1c9c-4fc9-a00b-26a4cd6edb33)
+
+## Demo
+
+[https://waveciou-moneytracker.netlify.app/](https://waveciou-moneytracker.netlify.app/)
+
 ## 💡 從這個專案當中學到了什麼
 
 - 使用 [Nuxt 3](https://nuxtjs.org/) + [TypeScript](https://www.typescriptlang.org/) 開發行動版網頁專案，也可以將網頁加入桌面捷徑，建立基本的 PWA 應用程式。
