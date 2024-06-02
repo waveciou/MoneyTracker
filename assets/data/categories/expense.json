@@ -17,6 +17,10 @@
           "name": "晚餐"
         },
         {
+          "id":"night snack",
+          "name":"宵夜"
+        },
+        {
           "id": "dessert",
           "name": "點心"
         },
@@ -39,16 +43,40 @@
           "name": "機車"
         },
         {
+          "id": "bicycle",
+          "name": "自行車"
+        },
+        {
           "id": "bus",
           "name": "公車"
+        },
+        {
+          "id": "taxi",
+          "name": "計程車"
         },
         {
           "id": "train",
           "name": "火車"
         },
         {
-          "id": "taxi",
-          "name": "計程車"
+          "id":"subway",
+          "name":"地鐵"
+        },
+        {
+          "id":"Light Rail",
+          "name":"輕軌"
+        },
+        {
+          "id": "airplane",
+          "name": "飛機"
+        },
+        {
+          "id": "ship",
+          "name": "船"
+        },
+        {
+          "id":"yacht",
+          "name":"遊艇"
         }
       ]
     },
@@ -75,6 +103,18 @@
         {
           "id": "sports",
           "name": "運動"
+        },
+        {
+          "id":"sightseeing",
+          "name":"觀光"
+        },
+        {
+          "id":"amusement park",
+          "name":"遊樂園"
+        },
+        {
+          "id":"hiking",
+          "name":"登山"
         }
       ]
     },
@@ -101,6 +141,34 @@
         {
           "id": "3c-products",
           "name": "3C電子"
+        },
+        {
+          "id":"snack",
+          "name":"零食"
+        },
+        {
+          "id":"daily",
+          "name":"日用品"
+        },
+        {
+          "id":"cosmetics",
+          "name":"化妝品"
+        },
+        {
+          "id":"book",
+          "name":"書籍"
+        },
+        {
+          "id":"furniture",
+          "name":"家具"
+        },
+        {
+          "id":"home appliances",
+          "name":"家電"
+        },
+        {
+          "id":"plant",
+          "name":"植物"
         }
       ]
     },
@@ -115,6 +183,34 @@
         {
           "id": "time-deposit.",
           "name": "定存"
+        },
+        {
+          "id": "fund",
+          "name": "基金"
+        },
+        {
+          "id": "insurance",
+          "name": "保險"
+        },
+        {
+          "id": "cryptocurrency",
+          "name": "加密貨幣"
+        },
+        {
+          "id":"real estate",
+          "name":"房地產"
+        },
+        {
+          "id":"gold",
+          "name":"黃金"
+        },
+        {
+          "id":"foreign exchange",
+          "name":"外匯"
+        },
+        {
+          "id":"jewelry",
+          "name":"珠寶"
         }
       ]
     },
@@ -136,6 +232,34 @@
         {
           "id": "surgery",
           "name": "手術"
+        },
+        {
+          "id": "vaccine",
+          "name": "疫苗"
+        },
+        {
+          "id": "health check",
+          "name": "健康檢查"
+        },
+        {
+          "id": "nursing",
+          "name": "護理"
+        },
+        {
+          "id": "psychological counseling",
+          "name": "心理諮詢"
+        },
+        {
+          "id": "rehabilitation",
+          "name": "復健"
+        },
+        {
+          "id": "plastic surgery",
+          "name": "整形"
+        },
+        {
+          "id": "beauty",
+          "name": "美容"
         }
       ]
     },
@@ -166,6 +290,22 @@
         {
           "id": "rent",
           "name": "房租"
+        },
+        {
+          "id": "mortgage",
+          "name": "房貸"
+        },
+        {
+          "id": "repair",
+          "name": "維修"
+        },
+        {
+          "id": "cleaning",
+          "name": "清潔"
+        },
+        {
+          "id": "decoration",
+          "name": "裝潢"
         }
       ]
     },
@@ -188,6 +328,18 @@
         {
           "id": "travel",
           "name": "旅行"
+        },
+        {
+          "id": "pet",
+          "name": "寵物"
+        },
+        {
+          "id": "funeral",
+          "name": "葬禮"
+        },
+        {
+          "id": "wedding",
+          "name": "婚禮"
         }
       ]
     },
@@ -206,6 +358,18 @@
         {
           "id": "explore",
           "name": "探索"
+        },
+        {
+          "id": "seminar",
+          "name": "研討會"
+        },
+        {
+          "id": "book",
+          "name": "書籍"
+        },
+        {
+          "id": "online course",
+          "name": "線上課程"
         }
       ]
     }
