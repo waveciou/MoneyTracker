@@ -1,7 +1,7 @@
 {
   "data": [
     {
-      "id": "food",
+      "id": "expense_food",
       "name": "飲食",
       "subcategories": [
         {
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "id": "traffic",
+      "id": "expense_traffic",
       "name": "交通",
       "subcategories": [
         {
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "id": "recreation",
+      "id": "expense_recreation",
       "name": "娛樂",
       "subcategories": [
         {
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "shopping",
+      "id": "expense_shopping",
       "name": "購物",
       "subcategories": [
         {
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "id": "investment",
+      "id": "expense_investment",
       "name": "投資",
       "subcategories": [
         {
@@ -215,7 +215,7 @@
       ]
     },
     {
-      "id": "medical",
+      "id": "expense_medical",
       "name": "醫療",
       "subcategories": [
         {
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "home",
+      "id": "expense_home",
       "name": "家居",
       "subcategories": [
         {
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "id": "life",
+      "id": "expense_life",
       "name": "生活",
       "subcategories": [
         {
@@ -344,7 +344,7 @@
       ]
     },
     {
-      "id": "learning",
+      "id": "expense_learning",
       "name": "學習",
       "subcategories": [
         {

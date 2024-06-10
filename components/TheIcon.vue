@@ -2,6 +2,7 @@
   <div class="before-font-material" :class="provideIconClass" />
 </template>
 
+<!-- eslint-disable quotes -->
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useCategoriesStore } from '@/stores/categoriesStore';
@@ -10,6 +11,20 @@
 
   const props = defineProps<{ categoryId: string }>();
 
+  const incomeIcons = [
+    'salary',
+    'bonus',
+    'allowance',
+    'interest',
+    'investment-profit',
+  ];
+
+  const contextIncomeIcons = computed((): string[] => {
+    return incomeIcons.reduce((prev, current) => {
+      return [...prev, current, `income_${current}`];
+    }, [] as string[]);
+  });
+
   const provideIconClass = computed(() => {
     const categoriesStore = useCategoriesStore();
     const { expense } = storeToRefs(categoriesStore);
@@ -17,7 +32,10 @@
     const recordType = useCategoryValidator(props.categoryId);
 
     if (recordType === EnumRecordType.INCOME) {
-      return `icon-${props.categoryId}`;
+      if (contextIncomeIcons.value.includes(props.categoryId)) {
+        return `icon-${props.categoryId}`;
+      }
+      return "bg-[url('@/assets/images/icon.svg')]";
     }
 
     if (recordType === EnumRecordType.EXPENSE) {
@@ -38,68 +56,73 @@
       );
     }
 
-    return '';
+    return "bg-[url('@/assets/images/icon.svg')]";
   });
 </script>
 
 <style lang="scss" scoped>
   // EXPENSE
 
-  .icon-food::before {
+  .icon-expense_food::before {
     content: '\e56c';
   }
 
-  .icon-traffic::before {
+  .icon-expense_traffic::before {
     content: '\e531';
   }
 
-  .icon-recreation::before {
+  .icon-expense_recreation::before {
     content: '\ea65';
   }
 
-  .icon-shopping::before {
+  .icon-expense_shopping::before {
     content: '\f1cc';
   }
 
-  .icon-investment::before {
+  .icon-expense_investment::before {
     content: '\e8e5';
   }
 
-  .icon-medical::before {
+  .icon-expense_medical::before {
     content: '\f109';
   }
 
-  .icon-home::before {
+  .icon-expense_home::before {
     content: '\e587';
   }
 
-  .icon-life::before {
+  .icon-expense_life::before {
     content: '\ea62';
   }
 
-  .icon-learning::before {
+  .icon-expense_learning::before {
     content: '\e0e0';
   }
 
   // INCOME
 
-  .icon-salary::before {
+  .icon-salary::before,
+  .icon-income_salary::before {
     content: '\e263';
   }
 
-  .icon-bonus::before {
+  .icon-bonus::before,
+  .icon-income_bonus::before {
     content: '\ef63';
   }
 
-  .icon-allowance::before {
+  .icon-allowance::before,
+  .icon-income_allowance::before {
     content: '\f8ff';
   }
 
-  .icon-interest::before {
+  .icon-interest::before,
+  .icon-income_interest::before {
     content: '\eb70';
   }
 
-  .icon-investment-profit::before {
+  .icon-investment-profit::before,
+  .icon-income_investment-profit::before {
     content: '\e6e1';
   }
 </style>
