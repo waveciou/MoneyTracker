@@ -1,83 +1,83 @@
 {
   "data": [
     {
-      "id": "salary",
+      "id": "income_salary",
       "name": "薪水"
     },
     {
-      "id": "bonus",
+      "id": "income_bonus",
       "name": "獎金"
     },
     {
-      "id": "allowance",
+      "id": "income_allowance",
       "name": "輔助費"
     },
     {
-      "id": "interest",
+      "id": "income_interest",
       "name": "利息"
     },
     {
-      "id": "dividend",
+      "id": "income_dividend",
       "name": "股息"
     },
     {
-      "id": "rent",
+      "id": "income_rent",
       "name": "租金"
     },
     {
-      "id": "royalty",
+      "id": "income_royalty",
       "name": "版稅"
     },
     {
-      "id": "commission",
+      "id": "income_commission",
       "name": "佣金"
     },
     {
-      "id": "pension",
+      "id": "income_pension",
       "name": "退休金"
     },
     {
-      "id": "inheritance",
+      "id": "income_inheritance",
       "name": "遺產"
     },
     {
-      "id": "lottery",
+      "id": "income_lottery",
       "name": "彩券"
     },
     {
-      "id": "insurance",
+      "id": "income_insurance",
       "name": "保險"
     },
     {
-      "id": "welfare",
+      "id": "income_welfare",
       "name": "福利"
     },
     {
-      "id": "gift",
+      "id": "income_gift",
       "name": "禮物"
     },
     {
-      "id": "refund",
+      "id": "income_refund",
       "name": "退款"
     },
     {
-      "id": "reimbursement",
+      "id": "income_reimbursement",
       "name": "報銷"
     },
     {
-      "id": "loan",
+      "id": "income_loan",
       "name": "貸款"
     },
     {
-      "id": "debt",
+      "id": "income_debt",
       "name": "債務"
     },
     {
-      "id": "investment-profit",
+      "id": "income_investment-profit",
       "name": "投資獲利"
     },
     {
-      "id": "other",
+      "id": "income_other",
       "name": "其他"
     }
   ]
