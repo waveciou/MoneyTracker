@@ -29,7 +29,7 @@
       </li>
     </ul>
     <p class="text-center text-sm">
-      Version: 2.0.1
+      Version: {{ version }}
       <br />
       Created By
       <a
@@ -52,12 +52,14 @@
 </template>
 
 <script setup lang="ts">
+  import pkg from '../package.json';
   import { useRecordStore } from '@/stores/recordStore';
 
   useHead({ title: 'Money Tracker - Setting' });
 
   const recordStore = useRecordStore();
   const isConfirmOpen = ref<boolean>(false);
+  const version = ref<string>(pkg.version);
 
   const handleClear = (): void => {
     recordStore.CLEAR_ALL_RECORDS();
