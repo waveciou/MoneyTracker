@@ -14,7 +14,7 @@
   import { watch } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import { ICalendarValue } from '@/assets/interfaces/record';
+  import type { ICalendarValue } from '@/assets/interfaces/record';
 
   useHead({ title: 'Money Tracker - Calendar' });
 

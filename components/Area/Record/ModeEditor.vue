@@ -30,7 +30,7 @@
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import { EnumRecordType } from '@/assets/enums/record';
-  import { IRecordForm } from '@/assets/interfaces/record';
+  import type { IRecordForm } from '@/assets/interfaces/record';
 
   const recordStore = useRecordStore();
   const { contextID } = storeToRefs(recordStore);

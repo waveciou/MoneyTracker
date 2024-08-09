@@ -17,8 +17,11 @@
   import { useRecordStore } from '@/stores/recordStore';
   import { EnumRecordType } from '@/assets/enums/record';
   import { EnumChartMode } from '@/assets/enums/chart';
-  import { IRecordForm, IRecordSeries } from '@/assets/interfaces/record';
-  import { IChartTimeFrame, IBarChartSeries } from '@/assets/interfaces/chart';
+  import type { IRecordForm, IRecordSeries } from '@/assets/interfaces/record';
+  import type {
+    IChartTimeFrame,
+    IBarChartSeries,
+  } from '@/assets/interfaces/chart';
 
   const props = withDefaults(
     defineProps<{ mode: EnumChartMode; timeFrame: IChartTimeFrame }>(),

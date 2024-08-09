@@ -29,7 +29,7 @@
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
   import { EnumRecordType } from '@/assets/enums/record';
-  import { IRecordForm } from '@/assets/interfaces/record';
+  import type { IRecordForm } from '@/assets/interfaces/record';
 
   const router = useRouter();
   const recordStore = useRecordStore();

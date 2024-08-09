@@ -34,7 +34,7 @@
   import { computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import { IRecordForm } from '@/assets/interfaces/record';
+  import type { IRecordForm } from '@/assets/interfaces/record';
 
   const recordStore = useRecordStore();
   const { storage } = storeToRefs(recordStore);

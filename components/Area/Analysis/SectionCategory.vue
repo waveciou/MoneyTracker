@@ -23,9 +23,9 @@
   import { useCategoriesStore } from '@/stores/categoriesStore';
   import { EnumChartMode } from '@/assets/enums/chart';
   import { EnumRecordType } from '@/assets/enums/record';
-  import { IChartTimeFrame } from '@/assets/interfaces/chart';
-  import { IRecordForm } from '@/assets/interfaces/record';
-  import { IAnalysisCardGroup } from '@/assets/interfaces/analysis';
+  import type { IChartTimeFrame } from '@/assets/interfaces/chart';
+  import type { IRecordForm } from '@/assets/interfaces/record';
+  import type { IAnalysisCardGroup } from '@/assets/interfaces/analysis';
 
   const props = withDefaults(
     defineProps<{

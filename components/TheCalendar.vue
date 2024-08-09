@@ -53,7 +53,7 @@
   import { storeToRefs } from 'pinia';
   import calendarData from '@/assets/data/calendar.json';
   import { useCommonStore } from '@/stores/commonStore';
-  import { ICalendarValue } from '@/assets/interfaces/record';
+  import type { ICalendarValue } from '@/assets/interfaces/record';
 
   const props = withDefaults(
     defineProps<{ tagName?: string; default?: ICalendarValue }>(),

@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
   import { computed } from 'vue';
-  import { IRecordForm } from '@/assets/interfaces/record';
+  import type { IRecordForm } from '@/assets/interfaces/record';
 
   const props = withDefaults(
     defineProps<{

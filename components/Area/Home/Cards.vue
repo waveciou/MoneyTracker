@@ -12,7 +12,7 @@
   import { computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import { IRecordForm, ICalendarValue } from '@/assets/interfaces/record';
+  import type { IRecordForm, ICalendarValue } from '@/assets/interfaces/record';
 
   const props = withDefaults(defineProps<{ dateInfo?: ICalendarValue }>(), {
     dateInfo() {

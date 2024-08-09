@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
-  import { IRecordForm } from '@/assets/interfaces/record';
+  import type { IRecordForm } from '@/assets/interfaces/record';
 
   const props = defineProps<{ data: IRecordForm }>();
 

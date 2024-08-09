@@ -12,7 +12,7 @@
 <script setup lang="ts">
   import { computed } from 'vue';
   import { EnumChartMode } from '@/assets/enums/chart';
-  import { IRecordForm, IRecordSeries } from '@/assets/interfaces/record';
+  import type { IRecordForm, IRecordSeries } from '@/assets/interfaces/record';
 
   interface IContextCardItem {
     id: string;

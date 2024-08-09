@@ -22,8 +22,8 @@
 <script setup lang="ts">
   import numeral from 'numeral';
   import { computed } from 'vue';
-  import { IRecordForm } from '@/assets/interfaces/record';
-  import { IAnalysisCardGroup } from '@/assets/interfaces/analysis';
+  import type { IRecordForm } from '@/assets/interfaces/record';
+  import type { IAnalysisCardGroup } from '@/assets/interfaces/analysis';
 
   const props = withDefaults(
     defineProps<{

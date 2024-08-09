@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-  import { IRecordForm } from '@/assets/interfaces/record';
+  import type { IRecordForm } from '@/assets/interfaces/record';
 
   const props = withDefaults(
     defineProps<{
