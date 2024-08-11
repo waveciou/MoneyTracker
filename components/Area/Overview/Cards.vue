@@ -10,7 +10,6 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
   import { EnumChartMode } from '@/assets/enums/chart';
   import type { IRecordForm, IRecordSeries } from '@/assets/interfaces/record';
 

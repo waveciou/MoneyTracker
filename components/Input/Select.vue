@@ -18,9 +18,8 @@
 </template>
 
 <script setup lang="ts">
-  import { watch } from 'vue';
   import { v4 as uuidv4 } from 'uuid';
-  import { IInputSelectOption } from '@/assets/interfaces/element';
+  import type { IInputSelectOption } from '@/assets/interfaces/element';
 
   const props = withDefaults(
     defineProps<{

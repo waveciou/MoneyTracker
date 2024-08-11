@@ -18,9 +18,11 @@
 
 <script setup lang="ts">
   import numeral from 'numeral';
-  import { computed, watch, onMounted, onBeforeUnmount } from 'vue';
   import VueApexCharts from 'vue3-apexcharts';
-  import { IBarChartSeries, IBarChartOptions } from '@/assets/interfaces/chart';
+  import type {
+    IBarChartSeries,
+    IBarChartOptions,
+  } from '@/assets/interfaces/chart';
 
   const props = defineProps<{
     series: IBarChartSeries[];
@@ -123,7 +125,7 @@
 
   onMounted(() => {
     nextTick(() => {
-      if (process.client) {
+      if (import.meta.client) {
         window.dispatchEvent(new Event('resize'));
       }
     });

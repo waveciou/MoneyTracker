@@ -30,7 +30,6 @@
 </template>
 
 <script setup lang="ts">
-  import { watch } from 'vue';
   import { useRecordStore } from '@/stores/recordStore';
   import type { IRecordForm } from '@/assets/interfaces/record';
   import { EnumRecordType } from '@/assets/enums/record';

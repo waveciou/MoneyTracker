@@ -28,9 +28,8 @@
 
 <script setup lang="ts">
   import { v4 as uuidv4 } from 'uuid';
-  import { computed, watch } from 'vue';
   import { storeToRefs } from 'pinia';
-  import { IInputSelectOption } from '@/assets/interfaces/element';
+  import type { IInputSelectOption } from '@/assets/interfaces/element';
   import { useCommonStore } from '@/stores/commonStore';
 
   const props = withDefaults(

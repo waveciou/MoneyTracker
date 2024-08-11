@@ -22,9 +22,9 @@
 </template>
 
 <script setup lang="ts">
-  import { watch } from 'vue';
   import { EnumChartMode } from '@/assets/enums/chart';
-  import { IChartTimeFrame } from '@/assets/interfaces/chart';
+  import type { IChartTimeFrame } from '@/assets/interfaces/chart';
+  import { useFormatNumber } from '@/utils/useFormatNumber';
 
   const props = withDefaults(
     defineProps<{

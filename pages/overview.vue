@@ -20,11 +20,10 @@
 </template>
 
 <script setup lang="ts">
-  import { watch } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import { EnumChartMode } from '@/assets/enums/chart';
-  import { IChartTimeFrame } from '@/assets/interfaces/chart';
+  import type { IChartTimeFrame } from '@/assets/interfaces/chart';
 
   useHead({ title: 'Money Tracker - Overview' });
 

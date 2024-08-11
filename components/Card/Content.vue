@@ -1,7 +1,7 @@
 <template>
   <button
     class="w-full flex"
-    :title="useCategoryName(props.data.category, false)"
+    :title="provideCategoryName(props.data.category, false)"
     @click="emits('click')"
   >
     <div class="w-icon-size h-icon-size basis-icon-size bg-yellow rounded">
@@ -13,10 +13,10 @@
     <div class="w-card-content pl-2.5 text-left">
       <div class="flex items-center justify-between text-base">
         <span class="block truncate text-yellow">
-          {{ useCategoryName(props.data.category, false) }}
+          {{ provideCategoryName(props.data.category, false) }}
         </span>
         <span class="block truncate pl-2" :class="providePriceClass">
-          {{ useFinanceNumber(props.data.price) }}
+          {{ provideCategoryName(`${props.data.price}`) }}
         </span>
       </div>
       <div class="text-sm truncate">{{ props.data.store }}</div>
@@ -34,7 +34,6 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
   import { EnumRecordType } from '@/assets/enums/record';
   import type { IRecordForm } from '@/assets/interfaces/record';
 
@@ -52,4 +51,9 @@
         return '';
     }
   });
+
+  const provideCategoryName = (
+    categoryID: string,
+    isMainCategoryName?: boolean
+  ): string => useCategoryName(categoryID, isMainCategoryName || false);
 </script>

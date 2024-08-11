@@ -10,9 +10,8 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, watch } from 'vue';
   import { storeToRefs } from 'pinia';
-  import { IInputSelectOption } from '@/assets/interfaces/element';
+  import type { IInputSelectOption } from '@/assets/interfaces/element';
   import { EnumRecordType } from '@/assets/enums/record';
   import { useCategoriesStore } from '@/stores/categoriesStore';
 

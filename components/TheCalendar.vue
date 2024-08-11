@@ -49,11 +49,11 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, watch } from 'vue';
   import { storeToRefs } from 'pinia';
   import calendarData from '@/assets/data/calendar.json';
   import { useCommonStore } from '@/stores/commonStore';
   import type { ICalendarValue } from '@/assets/interfaces/record';
+  import { useFormatNumber } from '@/utils/useFormatNumber';
 
   const props = withDefaults(
     defineProps<{ tagName?: string; default?: ICalendarValue }>(),

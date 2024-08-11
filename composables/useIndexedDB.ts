@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import { watch, onMounted } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { createStore, get, set } from 'idb-keyval';
 import { storeToRefs } from 'pinia';

@@ -18,9 +18,9 @@
 
 <script setup lang="ts">
   import numeral from 'numeral';
-  import { computed } from 'vue';
   import { EnumRecordType } from '@/assets/enums/record';
   import type { IRecordForm } from '@/assets/interfaces/record';
+  import { useFinanceNumber } from '@/utils/useFinanceNumber';
 
   const props = defineProps<{ cards: IRecordForm[] }>();
 

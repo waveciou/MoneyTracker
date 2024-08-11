@@ -28,8 +28,8 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
   import { useRecordStore } from '@/stores/recordStore';
+  import { useFinanceNumber } from '@/utils/useFinanceNumber';
 
   const recordStore = useRecordStore();
 

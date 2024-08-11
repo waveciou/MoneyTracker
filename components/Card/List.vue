@@ -7,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
   import type { IRecordForm } from '@/assets/interfaces/record';
 
   const props = withDefaults(

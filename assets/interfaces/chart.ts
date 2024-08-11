@@ -70,4 +70,9 @@ interface IPieChartOptions {
   };
 }
 
-export { IChartTimeFrame, IBarChartSeries, IBarChartOptions, IPieChartOptions };
+export type {
+  IChartTimeFrame,
+  IBarChartSeries,
+  IBarChartOptions,
+  IPieChartOptions,
+};

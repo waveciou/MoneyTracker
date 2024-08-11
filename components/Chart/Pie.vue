@@ -17,9 +17,8 @@
 </template>
 
 <script setup lang="ts">
-  import { watch, onMounted, onBeforeUnmount } from 'vue';
   import VueApexCharts from 'vue3-apexcharts';
-  import { IPieChartOptions } from '@/assets/interfaces/chart';
+  import type { IPieChartOptions } from '@/assets/interfaces/chart';
 
   const props = defineProps<{
     series: number[];
@@ -76,7 +75,7 @@
 
   onMounted(() => {
     nextTick(() => {
-      if (process.client) {
+      if (import.meta.client) {
         window.dispatchEvent(new Event('resize'));
       }
     });

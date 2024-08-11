@@ -11,7 +11,6 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useCommonStore } from '@/stores/commonStore';
   import { useRecordStore } from '@/stores/recordStore';

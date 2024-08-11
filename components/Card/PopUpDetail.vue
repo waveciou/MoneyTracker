@@ -39,7 +39,6 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
   import { EnumRecordType } from '@/assets/enums/record';
   import type { IRecordForm } from '@/assets/interfaces/record';
 

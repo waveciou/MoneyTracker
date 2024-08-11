@@ -39,8 +39,8 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
   import type { ICalendarValue } from '@/assets/interfaces/record';
+  import { useFormatNumber } from '@/utils/useFormatNumber';
 
   const props = defineProps<{ timestamp: number }>();
   const emits = defineEmits<{ (e: 'update', value: number): void }>();

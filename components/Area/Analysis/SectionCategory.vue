@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
   import numeral from 'numeral';
-  import { computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import { useCategoriesStore } from '@/stores/categoriesStore';

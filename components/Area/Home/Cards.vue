@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import type { IRecordForm, ICalendarValue } from '@/assets/interfaces/record';

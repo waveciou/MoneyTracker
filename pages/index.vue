@@ -11,7 +11,6 @@
 </template>
 
 <script setup lang="ts">
-  import { watch } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import type { ICalendarValue } from '@/assets/interfaces/record';
