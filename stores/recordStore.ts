@@ -25,14 +25,16 @@ export const useRecordStore = defineStore({
   actions: {
     SET_STORAGE(recordsData: IRecordForm[]): void {
       for (let i = 0; i < recordsData.length; i++) {
-        const index: number = this.storage.findIndex(
+        const hasDuplicateID = this.storage.some(
           ({ id }) => id === recordsData[i].id
         );
-        if (index >= 0) {
-          this.storage.splice(index, 1);
-        }
+        const hasDuplicateTime = this.storage.some(
+          ({ time }) => time === recordsData[i].time
+        );
 
-        this.storage.push(recordsData[i]);
+        if (!hasDuplicateID && !hasDuplicateTime) {
+          this.storage.push(recordsData[i]);
+        }
       }
     },
     ADD_RECORD(payload: IRecordForm): void {
