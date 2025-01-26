@@ -60,11 +60,16 @@ export default defineNuxtConfig({
     },
     pageTransition: { name: 'fade', mode: 'out-in' },
   },
-  modules: [
-    '@nuxtjs/tailwindcss',
-    '@nuxtjs/eslint-module',
-    '@pinia/nuxt',
-    'dayjs-nuxt',
-  ],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', 'dayjs-nuxt'],
   css: ['@/assets/scss/main.scss'],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          quietDeps: true,
+          api: 'modern-compiler',
+        },
+      },
+    },
+  },
 });

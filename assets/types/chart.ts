@@ -1,3 +1,15 @@
+enum EnumChartMode {
+  YEARS = 'years',
+  MONTHS = 'months',
+  ALL = 'all',
+}
+
+enum EnumChartAnalysisType {
+  CATEGORY = 'Category',
+  STORE = 'Store',
+  TAGS = 'Tags',
+}
+
 interface IChartTimeFrame {
   year: number;
   month: number | null;
@@ -76,3 +88,5 @@ export type {
   IBarChartOptions,
   IPieChartOptions,
 };
+
+export { EnumChartMode, EnumChartAnalysisType };

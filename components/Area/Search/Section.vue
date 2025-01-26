@@ -1,22 +1,22 @@
 <template>
   <article
-    class="w-full h-full flex flex-col absolute top-0 left-0 z-search-section overflow-hidden bg-black-base"
+    class="absolute left-0 top-0 z-search-section flex h-full w-full flex-col overflow-hidden bg-black-base"
   >
-    <section class="w-full h-full flex flex-col">
+    <section class="flex h-full w-full flex-col">
       <div>
         <AreaSearchHeader :style-dark="contentScrollValue > 0" />
         <div class="w-full px-wrap-space py-2">
           <InputSearch
             v-model.trim="inputValue"
             is-once-focus
-            class="w-full mb-2"
+            class="mb-2 w-full"
           />
           <AreaSearchDetail :cards="contextCards" />
         </div>
       </div>
       <div
         ref="contentRef"
-        class="h-full overflow-x-hidden relative px-wrap-space"
+        class="relative h-full overflow-x-hidden px-wrap-space"
         @scroll="handleScroll"
       >
         <CardList
@@ -33,7 +33,7 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import type { IRecordForm } from '@/assets/interfaces/record';
+  import type { IRecordForm } from '@/assets/types/record';
 
   const recordStore = useRecordStore();
   const { storage } = storeToRefs(recordStore);

@@ -19,10 +19,7 @@
 <script setup lang="ts">
   import numeral from 'numeral';
   import VueApexCharts from 'vue3-apexcharts';
-  import type {
-    IBarChartSeries,
-    IBarChartOptions,
-  } from '@/assets/interfaces/chart';
+  import type { IBarChartSeries, IBarChartOptions } from '@/assets/types/chart';
 
   const props = defineProps<{
     series: IBarChartSeries[];
@@ -139,11 +136,11 @@
 <style lang="scss">
   .element-barchart {
     .apexcharts-tooltip {
-      @apply text-black bg-yellow;
+      @apply bg-yellow text-black;
     }
 
     .apexcharts-tooltip-title {
-      @apply text-white bg-black leading-4;
+      @apply bg-black leading-4 text-white;
     }
 
     .apexcharts-tooltip-y-group {

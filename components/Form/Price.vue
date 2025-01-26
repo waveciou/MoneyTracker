@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="id" class="block text-base font-bold mb-2">Price</label>
+    <label :for="id" class="mb-2 block text-base font-bold">Price</label>
     <InputNumber
       :id="id"
       v-model.number="selectedValue"

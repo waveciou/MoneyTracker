@@ -31,8 +31,8 @@
 
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
-  import type { IRecordForm } from '@/assets/interfaces/record';
-  import { EnumRecordType } from '@/assets/enums/record';
+  import type { IRecordForm } from '@/assets/types/record';
+  import { EnumRecordType } from '@/assets/types/record';
 
   const recordStore = useRecordStore();
 

@@ -6,8 +6,8 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useCategoriesStore } from '@/stores/categoriesStore';
-  import type { IMainCategoriesItem } from '@/assets/interfaces/categories';
-  import { EnumRecordType } from '@/assets/enums/record';
+  import type { IMainCategoriesItem } from '@/assets/types/categories';
+  import { EnumRecordType } from '@/assets/types/record';
 
   const props = defineProps<{ categoryId: string }>();
 

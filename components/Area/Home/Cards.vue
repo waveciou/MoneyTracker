@@ -11,7 +11,7 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import type { IRecordForm, ICalendarValue } from '@/assets/interfaces/record';
+  import type { IRecordForm, ICalendarValue } from '@/assets/types/record';
 
   const props = withDefaults(defineProps<{ dateInfo?: ICalendarValue }>(), {
     dateInfo() {

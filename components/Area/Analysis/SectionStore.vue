@@ -5,10 +5,10 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumChartMode } from '@/assets/enums/chart';
-  import type { IChartTimeFrame } from '@/assets/interfaces/chart';
-  import type { IRecordForm } from '@/assets/interfaces/record';
-  import type { IAnalysisCardGroup } from '@/assets/interfaces/analysis';
+  import { EnumChartMode } from '@/assets/types/chart';
+  import type { IChartTimeFrame } from '@/assets/types/chart';
+  import type { IRecordForm } from '@/assets/types/record';
+  import type { IAnalysisCardGroup } from '@/assets/types/analysis';
 
   const props = withDefaults(
     defineProps<{

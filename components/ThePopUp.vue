@@ -3,11 +3,11 @@
     <Transition name="modal">
       <div
         v-if="props.isOpen"
-        class="modal-animation w-full h-full flex justify-center items-center fixed top-0 left-0 z-popup bg-black/60"
+        class="modal-animation fixed left-0 top-0 z-popup flex h-full w-full items-center justify-center bg-black/60"
         @click.stop="emits('close')"
       >
         <div
-          class="w-popup max-w-popup max-h-popup overflow-hidden rounded-md"
+          class="max-h-popup w-popup max-w-popup overflow-hidden rounded-md"
           @click.stop=""
         >
           <slot />

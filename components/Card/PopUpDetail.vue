@@ -2,7 +2,7 @@
   <div class="p-2">
     <div
       class="mb-2"
-      :class="hasDetail && 'pb-2 border-b border-white border-solid'"
+      :class="hasDetail && 'border-b border-solid border-white pb-2'"
     >
       <div class="mb-1 flex items-center justify-between text-lg">
         <span class="block truncate text-yellow">
@@ -26,10 +26,10 @@
       <li
         v-for="tag in props.data.tags"
         :key="tag"
-        class="max-w-full mr-1.5 mb-1.5"
+        class="mb-1.5 mr-1.5 max-w-full"
       >
         <div
-          class="w-full flex items-center px-1.5 py-1 rounded bg-yellow text-black text-xs font-bold before:content-['#']"
+          class="flex w-full items-center rounded bg-yellow px-1.5 py-1 text-xs font-bold text-black before:content-['#']"
         >
           <span class="truncate">{{ tag }}</span>
         </div>
@@ -39,8 +39,8 @@
 </template>
 
 <script setup lang="ts">
-  import { EnumRecordType } from '@/assets/enums/record';
-  import type { IRecordForm } from '@/assets/interfaces/record';
+  import { EnumRecordType } from '@/assets/types/record';
+  import type { IRecordForm } from '@/assets/types/record';
 
   const props = defineProps<{ data: IRecordForm }>();
 

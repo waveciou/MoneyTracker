@@ -1,6 +1,6 @@
 <template>
   <article
-    class="w-full h-full absolute top-0 left-0 z-rescord-section overflow-hidden bg-black-base"
+    class="absolute left-0 top-0 z-rescord-section h-full w-full overflow-hidden bg-black-base"
   >
     <AreaRecordModeCreator v-if="contextMode === EnumRecordMode.CREATOR" />
     <AreaRecordModeEditor v-else-if="contextMode === EnumRecordMode.EDITOR" />
@@ -10,7 +10,7 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumRecordMode } from '@/assets/enums/record';
+  import { EnumRecordMode } from '@/assets/types/record';
 
   const recordStore = useRecordStore();
   const { contextMode } = storeToRefs(recordStore);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="block text-base font-bold mb-2">Category</label>
+    <label class="mb-2 block text-base font-bold">Category</label>
     <InputSelect
       v-model="selectedID"
       :options="optionCategory"
@@ -11,8 +11,8 @@
 
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
-  import type { IInputSelectOption } from '@/assets/interfaces/element';
-  import { EnumRecordType } from '@/assets/enums/record';
+  import type { IInputSelectOption } from '@/assets/types/element';
+  import { EnumRecordType } from '@/assets/types/record';
   import { useCategoriesStore } from '@/stores/categoriesStore';
 
   const props = defineProps<{ modelValue: string }>();

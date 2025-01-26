@@ -1,11 +1,11 @@
 <template>
-  <div class="flex items-center mb-4">
+  <div class="mb-4 flex items-center">
     <button
-      class="w-full flex-1 mr-[0.3125rem] py-1.5 px-2.5 block border border-solid rounded text-base font-bold truncate"
+      class="mr-[0.3125rem] block w-full flex-1 truncate rounded border border-solid px-2.5 py-1.5 text-base font-bold"
       :class="
         props.modelValue === EnumRecordType.EXPENSE
-          ? 'bg-yellow border-yellow text-black-darker'
-          : 'bg-black-base border-white text-white'
+          ? 'border-yellow bg-yellow text-black-darker'
+          : 'border-white bg-black-base text-white'
       "
       title="Expense"
       @click="handleClick(EnumRecordType.EXPENSE)"
@@ -13,11 +13,11 @@
       EXPENSE
     </button>
     <button
-      class="w-full flex-1 ml-[0.3125rem] py-1.5 px-2.5 block border border-solid rounded text-base font-bold truncate"
+      class="ml-[0.3125rem] block w-full flex-1 truncate rounded border border-solid px-2.5 py-1.5 text-base font-bold"
       :class="
         props.modelValue === EnumRecordType.INCOME
-          ? 'bg-yellow border-yellow text-black-darker'
-          : 'bg-black-base border-white text-white'
+          ? 'border-yellow bg-yellow text-black-darker'
+          : 'border-white bg-black-base text-white'
       "
       title="Income"
       @click="handleClick(EnumRecordType.INCOME)"
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-  import { EnumRecordType } from '@/assets/enums/record';
+  import { EnumRecordType } from '@/assets/types/record';
 
   const props = withDefaults(defineProps<{ modelValue: string }>(), {
     modelValue: EnumRecordType.EXPENSE,

@@ -1,5 +1,5 @@
 <template>
-  <div class="py-3 text-2xl text-white/60 text-center font-bold">
+  <div class="py-3 text-center text-2xl font-bold text-white/60">
     {{ props.description }}
   </div>
 </template>

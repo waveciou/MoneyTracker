@@ -1,3 +1,13 @@
+enum EnumRecordMode {
+  CREATOR = 'creator',
+  EDITOR = 'editor',
+}
+
+enum EnumRecordType {
+  INCOME = 'income',
+  EXPENSE = 'expense',
+}
+
 interface IRecordForm {
   id: string;
   category: string;
@@ -44,3 +54,5 @@ export type {
   ICalendarValue,
   ITimeStampValue,
 };
+
+export { EnumRecordMode, EnumRecordType };

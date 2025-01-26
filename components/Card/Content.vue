@@ -1,13 +1,13 @@
 <template>
   <button
-    class="w-full flex"
+    class="flex w-full"
     :title="provideCategoryName(props.data.category, false)"
     @click="emits('click')"
   >
-    <div class="w-icon-size h-icon-size basis-icon-size bg-yellow rounded">
+    <div class="h-icon-size w-icon-size basis-icon-size rounded bg-yellow">
       <TheIcon
         :category-id="props.data.category"
-        class="w-full h-full flex justify-center items-center text-black-base before:text-4xl"
+        class="flex h-full w-full items-center justify-center text-black-base before:text-4xl"
       />
     </div>
     <div class="w-card-content pl-2.5 text-left">
@@ -19,8 +19,8 @@
           {{ provideCategoryName(`${props.data.price}`) }}
         </span>
       </div>
-      <div class="text-sm truncate">{{ props.data.store }}</div>
-      <div class="text-sm truncate">
+      <div class="truncate text-sm">{{ props.data.store }}</div>
+      <div class="truncate text-sm">
         <span
           v-for="tag in props.data.tags"
           :key="tag"
@@ -34,8 +34,8 @@
 </template>
 
 <script setup lang="ts">
-  import { EnumRecordType } from '@/assets/enums/record';
-  import type { IRecordForm } from '@/assets/interfaces/record';
+  import { EnumRecordType } from '@/assets/types/record';
+  import type { IRecordForm } from '@/assets/types/record';
 
   const props = defineProps<{ data: IRecordForm }>();
 

@@ -1,6 +1,6 @@
 import { storeToRefs } from 'pinia';
 import { useCommonStore } from '@/stores/commonStore';
-import type { ICalendarValue } from '@/assets/interfaces/record';
+import type { ICalendarValue } from '@/assets/types/record';
 
 export const useTimeTodayValue = (): ICalendarValue => {
   const dayjs = useDayjs();

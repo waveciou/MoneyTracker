@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-  import { EnumChartMode } from '@/assets/enums/chart';
-  import type { IRecordForm, IRecordSeries } from '@/assets/interfaces/record';
+  import { EnumChartMode } from '@/assets/types/chart';
+  import type { IRecordForm, IRecordSeries } from '@/assets/types/record';
 
   interface IContextCardItem {
     id: string;

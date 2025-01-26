@@ -1,15 +1,15 @@
 <template>
   <header
-    class="w-full h-header-height basis-header-height relative"
+    class="relative h-header-height w-full basis-header-height"
     :class="props.styleDark && 'bg-black-darkest'"
   >
     <div
-      class="h-header-height flex justify-center items-center text-center px-header-height"
+      class="flex h-header-height items-center justify-center px-header-height text-center"
     >
-      <h1 class="block text-lg font-bold truncate">Search</h1>
+      <h1 class="block truncate text-lg font-bold">Search</h1>
     </div>
     <button
-      class="before-font-material before:content-['\e5cd'] w-header-height h-header-height flex justify-center items-center absolute top-0 right-0"
+      class="before-font-material absolute right-0 top-0 flex h-header-height w-header-height items-center justify-center before:content-['\e5cd']"
       title="Close"
       @click="handleClose"
     />

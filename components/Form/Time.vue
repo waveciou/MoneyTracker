@@ -1,9 +1,9 @@
 <template>
   <div>
-    <label class="block text-base font-bold mb-1">Time</label>
+    <label class="mb-1 block text-base font-bold">Time</label>
     <div class="flex items-center">
-      <div class="flex-1 mr-[0.3125rem]">
-        <label :for="hourID" class="block text-xs pl-1 mb-1">Hour</label>
+      <div class="mr-[0.3125rem] flex-1">
+        <label :for="hourID" class="mb-1 block pl-1 text-xs">Hour</label>
         <InputSelect
           :id="hourID"
           v-model="selectedHour"
@@ -12,8 +12,8 @@
           :disabled="props.disabled"
         />
       </div>
-      <div class="flex-1 ml-[0.3125rem]">
-        <label :for="minuteID" class="block text-xs pl-1 mb-1">Minute</label>
+      <div class="ml-[0.3125rem] flex-1">
+        <label :for="minuteID" class="mb-1 block pl-1 text-xs">Minute</label>
         <InputSelect
           :id="minuteID"
           v-model="selectedMinute"
@@ -29,7 +29,7 @@
 <script setup lang="ts">
   import { v4 as uuidv4 } from 'uuid';
   import { storeToRefs } from 'pinia';
-  import type { IInputSelectOption } from '@/assets/interfaces/element';
+  import type { IInputSelectOption } from '@/assets/types/element';
   import { useCommonStore } from '@/stores/commonStore';
 
   const props = withDefaults(

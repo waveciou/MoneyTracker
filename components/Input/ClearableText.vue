@@ -3,7 +3,7 @@
     <input
       :id="props.id"
       type="text"
-      class="w-full py-1.5 pl-2.5 pr-9 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
+      class="block w-full truncate rounded border border-solid border-white bg-black-base py-1.5 pl-2.5 pr-9 text-base text-white focus:border-yellow focus:shadow-input focus:outline-none"
       :value="props.modelValue"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
@@ -11,7 +11,7 @@
       @input="handleInput"
     />
     <button
-      class="before-font-material before:content-['\e5c9'] before:text-lg w-9 h-full absolute top-0 right-0 flex justify-center items-center"
+      class="before-font-material absolute right-0 top-0 flex h-full w-9 items-center justify-center before:text-lg before:content-['\e5c9']"
       title="Clear"
       @click="handleClear"
     />

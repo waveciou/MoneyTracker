@@ -1,7 +1,7 @@
 <template>
-  <section class="py-2 px-3 my-3 bg-black-darkest rounded-lg">
+  <section class="my-3 rounded-lg bg-black-darkest px-3 py-2">
     <h2
-      class="flex items-center justify-between mb-1 text-2xl text-white truncate"
+      class="mb-1 flex items-center justify-between truncate text-2xl text-white"
     >
       Total
       <span class="ml-1" :class="providePriceClass">
@@ -9,7 +9,7 @@
       </span>
     </h2>
     <div
-      class="flex items-center justify-between text-base text-white truncate"
+      class="flex items-center justify-between truncate text-base text-white"
     >
       Income
       <span class="ml-1 text-green">
@@ -17,7 +17,7 @@
       </span>
     </div>
     <div
-      class="flex items-center justify-between text-base text-white truncate"
+      class="flex items-center justify-between truncate text-base text-white"
     >
       Expense
       <span class="ml-1 text-red">

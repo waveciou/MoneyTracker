@@ -1,7 +1,7 @@
 <template>
   <div>
     <button
-      class="after-font-material w-full py-3 flex justify-between after:block after:basis-0"
+      class="after-font-material flex w-full justify-between py-3 after:block after:basis-0"
       :class="provideButtonClass"
       :title="props.title"
       @click="handleClick"

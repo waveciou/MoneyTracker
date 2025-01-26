@@ -8,7 +8,7 @@
       <li v-for="item in props.cards" :key="item.name">
         <TheAccordion :title="item.name" :default="false">
           <div class="mb-5">
-            <div class="mb-3 text-lg text-right text-yellow">
+            <div class="mb-3 text-right text-lg text-yellow">
               {{ provideSumPrice(item.storage) }}
             </div>
             <CardList :cards="item.storage" />
@@ -21,8 +21,8 @@
 
 <script setup lang="ts">
   import numeral from 'numeral';
-  import type { IRecordForm } from '@/assets/interfaces/record';
-  import type { IAnalysisCardGroup } from '@/assets/interfaces/analysis';
+  import type { IRecordForm } from '@/assets/types/record';
+  import type { IAnalysisCardGroup } from '@/assets/types/analysis';
   import { useFinanceNumber } from '@/utils/useFinanceNumber';
 
   const props = withDefaults(

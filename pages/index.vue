@@ -13,7 +13,7 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import type { ICalendarValue } from '@/assets/interfaces/record';
+  import type { ICalendarValue } from '@/assets/types/record';
 
   useHead({ title: 'Money Tracker - Calendar' });
 

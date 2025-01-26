@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full h-full flex flex-col">
+  <section class="flex h-full w-full flex-col">
     <AreaRecordHeader
       :style-dark="contentScrollValue > 0"
       @submit="handleSubmit"
@@ -7,7 +7,7 @@
     <div
       v-if="contextID"
       ref="contentRef"
-      class="h-full overflow-x-hidden relative px-wrap-space"
+      class="relative h-full overflow-x-hidden px-wrap-space"
       @scroll="handleScroll"
     >
       <AreaRecordForm
@@ -29,8 +29,8 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumRecordType } from '@/assets/enums/record';
-  import type { IRecordForm } from '@/assets/interfaces/record';
+  import { EnumRecordType } from '@/assets/types/record';
+  import type { IRecordForm } from '@/assets/types/record';
 
   const recordStore = useRecordStore();
   const { contextID } = storeToRefs(recordStore);

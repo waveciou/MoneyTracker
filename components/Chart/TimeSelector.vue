@@ -1,11 +1,11 @@
 <template>
   <div class="my-3 flex items-center">
     <button
-      class="before-font-material block w-7 h-7 ml-2 basis-7 before:content-['\e5cb'] before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
+      class="before-font-material ml-2 block h-7 w-7 basis-7 before:flex before:h-full before:w-full before:items-center before:justify-center before:text-3xl before:content-['\e5cb']"
       title="Previous"
       @click="handleChangeTime(false)"
     />
-    <Component :is="props.tagName" class="w-full h-7 flex justify-center">
+    <Component :is="props.tagName" class="flex h-7 w-full justify-center">
       <button class="block" title="today" @click="handleMoveToday">
         <span>{{ selectedTime.year }} 年</span>
         <span v-if="props.mode === EnumChartMode.MONTHS" class="ml-1">
@@ -14,7 +14,7 @@
       </button>
     </Component>
     <button
-      class="before-font-material block w-7 h-7 mr-2 basis-7 before:content-['\e5cc'] before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
+      class="before-font-material mr-2 block h-7 w-7 basis-7 before:flex before:h-full before:w-full before:items-center before:justify-center before:text-3xl before:content-['\e5cc']"
       title="Next"
       @click="handleChangeTime(true)"
     />
@@ -22,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-  import { EnumChartMode } from '@/assets/enums/chart';
-  import type { IChartTimeFrame } from '@/assets/interfaces/chart';
+  import { EnumChartMode } from '@/assets/types/chart';
+  import type { IChartTimeFrame } from '@/assets/types/chart';
   import { useFormatNumber } from '@/utils/useFormatNumber';
 
   const props = withDefaults(

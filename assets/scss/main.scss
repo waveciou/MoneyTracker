@@ -1,8 +1,9 @@
 @charset "UTF-8";
-@import './utils/_utils.scss';
-@import './_font.scss';
-@import './_reset.scss';
-@import './_animate.scss';
+@use './_mixin.scss' as *;
+@use './_variables.scss' as *;
+@use './_font.scss' as *;
+@use './_reset.scss' as *;
+@use './_animate.scss' as *;
 
 @tailwind base;
 @tailwind components;

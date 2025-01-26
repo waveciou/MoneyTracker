@@ -1,7 +1,7 @@
 import numeral from 'numeral';
 import { defineStore } from 'pinia';
-import { EnumRecordMode, EnumRecordType } from '@/assets/enums/record';
-import type { IRecordForm, ICalendarValue } from '@/assets/interfaces/record';
+import { EnumRecordMode, EnumRecordType } from '@/assets/types/record';
+import type { IRecordForm, ICalendarValue } from '@/assets/types/record';
 
 interface IDefaultState {
   storage: IRecordForm[];

@@ -1,6 +1,4 @@
 {
-  "vetur.validation.template": false,
-  "vetur.validation.script": false,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
@@ -15,8 +13,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "vue.codeActions.enabled": false,
-  "css.lint.unknownAtRules": "ignore",
-  "scss.lint.unknownAtRules": "ignore",
+  "css.validate": false,
   "scss.validate": false,
-  "css.validate": false
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore"
 }

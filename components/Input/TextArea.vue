@@ -2,7 +2,7 @@
   <div class="relative">
     <textarea
       :id="props.id"
-      class="w-full h-40 p-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input resize-none"
+      class="block h-40 w-full resize-none truncate rounded border border-solid border-white bg-black-base p-2.5 text-base text-white focus:border-yellow focus:shadow-input focus:outline-none"
       :value="props.modelValue"
       :placeholder="props.placeholder"
       :disabled="props.disabled"

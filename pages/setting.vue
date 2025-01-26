@@ -1,8 +1,8 @@
 <template>
   <section>
-    <div class="py-3 mb-3 text-center">
+    <div class="mb-3 py-3 text-center">
       <h2
-        class="flex justify-center items-center text-3xl leading-snug before:content-[''] before:inline-block before:mr-2 before:w-[42px] before:h-[42px] before:bg-no-repeat before:bg-contain before:bg-center before:bg-[url('@/assets/images/icon.svg')]"
+        class="flex items-center justify-center text-3xl leading-snug before:mr-2 before:inline-block before:h-[42px] before:w-[42px] before:bg-[url('@/assets/images/icon.svg')] before:bg-contain before:bg-center before:bg-no-repeat before:content-['']"
       >
         Money Tracker
       </h2>
@@ -10,7 +10,7 @@
     <ul class="py-3">
       <li class="mb-3">
         <button
-          class="w-full flex items-center py-2 px-3 border border-white border-solid rounded before-font-material before:content-['\e92b'] before:inline-flex before:mr-2 before:w-8 before:h-8 before:justify-center before:items-center before:text-3xl"
+          class="before-font-material flex w-full items-center rounded border border-solid border-white px-3 py-2 before:mr-2 before:inline-flex before:h-8 before:w-8 before:items-center before:justify-center before:text-3xl before:content-['\e92b']"
           title="Clear All Records"
           @click="isConfirmOpen = true"
         >
@@ -20,7 +20,7 @@
       <li class="mb-3">
         <a
           href="https://github.com/waveciou/MoneyTracker"
-          class="w-full flex items-center py-2 px-3 border border-white border-solid rounded before:content-[''] before:inline-block before:mr-2 before:w-8 before:h-8 before:bg-no-repeat before:bg-contain before:bg-center before:bg-[url('@/assets/images/github.svg')]"
+          class="flex w-full items-center rounded border border-solid border-white px-3 py-2 before:mr-2 before:inline-block before:h-8 before:w-8 before:bg-[url('@/assets/images/github.svg')] before:bg-contain before:bg-center before:bg-no-repeat before:content-['']"
           target="_blank"
           title="Github MoneyTracker"
         >

@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { IRecordForm } from '@/assets/interfaces/record';
+  import type { IRecordForm } from '@/assets/types/record';
 
   const props = withDefaults(
     defineProps<{

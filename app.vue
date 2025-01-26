@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="max-w-container m-auto bg-black-base">
+  <div id="app" class="m-auto max-w-container bg-black-base">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

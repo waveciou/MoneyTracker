@@ -1,6 +1,6 @@
 {
   "name": "money-tracker",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "private": true,
   "author": "waveciou <waveciou@gmail.com>",
   "license": "MIT",
@@ -13,19 +13,20 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.3.9",
-    "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "@nuxtjs/eslint-module": "^4.1.0",
+    "@nuxt/eslint-config": "^0.7.5",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@types/node": "^18.19.44",
     "@types/numeral": "^2.0.5",
     "@types/uuid": "^9.0.8",
     "dayjs-nuxt": "^1.2.7",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^8.10.0",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "nuxt": "^3.12.4",
     "prettier": "^3.3.3",
-    "sass": "^1.77.8",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "sass-embedded": "^1.83.4",
     "vite-plugin-eslint": "^1.8.1"
   },
   "dependencies": {

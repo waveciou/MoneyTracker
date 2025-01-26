@@ -1,12 +1,12 @@
 <template>
   <div class="relative">
     <div
-      class="after-font-material relative border border-white border-solid rounded overflow-hidden after:content-['\e5cf'] after:w-9 after:h-full after:flex after:justify-center after:items-center after:absolute after:top-0 after:right-0 after:pointer-events-none"
+      class="after-font-material relative overflow-hidden rounded border border-solid border-white after:pointer-events-none after:absolute after:right-0 after:top-0 after:flex after:h-full after:w-9 after:items-center after:justify-center after:content-['\e5cf']"
     >
       <select
         :id="props.id"
         v-model="contextValue"
-        class="w-full py-1.5 pl-2.5 pr-9 block text-white text-base truncate bg-black-base appearance-none cursor-pointer focus:outline-none"
+        class="block w-full cursor-pointer appearance-none truncate bg-black-base py-1.5 pl-2.5 pr-9 text-base text-white focus:outline-none"
         :disabled="props.disabled"
       >
         <option v-for="item in props.options" :key="item.id" :value="item.id">
@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
   import { v4 as uuidv4 } from 'uuid';
-  import type { IInputSelectOption } from '@/assets/interfaces/element';
+  import type { IInputSelectOption } from '@/assets/types/element';
 
   const props = withDefaults(
     defineProps<{

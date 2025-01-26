@@ -2,8 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { storeToRefs } from 'pinia';
 import { useRecordStore } from '@/stores/recordStore';
 import { useCategoriesStore } from '@/stores/categoriesStore';
-import type { IRecordForm } from '@/assets/interfaces/record';
-import { EnumRecordType } from '@/assets/enums/record';
+import type { IRecordForm } from '@/assets/types/record';
+import { EnumRecordType } from '@/assets/types/record';
 
 export const useRecordForm = (
   recordType: EnumRecordType,

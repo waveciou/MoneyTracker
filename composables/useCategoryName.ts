@@ -4,9 +4,9 @@ import { useCategoriesStore } from '@/stores/categoriesStore';
 import type {
   IMainCategoriesItem,
   ICategoriesItem,
-} from '@/assets/interfaces/categories';
+} from '@/assets/types/categories';
 
-import { EnumRecordType } from '@/assets/enums/record';
+import { EnumRecordType } from '@/assets/types/record';
 
 export const useCategoryName = (
   categoryID: string,

@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { IAnalysisCardGroup } from '@/assets/interfaces/analysis';
+  import type { IAnalysisCardGroup } from '@/assets/types/analysis';
 
   const props = withDefaults(
     defineProps<{

@@ -1,19 +1,19 @@
 <template>
-  <nav class="w-full h-24 basis-24 bg-black-darkest">
+  <nav class="h-24 w-full basis-24 bg-black-darkest">
     <div class="flex">
       <button
         v-for="item in menuButtons"
         :key="item.name"
         :title="item.name"
-        class="w-1/5 h-menu-height flex justify-center items-center"
+        class="flex h-menu-height w-1/5 items-center justify-center"
         :class="item.path === route.path && 'text-yellow'"
         @click="handleClick(item)"
       >
         <div
-          class="before-font-material text-center before:block before:w-10 before:h-8 before:m-auto before:text-center before:text-3xl"
+          class="before-font-material text-center before:m-auto before:block before:h-8 before:w-10 before:text-center before:text-3xl"
           :class="`${item.className}`"
         >
-          <span class="block leading-5 tracking-normal text-xs truncate">
+          <span class="block truncate text-xs leading-5 tracking-normal">
             {{ item.name }}
           </span>
         </div>
@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumMenuName, EnumRouteName } from '@/assets/enums/index';
+  import { EnumMenuName, EnumRouteName } from '~/assets/types/index';
 
   const route = useRoute();
   const router = useRouter();

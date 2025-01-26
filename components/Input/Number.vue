@@ -6,7 +6,7 @@
       type="number"
       pattern="\d*"
       inputmode="decimal"
-      class="w-full py-1.5 px-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
+      class="block w-full truncate rounded border border-solid border-white bg-black-base px-2.5 py-1.5 text-base text-white focus:border-yellow focus:shadow-input focus:outline-none"
       :placeholder="props.placeholder"
       :disabled="props.disabled"
       :readonly="props.readonly"

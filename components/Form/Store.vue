@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="id" class="block text-base font-bold mb-2">Store</label>
+    <label :for="id" class="mb-2 block text-base font-bold">Store</label>
     <InputClearableText
       :id="id"
       v-model.trim="selectedValue"

@@ -2,28 +2,28 @@
   <div>
     <CardContent :data="props.data" @click="isPopUpOpen = true" />
     <ThePopUp :is-open="isPopUpOpen" @close="isPopUpOpen = false">
-      <div class="text-white bg-black-base">
-        <div class="pb-8 bg-yellow">
-          <div class="p-1 mb-4 flex justify-end text-black-base">
+      <div class="bg-black-base text-white">
+        <div class="bg-yellow pb-8">
+          <div class="mb-4 flex justify-end p-1 text-black-base">
             <button
-              class="w-6 h-6 ml-1 before-font-material before:content-['\e3c9']"
+              class="before-font-material ml-1 h-6 w-6 before:content-['\e3c9']"
               title="Edit"
               @click="handleEdit"
             />
             <button
-              class="w-6 h-6 ml-1 before-font-material before:content-['\e872']"
+              class="before-font-material ml-1 h-6 w-6 before:content-['\e872']"
               title="Delete"
               @click="isConfirmOpen = true"
             />
             <button
-              class="w-6 h-6 ml-1 before-font-material before:content-['\e5cd']"
+              class="before-font-material ml-1 h-6 w-6 before:content-['\e5cd']"
               title="Close"
               @click="isPopUpOpen = false"
             />
           </div>
           <TheIcon
             :category-id="props.data.category"
-            class="w-24 h-24 rounded-full m-auto flex justify-center items-center bg-black-base text-yellow before:text-6xl"
+            class="m-auto flex h-24 w-24 items-center justify-center rounded-full bg-black-base text-yellow before:text-6xl"
           />
         </div>
         <CardPopUpDetail :data="props.data" />
@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
   import { useRecordStore } from '@/stores/recordStore';
-  import type { IRecordForm } from '@/assets/interfaces/record';
+  import type { IRecordForm } from '@/assets/types/record';
 
   const props = defineProps<{ data: IRecordForm }>();
 

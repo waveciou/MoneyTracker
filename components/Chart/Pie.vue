@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
   import VueApexCharts from 'vue3-apexcharts';
-  import type { IPieChartOptions } from '@/assets/interfaces/chart';
+  import type { IPieChartOptions } from '@/assets/types/chart';
 
   const props = defineProps<{
     series: number[];

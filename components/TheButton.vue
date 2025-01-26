@@ -1,6 +1,6 @@
 <template>
   <button
-    class="min-w-[120px] max-w-full py-1.5 px-2.5 block border border-white border-solid rounded text-white text-base truncate bg-black-base"
+    class="block min-w-[120px] max-w-full truncate rounded border border-solid border-white bg-black-base px-2.5 py-1.5 text-base text-white"
   >
     <slot />
   </button>

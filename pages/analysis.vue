@@ -51,8 +51,8 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumChartMode, EnumChartAnalysisType } from '@/assets/enums/chart';
-  import type { IChartTimeFrame } from '@/assets/interfaces/chart';
+  import { EnumChartMode, EnumChartAnalysisType } from '@/assets/types/chart';
+  import type { IChartTimeFrame } from '@/assets/types/chart';
 
   useHead({ title: 'Money Tracker - Analysis' });
 

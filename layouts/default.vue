@@ -1,11 +1,11 @@
 <template>
-  <main class="w-full h-full relative overflow-hidden">
-    <article class="w-full h-full flex flex-col relative overflow-hidden">
+  <main class="relative h-full w-full overflow-hidden">
+    <article class="relative flex h-full w-full flex-col overflow-hidden">
       <HeaderSection />
       <div
         id="content"
         ref="contentRef"
-        class="h-full overflow-x-hidden relative px-wrap-space"
+        class="relative h-full overflow-x-hidden px-wrap-space"
         :class="isFixContent ? 'overflow-y-hidden' : 'overflow-y-auto'"
         @scroll="handleScroll"
       >
@@ -63,8 +63,6 @@
 </script>
 
 <style lang="scss" scoped>
-  @import url('~/assets/scss/utils/_utils.scss');
-
   #content {
     -webkit-overflow-scrolling: touch;
     -o-overflow-scrolling: touch;

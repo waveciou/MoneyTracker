@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
-import type { IInputSelectOption } from '@/assets/interfaces/element';
+import type { IInputSelectOption } from '@/assets/types/element';
 
 import type {
   ICategoriesItem,
   IMainCategoriesItem,
-} from '@/assets/interfaces/categories';
+} from '@/assets/types/categories';
 
 import expenseCategories from '@/assets/data/categories/expense.json';
 import incomeCategories from '@/assets/data/categories/income.json';

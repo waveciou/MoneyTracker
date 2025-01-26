@@ -1,5 +1,5 @@
 <template>
-  <div class="py-2 px-3 text-sm text-white bg-black-darkest rounded">
+  <div class="rounded bg-black-darkest px-3 py-2 text-sm text-white">
     <div class="flex items-center justify-between truncate">
       Income
       <span class="ml-1 text-green">+{{ useFinanceNumber(incomePrice) }}</span>
@@ -18,8 +18,8 @@
 
 <script setup lang="ts">
   import numeral from 'numeral';
-  import { EnumRecordType } from '@/assets/enums/record';
-  import type { IRecordForm } from '@/assets/interfaces/record';
+  import { EnumRecordType } from '@/assets/types/record';
+  import type { IRecordForm } from '@/assets/types/record';
   import { useFinanceNumber } from '@/utils/useFinanceNumber';
 
   const props = defineProps<{ cards: IRecordForm[] }>();

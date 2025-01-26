@@ -1,9 +1,9 @@
 <template>
   <div>
-    <label class="block text-base font-bold mb-2">Date</label>
-    <TheButton class="w-full mb-2" @click="isPopUpOpen = !isPopUpOpen">
+    <label class="mb-2 block text-base font-bold">Date</label>
+    <TheButton class="mb-2 w-full" @click="isPopUpOpen = !isPopUpOpen">
       <div
-        class="flex justify-center items-center before-font-material before:content-['\ebcc'] before:block before:mr-1 before:w-6 before:h-6"
+        class="before-font-material flex items-center justify-center before:mr-1 before:block before:h-6 before:w-6 before:content-['\ebcc']"
       >
         <span class="mr-1">{{ contextDate.year }} 年</span>
         <span class="mr-1">{{ useFormatNumber(contextDate.month) }} 月</span>
@@ -11,7 +11,7 @@
       </div>
     </TheButton>
     <ThePopUp :is-open="isPopUpOpen" @close="handleCancel">
-      <div class="p-2.5 bg-black-dark">
+      <div class="bg-black-dark p-2.5">
         <TheCalendar
           class="mb-2.5"
           :default="contextDate"
@@ -19,14 +19,14 @@
         />
         <div class="flex items-center">
           <TheButton
-            class="w-full flex-1 mr-[0.3125rem] bg-black-dark"
+            class="mr-[0.3125rem] w-full flex-1 bg-black-dark"
             title="Cancel"
             @click="handleCancel"
           >
             Cancel
           </TheButton>
           <TheButton
-            class="w-full flex-1 ml-[0.3125rem] bg-black-dark"
+            class="ml-[0.3125rem] w-full flex-1 bg-black-dark"
             title="Pick"
             @click="handlePick"
           >
@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { ICalendarValue } from '@/assets/interfaces/record';
+  import type { ICalendarValue } from '@/assets/types/record';
   import { useFormatNumber } from '@/utils/useFormatNumber';
 
   const props = defineProps<{ timestamp: number }>();

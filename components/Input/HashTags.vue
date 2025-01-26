@@ -4,10 +4,10 @@
       <li
         v-for="tag in props.modelValue"
         :key="tag"
-        class="max-w-full mr-2 mb-2"
+        class="mb-2 mr-2 max-w-full"
       >
         <button
-          class="after-font-material w-full flex items-center py-1 pr-2 pl-2.5 rounded bg-black/40 leading-tight text-sm before:content-['#'] after:content-['\e5c9'] after:block after:ml-1 after:text-xs"
+          class="after-font-material flex w-full items-center rounded bg-black/40 py-1 pl-2.5 pr-2 text-sm leading-tight before:content-['#'] after:ml-1 after:block after:text-xs after:content-['\e5c9']"
           title="Delete"
           @click="handleDelete(tag)"
         >
@@ -20,14 +20,14 @@
         :id="props.id"
         v-model.trim="inputValue"
         type="text"
-        class="w-full py-1.5 pl-2.5 pr-9 block border border-white border-solid rounded text-white text-base truncate bg-black-base focus:border-yellow focus:outline-none focus:shadow-input"
+        class="block w-full truncate rounded border border-solid border-white bg-black-base py-1.5 pl-2.5 pr-9 text-base text-white focus:border-yellow focus:shadow-input focus:outline-none"
         :placeholder="props.placeholder"
         :disabled="props.disabled"
         :readonly="props.readonly"
         @keyup.enter="handleCreate"
       />
       <button
-        class="before-font-material before:content-['\e147'] before:text-lg w-9 h-full absolute top-0 right-0 flex justify-center items-center"
+        class="before-font-material absolute right-0 top-0 flex h-full w-9 items-center justify-center before:text-lg before:content-['\e147']"
         title="Create"
         @click="handleCreate"
       />

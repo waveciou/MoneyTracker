@@ -1,6 +1,6 @@
 <template>
   <div v-if="props.cards.length">
-    <div class="flex justify-between items-center text-sm">
+    <div class="flex items-center justify-between text-sm">
       <p class="text-white">
         Total
         <span class="text-yellow">{{ props.cards.length }}</span>
@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { IRecordForm } from '@/assets/interfaces/record';
+  import type { IRecordForm } from '@/assets/types/record';
 
   const props = withDefaults(
     defineProps<{

@@ -2,24 +2,24 @@
   <div>
     <div class="flex items-center">
       <button
-        class="before-font-material block w-7 h-7 ml-2 basis-7 before:content-['\e5cb'] before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
+        class="before-font-material ml-2 block h-7 w-7 basis-7 before:flex before:h-full before:w-full before:items-center before:justify-center before:text-3xl before:content-['\e5cb']"
         title="Previous"
         @click="handleChangeMonth(false)"
       />
-      <Component :is="props.tagName" class="w-full h-7 flex justify-center">
+      <Component :is="props.tagName" class="flex h-7 w-full justify-center">
         <button class="block" title="Today" @click="handleMoveToday">
           <span class="mr-1">{{ selectedDate.year }} 年</span>
           <span>{{ useFormatNumber(selectedDate.month) }} 月</span>
         </button>
       </Component>
       <button
-        class="before-font-material block w-7 h-7 mr-2 basis-7 before:content-['\e5cc'] before:w-full before:h-full before:flex before:justify-center before:items-center before:text-3xl"
+        class="before-font-material mr-2 block h-7 w-7 basis-7 before:flex before:h-full before:w-full before:items-center before:justify-center before:text-3xl before:content-['\e5cc']"
         title="Next"
         @click="handleChangeMonth(true)"
       />
     </div>
     <div>
-      <ul class="py-2 flex items-center">
+      <ul class="flex items-center py-2">
         <li
           v-for="item in captionDays"
           :key="item"
@@ -28,14 +28,14 @@
           <span>{{ item }}</span>
         </li>
       </ul>
-      <ul class="py-2 flex items-center flex-wrap">
+      <ul class="flex flex-wrap items-center py-2">
         <li
           v-for="(item, index) in contextCalendar"
           :key="index"
           class="w-[14.285%] text-center"
         >
           <button
-            class="w-full block py-1.5 px-1 rounded"
+            class="block w-full rounded px-1 py-1.5"
             :class="provideClassName(item)"
             :title="useFormatNumber(item.date)"
             @click="handleClick(item)"
@@ -52,7 +52,7 @@
   import { storeToRefs } from 'pinia';
   import calendarData from '@/assets/data/calendar.json';
   import { useCommonStore } from '@/stores/commonStore';
-  import type { ICalendarValue } from '@/assets/interfaces/record';
+  import type { ICalendarValue } from '@/assets/types/record';
   import { useFormatNumber } from '@/utils/useFormatNumber';
 
   const props = withDefaults(

@@ -4,7 +4,7 @@
       v-model.trim="selectedCategory"
       class="mt-3"
     />
-    <div class="w-full h-[300px] flex items-center">
+    <div class="flex h-[300px] w-full items-center">
       <ChartPie
         class="w-full"
         :series="provideSeries"
@@ -20,11 +20,11 @@
   import { storeToRefs } from 'pinia';
   import { useRecordStore } from '@/stores/recordStore';
   import { useCategoriesStore } from '@/stores/categoriesStore';
-  import { EnumChartMode } from '@/assets/enums/chart';
-  import { EnumRecordType } from '@/assets/enums/record';
-  import type { IChartTimeFrame } from '@/assets/interfaces/chart';
-  import type { IRecordForm } from '@/assets/interfaces/record';
-  import type { IAnalysisCardGroup } from '@/assets/interfaces/analysis';
+  import { EnumChartMode } from '@/assets/types/chart';
+  import { EnumRecordType } from '@/assets/types/record';
+  import type { IChartTimeFrame } from '@/assets/types/chart';
+  import type { IRecordForm } from '@/assets/types/record';
+  import type { IAnalysisCardGroup } from '@/assets/types/analysis';
 
   const props = withDefaults(
     defineProps<{

@@ -9,8 +9,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { IInputSelectOption } from '@/assets/interfaces/element';
-  import { EnumRecordType } from '@/assets/enums/record';
+  import type { IInputSelectOption } from '@/assets/types/element';
+  import { EnumRecordType } from '@/assets/types/record';
   import { useCategoriesStore } from '@/stores/categoriesStore';
 
   const props = defineProps<{ modelValue: string }>();

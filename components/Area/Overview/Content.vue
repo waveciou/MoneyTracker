@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="w-full h-[320px] flex items-center">
+    <div class="flex h-[320px] w-full items-center">
       <ChartBar class="w-full" :series="provideSeries" :xaxis="provideXaxis" />
     </div>
     <div v-if="contextCards.length">
@@ -14,13 +14,10 @@
   import { storeToRefs } from 'pinia';
   import { useCommonStore } from '@/stores/commonStore';
   import { useRecordStore } from '@/stores/recordStore';
-  import { EnumRecordType } from '@/assets/enums/record';
-  import { EnumChartMode } from '@/assets/enums/chart';
-  import type { IRecordForm, IRecordSeries } from '@/assets/interfaces/record';
-  import type {
-    IChartTimeFrame,
-    IBarChartSeries,
-  } from '@/assets/interfaces/chart';
+  import { EnumRecordType } from '@/assets/types/record';
+  import { EnumChartMode } from '@/assets/types/chart';
+  import type { IRecordForm, IRecordSeries } from '@/assets/types/record';
+  import type { IChartTimeFrame, IBarChartSeries } from '@/assets/types/chart';
 
   const props = withDefaults(
     defineProps<{ mode: EnumChartMode; timeFrame: IChartTimeFrame }>(),

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { createStore, get, set } from 'idb-keyval';
 import { storeToRefs } from 'pinia';
 import { useRecordStore } from '@/stores/recordStore';
-import type { IRecordForm, IRecordEncode } from '@/assets/interfaces/record';
+import type { IRecordForm, IRecordEncode } from '@/assets/types/record';
 
 export const useIndexedDB = (): void => {
   const recordStore = useRecordStore();

@@ -1,15 +1,15 @@
 <template>
   <div>
-    <label class="block text-base font-bold mb-2">Category</label>
+    <label class="mb-2 block text-base font-bold">Category</label>
     <div class="flex items-center">
-      <div class="flex-1 mr-[0.3125rem]">
+      <div class="mr-[0.3125rem] flex-1">
         <InputSelect
           v-model="contextMainCategory"
           :options="optionMainCategory"
           class="w-full"
         />
       </div>
-      <div class="flex-1 ml-[0.3125rem]">
+      <div class="ml-[0.3125rem] flex-1">
         <InputSelect
           v-model="contextSubCategory"
           :options="optionSubCategory"
@@ -23,8 +23,8 @@
 <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useCategoriesStore } from '@/stores/categoriesStore';
-  import type { IInputSelectOption } from '@/assets/interfaces/element';
-  import { EnumRecordType } from '@/assets/enums/record';
+  import type { IInputSelectOption } from '@/assets/types/element';
+  import { EnumRecordType } from '@/assets/types/record';
 
   interface ISelectedID {
     main: string;
