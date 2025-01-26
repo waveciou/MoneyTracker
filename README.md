@@ -6,7 +6,7 @@
 
 ## Demo
 
-[https://waveciou-moneytracker.netlify.app/](https://waveciou-moneytracker.netlify.app/)
+[https://waveciou-moneytracker.vercel.app/](https://waveciou-moneytracker.vercel.app/)
 
 ## 💡 從這個專案當中學到了什麼
 
@@ -15,7 +15,7 @@
 - 使用 [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) 儲存記帳資料。
 - 使用 [Day.js](https://day.js.org/) 全手刻製作 datepicker 功能。
 - 使用 [ApexCharts.js](https://apexcharts.com/) 呈現數據圖表項目。
-- 使用 [Netlify](https://www.netlify.com/) 作為專案部署的 Serverless 平台。
+- 使用 [Vercel](https://vercel.com) 作為專案部署的 Serverless 平台。
 
 ## License
 
